@@ -3937,43 +3937,6 @@ function _VirtualDom_dekey(keyedNode)
 		b: keyedNode.b
 	};
 }
-
-
-
-var _Bitwise_and = F2(function(a, b)
-{
-	return a & b;
-});
-
-var _Bitwise_or = F2(function(a, b)
-{
-	return a | b;
-});
-
-var _Bitwise_xor = F2(function(a, b)
-{
-	return a ^ b;
-});
-
-function _Bitwise_complement(a)
-{
-	return ~a;
-};
-
-var _Bitwise_shiftLeftBy = F2(function(offset, a)
-{
-	return a << offset;
-});
-
-var _Bitwise_shiftRightBy = F2(function(offset, a)
-{
-	return a >> offset;
-});
-
-var _Bitwise_shiftRightZfBy = F2(function(offset, a)
-{
-	return a >>> offset;
-});
 var $elm$core$List$cons = _List_cons;
 var $elm$core$Elm$JsArray$foldr = _JsArray_foldr;
 var $elm$core$Array$foldr = F3(
@@ -4464,5105 +4427,6 @@ var $elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 			return 3;
 	}
 };
-var $author$project$Uebung1aufgabe4$All_Wheel_Drive = {$: 'All_Wheel_Drive'};
-var $author$project$Uebung1aufgabe4$Car = function (vehicleName) {
-	return function (carType) {
-		return function (wheelDrive) {
-			return function (retailPrice) {
-				return function (dealerCost) {
-					return function (engineSize) {
-						return function (cyl) {
-							return function (hp) {
-								return function (cityMPG) {
-									return function (hwyMPG) {
-										return function (weight) {
-											return function (wheelBase) {
-												return function (carLen) {
-													return function (carWidth) {
-														return {carLen: carLen, carType: carType, carWidth: carWidth, cityMPG: cityMPG, cyl: cyl, dealerCost: dealerCost, engineSize: engineSize, hp: hp, hwyMPG: hwyMPG, retailPrice: retailPrice, vehicleName: vehicleName, weight: weight, wheelBase: wheelBase, wheelDrive: wheelDrive};
-													};
-												};
-											};
-										};
-									};
-								};
-							};
-						};
-					};
-				};
-			};
-		};
-	};
-};
-var $author$project$Uebung1aufgabe4$Front_Wheel_Drive = {$: 'Front_Wheel_Drive'};
-var $author$project$Uebung1aufgabe4$Minivan = {$: 'Minivan'};
-var $author$project$Uebung1aufgabe4$Pickup = {$: 'Pickup'};
-var $author$project$Uebung1aufgabe4$Rear_Wheel_Drive = {$: 'Rear_Wheel_Drive'};
-var $author$project$Uebung1aufgabe4$SUV = {$: 'SUV'};
-var $author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan = {$: 'Small_Sporty_Compact_Large_Sedan'};
-var $author$project$Uebung1aufgabe4$Sports_Car = {$: 'Sports_Car'};
-var $author$project$Uebung1aufgabe4$Wagon = {$: 'Wagon'};
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
-var $author$project$Uebung1aufgabe4$cars = _List_fromArray(
-	[
-		$author$project$Uebung1aufgabe4$Car('Acura 3.5 RL 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(43755))(
-		$elm$core$Maybe$Just(39014))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3880))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Acura 3.5 RL w/Navigation 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(46100))(
-		$elm$core$Maybe$Just(41100))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3893))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Acura MDX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(36945))(
-		$elm$core$Maybe$Just(33337))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(265))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4451))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Acura NSX coupe 2dr manual S')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(89765))(
-		$elm$core$Maybe$Just(79978))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(290))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3153))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Acura RSX Type S 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23820))(
-		$elm$core$Maybe$Just(21761))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2778))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(172))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Acura TL 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33195))(
-		$elm$core$Maybe$Just(30299))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(270))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3575))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Acura TSX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26990))(
-		$elm$core$Maybe$Just(24647))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3230))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 1.8T 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25940))(
-		$elm$core$Maybe$Just(23508))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(3252))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 3.0 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(31840))(
-		$elm$core$Maybe$Just(28846))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3462))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 3.0 convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(42490))(
-		$elm$core$Maybe$Just(38325))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3814))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 3.0 Quattro 4dr auto')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(34480))(
-		$elm$core$Maybe$Just(31388))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3627))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 3.0 Quattro 4dr manual')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(33430))(
-		$elm$core$Maybe$Just(30366))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3583))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A4 3.0 Quattro convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(44240))(
-		$elm$core$Maybe$Just(40075))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4013))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A41.8T convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35940))(
-		$elm$core$Maybe$Just(32506))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3638))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi A6 2.7 Turbo Quattro 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(42840))(
-		$elm$core$Maybe$Just(38840))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3836))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Audi A6 3.0 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(36640))(
-		$elm$core$Maybe$Just(33129))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3561))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Audi A6 3.0 Avant Quattro')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(40840))(
-		$elm$core$Maybe$Just(37060))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4035))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Audi A6 3.0 Quattro 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(39640))(
-		$elm$core$Maybe$Just(35992))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3880))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Audi A6 4.2 Quattro 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(49690))(
-		$elm$core$Maybe$Just(44936))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4024))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Audi A8 L Quattro 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(69190))(
-		$elm$core$Maybe$Just(64740))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(330))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4399))(
-		$elm$core$Maybe$Just(121))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Audi RS 6 4dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(84600))(
-		$elm$core$Maybe$Just(76417))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(450))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(4024))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Audi S4 Avant Quattro')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(49090))(
-		$elm$core$Maybe$Just(44446))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3936))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi S4 Quattro 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(48040))(
-		$elm$core$Maybe$Just(43556))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(3825))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Audi TT 1.8 convertible 2dr (coupe)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35940))(
-		$elm$core$Maybe$Just(32512))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3131))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(159))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Audi TT 1.8 Quattro 2dr (convertible)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37390))(
-		$elm$core$Maybe$Just(33891))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2921))(
-		$elm$core$Maybe$Just(96))(
-		$elm$core$Maybe$Just(159))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Audi TT 3.2 coupe 2dr (convertible)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(40590))(
-		$elm$core$Maybe$Just(36739))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3351))(
-		$elm$core$Maybe$Just(96))(
-		$elm$core$Maybe$Just(159))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('BMW 325Ci 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(30795))(
-		$elm$core$Maybe$Just(28245))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3197))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 325Ci convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(37995))(
-		$elm$core$Maybe$Just(34800))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3560))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 325i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(28495))(
-		$elm$core$Maybe$Just(26155))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3219))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 325xi 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(30245))(
-		$elm$core$Maybe$Just(27745))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3461))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 325xi Sport')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(32845))(
-		$elm$core$Maybe$Just(30110))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3594))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 330Ci 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(36995))(
-		$elm$core$Maybe$Just(33890))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3285))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 330Ci convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(44295))(
-		$elm$core$Maybe$Just(40530))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3616))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 330i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(35495))(
-		$elm$core$Maybe$Just(32525))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3285))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 330xi 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37245))(
-		$elm$core$Maybe$Just(34115))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3483))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('BMW 525i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(39995))(
-		$elm$core$Maybe$Just(36620))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3428))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('BMW 530i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(44995))(
-		$elm$core$Maybe$Just(41170))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3472))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('BMW 545iA 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(54995))(
-		$elm$core$Maybe$Just(50270))(
-		$elm$core$Maybe$Just(4.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3814))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('BMW 745i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(69195))(
-		$elm$core$Maybe$Just(63190))(
-		$elm$core$Maybe$Just(4.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4376))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('BMW 745Li 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(73195))(
-		$elm$core$Maybe$Just(66830))(
-		$elm$core$Maybe$Just(4.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4464))(
-		$elm$core$Maybe$Just(123))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('BMW M3 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(56595))(
-		$elm$core$Maybe$Just(51815))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(333))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3781))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('BMW M3 coupe 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(48195))(
-		$elm$core$Maybe$Just(44170))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(333))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3415))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('BMW X3 3.0i')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37000))(
-		$elm$core$Maybe$Just(33873))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4023))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('BMW X5 4.4i')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(52195))(
-		$elm$core$Maybe$Just(47720))(
-		$elm$core$Maybe$Just(4.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(4824))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('BMW Z4 convertible 2.5i 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(33895))(
-		$elm$core$Maybe$Just(31065))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2932))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(161))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('BMW Z4 convertible 3.0i 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(41045))(
-		$elm$core$Maybe$Just(37575))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2998))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(161))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Buick Century Custom 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22180))(
-		$elm$core$Maybe$Just(20351))(
-		$elm$core$Maybe$Just(3.1))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3353))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Buick LeSabre Custom 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26470))(
-		$elm$core$Maybe$Just(24282))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(205))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3567))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Buick LeSabre Limited 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(32245))(
-		$elm$core$Maybe$Just(29566))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(205))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3591))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Buick Park Avenue 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35545))(
-		$elm$core$Maybe$Just(32244))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(205))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3778))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Buick Park Avenue Ultra 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(40720))(
-		$elm$core$Maybe$Just(36927))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3909))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Buick Rainier')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37895))(
-		$elm$core$Maybe$Just(34357))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4600))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Buick Regal GS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(28345))(
-		$elm$core$Maybe$Just(26047))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3536))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(196))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Buick Regal LS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24895))(
-		$elm$core$Maybe$Just(22835))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3461))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(196))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Buick Rendezvous CX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26545))(
-		$elm$core$Maybe$Just(24085))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4024))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac CTS VVT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(30835))(
-		$elm$core$Maybe$Just(28575))(
-		$elm$core$Maybe$Just(3.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(255))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3694))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac Deville 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(45445))(
-		$elm$core$Maybe$Just(41650))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3984))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac Deville DTS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(50595))(
-		$elm$core$Maybe$Just(46362))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4044))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac Escalade EXT')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(52975))(
-		$elm$core$Maybe$Just(48541))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(345))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(5879))(
-		$elm$core$Maybe$Just(130))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Cadillac Escaladet')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(52795))(
-		$elm$core$Maybe$Just(48377))(
-		$elm$core$Maybe$Just(5.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(295))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5367))(
-		$elm$core$Maybe$Just(116))(
-		$elm$core$Maybe$Just(199))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac Seville SLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(47955))(
-		$elm$core$Maybe$Just(43841))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3992))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac SRX V8')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(46995))(
-		$elm$core$Maybe$Just(43523))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(320))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4302))(
-		$elm$core$Maybe$Just(116))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Cadillac XLR convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(76200))(
-		$elm$core$Maybe$Just(70546))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(320))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3647))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Astro')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(26395))(
-		$elm$core$Maybe$Just(23954))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(4605))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Avalanche 1500')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(36100))(
-		$elm$core$Maybe$Just(31689))(
-		$elm$core$Maybe$Just(5.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(295))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5678))(
-		$elm$core$Maybe$Just(130))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Aveo 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11690))(
-		$elm$core$Maybe$Just(10965))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2370))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Aveo LS 4dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12585))(
-		$elm$core$Maybe$Just(11802))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2348))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(153))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Cavalier 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14610))(
-		$elm$core$Maybe$Just(13697))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(37))(
-		$elm$core$Maybe$Just(2617))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Cavalier 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14810))(
-		$elm$core$Maybe$Just(13884))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(37))(
-		$elm$core$Maybe$Just(2676))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Cavalier LS 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16385))(
-		$elm$core$Maybe$Just(15357))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(37))(
-		$elm$core$Maybe$Just(2617))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Colorado Z85')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(18760))(
-		$elm$core$Maybe$Just(17070))(
-		$elm$core$Maybe$Just(2.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3623))(
-		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Corvette 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(44535))(
-		$elm$core$Maybe$Just(39068))(
-		$elm$core$Maybe$Just(5.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(350))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3246))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Corvette convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(51535))(
-		$elm$core$Maybe$Just(45193))(
-		$elm$core$Maybe$Just(5.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(350))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3248))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Impala 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21900))(
-		$elm$core$Maybe$Just(20095))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(3465))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Impala LS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25000))(
-		$elm$core$Maybe$Just(22931))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3476))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Impala SS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27995))(
-		$elm$core$Maybe$Just(25672))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3606))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Malibu 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18995))(
-		$elm$core$Maybe$Just(17434))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(145))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(3174))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Malibu LS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20370))(
-		$elm$core$Maybe$Just(18639))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3297))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Malibu LT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23495))(
-		$elm$core$Maybe$Just(21551))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(3315))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Malibu Maxx LS')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22225))(
-		$elm$core$Maybe$Just(20394))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3458))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Monte Carlo LS 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21825))(
-		$elm$core$Maybe$Just(20026))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(3340))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Monte Carlo SS 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24225))(
-		$elm$core$Maybe$Just(22222))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3434))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Silverado 1500 Regular Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(20310))(
-		$elm$core$Maybe$Just(18480))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4142))(
-		$elm$core$Maybe$Just(119))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Silverado SS')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(40340))(
-		$elm$core$Maybe$Just(35399))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(4804))(
-		$elm$core$Maybe$Just(144))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet SSR')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(41995))(
-		$elm$core$Maybe$Just(39306))(
-		$elm$core$Maybe$Just(5.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4760))(
-		$elm$core$Maybe$Just(116))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Suburban 1500 LT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(42735))(
-		$elm$core$Maybe$Just(37422))(
-		$elm$core$Maybe$Just(5.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(295))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(4947))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(219))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Tahoe LT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(41465))(
-		$elm$core$Maybe$Just(36287))(
-		$elm$core$Maybe$Just(5.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(295))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5050))(
-		$elm$core$Maybe$Just(116))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Tracker')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20255))(
-		$elm$core$Maybe$Just(19108))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(2866))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet TrailBlazer LT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(30295))(
-		$elm$core$Maybe$Just(27479))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4425))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Chevrolet Venture LS')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27020))(
-		$elm$core$Maybe$Just(24518))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3699))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Chrvsler PT Cruiser GT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25955))(
-		$elm$core$Maybe$Just(24172))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3217))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(169))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler 300M 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(29865))(
-		$elm$core$Maybe$Just(27797))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3581))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler 300M Special Edition 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33295))(
-		$elm$core$Maybe$Just(30884))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(255))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3650))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Concorde LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24130))(
-		$elm$core$Maybe$Just(22452))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3479))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Concorde LXi 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26860))(
-		$elm$core$Maybe$Just(24909))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(232))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3548))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Crossfire 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(34495))(
-		$elm$core$Maybe$Just(32033))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3060))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Pacifica')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(31230))(
-		$elm$core$Maybe$Just(28725))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4675))(
-		$elm$core$Maybe$Just(116))(
-		$elm$core$Maybe$Just(199))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler PT Cruiser 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17985))(
-		$elm$core$Maybe$Just(16919))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3101))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(169))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler PT Cruiser Limited 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22000))(
-		$elm$core$Maybe$Just(20573))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3105))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(169))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Sebring 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19090))(
-		$elm$core$Maybe$Just(17805))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3173))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Sebring convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25215))(
-		$elm$core$Maybe$Just(23451))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3357))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(64)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Sebring Limited convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(30950))(
-		$elm$core$Maybe$Just(28613))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3448))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Sebring Touring 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21840))(
-		$elm$core$Maybe$Just(20284))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3222))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Town and Country Limited')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(38380))(
-		$elm$core$Maybe$Just(35063))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4331))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Chrysler Town and Country LX')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27490))(
-		$elm$core$Maybe$Just(25371))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4068))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('CMC Yukon 1500 SLE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35725))(
-		$elm$core$Maybe$Just(31361))(
-		$elm$core$Maybe$Just(4.8))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(285))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(5042))(
-		$elm$core$Maybe$Just(116))(
-		$elm$core$Maybe$Just(199))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Caravan SE')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21795))(
-		$elm$core$Maybe$Just(20508))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3862))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Dakota Club Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(20300))(
-		$elm$core$Maybe$Just(18670))(
-		$elm$core$Maybe$Just(3.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3829))(
-		$elm$core$Maybe$Just(131))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Dodge Dakota Regular Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(17630))(
-		$elm$core$Maybe$Just(16264))(
-		$elm$core$Maybe$Just(3.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3714))(
-		$elm$core$Maybe$Just(112))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Dodge Durango SLT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(32235))(
-		$elm$core$Maybe$Just(29472))(
-		$elm$core$Maybe$Just(4.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4987))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Grand Caravan SXT')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(32660))(
-		$elm$core$Maybe$Just(29812))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4440))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Intrepid ES 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24885))(
-		$elm$core$Maybe$Just(23058))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(232))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3487))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Intrepid SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22035))(
-		$elm$core$Maybe$Just(20502))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3469))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Neon SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13670))(
-		$elm$core$Maybe$Just(12849))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(132))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(2581))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Neon SXT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15040))(
-		$elm$core$Maybe$Just(14086))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(132))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(2626))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Ram 1500 Regular Cab ST')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(20215))(
-		$elm$core$Maybe$Just(18076))(
-		$elm$core$Maybe$Just(3.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4542))(
-		$elm$core$Maybe$Just(121))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Dodge Stratus SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20220))(
-		$elm$core$Maybe$Just(18821))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3175))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Stratus SXT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18820))(
-		$elm$core$Maybe$Just(17512))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3182))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Dodge Viper SRT-10 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(81795))(
-		$elm$core$Maybe$Just(74451))(
-		$elm$core$Maybe$Just(8.3))(
-		$elm$core$Maybe$Just(10))(
-		$elm$core$Maybe$Just(500))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(3410))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(176))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Ford Crown Victoria 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(24345))(
-		$elm$core$Maybe$Just(22856))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(224))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4057))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Ford Crown Victoria LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(27370))(
-		$elm$core$Maybe$Just(25105))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(224))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4057))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Ford Crown Victoria LX Sport 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(30315))(
-		$elm$core$Maybe$Just(27756))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(239))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4057))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Ford Escape XLS')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(22515))(
-		$elm$core$Maybe$Just(20907))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3346))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(173))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Ford Excursion 6.8 XLT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(41475))(
-		$elm$core$Maybe$Just(36494))(
-		$elm$core$Maybe$Just(6.8))(
-		$elm$core$Maybe$Just(10))(
-		$elm$core$Maybe$Just(310))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(7190))(
-		$elm$core$Maybe$Just(137))(
-		$elm$core$Maybe$Just(227))(
-		$elm$core$Maybe$Just(80)),
-		$author$project$Uebung1aufgabe4$Car('Ford Expedition 4.6 XLT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(34560))(
-		$elm$core$Maybe$Just(30468))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(232))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(5000))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(206))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Ford Explorer XLT V6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(29670))(
-		$elm$core$Maybe$Just(26983))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(4463))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Ford F-150 Regular Cab XL')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(22010))(
-		$elm$core$Maybe$Just(19490))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(231))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4788))(
-		$elm$core$Maybe$Just(126))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Ford F-150 Supercab Lariat')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(33540))(
-		$elm$core$Maybe$Just(29405))(
-		$elm$core$Maybe$Just(5.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5464))(
-		$elm$core$Maybe$Just(133))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13730))(
-		$elm$core$Maybe$Just(12906))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(2606))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15460))(
-		$elm$core$Maybe$Just(14496))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2606))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus SVT 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19135))(
-		$elm$core$Maybe$Just(17878))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2750))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus ZTW')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17475))(
-		$elm$core$Maybe$Just(16375))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2702))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus ZX3 2dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13270))(
-		$elm$core$Maybe$Just(12482))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2612))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Focus ZX5 5dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15580))(
-		$elm$core$Maybe$Just(14607))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2691))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Ford Freestar SE')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26930))(
-		$elm$core$Maybe$Just(24498))(
-		$elm$core$Maybe$Just(3.9))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4275))(
-		$elm$core$Maybe$Just(121))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Ford Mustang 2dr (convertible)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(18345))(
-		$elm$core$Maybe$Just(16943))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3290))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Ford Mustang GT Premium convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(29380))(
-		$elm$core$Maybe$Just(26875))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(260))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3347))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Ford Ranger 2.3 XL Regular Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(14385))(
-		$elm$core$Maybe$Just(13717))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(143))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3028))(
-		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Ford Taurus LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20320))(
-		$elm$core$Maybe$Just(18881))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3306))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Ford Taurus SE')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22290))(
-		$elm$core$Maybe$Just(20457))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3497))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Ford Taurus SES Duratec 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22735))(
-		$elm$core$Maybe$Just(20857))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3313))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Ford Thunderbird Deluxe convert w/hardtop 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(37530))(
-		$elm$core$Maybe$Just(34483))(
-		$elm$core$Maybe$Just(3.9))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(280))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3780))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('GMC Canyon Z85 SL Regular Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(16530))(
-		$elm$core$Maybe$Just(14877))(
-		$elm$core$Maybe$Just(2.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3351))(
-		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('GMC Envoy XUV SLE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(31890))(
-		$elm$core$Maybe$Just(28922))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4945))(
-		$elm$core$Maybe$Just(129))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('GMC Safari SLE')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(25640))(
-		$elm$core$Maybe$Just(23215))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(4309))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('GMC Sierra Extended Cab 1500')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(25717))(
-		$elm$core$Maybe$Just(22604))(
-		$elm$core$Maybe$Just(4.8))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(285))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(4548))(
-		$elm$core$Maybe$Just(144))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('GMC Sierra HD 2500')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(29322))(
-		$elm$core$Maybe$Just(25759))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(5440))(
-		$elm$core$Maybe$Just(133))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('GMC Sonoma Crew Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25395))(
-		$elm$core$Maybe$Just(23043))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4083))(
-		$elm$core$Maybe$Just(123))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('GMC Yukon XL 2500 SLT')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(46265))(
-		$elm$core$Maybe$Just(40534))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(6133))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(219))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Honda Accord EX 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22260))(
-		$elm$core$Maybe$Just(20080))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(3047))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Honda Accord EX V6 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26960))(
-		$elm$core$Maybe$Just(24304))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3294))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Honda Accord LX 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19860))(
-		$elm$core$Maybe$Just(17924))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2994))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Honda Accord LX V6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23760))(
-		$elm$core$Maybe$Just(21428))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3349))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic DX 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13270))(
-		$elm$core$Maybe$Just(12175))(
-		$elm$core$Maybe$Just(1.7))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(38))(
-		$elm$core$Maybe$Just(2432))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic EX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17750))(
-		$elm$core$Maybe$Just(16265))(
-		$elm$core$Maybe$Just(1.7))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(127))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(37))(
-		$elm$core$Maybe$Just(2601))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic HX 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14170))(
-		$elm$core$Maybe$Just(12996))(
-		$elm$core$Maybe$Just(1.7))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(117))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(44))(
-		$elm$core$Maybe$Just(2500))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic Hybrid 4dr manual (gas/electric)')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20140))(
-		$elm$core$Maybe$Just(18451))(
-		$elm$core$Maybe$Just(1.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(46))(
-		$elm$core$Maybe$Just(51))(
-		$elm$core$Maybe$Just(2732))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15850))(
-		$elm$core$Maybe$Just(14531))(
-		$elm$core$Maybe$Just(1.7))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(38))(
-		$elm$core$Maybe$Just(2513))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Honda Civic Si 2dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19490))(
-		$elm$core$Maybe$Just(17849))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(2782))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(166))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Honda CR-V LX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(19860))(
-		$elm$core$Maybe$Just(18419))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3258))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Honda Element LX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(18690))(
-		$elm$core$Maybe$Just(17334))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3468))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Honda Insight 2dr (gas/electric)')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19110))(
-		$elm$core$Maybe$Just(17911))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(73))(
-		$elm$core$Maybe$Just(60))(
-		$elm$core$Maybe$Just(66))(
-		$elm$core$Maybe$Just(1850))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Honda Odyssey EX')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27450))(
-		$elm$core$Maybe$Just(24744))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4365))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Honda Odyssey LX')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24950))(
-		$elm$core$Maybe$Just(22498))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4310))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Honda Pilot LX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(27560))(
-		$elm$core$Maybe$Just(24843))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(4387))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Honda S2000 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(33260))(
-		$elm$core$Maybe$Just(29965))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(2835))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(162))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Hummer H2')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(49995))(
-		$elm$core$Maybe$Just(45815))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(316))(
-		$elm$core$Maybe$Just(10))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(6400))(
-		$elm$core$Maybe$Just(123))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(81)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Accent 2dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(10539))(
-		$elm$core$Maybe$Just(10107))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2255))(
-		$elm$core$Maybe$Just(96))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Accent GL 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11839))(
-		$elm$core$Maybe$Just(11116))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2290))(
-		$elm$core$Maybe$Just(96))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Accent GT 2dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11939))(
-		$elm$core$Maybe$Just(11209))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2339))(
-		$elm$core$Maybe$Just(96))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Elantra GLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13839))(
-		$elm$core$Maybe$Just(12781))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(138))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2635))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Elantra GT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15389))(
-		$elm$core$Maybe$Just(14207))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(138))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2635))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Elantra GT 4dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15389))(
-		$elm$core$Maybe$Just(14207))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(138))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2698))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Santa Fe GLS')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21589))(
-		$elm$core$Maybe$Just(20201))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(173))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3549))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Sonata GLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19339))(
-		$elm$core$Maybe$Just(17574))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3217))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Sonata LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20339))(
-		$elm$core$Maybe$Just(18380))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3217))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai Tiburon GT V6 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18739))(
-		$elm$core$Maybe$Just(17101))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(172))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3023))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(173))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai XG350 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24589))(
-		$elm$core$Maybe$Just(22055))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3651))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Hyundai XG350 L 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26189))(
-		$elm$core$Maybe$Just(23486))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3651))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti FX35')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(34895))(
-		$elm$core$Maybe$Just(31756))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(280))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(4056))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti FX45')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(36395))(
-		$elm$core$Maybe$Just(33121))(
-		$elm$core$Maybe$Just(4.5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(315))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4309))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti G35 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(28495))(
-		$elm$core$Maybe$Just(26157))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(260))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3336))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti G35 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(32445))(
-		$elm$core$Maybe$Just(29783))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(260))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3677))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti G35 Sport Coupe 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(29795))(
-		$elm$core$Maybe$Just(27536))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(280))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3416))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti I35 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(31145))(
-		$elm$core$Maybe$Just(28320))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(255))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3306))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti M45 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(42845))(
-		$elm$core$Maybe$Just(38792))(
-		$elm$core$Maybe$Just(4.5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3851))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Infiniti Q45 Luxury 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(52545))(
-		$elm$core$Maybe$Just(47575))(
-		$elm$core$Maybe$Just(4.5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3977))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Isuzu Ascender S')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(31849))(
-		$elm$core$Maybe$Just(29977))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(4967))(
-		$elm$core$Maybe$Just(129))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Isuzu Rodeo S')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20449))(
-		$elm$core$Maybe$Just(19261))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3836))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar S-Type 3.0 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(43895))(
-		$elm$core$Maybe$Just(40004))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(235))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3777))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar S-Type 4.2 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(49995))(
-		$elm$core$Maybe$Just(45556))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(294))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3874))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar S-Type R 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(63120))(
-		$elm$core$Maybe$Just(57499))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(390))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4046))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar Vanden Plas 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(68995))(
-		$elm$core$Maybe$Just(62846))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(294))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3803))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XJ8 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(59995))(
-		$elm$core$Maybe$Just(54656))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(294))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3803))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XJR 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(74995))(
-		$elm$core$Maybe$Just(68306))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(390))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3948))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XK8 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(74995))(
-		$elm$core$Maybe$Just(68306))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(294))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3980))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XK8 coupe 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(69995))(
-		$elm$core$Maybe$Just(63756))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(294))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3779))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XKR convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(86995))(
-		$elm$core$Maybe$Just(79226))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(390))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4042))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar XKR coupe 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(81995))(
-		$elm$core$Maybe$Just(74676))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(390))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3865))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar X-Type 2.5 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(29995))(
-		$elm$core$Maybe$Just(27355))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3428))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Jaguar X-Type 3.0 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(33995))(
-		$elm$core$Maybe$Just(30995))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(227))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3516))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Jeep Grand Cherokee Laredo')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27905))(
-		$elm$core$Maybe$Just(25686))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3790))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Jeep Liberty Sport')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(20130))(
-		$elm$core$Maybe$Just(18973))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3826))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Jeep Wrangler Sahara convertible 2dr')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25520))(
-		$elm$core$Maybe$Just(23275))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(3575))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Kia Amanti 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26000))(
-		$elm$core$Maybe$Just(23764))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(196))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Kia Optima LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16040))(
-		$elm$core$Maybe$Just(14910))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(138))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3281))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Kia Optima LX V6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18435))(
-		$elm$core$Maybe$Just(16850))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3279))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Kia Rio 4dr auto')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11155))(
-		$elm$core$Maybe$Just(10705))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2458))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Kia Rio 4dr manual')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(10280))(
-		$elm$core$Maybe$Just(9875))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2403))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Kia Rio Cinco')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11905))(
-		$elm$core$Maybe$Just(11410))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2447))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Kia Sedona LX')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20615))(
-		$elm$core$Maybe$Just(19400))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(4802))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Kia Sorento LX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19635))(
-		$elm$core$Maybe$Just(18630))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4112))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Kia Spectra 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12360))(
-		$elm$core$Maybe$Just(11630))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2661))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Kia Spectra GS 4dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(13580))(
-		$elm$core$Maybe$Just(12830))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2686))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Kia Spectra GSX 4dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14630))(
-		$elm$core$Maybe$Just(13790))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2697))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Land Rover Discovery SE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(39250))(
-		$elm$core$Maybe$Just(35777))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(217))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(4576))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Land Rover Freelander SE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25995))(
-		$elm$core$Maybe$Just(23969))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3577))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Land Rover Range Rover HSE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(72250))(
-		$elm$core$Maybe$Just(65807))(
-		$elm$core$Maybe$Just(4.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(282))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(5379))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(195))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Lexus ES 330 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(32350))(
-		$elm$core$Maybe$Just(28755))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3460))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Lexus GS 300 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(41010))(
-		$elm$core$Maybe$Just(36196))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3649))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Lexus GS 430 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(48450))(
-		$elm$core$Maybe$Just(42232))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3715))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Lexus GX 470')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(45700))(
-		$elm$core$Maybe$Just(39838))(
-		$elm$core$Maybe$Just(4.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(235))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4740))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Lexus IS 300 4dr auto')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(32415))(
-		$elm$core$Maybe$Just(28611))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3285))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Lexus IS 300 4dr manual')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(31045))(
-		$elm$core$Maybe$Just(27404))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3255))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Lexus IS 300 SportCross')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(32455))(
-		$elm$core$Maybe$Just(28647))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3410))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Lexus LS 430 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(55750))(
-		$elm$core$Maybe$Just(48583))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(290))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3990))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Lexus LX 470')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(64800))(
-		$elm$core$Maybe$Just(56455))(
-		$elm$core$Maybe$Just(4.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(235))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(5590))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Lexus RX 330')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(39195))(
-		$elm$core$Maybe$Just(34576))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4065))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Lexus SC 430 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(63200))(
-		$elm$core$Maybe$Just(55063))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(3840))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln Aviator Ultimate')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(42915))(
-		$elm$core$Maybe$Just(39443))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(4834))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln LS V6 Luxury 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(32495))(
-		$elm$core$Maybe$Just(29969))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(232))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3681))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln LS V6 Premium 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(36895))(
-		$elm$core$Maybe$Just(33929))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(232))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3681))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln LS V8 Sport 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(40095))(
-		$elm$core$Maybe$Just(36809))(
-		$elm$core$Maybe$Just(3.9))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(280))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3768))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln LS V8 Ultimate 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(43495))(
-		$elm$core$Maybe$Just(39869))(
-		$elm$core$Maybe$Just(3.9))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(280))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3768))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln Navigator Luxury')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(52775))(
-		$elm$core$Maybe$Just(46360))(
-		$elm$core$Maybe$Just(5.4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5969))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(206))(
-		$elm$core$Maybe$Just(80)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln Town Car Signature 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(41815))(
-		$elm$core$Maybe$Just(38418))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(239))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4369))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln Town Car Ultimate 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(44925))(
-		$elm$core$Maybe$Just(41217))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(239))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4369))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Lincoln Town Car Ultimate L 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(50470))(
-		$elm$core$Maybe$Just(46208))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(239))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4474))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(221))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Mazda B2300 SX Regular Cab')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(14840))(
-		$elm$core$Maybe$Just(14070))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(143))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2960))(
-		$elm$core$Maybe$Just(112))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda B4000 SE Cab Plus')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(22350))(
-		$elm$core$Maybe$Just(20482))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(3571))(
-		$elm$core$Maybe$Just(126))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda MPV ES')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(28750))(
-		$elm$core$Maybe$Just(26600))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3812))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mazda MX-5 Miata convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(22388))(
-		$elm$core$Maybe$Just(20701))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(142))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2387))(
-		$elm$core$Maybe$Just(89))(
-		$elm$core$Maybe$Just(156))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Mazda MX-5 Miata LS convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(25193))(
-		$elm$core$Maybe$Just(23285))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(142))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2387))(
-		$elm$core$Maybe$Just(89))(
-		$elm$core$Maybe$Just(156))(
-		$elm$core$Maybe$Just(66)),
-		$author$project$Uebung1aufgabe4$Car('Mazda RX-8 4dr automatic')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(25700))(
-		$elm$core$Maybe$Just(23794))(
-		$elm$core$Maybe$Just(1.3))(
-		$elm$core$Maybe$Just(-1))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3053))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(174))($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda RX-8 4dr manual')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(27200))(
-		$elm$core$Maybe$Just(25179))(
-		$elm$core$Maybe$Just(1.3))(
-		$elm$core$Maybe$Just(-1))(
-		$elm$core$Maybe$Just(238))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3029))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(174))($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda Tribute DX 2.0')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(21087))(
-		$elm$core$Maybe$Just(19742))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3091))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(173))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mazda3 i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15500))(
-		$elm$core$Maybe$Just(14525))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(148))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(2696))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda3 s 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17200))(
-		$elm$core$Maybe$Just(15922))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(2762))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Mazda6 i 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19270))(
-		$elm$core$Maybe$Just(17817))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(3042))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C230 Sport 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(26060))(
-		$elm$core$Maybe$Just(24249))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3250))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C240')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(33780))(
-		$elm$core$Maybe$Just(31466))(
-		$elm$core$Maybe$Just(2.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3470))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C240 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(32280))(
-		$elm$core$Maybe$Just(30071))(
-		$elm$core$Maybe$Just(2.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3360))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C240 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(33480))(
-		$elm$core$Maybe$Just(31187))(
-		$elm$core$Maybe$Just(2.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3360))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C32 AMG 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(52120))(
-		$elm$core$Maybe$Just(48522))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(349))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3540))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C320 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(37630))(
-		$elm$core$Maybe$Just(35046))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3450))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C320 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(38830))(
-		$elm$core$Maybe$Just(36162))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C320 Sport 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(28370))(
-		$elm$core$Maybe$Just(26435))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3430))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz C320 Sport 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(35920))(
-		$elm$core$Maybe$Just(33456))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3430))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz CL500 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(94820))(
-		$elm$core$Maybe$Just(88324))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4085))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(196))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz CL600 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(128420))(
-		$elm$core$Maybe$Just(119600))(
-		$elm$core$Maybe$Just(5.5))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(493))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4473))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(196))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz CLK320 coupe 2dr (convertible)')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(45707))(
-		$elm$core$Maybe$Just(41966))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3770))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz CLK500 coupe 2dr (convertible)')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(52800))(
-		$elm$core$Maybe$Just(49104))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3585))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz E320')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(50670))(
-		$elm$core$Maybe$Just(47174))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(221))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3966))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz E320 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(48170))(
-		$elm$core$Maybe$Just(44849))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(221))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3635))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz E500')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(60670))(
-		$elm$core$Maybe$Just(56474))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4230))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz E500 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(57270))(
-		$elm$core$Maybe$Just(53382))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(3815))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz G500')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(76870))(
-		$elm$core$Maybe$Just(71540))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(292))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(5423))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz ML500')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(46470))(
-		$elm$core$Maybe$Just(43268))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(288))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(4874))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz S430 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(74320))(
-		$elm$core$Maybe$Just(69168))(
-		$elm$core$Maybe$Just(4.3))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(275))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4160))(
-		$elm$core$Maybe$Just(122))(
-		$elm$core$Maybe$Just(203))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz S500 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(86970))(
-		$elm$core$Maybe$Just(80939))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4390))(
-		$elm$core$Maybe$Just(122))(
-		$elm$core$Maybe$Just(203))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz SL500 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(90520))(
-		$elm$core$Maybe$Just(84325))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4065))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz SL55 AMG 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(121770))(
-		$elm$core$Maybe$Just(113388))(
-		$elm$core$Maybe$Just(5.5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(493))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4235))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz SL600 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(126670))(
-		$elm$core$Maybe$Just(117854))(
-		$elm$core$Maybe$Just(5.5))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(493))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4429))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz SLK230 convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(40320))(
-		$elm$core$Maybe$Just(37548))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3055))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(158))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercedes-Benz SLK32 AMG 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(56170))(
-		$elm$core$Maybe$Just(52289))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(349))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3220))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(158))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Grand Marquis GS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(24695))(
-		$elm$core$Maybe$Just(23217))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(224))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4052))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Grand Marquis LS Premium 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(29595))(
-		$elm$core$Maybe$Just(27148))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(224))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4052))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Grand Marquis LS Ultimate 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(30895))(
-		$elm$core$Maybe$Just(28318))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(224))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4052))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Marauder 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(34495))(
-		$elm$core$Maybe$Just(31558))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(302))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4195))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Monterey Luxury')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33995))(
-		$elm$core$Maybe$Just(30846))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(4340))(
-		$elm$core$Maybe$Just(121))(
-		$elm$core$Maybe$Just(202))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Mountaineer')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(29995))(
-		$elm$core$Maybe$Just(27317))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4374))(
-		$elm$core$Maybe$Just(114))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Sable GS')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22595))(
-		$elm$core$Maybe$Just(20748))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3488))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Sable GS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21595))(
-		$elm$core$Maybe$Just(19848))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3308))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mercury Sable LS Premium 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23895))(
-		$elm$core$Maybe$Just(21918))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3315))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Mini Cooper')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16999))(
-		$elm$core$Maybe$Just(15437))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(37))(
-		$elm$core$Maybe$Just(2524))(
-		$elm$core$Maybe$Just(97))(
-		$elm$core$Maybe$Just(143))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mini Cooper S')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19999))(
-		$elm$core$Maybe$Just(18137))(
-		$elm$core$Maybe$Just(1.6))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(2678))(
-		$elm$core$Maybe$Just(97))(
-		$elm$core$Maybe$Just(144))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Diamante LS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(29282))(
-		$elm$core$Maybe$Just(27250))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(205))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3549))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Eclipse GTS 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25092))(
-		$elm$core$Maybe$Just(23456))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3241))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Eclipse Spyder GT convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26992))(
-		$elm$core$Maybe$Just(25218))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3296))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Endeavor XLS')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(30492))(
-		$elm$core$Maybe$Just(28330))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4134))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Galant ES 2.4L 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19312))(
-		$elm$core$Maybe$Just(17957))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(3351))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Galant GTS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25700))(
-		$elm$core$Maybe$Just(23883))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3649))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(191))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Lancer ES 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14622))(
-		$elm$core$Maybe$Just(13751))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(2656))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Lancer Evolution 4dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(29562))(
-		$elm$core$Maybe$Just(27466))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(271))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3263))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Lancer LS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16722))(
-		$elm$core$Maybe$Just(15718))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(2795))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Lancer OZ Rally 4dr auto')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17232))(
-		$elm$core$Maybe$Just(16196))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(2744))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Lancer Sportback LS')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17495))(
-		$elm$core$Maybe$Just(16295))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(3020))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Montero XLS')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(33112))(
-		$elm$core$Maybe$Just(30763))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(215))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(4718))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Mitsubishi Outlander LS')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18892))(
-		$elm$core$Maybe$Just(17569))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(160))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3240))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(179))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Nissan 350Z coupe 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(26910))(
-		$elm$core$Maybe$Just(25203))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(287))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3188))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(169))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Nissan 350Z Enthusiast convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(34390))(
-		$elm$core$Maybe$Just(31845))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(287))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3428))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(169))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Altima S 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19240))(
-		$elm$core$Maybe$Just(18030))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3039))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Altima SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23290))(
-		$elm$core$Maybe$Just(21580))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(245))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3197))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Frontier King Cab XE V6')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(19479))(
-		$elm$core$Maybe$Just(18253))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(3932))(
-		$elm$core$Maybe$Just(116))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Nissan Maxima SE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27490))(
-		$elm$core$Maybe$Just(25182))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(265))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3473))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Maxima SL 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(29440))(
-		$elm$core$Maybe$Just(26966))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(265))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3476))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Murano SL')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(28739))(
-		$elm$core$Maybe$Just(27300))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(245))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3801))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Pathfinder Armada SE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33840))(
-		$elm$core$Maybe$Just(30815))(
-		$elm$core$Maybe$Just(5.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(305))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(5013))(
-		$elm$core$Maybe$Just(123))(
-		$elm$core$Maybe$Just(207))(
-		$elm$core$Maybe$Just(79)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Pathfinder SE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27339))(
-		$elm$core$Maybe$Just(25972))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(3871))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Quest S')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24780))(
-		$elm$core$Maybe$Just(22958))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(4012))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Quest SE')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(32780))(
-		$elm$core$Maybe$Just(30019))(
-		$elm$core$Maybe$Just(3.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4175))(
-		$elm$core$Maybe$Just(124))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Sentra 1.8 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12740))(
-		$elm$core$Maybe$Just(12205))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(126))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2513))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Sentra 1.8 S 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14740))(
-		$elm$core$Maybe$Just(13747))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(126))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2581))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Sentra SE-R 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17640))(
-		$elm$core$Maybe$Just(16444))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(23))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2761))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Nissan Titan King Cab XE')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(26650))(
-		$elm$core$Maybe$Just(24926))(
-		$elm$core$Maybe$Just(5.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(305))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(5287))(
-		$elm$core$Maybe$Just(140))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Nissan Xterra XE V6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20939))(
-		$elm$core$Maybe$Just(19512))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(3760))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Oldsmobile Alero GLS 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23675))(
-		$elm$core$Maybe$Just(21485))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3085))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Oldsmobile Alero GX 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18825))(
-		$elm$core$Maybe$Just(17642))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2946))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Oldsmobile Silhouette GL')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(28790))(
-		$elm$core$Maybe$Just(26120))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3948))(
-		$elm$core$Maybe$Just(120))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Aztekt')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21595))(
-		$elm$core$Maybe$Just(19810))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3779))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Bonneville GXP 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35995))(
-		$elm$core$Maybe$Just(32997))(
-		$elm$core$Maybe$Just(4.6))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(275))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(3790))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(203))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Grand Am GT 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22450))(
-		$elm$core$Maybe$Just(20595))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3118))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Grand Prix GT1 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22395))(
-		$elm$core$Maybe$Just(20545))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3477))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Grand Prix GT2 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24295))(
-		$elm$core$Maybe$Just(22284))(
-		$elm$core$Maybe$Just(3.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3484))(
-		$elm$core$Maybe$Just(111))(
-		$elm$core$Maybe$Just(198))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac GTO 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(33500))(
-		$elm$core$Maybe$Just(30710))(
-		$elm$core$Maybe$Just(5.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(3725))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Montana')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23845))(
-		$elm$core$Maybe$Just(21644))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3803))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Montana EWB')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(31370))(
-		$elm$core$Maybe$Just(28454))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(4431))(
-		$elm$core$Maybe$Just(121))(
-		$elm$core$Maybe$Just(201))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Sunfire 1SA 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15495))(
-		$elm$core$Maybe$Just(14375))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2771))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Sunfire 1SC 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17735))(
-		$elm$core$Maybe$Just(16369))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2771))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Pontiac Vibe')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(17045))(
-		$elm$core$Maybe$Just(15973))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(2701))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(172))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Porsche 911 Carrera 4S coupe 2dr (convert)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(84165))(
-		$elm$core$Maybe$Just(72206))(
-		$elm$core$Maybe$Just(3.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(315))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3240))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Porsche 911 Carrera convertible 2dr (coupe)')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(79165))(
-		$elm$core$Maybe$Just(69229))(
-		$elm$core$Maybe$Just(3.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(315))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3135))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Porsche 911 GT2 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(192465))(
-		$elm$core$Maybe$Just(173560))(
-		$elm$core$Maybe$Just(3.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(477))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3131))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Porsche 911 Targa coupe 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(76765))(
-		$elm$core$Maybe$Just(67128))(
-		$elm$core$Maybe$Just(3.6))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(315))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3119))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Porsche Boxster convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(43365))(
-		$elm$core$Maybe$Just(37886))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(228))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2811))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Porsche Boxster S convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(52365))(
-		$elm$core$Maybe$Just(45766))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(258))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(2911))(
-		$elm$core$Maybe$Just(95))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Porsche Cayenne S')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(56665))(
-		$elm$core$Maybe$Just(49865))(
-		$elm$core$Maybe$Just(4.5))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(340))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(4950))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-3 Aero 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33360))(
-		$elm$core$Maybe$Just(31562))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3175))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-3 Aero convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(43175))(
-		$elm$core$Maybe$Just(40883))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3700))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-3 Arc convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(40670))(
-		$elm$core$Maybe$Just(38520))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3480))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-3 Arc Sport 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(30860))(
-		$elm$core$Maybe$Just(29269))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3175))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(183))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-5 Aero')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(40845))(
-		$elm$core$Maybe$Just(38376))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3620))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-5 Aero 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(39465))(
-		$elm$core$Maybe$Just(37721))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(250))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3470))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Saab 9-5 Arc 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(35105))(
-		$elm$core$Maybe$Just(33011))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3470))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Saturn Ion1 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(10995))(
-		$elm$core$Maybe$Just(10319))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2692))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Saturn L300 2')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23560))(
-		$elm$core$Maybe$Just(21779))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(34))(
-		$elm$core$Maybe$Just(3109))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saturn L300-2 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21410))(
-		$elm$core$Maybe$Just(19801))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(182))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3197))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Saturn lon2 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14300))(
-		$elm$core$Maybe$Just(13393))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2692))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Saturn lon2 quad coupe 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14850))(
-		$elm$core$Maybe$Just(13904))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2751))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Saturn lon3 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15825))(
-		$elm$core$Maybe$Just(14811))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2692))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Saturn lon3 quad coupe 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16350))(
-		$elm$core$Maybe$Just(15299))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(140))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2751))(
-		$elm$core$Maybe$Just(103))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Saturn VUE')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(20585))(
-		$elm$core$Maybe$Just(19238))(
-		$elm$core$Maybe$Just(2.2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(143))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3381))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Scion xA 4dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12965))(
-		$elm$core$Maybe$Just(12340))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(38))(
-		$elm$core$Maybe$Just(2340))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(154))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Scion xB')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14165))(
-		$elm$core$Maybe$Just(13480))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(2425))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Baja')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(24520))(
-		$elm$core$Maybe$Just(22304))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3485))(
-		$elm$core$Maybe$Just(104))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Subaru Forester X')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(21445))(
-		$elm$core$Maybe$Just(19646))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3090))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Impreza 2.5 RS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(19945))(
-		$elm$core$Maybe$Just(18399))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(2965))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Impreza WRX 4dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25045))(
-		$elm$core$Maybe$Just(23022))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(227))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3085))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Impreza WRX STi 4dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(31545))(
-		$elm$core$Maybe$Just(29130))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3263))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Legacy GT 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25645))(
-		$elm$core$Maybe$Just(23336))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3395))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Legacy L 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(20445))(
-		$elm$core$Maybe$Just(18713))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3285))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Outback')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(23895))(
-		$elm$core$Maybe$Just(21773))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3430))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Outback H6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(29345))(
-		$elm$core$Maybe$Just(26660))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3610))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Outback H-6 VDC 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(31545))(
-		$elm$core$Maybe$Just(28603))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(212))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3630))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Subaru Outback Limited Sedan 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(27145))(
-		$elm$core$Maybe$Just(24687))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3495))(
-		$elm$core$Maybe$Just(104))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Aeno S 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12884))(
-		$elm$core$Maybe$Just(12719))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2676))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(171))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Aerio LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14500))(
-		$elm$core$Maybe$Just(14317))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2676))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(171))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Aerio SX')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(16497))(
-		$elm$core$Maybe$Just(16291))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2932))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Forenza EX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15568))(
-		$elm$core$Maybe$Just(15378))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(2756))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Forenza S 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(12269))(
-		$elm$core$Maybe$Just(12116))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2701))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(177))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Verona LX 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(17262))(
-		$elm$core$Maybe$Just(17053))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(155))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3380))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(188))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki Vitara LX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(17163))(
-		$elm$core$Maybe$Just(16949))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3020))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Suzuki XL-7 EX')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23699))(
-		$elm$core$Maybe$Just(22307))(
-		$elm$core$Maybe$Just(2.7))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(3682))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Toyota 4Runner SR5 V6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(27710))(
-		$elm$core$Maybe$Just(24801))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(245))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(4035))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(74)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Avalon XL 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26560))(
-		$elm$core$Maybe$Just(23693))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3417))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Avalon XLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(30920))(
-		$elm$core$Maybe$Just(27271))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3439))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(192))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry LE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19560))(
-		$elm$core$Maybe$Just(17558))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(157))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(3086))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry LE V6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22775))(
-		$elm$core$Maybe$Just(20325))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3296))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry Solara SE 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19635))(
-		$elm$core$Maybe$Just(17722))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(157))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(3175))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry Solara SE V6 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21965))(
-		$elm$core$Maybe$Just(19819))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3417))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry Solara SLE V6 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26510))(
-		$elm$core$Maybe$Just(23908))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(225))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3439))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Camry XLE V6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25920))(
-		$elm$core$Maybe$Just(23125))(
-		$elm$core$Maybe$Just(3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(210))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(3362))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Celica GT-S 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(22570))(
-		$elm$core$Maybe$Just(20363))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(2500))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(171))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Corolla CE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(14085))(
-		$elm$core$Maybe$Just(13065))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(40))(
-		$elm$core$Maybe$Just(2502))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Corolla LE 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15295))(
-		$elm$core$Maybe$Just(13889))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(40))(
-		$elm$core$Maybe$Just(2524))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Corolla S 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(15030))(
-		$elm$core$Maybe$Just(13650))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(40))(
-		$elm$core$Maybe$Just(2524))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Echo 2dr auto')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11560))(
-		$elm$core$Maybe$Just(10896))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(33))(
-		$elm$core$Maybe$Just(39))(
-		$elm$core$Maybe$Just(2085))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(65)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Echo 2dr manual')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(10760))(
-		$elm$core$Maybe$Just(10144))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(43))(
-		$elm$core$Maybe$Just(2035))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(65)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Echo 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(11290))(
-		$elm$core$Maybe$Just(10642))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(108))(
-		$elm$core$Maybe$Just(35))(
-		$elm$core$Maybe$Just(43))(
-		$elm$core$Maybe$Just(2055))(
-		$elm$core$Maybe$Just(93))(
-		$elm$core$Maybe$Just(163))(
-		$elm$core$Maybe$Just(65)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Highlander V6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(27930))(
-		$elm$core$Maybe$Just(24915))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(3935))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Land Cruiser')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(54765))(
-		$elm$core$Maybe$Just(47986))(
-		$elm$core$Maybe$Just(4.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(325))(
-		$elm$core$Maybe$Just(13))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(5390))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(193))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Matrix XR')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(16695))(
-		$elm$core$Maybe$Just(15156))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(130))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(36))(
-		$elm$core$Maybe$Just(2679))(
-		$elm$core$Maybe$Just(102))(
-		$elm$core$Maybe$Just(171))(
-		$elm$core$Maybe$Just(70)),
-		$author$project$Uebung1aufgabe4$Car('Toyota MR2 Spyder convertible 2dr')($author$project$Uebung1aufgabe4$Sports_Car)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(25130))(
-		$elm$core$Maybe$Just(22787))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(138))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(32))(
-		$elm$core$Maybe$Just(2195))(
-		$elm$core$Maybe$Just(97))(
-		$elm$core$Maybe$Just(153))(
-		$elm$core$Maybe$Just(67)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Prius 4dr (gas/electric)')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(20510))(
-		$elm$core$Maybe$Just(18926))(
-		$elm$core$Maybe$Just(1.5))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(59))(
-		$elm$core$Maybe$Just(51))(
-		$elm$core$Maybe$Just(2890))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(175))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Toyota RAV4')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(20290))(
-		$elm$core$Maybe$Just(18553))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(161))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3119))(
-		$elm$core$Maybe$Just(98))(
-		$elm$core$Maybe$Just(167))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Sequoia SR5')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(35695))(
-		$elm$core$Maybe$Just(31827))(
-		$elm$core$Maybe$Just(4.7))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(240))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(5270))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(78)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Sienna CE')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23495))(
-		$elm$core$Maybe$Just(21198))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(4120))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Sienna XLE Limited')($author$project$Uebung1aufgabe4$Minivan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(28800))(
-		$elm$core$Maybe$Just(25690))(
-		$elm$core$Maybe$Just(3.3))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(230))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(4165))(
-		$elm$core$Maybe$Just(119))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(77)),
-		$author$project$Uebung1aufgabe4$Car('Toyota Tacoma')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(12800))(
-		$elm$core$Maybe$Just(11879))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(142))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(2750))(
-		$elm$core$Maybe$Just(103))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Toyota Tundra Access Cab V6 SR5')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(25935))(
-		$elm$core$Maybe$Just(23520))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(14))(
-		$elm$core$Maybe$Just(17))(
-		$elm$core$Maybe$Just(4435))(
-		$elm$core$Maybe$Just(128))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Toyota Tundra Regular Cab V6')($author$project$Uebung1aufgabe4$Pickup)($author$project$Uebung1aufgabe4$Rear_Wheel_Drive)(
-		$elm$core$Maybe$Just(16495))(
-		$elm$core$Maybe$Just(14978))(
-		$elm$core$Maybe$Just(3.4))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(16))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(3925))(
-		$elm$core$Maybe$Just(128))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Golf GLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(18715))(
-		$elm$core$Maybe$Just(17478))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2897))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(165))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen GTI 1.8T 2dr hatch')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19825))(
-		$elm$core$Maybe$Just(18109))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2934))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(168))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Jetta GL')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(19005))(
-		$elm$core$Maybe$Just(17427))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3034))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(174))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Jetta GLI VR6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23785))(
-		$elm$core$Maybe$Just(21686))(
-		$elm$core$Maybe$Just(2.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(200))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3179))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(172))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Jetta GLS TDI 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21055))(
-		$elm$core$Maybe$Just(19638))(
-		$elm$core$Maybe$Just(1.9))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(100))(
-		$elm$core$Maybe$Just(38))(
-		$elm$core$Maybe$Just(46))(
-		$elm$core$Maybe$Just(3003))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(172))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen New Beetle GLS 1.8T 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(21055))(
-		$elm$core$Maybe$Just(19638))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(150))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(2820))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(161))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen New Beetle GLS convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23215))(
-		$elm$core$Maybe$Just(21689))(
-		$elm$core$Maybe$Just(2))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(115))(
-		$elm$core$Maybe$Just(24))(
-		$elm$core$Maybe$Just(30))(
-		$elm$core$Maybe$Just(3082))(
-		$elm$core$Maybe$Just(99))(
-		$elm$core$Maybe$Just(161))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Passat GLS 1.8T')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(24955))(
-		$elm$core$Maybe$Just(22801))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(3338))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Passat GLS 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(23955))(
-		$elm$core$Maybe$Just(21898))(
-		$elm$core$Maybe$Just(1.8))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(31))(
-		$elm$core$Maybe$Just(3241))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Passat GLX V6 4MOTION 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(33180))(
-		$elm$core$Maybe$Just(30583))(
-		$elm$core$Maybe$Just(2.8))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3721))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Passat W8')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(40235))(
-		$elm$core$Maybe$Just(36956))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(270))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(4067))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(184))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Passat W8 4MOTION 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(39235))(
-		$elm$core$Maybe$Just(36052))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(270))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3953))(
-		$elm$core$Maybe$Just(106))(
-		$elm$core$Maybe$Just(185))(
-		$elm$core$Maybe$Just(69)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Phaeton 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(65000))(
-		$elm$core$Maybe$Just(59912))(
-		$elm$core$Maybe$Just(4.2))(
-		$elm$core$Maybe$Just(8))(
-		$elm$core$Maybe$Just(335))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(5194))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Phaeton W12 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(75000))(
-		$elm$core$Maybe$Just(69130))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(12))(
-		$elm$core$Maybe$Just(420))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
-		$elm$core$Maybe$Just(5399))(
-		$elm$core$Maybe$Just(118))(
-		$elm$core$Maybe$Just(204))(
-		$elm$core$Maybe$Just(75)),
-		$author$project$Uebung1aufgabe4$Car('Volkswagen Touareg V6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(35515))(
-		$elm$core$Maybe$Just(32243))(
-		$elm$core$Maybe$Just(3.2))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(220))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(5086))(
-		$elm$core$Maybe$Just(112))(
-		$elm$core$Maybe$Just(187))(
-		$elm$core$Maybe$Just(76)),
-		$author$project$Uebung1aufgabe4$Car('Volvo C70 HPT convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(42565))(
-		$elm$core$Maybe$Just(40083))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(242))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3450))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Volvo C70 LPT convertible 2dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(40565))(
-		$elm$core$Maybe$Just(38203))(
-		$elm$core$Maybe$Just(2.4))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(197))(
-		$elm$core$Maybe$Just(21))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3450))(
-		$elm$core$Maybe$Just(105))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S40 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(25135))(
-		$elm$core$Maybe$Just(23701))(
-		$elm$core$Maybe$Just(1.9))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2767))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(178))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S60 2.5 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(31745))(
-		$elm$core$Maybe$Just(29916))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3903))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S60 R 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37560))(
-		$elm$core$Maybe$Just(35382))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(300))(
-		$elm$core$Maybe$Just(18))(
-		$elm$core$Maybe$Just(25))(
-		$elm$core$Maybe$Just(3571))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(181))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S60 T5 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(34845))(
-		$elm$core$Maybe$Just(32902))(
-		$elm$core$Maybe$Just(2.3))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(247))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3766))(
-		$elm$core$Maybe$Just(107))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(71)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S80 2.5T 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(37885))(
-		$elm$core$Maybe$Just(35688))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(194))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3691))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S80 2.9 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(37730))(
-		$elm$core$Maybe$Just(35542))(
-		$elm$core$Maybe$Just(2.9))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(28))(
-		$elm$core$Maybe$Just(3576))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Volvo S80 T6 4dr')($author$project$Uebung1aufgabe4$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(45210))(
-		$elm$core$Maybe$Just(42573))(
-		$elm$core$Maybe$Just(2.9))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(268))(
-		$elm$core$Maybe$Just(19))(
-		$elm$core$Maybe$Just(26))(
-		$elm$core$Maybe$Just(3653))(
-		$elm$core$Maybe$Just(110))(
-		$elm$core$Maybe$Just(190))(
-		$elm$core$Maybe$Just(72)),
-		$author$project$Uebung1aufgabe4$Car('Volvo V40')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$Front_Wheel_Drive)(
-		$elm$core$Maybe$Just(26135))(
-		$elm$core$Maybe$Just(24641))(
-		$elm$core$Maybe$Just(1.9))(
-		$elm$core$Maybe$Just(4))(
-		$elm$core$Maybe$Just(170))(
-		$elm$core$Maybe$Just(22))(
-		$elm$core$Maybe$Just(29))(
-		$elm$core$Maybe$Just(2822))(
-		$elm$core$Maybe$Just(101))(
-		$elm$core$Maybe$Just(180))(
-		$elm$core$Maybe$Just(68)),
-		$author$project$Uebung1aufgabe4$Car('Volvo XC70')($author$project$Uebung1aufgabe4$Wagon)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(35145))(
-		$elm$core$Maybe$Just(33112))(
-		$elm$core$Maybe$Just(2.5))(
-		$elm$core$Maybe$Just(5))(
-		$elm$core$Maybe$Just(208))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(27))(
-		$elm$core$Maybe$Just(3823))(
-		$elm$core$Maybe$Just(109))(
-		$elm$core$Maybe$Just(186))(
-		$elm$core$Maybe$Just(73)),
-		$author$project$Uebung1aufgabe4$Car('Volvo XC90 T6')($author$project$Uebung1aufgabe4$SUV)($author$project$Uebung1aufgabe4$All_Wheel_Drive)(
-		$elm$core$Maybe$Just(41250))(
-		$elm$core$Maybe$Just(38851))(
-		$elm$core$Maybe$Just(2.9))(
-		$elm$core$Maybe$Just(6))(
-		$elm$core$Maybe$Just(268))(
-		$elm$core$Maybe$Just(15))(
-		$elm$core$Maybe$Just(20))(
-		$elm$core$Maybe$Just(4638))(
-		$elm$core$Maybe$Just(113))(
-		$elm$core$Maybe$Just(189))(
-		$elm$core$Maybe$Just(75))
-	]);
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $author$project$Uebung1aufgabe4$XyData = F3(
-	function (xDescription, yDescription, data) {
-		return {data: data, xDescription: xDescription, yDescription: yDescription};
-	});
 var $elm$core$List$foldrHelper = F4(
 	function (fn, acc, ctr, ls) {
 		if (!ls.b) {
@@ -9618,6 +4482,5168 @@ var $elm$core$List$foldr = F3(
 	function (fn, acc, ls) {
 		return A4($elm$core$List$foldrHelper, fn, acc, 0, ls);
 	});
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $author$project$Uebung2aufgabe2$All_Wheel_Drive = {$: 'All_Wheel_Drive'};
+var $author$project$Uebung2aufgabe2$Car = function (vehicleName) {
+	return function (carType) {
+		return function (wheelDrive) {
+			return function (retailPrice) {
+				return function (dealerCost) {
+					return function (engineSize) {
+						return function (cyl) {
+							return function (hp) {
+								return function (cityMPG) {
+									return function (hwyMPG) {
+										return function (weight) {
+											return function (wheelBase) {
+												return function (carLen) {
+													return function (carWidth) {
+														return {carLen: carLen, carType: carType, carWidth: carWidth, cityMPG: cityMPG, cyl: cyl, dealerCost: dealerCost, engineSize: engineSize, hp: hp, hwyMPG: hwyMPG, retailPrice: retailPrice, vehicleName: vehicleName, weight: weight, wheelBase: wheelBase, wheelDrive: wheelDrive};
+													};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
+var $author$project$Uebung2aufgabe2$Front_Wheel_Drive = {$: 'Front_Wheel_Drive'};
+var $author$project$Uebung2aufgabe2$Minivan = {$: 'Minivan'};
+var $author$project$Uebung2aufgabe2$Pickup = {$: 'Pickup'};
+var $author$project$Uebung2aufgabe2$Rear_Wheel_Drive = {$: 'Rear_Wheel_Drive'};
+var $author$project$Uebung2aufgabe2$SUV = {$: 'SUV'};
+var $author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan = {$: 'Small_Sporty_Compact_Large_Sedan'};
+var $author$project$Uebung2aufgabe2$Sports_Car = {$: 'Sports_Car'};
+var $author$project$Uebung2aufgabe2$Wagon = {$: 'Wagon'};
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $author$project$Uebung2aufgabe2$cars = _List_fromArray(
+	[
+		$author$project$Uebung2aufgabe2$Car('Acura 3.5 RL 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(43755))(
+		$elm$core$Maybe$Just(39014))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3880))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Acura 3.5 RL w/Navigation 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(46100))(
+		$elm$core$Maybe$Just(41100))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3893))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Acura MDX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(36945))(
+		$elm$core$Maybe$Just(33337))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(265))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4451))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Acura NSX coupe 2dr manual S')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(89765))(
+		$elm$core$Maybe$Just(79978))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(290))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3153))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Acura RSX Type S 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23820))(
+		$elm$core$Maybe$Just(21761))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2778))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(172))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Acura TL 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33195))(
+		$elm$core$Maybe$Just(30299))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(270))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3575))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Acura TSX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26990))(
+		$elm$core$Maybe$Just(24647))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3230))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 1.8T 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25940))(
+		$elm$core$Maybe$Just(23508))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(3252))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 3.0 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(31840))(
+		$elm$core$Maybe$Just(28846))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3462))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 3.0 convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(42490))(
+		$elm$core$Maybe$Just(38325))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3814))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 3.0 Quattro 4dr auto')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(34480))(
+		$elm$core$Maybe$Just(31388))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3627))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 3.0 Quattro 4dr manual')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(33430))(
+		$elm$core$Maybe$Just(30366))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3583))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A4 3.0 Quattro convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(44240))(
+		$elm$core$Maybe$Just(40075))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4013))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A41.8T convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35940))(
+		$elm$core$Maybe$Just(32506))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3638))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi A6 2.7 Turbo Quattro 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(42840))(
+		$elm$core$Maybe$Just(38840))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3836))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Audi A6 3.0 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(36640))(
+		$elm$core$Maybe$Just(33129))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3561))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Audi A6 3.0 Avant Quattro')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(40840))(
+		$elm$core$Maybe$Just(37060))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4035))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Audi A6 3.0 Quattro 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(39640))(
+		$elm$core$Maybe$Just(35992))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3880))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Audi A6 4.2 Quattro 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(49690))(
+		$elm$core$Maybe$Just(44936))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4024))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Audi A8 L Quattro 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(69190))(
+		$elm$core$Maybe$Just(64740))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(330))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4399))(
+		$elm$core$Maybe$Just(121))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Audi RS 6 4dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(84600))(
+		$elm$core$Maybe$Just(76417))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(450))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(4024))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Audi S4 Avant Quattro')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(49090))(
+		$elm$core$Maybe$Just(44446))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3936))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi S4 Quattro 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(48040))(
+		$elm$core$Maybe$Just(43556))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(3825))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Audi TT 1.8 convertible 2dr (coupe)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35940))(
+		$elm$core$Maybe$Just(32512))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3131))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(159))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Audi TT 1.8 Quattro 2dr (convertible)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37390))(
+		$elm$core$Maybe$Just(33891))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2921))(
+		$elm$core$Maybe$Just(96))(
+		$elm$core$Maybe$Just(159))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Audi TT 3.2 coupe 2dr (convertible)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(40590))(
+		$elm$core$Maybe$Just(36739))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3351))(
+		$elm$core$Maybe$Just(96))(
+		$elm$core$Maybe$Just(159))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('BMW 325Ci 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(30795))(
+		$elm$core$Maybe$Just(28245))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3197))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 325Ci convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(37995))(
+		$elm$core$Maybe$Just(34800))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3560))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 325i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(28495))(
+		$elm$core$Maybe$Just(26155))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3219))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 325xi 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(30245))(
+		$elm$core$Maybe$Just(27745))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3461))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 325xi Sport')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(32845))(
+		$elm$core$Maybe$Just(30110))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3594))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 330Ci 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(36995))(
+		$elm$core$Maybe$Just(33890))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3285))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 330Ci convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(44295))(
+		$elm$core$Maybe$Just(40530))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3616))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 330i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(35495))(
+		$elm$core$Maybe$Just(32525))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3285))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 330xi 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37245))(
+		$elm$core$Maybe$Just(34115))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3483))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('BMW 525i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(39995))(
+		$elm$core$Maybe$Just(36620))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3428))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('BMW 530i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(44995))(
+		$elm$core$Maybe$Just(41170))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3472))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('BMW 545iA 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(54995))(
+		$elm$core$Maybe$Just(50270))(
+		$elm$core$Maybe$Just(4.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3814))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('BMW 745i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(69195))(
+		$elm$core$Maybe$Just(63190))(
+		$elm$core$Maybe$Just(4.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4376))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('BMW 745Li 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(73195))(
+		$elm$core$Maybe$Just(66830))(
+		$elm$core$Maybe$Just(4.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4464))(
+		$elm$core$Maybe$Just(123))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('BMW M3 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(56595))(
+		$elm$core$Maybe$Just(51815))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(333))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3781))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('BMW M3 coupe 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(48195))(
+		$elm$core$Maybe$Just(44170))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(333))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3415))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('BMW X3 3.0i')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37000))(
+		$elm$core$Maybe$Just(33873))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4023))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('BMW X5 4.4i')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(52195))(
+		$elm$core$Maybe$Just(47720))(
+		$elm$core$Maybe$Just(4.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(4824))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('BMW Z4 convertible 2.5i 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(33895))(
+		$elm$core$Maybe$Just(31065))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2932))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(161))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('BMW Z4 convertible 3.0i 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(41045))(
+		$elm$core$Maybe$Just(37575))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2998))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(161))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Buick Century Custom 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22180))(
+		$elm$core$Maybe$Just(20351))(
+		$elm$core$Maybe$Just(3.1))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3353))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Buick LeSabre Custom 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26470))(
+		$elm$core$Maybe$Just(24282))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(205))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3567))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Buick LeSabre Limited 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(32245))(
+		$elm$core$Maybe$Just(29566))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(205))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3591))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Buick Park Avenue 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35545))(
+		$elm$core$Maybe$Just(32244))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(205))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3778))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Buick Park Avenue Ultra 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(40720))(
+		$elm$core$Maybe$Just(36927))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3909))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Buick Rainier')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37895))(
+		$elm$core$Maybe$Just(34357))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4600))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Buick Regal GS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(28345))(
+		$elm$core$Maybe$Just(26047))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3536))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(196))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Buick Regal LS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24895))(
+		$elm$core$Maybe$Just(22835))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3461))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(196))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Buick Rendezvous CX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26545))(
+		$elm$core$Maybe$Just(24085))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4024))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac CTS VVT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(30835))(
+		$elm$core$Maybe$Just(28575))(
+		$elm$core$Maybe$Just(3.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(255))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3694))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac Deville 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(45445))(
+		$elm$core$Maybe$Just(41650))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3984))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac Deville DTS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(50595))(
+		$elm$core$Maybe$Just(46362))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4044))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac Escalade EXT')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(52975))(
+		$elm$core$Maybe$Just(48541))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(345))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(5879))(
+		$elm$core$Maybe$Just(130))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Cadillac Escaladet')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(52795))(
+		$elm$core$Maybe$Just(48377))(
+		$elm$core$Maybe$Just(5.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(295))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5367))(
+		$elm$core$Maybe$Just(116))(
+		$elm$core$Maybe$Just(199))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac Seville SLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(47955))(
+		$elm$core$Maybe$Just(43841))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3992))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac SRX V8')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(46995))(
+		$elm$core$Maybe$Just(43523))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(320))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4302))(
+		$elm$core$Maybe$Just(116))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Cadillac XLR convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(76200))(
+		$elm$core$Maybe$Just(70546))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(320))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3647))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Astro')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(26395))(
+		$elm$core$Maybe$Just(23954))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(4605))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Avalanche 1500')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(36100))(
+		$elm$core$Maybe$Just(31689))(
+		$elm$core$Maybe$Just(5.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(295))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5678))(
+		$elm$core$Maybe$Just(130))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Aveo 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11690))(
+		$elm$core$Maybe$Just(10965))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2370))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Aveo LS 4dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12585))(
+		$elm$core$Maybe$Just(11802))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2348))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(153))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Cavalier 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14610))(
+		$elm$core$Maybe$Just(13697))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(37))(
+		$elm$core$Maybe$Just(2617))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Cavalier 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14810))(
+		$elm$core$Maybe$Just(13884))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(37))(
+		$elm$core$Maybe$Just(2676))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Cavalier LS 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16385))(
+		$elm$core$Maybe$Just(15357))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(37))(
+		$elm$core$Maybe$Just(2617))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Colorado Z85')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(18760))(
+		$elm$core$Maybe$Just(17070))(
+		$elm$core$Maybe$Just(2.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3623))(
+		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Corvette 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(44535))(
+		$elm$core$Maybe$Just(39068))(
+		$elm$core$Maybe$Just(5.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(350))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3246))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Corvette convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(51535))(
+		$elm$core$Maybe$Just(45193))(
+		$elm$core$Maybe$Just(5.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(350))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3248))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Impala 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21900))(
+		$elm$core$Maybe$Just(20095))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(3465))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Impala LS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25000))(
+		$elm$core$Maybe$Just(22931))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3476))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Impala SS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27995))(
+		$elm$core$Maybe$Just(25672))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3606))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Malibu 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18995))(
+		$elm$core$Maybe$Just(17434))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(145))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(3174))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Malibu LS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20370))(
+		$elm$core$Maybe$Just(18639))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3297))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Malibu LT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23495))(
+		$elm$core$Maybe$Just(21551))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(3315))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Malibu Maxx LS')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22225))(
+		$elm$core$Maybe$Just(20394))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3458))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Monte Carlo LS 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21825))(
+		$elm$core$Maybe$Just(20026))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(3340))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Monte Carlo SS 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24225))(
+		$elm$core$Maybe$Just(22222))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3434))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Silverado 1500 Regular Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(20310))(
+		$elm$core$Maybe$Just(18480))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4142))(
+		$elm$core$Maybe$Just(119))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Silverado SS')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(40340))(
+		$elm$core$Maybe$Just(35399))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(4804))(
+		$elm$core$Maybe$Just(144))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet SSR')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(41995))(
+		$elm$core$Maybe$Just(39306))(
+		$elm$core$Maybe$Just(5.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4760))(
+		$elm$core$Maybe$Just(116))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Suburban 1500 LT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(42735))(
+		$elm$core$Maybe$Just(37422))(
+		$elm$core$Maybe$Just(5.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(295))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(4947))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(219))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Tahoe LT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(41465))(
+		$elm$core$Maybe$Just(36287))(
+		$elm$core$Maybe$Just(5.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(295))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5050))(
+		$elm$core$Maybe$Just(116))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Tracker')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20255))(
+		$elm$core$Maybe$Just(19108))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(2866))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet TrailBlazer LT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(30295))(
+		$elm$core$Maybe$Just(27479))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4425))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Chevrolet Venture LS')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27020))(
+		$elm$core$Maybe$Just(24518))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3699))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Chrvsler PT Cruiser GT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25955))(
+		$elm$core$Maybe$Just(24172))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3217))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(169))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler 300M 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(29865))(
+		$elm$core$Maybe$Just(27797))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3581))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler 300M Special Edition 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33295))(
+		$elm$core$Maybe$Just(30884))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(255))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3650))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Concorde LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24130))(
+		$elm$core$Maybe$Just(22452))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3479))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Concorde LXi 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26860))(
+		$elm$core$Maybe$Just(24909))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(232))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3548))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Crossfire 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(34495))(
+		$elm$core$Maybe$Just(32033))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3060))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Pacifica')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(31230))(
+		$elm$core$Maybe$Just(28725))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4675))(
+		$elm$core$Maybe$Just(116))(
+		$elm$core$Maybe$Just(199))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler PT Cruiser 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17985))(
+		$elm$core$Maybe$Just(16919))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3101))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(169))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler PT Cruiser Limited 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22000))(
+		$elm$core$Maybe$Just(20573))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3105))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(169))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Sebring 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19090))(
+		$elm$core$Maybe$Just(17805))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3173))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Sebring convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25215))(
+		$elm$core$Maybe$Just(23451))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3357))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(64)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Sebring Limited convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(30950))(
+		$elm$core$Maybe$Just(28613))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3448))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Sebring Touring 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21840))(
+		$elm$core$Maybe$Just(20284))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3222))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Town and Country Limited')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(38380))(
+		$elm$core$Maybe$Just(35063))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4331))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Chrysler Town and Country LX')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27490))(
+		$elm$core$Maybe$Just(25371))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4068))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('CMC Yukon 1500 SLE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35725))(
+		$elm$core$Maybe$Just(31361))(
+		$elm$core$Maybe$Just(4.8))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(285))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(5042))(
+		$elm$core$Maybe$Just(116))(
+		$elm$core$Maybe$Just(199))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Caravan SE')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21795))(
+		$elm$core$Maybe$Just(20508))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3862))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Dakota Club Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(20300))(
+		$elm$core$Maybe$Just(18670))(
+		$elm$core$Maybe$Just(3.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3829))(
+		$elm$core$Maybe$Just(131))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Dodge Dakota Regular Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(17630))(
+		$elm$core$Maybe$Just(16264))(
+		$elm$core$Maybe$Just(3.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3714))(
+		$elm$core$Maybe$Just(112))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Dodge Durango SLT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(32235))(
+		$elm$core$Maybe$Just(29472))(
+		$elm$core$Maybe$Just(4.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4987))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Grand Caravan SXT')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(32660))(
+		$elm$core$Maybe$Just(29812))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4440))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Intrepid ES 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24885))(
+		$elm$core$Maybe$Just(23058))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(232))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3487))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Intrepid SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22035))(
+		$elm$core$Maybe$Just(20502))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3469))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Neon SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13670))(
+		$elm$core$Maybe$Just(12849))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(132))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(2581))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Neon SXT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15040))(
+		$elm$core$Maybe$Just(14086))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(132))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(2626))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Ram 1500 Regular Cab ST')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(20215))(
+		$elm$core$Maybe$Just(18076))(
+		$elm$core$Maybe$Just(3.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4542))(
+		$elm$core$Maybe$Just(121))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Dodge Stratus SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20220))(
+		$elm$core$Maybe$Just(18821))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3175))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Stratus SXT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18820))(
+		$elm$core$Maybe$Just(17512))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3182))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Dodge Viper SRT-10 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(81795))(
+		$elm$core$Maybe$Just(74451))(
+		$elm$core$Maybe$Just(8.3))(
+		$elm$core$Maybe$Just(10))(
+		$elm$core$Maybe$Just(500))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(3410))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(176))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Ford Crown Victoria 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(24345))(
+		$elm$core$Maybe$Just(22856))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(224))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4057))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Ford Crown Victoria LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(27370))(
+		$elm$core$Maybe$Just(25105))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(224))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4057))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Ford Crown Victoria LX Sport 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(30315))(
+		$elm$core$Maybe$Just(27756))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(239))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4057))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Ford Escape XLS')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(22515))(
+		$elm$core$Maybe$Just(20907))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3346))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(173))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Ford Excursion 6.8 XLT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(41475))(
+		$elm$core$Maybe$Just(36494))(
+		$elm$core$Maybe$Just(6.8))(
+		$elm$core$Maybe$Just(10))(
+		$elm$core$Maybe$Just(310))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(7190))(
+		$elm$core$Maybe$Just(137))(
+		$elm$core$Maybe$Just(227))(
+		$elm$core$Maybe$Just(80)),
+		$author$project$Uebung2aufgabe2$Car('Ford Expedition 4.6 XLT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(34560))(
+		$elm$core$Maybe$Just(30468))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(232))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(5000))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(206))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Ford Explorer XLT V6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(29670))(
+		$elm$core$Maybe$Just(26983))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(4463))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Ford F-150 Regular Cab XL')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(22010))(
+		$elm$core$Maybe$Just(19490))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(231))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4788))(
+		$elm$core$Maybe$Just(126))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Ford F-150 Supercab Lariat')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(33540))(
+		$elm$core$Maybe$Just(29405))(
+		$elm$core$Maybe$Just(5.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5464))(
+		$elm$core$Maybe$Just(133))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13730))(
+		$elm$core$Maybe$Just(12906))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(2606))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15460))(
+		$elm$core$Maybe$Just(14496))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2606))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus SVT 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19135))(
+		$elm$core$Maybe$Just(17878))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2750))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus ZTW')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17475))(
+		$elm$core$Maybe$Just(16375))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2702))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus ZX3 2dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13270))(
+		$elm$core$Maybe$Just(12482))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2612))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Focus ZX5 5dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15580))(
+		$elm$core$Maybe$Just(14607))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2691))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Ford Freestar SE')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26930))(
+		$elm$core$Maybe$Just(24498))(
+		$elm$core$Maybe$Just(3.9))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4275))(
+		$elm$core$Maybe$Just(121))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Ford Mustang 2dr (convertible)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(18345))(
+		$elm$core$Maybe$Just(16943))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3290))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Ford Mustang GT Premium convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(29380))(
+		$elm$core$Maybe$Just(26875))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(260))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3347))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Ford Ranger 2.3 XL Regular Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(14385))(
+		$elm$core$Maybe$Just(13717))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(143))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3028))(
+		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Ford Taurus LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20320))(
+		$elm$core$Maybe$Just(18881))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3306))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Ford Taurus SE')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22290))(
+		$elm$core$Maybe$Just(20457))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3497))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Ford Taurus SES Duratec 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22735))(
+		$elm$core$Maybe$Just(20857))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3313))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Ford Thunderbird Deluxe convert w/hardtop 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(37530))(
+		$elm$core$Maybe$Just(34483))(
+		$elm$core$Maybe$Just(3.9))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(280))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3780))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('GMC Canyon Z85 SL Regular Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(16530))(
+		$elm$core$Maybe$Just(14877))(
+		$elm$core$Maybe$Just(2.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3351))(
+		$elm$core$Maybe$Just(111))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('GMC Envoy XUV SLE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(31890))(
+		$elm$core$Maybe$Just(28922))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4945))(
+		$elm$core$Maybe$Just(129))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('GMC Safari SLE')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(25640))(
+		$elm$core$Maybe$Just(23215))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(4309))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('GMC Sierra Extended Cab 1500')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(25717))(
+		$elm$core$Maybe$Just(22604))(
+		$elm$core$Maybe$Just(4.8))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(285))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(4548))(
+		$elm$core$Maybe$Just(144))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('GMC Sierra HD 2500')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(29322))(
+		$elm$core$Maybe$Just(25759))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(5440))(
+		$elm$core$Maybe$Just(133))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('GMC Sonoma Crew Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25395))(
+		$elm$core$Maybe$Just(23043))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4083))(
+		$elm$core$Maybe$Just(123))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('GMC Yukon XL 2500 SLT')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(46265))(
+		$elm$core$Maybe$Just(40534))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(6133))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(219))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Honda Accord EX 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22260))(
+		$elm$core$Maybe$Just(20080))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(3047))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Honda Accord EX V6 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26960))(
+		$elm$core$Maybe$Just(24304))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3294))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Honda Accord LX 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19860))(
+		$elm$core$Maybe$Just(17924))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2994))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Honda Accord LX V6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23760))(
+		$elm$core$Maybe$Just(21428))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3349))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic DX 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13270))(
+		$elm$core$Maybe$Just(12175))(
+		$elm$core$Maybe$Just(1.7))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(38))(
+		$elm$core$Maybe$Just(2432))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic EX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17750))(
+		$elm$core$Maybe$Just(16265))(
+		$elm$core$Maybe$Just(1.7))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(127))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(37))(
+		$elm$core$Maybe$Just(2601))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic HX 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14170))(
+		$elm$core$Maybe$Just(12996))(
+		$elm$core$Maybe$Just(1.7))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(117))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(44))(
+		$elm$core$Maybe$Just(2500))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic Hybrid 4dr manual (gas/electric)')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20140))(
+		$elm$core$Maybe$Just(18451))(
+		$elm$core$Maybe$Just(1.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(46))(
+		$elm$core$Maybe$Just(51))(
+		$elm$core$Maybe$Just(2732))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15850))(
+		$elm$core$Maybe$Just(14531))(
+		$elm$core$Maybe$Just(1.7))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(38))(
+		$elm$core$Maybe$Just(2513))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Honda Civic Si 2dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19490))(
+		$elm$core$Maybe$Just(17849))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(2782))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(166))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Honda CR-V LX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(19860))(
+		$elm$core$Maybe$Just(18419))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3258))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Honda Element LX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(18690))(
+		$elm$core$Maybe$Just(17334))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3468))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Honda Insight 2dr (gas/electric)')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19110))(
+		$elm$core$Maybe$Just(17911))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(73))(
+		$elm$core$Maybe$Just(60))(
+		$elm$core$Maybe$Just(66))(
+		$elm$core$Maybe$Just(1850))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Honda Odyssey EX')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27450))(
+		$elm$core$Maybe$Just(24744))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4365))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Honda Odyssey LX')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24950))(
+		$elm$core$Maybe$Just(22498))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4310))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Honda Pilot LX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(27560))(
+		$elm$core$Maybe$Just(24843))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(4387))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Honda S2000 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(33260))(
+		$elm$core$Maybe$Just(29965))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(2835))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(162))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Hummer H2')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(49995))(
+		$elm$core$Maybe$Just(45815))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(316))(
+		$elm$core$Maybe$Just(10))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(6400))(
+		$elm$core$Maybe$Just(123))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(81)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Accent 2dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(10539))(
+		$elm$core$Maybe$Just(10107))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2255))(
+		$elm$core$Maybe$Just(96))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Accent GL 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11839))(
+		$elm$core$Maybe$Just(11116))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2290))(
+		$elm$core$Maybe$Just(96))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Accent GT 2dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11939))(
+		$elm$core$Maybe$Just(11209))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2339))(
+		$elm$core$Maybe$Just(96))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Elantra GLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13839))(
+		$elm$core$Maybe$Just(12781))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(138))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2635))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Elantra GT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15389))(
+		$elm$core$Maybe$Just(14207))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(138))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2635))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Elantra GT 4dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15389))(
+		$elm$core$Maybe$Just(14207))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(138))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2698))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Santa Fe GLS')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21589))(
+		$elm$core$Maybe$Just(20201))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(173))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3549))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Sonata GLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19339))(
+		$elm$core$Maybe$Just(17574))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3217))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Sonata LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20339))(
+		$elm$core$Maybe$Just(18380))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3217))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai Tiburon GT V6 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18739))(
+		$elm$core$Maybe$Just(17101))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(172))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3023))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(173))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai XG350 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24589))(
+		$elm$core$Maybe$Just(22055))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3651))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Hyundai XG350 L 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26189))(
+		$elm$core$Maybe$Just(23486))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3651))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti FX35')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(34895))(
+		$elm$core$Maybe$Just(31756))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(280))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(4056))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti FX45')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(36395))(
+		$elm$core$Maybe$Just(33121))(
+		$elm$core$Maybe$Just(4.5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(315))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4309))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti G35 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(28495))(
+		$elm$core$Maybe$Just(26157))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(260))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3336))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti G35 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(32445))(
+		$elm$core$Maybe$Just(29783))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(260))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3677))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti G35 Sport Coupe 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(29795))(
+		$elm$core$Maybe$Just(27536))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(280))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3416))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti I35 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(31145))(
+		$elm$core$Maybe$Just(28320))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(255))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3306))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti M45 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(42845))(
+		$elm$core$Maybe$Just(38792))(
+		$elm$core$Maybe$Just(4.5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3851))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Infiniti Q45 Luxury 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(52545))(
+		$elm$core$Maybe$Just(47575))(
+		$elm$core$Maybe$Just(4.5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3977))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Isuzu Ascender S')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(31849))(
+		$elm$core$Maybe$Just(29977))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(4967))(
+		$elm$core$Maybe$Just(129))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Isuzu Rodeo S')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20449))(
+		$elm$core$Maybe$Just(19261))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3836))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar S-Type 3.0 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(43895))(
+		$elm$core$Maybe$Just(40004))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(235))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3777))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar S-Type 4.2 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(49995))(
+		$elm$core$Maybe$Just(45556))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(294))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3874))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar S-Type R 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(63120))(
+		$elm$core$Maybe$Just(57499))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(390))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4046))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar Vanden Plas 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(68995))(
+		$elm$core$Maybe$Just(62846))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(294))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3803))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XJ8 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(59995))(
+		$elm$core$Maybe$Just(54656))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(294))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3803))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XJR 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(74995))(
+		$elm$core$Maybe$Just(68306))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(390))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3948))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XK8 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(74995))(
+		$elm$core$Maybe$Just(68306))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(294))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3980))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XK8 coupe 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(69995))(
+		$elm$core$Maybe$Just(63756))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(294))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3779))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XKR convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(86995))(
+		$elm$core$Maybe$Just(79226))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(390))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4042))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar XKR coupe 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(81995))(
+		$elm$core$Maybe$Just(74676))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(390))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3865))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar X-Type 2.5 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(29995))(
+		$elm$core$Maybe$Just(27355))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3428))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Jaguar X-Type 3.0 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(33995))(
+		$elm$core$Maybe$Just(30995))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(227))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3516))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Jeep Grand Cherokee Laredo')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27905))(
+		$elm$core$Maybe$Just(25686))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3790))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Jeep Liberty Sport')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(20130))(
+		$elm$core$Maybe$Just(18973))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3826))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Jeep Wrangler Sahara convertible 2dr')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25520))(
+		$elm$core$Maybe$Just(23275))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(3575))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Kia Amanti 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26000))(
+		$elm$core$Maybe$Just(23764))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(196))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Kia Optima LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16040))(
+		$elm$core$Maybe$Just(14910))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(138))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3281))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Kia Optima LX V6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18435))(
+		$elm$core$Maybe$Just(16850))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3279))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Kia Rio 4dr auto')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11155))(
+		$elm$core$Maybe$Just(10705))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2458))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Kia Rio 4dr manual')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(10280))(
+		$elm$core$Maybe$Just(9875))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2403))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Kia Rio Cinco')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11905))(
+		$elm$core$Maybe$Just(11410))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2447))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Kia Sedona LX')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20615))(
+		$elm$core$Maybe$Just(19400))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(4802))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Kia Sorento LX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19635))(
+		$elm$core$Maybe$Just(18630))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4112))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Kia Spectra 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12360))(
+		$elm$core$Maybe$Just(11630))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2661))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Kia Spectra GS 4dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(13580))(
+		$elm$core$Maybe$Just(12830))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2686))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Kia Spectra GSX 4dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14630))(
+		$elm$core$Maybe$Just(13790))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2697))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Land Rover Discovery SE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(39250))(
+		$elm$core$Maybe$Just(35777))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(217))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(4576))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Land Rover Freelander SE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25995))(
+		$elm$core$Maybe$Just(23969))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3577))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Land Rover Range Rover HSE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(72250))(
+		$elm$core$Maybe$Just(65807))(
+		$elm$core$Maybe$Just(4.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(282))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(5379))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(195))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Lexus ES 330 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(32350))(
+		$elm$core$Maybe$Just(28755))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3460))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Lexus GS 300 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(41010))(
+		$elm$core$Maybe$Just(36196))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3649))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Lexus GS 430 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(48450))(
+		$elm$core$Maybe$Just(42232))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3715))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Lexus GX 470')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(45700))(
+		$elm$core$Maybe$Just(39838))(
+		$elm$core$Maybe$Just(4.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(235))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4740))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Lexus IS 300 4dr auto')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(32415))(
+		$elm$core$Maybe$Just(28611))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3285))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Lexus IS 300 4dr manual')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(31045))(
+		$elm$core$Maybe$Just(27404))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3255))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Lexus IS 300 SportCross')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(32455))(
+		$elm$core$Maybe$Just(28647))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3410))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Lexus LS 430 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(55750))(
+		$elm$core$Maybe$Just(48583))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(290))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3990))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Lexus LX 470')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(64800))(
+		$elm$core$Maybe$Just(56455))(
+		$elm$core$Maybe$Just(4.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(235))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(5590))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Lexus RX 330')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(39195))(
+		$elm$core$Maybe$Just(34576))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4065))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Lexus SC 430 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(63200))(
+		$elm$core$Maybe$Just(55063))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(3840))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln Aviator Ultimate')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(42915))(
+		$elm$core$Maybe$Just(39443))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(4834))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln LS V6 Luxury 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(32495))(
+		$elm$core$Maybe$Just(29969))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(232))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3681))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln LS V6 Premium 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(36895))(
+		$elm$core$Maybe$Just(33929))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(232))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3681))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln LS V8 Sport 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(40095))(
+		$elm$core$Maybe$Just(36809))(
+		$elm$core$Maybe$Just(3.9))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(280))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3768))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln LS V8 Ultimate 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(43495))(
+		$elm$core$Maybe$Just(39869))(
+		$elm$core$Maybe$Just(3.9))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(280))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3768))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln Navigator Luxury')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(52775))(
+		$elm$core$Maybe$Just(46360))(
+		$elm$core$Maybe$Just(5.4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5969))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(206))(
+		$elm$core$Maybe$Just(80)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln Town Car Signature 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(41815))(
+		$elm$core$Maybe$Just(38418))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(239))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4369))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln Town Car Ultimate 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(44925))(
+		$elm$core$Maybe$Just(41217))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(239))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4369))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Lincoln Town Car Ultimate L 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(50470))(
+		$elm$core$Maybe$Just(46208))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(239))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4474))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(221))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Mazda B2300 SX Regular Cab')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(14840))(
+		$elm$core$Maybe$Just(14070))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(143))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2960))(
+		$elm$core$Maybe$Just(112))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda B4000 SE Cab Plus')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(22350))(
+		$elm$core$Maybe$Just(20482))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(3571))(
+		$elm$core$Maybe$Just(126))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda MPV ES')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(28750))(
+		$elm$core$Maybe$Just(26600))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3812))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mazda MX-5 Miata convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(22388))(
+		$elm$core$Maybe$Just(20701))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(142))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2387))(
+		$elm$core$Maybe$Just(89))(
+		$elm$core$Maybe$Just(156))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Mazda MX-5 Miata LS convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(25193))(
+		$elm$core$Maybe$Just(23285))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(142))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2387))(
+		$elm$core$Maybe$Just(89))(
+		$elm$core$Maybe$Just(156))(
+		$elm$core$Maybe$Just(66)),
+		$author$project$Uebung2aufgabe2$Car('Mazda RX-8 4dr automatic')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(25700))(
+		$elm$core$Maybe$Just(23794))(
+		$elm$core$Maybe$Just(1.3))(
+		$elm$core$Maybe$Just(-1))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3053))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(174))($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda RX-8 4dr manual')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(27200))(
+		$elm$core$Maybe$Just(25179))(
+		$elm$core$Maybe$Just(1.3))(
+		$elm$core$Maybe$Just(-1))(
+		$elm$core$Maybe$Just(238))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3029))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(174))($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda Tribute DX 2.0')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(21087))(
+		$elm$core$Maybe$Just(19742))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3091))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(173))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mazda3 i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15500))(
+		$elm$core$Maybe$Just(14525))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(148))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(2696))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda3 s 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17200))(
+		$elm$core$Maybe$Just(15922))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(2762))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Mazda6 i 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19270))(
+		$elm$core$Maybe$Just(17817))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(3042))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C230 Sport 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(26060))(
+		$elm$core$Maybe$Just(24249))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3250))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C240')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(33780))(
+		$elm$core$Maybe$Just(31466))(
+		$elm$core$Maybe$Just(2.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3470))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C240 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(32280))(
+		$elm$core$Maybe$Just(30071))(
+		$elm$core$Maybe$Just(2.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3360))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C240 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(33480))(
+		$elm$core$Maybe$Just(31187))(
+		$elm$core$Maybe$Just(2.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3360))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C32 AMG 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(52120))(
+		$elm$core$Maybe$Just(48522))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(349))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3540))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C320 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(37630))(
+		$elm$core$Maybe$Just(35046))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3450))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C320 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(38830))(
+		$elm$core$Maybe$Just(36162))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C320 Sport 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(28370))(
+		$elm$core$Maybe$Just(26435))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3430))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz C320 Sport 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(35920))(
+		$elm$core$Maybe$Just(33456))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3430))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz CL500 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(94820))(
+		$elm$core$Maybe$Just(88324))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4085))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(196))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz CL600 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(128420))(
+		$elm$core$Maybe$Just(119600))(
+		$elm$core$Maybe$Just(5.5))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(493))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4473))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(196))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz CLK320 coupe 2dr (convertible)')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(45707))(
+		$elm$core$Maybe$Just(41966))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3770))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz CLK500 coupe 2dr (convertible)')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(52800))(
+		$elm$core$Maybe$Just(49104))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3585))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz E320')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(50670))(
+		$elm$core$Maybe$Just(47174))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(221))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3966))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz E320 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(48170))(
+		$elm$core$Maybe$Just(44849))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(221))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3635))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz E500')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(60670))(
+		$elm$core$Maybe$Just(56474))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4230))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz E500 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(57270))(
+		$elm$core$Maybe$Just(53382))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(3815))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz G500')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(76870))(
+		$elm$core$Maybe$Just(71540))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(292))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(5423))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz ML500')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(46470))(
+		$elm$core$Maybe$Just(43268))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(288))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(4874))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz S430 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(74320))(
+		$elm$core$Maybe$Just(69168))(
+		$elm$core$Maybe$Just(4.3))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(275))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4160))(
+		$elm$core$Maybe$Just(122))(
+		$elm$core$Maybe$Just(203))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz S500 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(86970))(
+		$elm$core$Maybe$Just(80939))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4390))(
+		$elm$core$Maybe$Just(122))(
+		$elm$core$Maybe$Just(203))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz SL500 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(90520))(
+		$elm$core$Maybe$Just(84325))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4065))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz SL55 AMG 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(121770))(
+		$elm$core$Maybe$Just(113388))(
+		$elm$core$Maybe$Just(5.5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(493))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4235))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz SL600 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(126670))(
+		$elm$core$Maybe$Just(117854))(
+		$elm$core$Maybe$Just(5.5))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(493))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4429))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz SLK230 convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(40320))(
+		$elm$core$Maybe$Just(37548))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3055))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(158))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercedes-Benz SLK32 AMG 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(56170))(
+		$elm$core$Maybe$Just(52289))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(349))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3220))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(158))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Grand Marquis GS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(24695))(
+		$elm$core$Maybe$Just(23217))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(224))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4052))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Grand Marquis LS Premium 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(29595))(
+		$elm$core$Maybe$Just(27148))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(224))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4052))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Grand Marquis LS Ultimate 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(30895))(
+		$elm$core$Maybe$Just(28318))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(224))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4052))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Marauder 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(34495))(
+		$elm$core$Maybe$Just(31558))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(302))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4195))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Monterey Luxury')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33995))(
+		$elm$core$Maybe$Just(30846))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(4340))(
+		$elm$core$Maybe$Just(121))(
+		$elm$core$Maybe$Just(202))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Mountaineer')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(29995))(
+		$elm$core$Maybe$Just(27317))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4374))(
+		$elm$core$Maybe$Just(114))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Sable GS')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22595))(
+		$elm$core$Maybe$Just(20748))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3488))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Sable GS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21595))(
+		$elm$core$Maybe$Just(19848))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3308))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mercury Sable LS Premium 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23895))(
+		$elm$core$Maybe$Just(21918))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3315))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Mini Cooper')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16999))(
+		$elm$core$Maybe$Just(15437))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(37))(
+		$elm$core$Maybe$Just(2524))(
+		$elm$core$Maybe$Just(97))(
+		$elm$core$Maybe$Just(143))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mini Cooper S')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19999))(
+		$elm$core$Maybe$Just(18137))(
+		$elm$core$Maybe$Just(1.6))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(2678))(
+		$elm$core$Maybe$Just(97))(
+		$elm$core$Maybe$Just(144))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Diamante LS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(29282))(
+		$elm$core$Maybe$Just(27250))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(205))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3549))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Eclipse GTS 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25092))(
+		$elm$core$Maybe$Just(23456))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3241))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Eclipse Spyder GT convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26992))(
+		$elm$core$Maybe$Just(25218))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3296))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Endeavor XLS')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(30492))(
+		$elm$core$Maybe$Just(28330))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4134))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Galant ES 2.4L 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19312))(
+		$elm$core$Maybe$Just(17957))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(3351))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Galant GTS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25700))(
+		$elm$core$Maybe$Just(23883))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3649))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(191))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Lancer ES 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14622))(
+		$elm$core$Maybe$Just(13751))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(2656))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Lancer Evolution 4dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(29562))(
+		$elm$core$Maybe$Just(27466))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(271))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3263))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Lancer LS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16722))(
+		$elm$core$Maybe$Just(15718))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(2795))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Lancer OZ Rally 4dr auto')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17232))(
+		$elm$core$Maybe$Just(16196))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(120))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(2744))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Lancer Sportback LS')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17495))(
+		$elm$core$Maybe$Just(16295))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(3020))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Montero XLS')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(33112))(
+		$elm$core$Maybe$Just(30763))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(215))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(4718))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Mitsubishi Outlander LS')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18892))(
+		$elm$core$Maybe$Just(17569))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(160))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3240))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(179))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Nissan 350Z coupe 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(26910))(
+		$elm$core$Maybe$Just(25203))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(287))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3188))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(169))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Nissan 350Z Enthusiast convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(34390))(
+		$elm$core$Maybe$Just(31845))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(287))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3428))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(169))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Altima S 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19240))(
+		$elm$core$Maybe$Just(18030))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3039))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Altima SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23290))(
+		$elm$core$Maybe$Just(21580))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(245))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3197))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Frontier King Cab XE V6')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(19479))(
+		$elm$core$Maybe$Just(18253))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(3932))(
+		$elm$core$Maybe$Just(116))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Nissan Maxima SE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27490))(
+		$elm$core$Maybe$Just(25182))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(265))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3473))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Maxima SL 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(29440))(
+		$elm$core$Maybe$Just(26966))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(265))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3476))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Murano SL')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(28739))(
+		$elm$core$Maybe$Just(27300))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(245))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3801))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Pathfinder Armada SE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33840))(
+		$elm$core$Maybe$Just(30815))(
+		$elm$core$Maybe$Just(5.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(305))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(5013))(
+		$elm$core$Maybe$Just(123))(
+		$elm$core$Maybe$Just(207))(
+		$elm$core$Maybe$Just(79)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Pathfinder SE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27339))(
+		$elm$core$Maybe$Just(25972))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(3871))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Quest S')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24780))(
+		$elm$core$Maybe$Just(22958))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(4012))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Quest SE')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(32780))(
+		$elm$core$Maybe$Just(30019))(
+		$elm$core$Maybe$Just(3.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4175))(
+		$elm$core$Maybe$Just(124))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Sentra 1.8 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12740))(
+		$elm$core$Maybe$Just(12205))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(126))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2513))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Sentra 1.8 S 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14740))(
+		$elm$core$Maybe$Just(13747))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(126))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2581))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Sentra SE-R 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17640))(
+		$elm$core$Maybe$Just(16444))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(23))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2761))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Nissan Titan King Cab XE')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(26650))(
+		$elm$core$Maybe$Just(24926))(
+		$elm$core$Maybe$Just(5.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(305))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(5287))(
+		$elm$core$Maybe$Just(140))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Nissan Xterra XE V6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20939))(
+		$elm$core$Maybe$Just(19512))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(3760))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Oldsmobile Alero GLS 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23675))(
+		$elm$core$Maybe$Just(21485))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3085))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Oldsmobile Alero GX 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18825))(
+		$elm$core$Maybe$Just(17642))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2946))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Oldsmobile Silhouette GL')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(28790))(
+		$elm$core$Maybe$Just(26120))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3948))(
+		$elm$core$Maybe$Just(120))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Aztekt')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21595))(
+		$elm$core$Maybe$Just(19810))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3779))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Bonneville GXP 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35995))(
+		$elm$core$Maybe$Just(32997))(
+		$elm$core$Maybe$Just(4.6))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(275))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(3790))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(203))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Grand Am GT 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22450))(
+		$elm$core$Maybe$Just(20595))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3118))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Grand Prix GT1 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22395))(
+		$elm$core$Maybe$Just(20545))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3477))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Grand Prix GT2 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24295))(
+		$elm$core$Maybe$Just(22284))(
+		$elm$core$Maybe$Just(3.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3484))(
+		$elm$core$Maybe$Just(111))(
+		$elm$core$Maybe$Just(198))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac GTO 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(33500))(
+		$elm$core$Maybe$Just(30710))(
+		$elm$core$Maybe$Just(5.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(3725))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Montana')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23845))(
+		$elm$core$Maybe$Just(21644))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3803))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Montana EWB')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(31370))(
+		$elm$core$Maybe$Just(28454))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(4431))(
+		$elm$core$Maybe$Just(121))(
+		$elm$core$Maybe$Just(201))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Sunfire 1SA 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15495))(
+		$elm$core$Maybe$Just(14375))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2771))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Sunfire 1SC 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17735))(
+		$elm$core$Maybe$Just(16369))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2771))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Pontiac Vibe')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(17045))(
+		$elm$core$Maybe$Just(15973))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(2701))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(172))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Porsche 911 Carrera 4S coupe 2dr (convert)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(84165))(
+		$elm$core$Maybe$Just(72206))(
+		$elm$core$Maybe$Just(3.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(315))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3240))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Porsche 911 Carrera convertible 2dr (coupe)')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(79165))(
+		$elm$core$Maybe$Just(69229))(
+		$elm$core$Maybe$Just(3.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(315))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3135))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Porsche 911 GT2 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(192465))(
+		$elm$core$Maybe$Just(173560))(
+		$elm$core$Maybe$Just(3.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(477))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3131))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Porsche 911 Targa coupe 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(76765))(
+		$elm$core$Maybe$Just(67128))(
+		$elm$core$Maybe$Just(3.6))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(315))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3119))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Porsche Boxster convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(43365))(
+		$elm$core$Maybe$Just(37886))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(228))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2811))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Porsche Boxster S convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(52365))(
+		$elm$core$Maybe$Just(45766))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(258))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(2911))(
+		$elm$core$Maybe$Just(95))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Porsche Cayenne S')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(56665))(
+		$elm$core$Maybe$Just(49865))(
+		$elm$core$Maybe$Just(4.5))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(340))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(4950))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-3 Aero 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33360))(
+		$elm$core$Maybe$Just(31562))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3175))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-3 Aero convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(43175))(
+		$elm$core$Maybe$Just(40883))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3700))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-3 Arc convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(40670))(
+		$elm$core$Maybe$Just(38520))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3480))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-3 Arc Sport 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(30860))(
+		$elm$core$Maybe$Just(29269))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3175))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(183))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-5 Aero')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(40845))(
+		$elm$core$Maybe$Just(38376))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3620))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-5 Aero 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(39465))(
+		$elm$core$Maybe$Just(37721))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(250))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3470))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Saab 9-5 Arc 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(35105))(
+		$elm$core$Maybe$Just(33011))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3470))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Saturn Ion1 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(10995))(
+		$elm$core$Maybe$Just(10319))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2692))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Saturn L300 2')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23560))(
+		$elm$core$Maybe$Just(21779))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(34))(
+		$elm$core$Maybe$Just(3109))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saturn L300-2 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21410))(
+		$elm$core$Maybe$Just(19801))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(182))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3197))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Saturn lon2 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14300))(
+		$elm$core$Maybe$Just(13393))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2692))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Saturn lon2 quad coupe 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14850))(
+		$elm$core$Maybe$Just(13904))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2751))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Saturn lon3 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15825))(
+		$elm$core$Maybe$Just(14811))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2692))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Saturn lon3 quad coupe 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16350))(
+		$elm$core$Maybe$Just(15299))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(140))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2751))(
+		$elm$core$Maybe$Just(103))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Saturn VUE')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(20585))(
+		$elm$core$Maybe$Just(19238))(
+		$elm$core$Maybe$Just(2.2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(143))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3381))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Scion xA 4dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12965))(
+		$elm$core$Maybe$Just(12340))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(38))(
+		$elm$core$Maybe$Just(2340))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(154))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Scion xB')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14165))(
+		$elm$core$Maybe$Just(13480))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(2425))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Baja')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(24520))(
+		$elm$core$Maybe$Just(22304))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3485))(
+		$elm$core$Maybe$Just(104))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Subaru Forester X')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(21445))(
+		$elm$core$Maybe$Just(19646))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3090))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Impreza 2.5 RS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(19945))(
+		$elm$core$Maybe$Just(18399))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(2965))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Impreza WRX 4dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25045))(
+		$elm$core$Maybe$Just(23022))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(227))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3085))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Impreza WRX STi 4dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(31545))(
+		$elm$core$Maybe$Just(29130))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3263))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Legacy GT 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25645))(
+		$elm$core$Maybe$Just(23336))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3395))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Legacy L 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(20445))(
+		$elm$core$Maybe$Just(18713))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3285))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Outback')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(23895))(
+		$elm$core$Maybe$Just(21773))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3430))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Outback H6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(29345))(
+		$elm$core$Maybe$Just(26660))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3610))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Outback H-6 VDC 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(31545))(
+		$elm$core$Maybe$Just(28603))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(212))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3630))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Subaru Outback Limited Sedan 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(27145))(
+		$elm$core$Maybe$Just(24687))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3495))(
+		$elm$core$Maybe$Just(104))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Aeno S 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12884))(
+		$elm$core$Maybe$Just(12719))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2676))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(171))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Aerio LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14500))(
+		$elm$core$Maybe$Just(14317))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2676))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(171))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Aerio SX')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(16497))(
+		$elm$core$Maybe$Just(16291))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2932))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Forenza EX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15568))(
+		$elm$core$Maybe$Just(15378))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(2756))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Forenza S 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(12269))(
+		$elm$core$Maybe$Just(12116))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2701))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(177))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Verona LX 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(17262))(
+		$elm$core$Maybe$Just(17053))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(155))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3380))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(188))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki Vitara LX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(17163))(
+		$elm$core$Maybe$Just(16949))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3020))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Suzuki XL-7 EX')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23699))(
+		$elm$core$Maybe$Just(22307))(
+		$elm$core$Maybe$Just(2.7))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(3682))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Toyota 4Runner SR5 V6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(27710))(
+		$elm$core$Maybe$Just(24801))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(245))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(4035))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(74)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Avalon XL 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26560))(
+		$elm$core$Maybe$Just(23693))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3417))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Avalon XLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(30920))(
+		$elm$core$Maybe$Just(27271))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3439))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(192))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry LE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19560))(
+		$elm$core$Maybe$Just(17558))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(157))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(3086))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry LE V6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22775))(
+		$elm$core$Maybe$Just(20325))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3296))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry Solara SE 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19635))(
+		$elm$core$Maybe$Just(17722))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(157))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(3175))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry Solara SE V6 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21965))(
+		$elm$core$Maybe$Just(19819))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3417))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry Solara SLE V6 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26510))(
+		$elm$core$Maybe$Just(23908))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(225))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3439))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Camry XLE V6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25920))(
+		$elm$core$Maybe$Just(23125))(
+		$elm$core$Maybe$Just(3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(210))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(3362))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Celica GT-S 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(22570))(
+		$elm$core$Maybe$Just(20363))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(2500))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(171))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Corolla CE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(14085))(
+		$elm$core$Maybe$Just(13065))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(40))(
+		$elm$core$Maybe$Just(2502))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Corolla LE 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15295))(
+		$elm$core$Maybe$Just(13889))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(40))(
+		$elm$core$Maybe$Just(2524))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Corolla S 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(15030))(
+		$elm$core$Maybe$Just(13650))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(40))(
+		$elm$core$Maybe$Just(2524))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Echo 2dr auto')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11560))(
+		$elm$core$Maybe$Just(10896))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(33))(
+		$elm$core$Maybe$Just(39))(
+		$elm$core$Maybe$Just(2085))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(65)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Echo 2dr manual')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(10760))(
+		$elm$core$Maybe$Just(10144))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(43))(
+		$elm$core$Maybe$Just(2035))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(65)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Echo 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(11290))(
+		$elm$core$Maybe$Just(10642))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(108))(
+		$elm$core$Maybe$Just(35))(
+		$elm$core$Maybe$Just(43))(
+		$elm$core$Maybe$Just(2055))(
+		$elm$core$Maybe$Just(93))(
+		$elm$core$Maybe$Just(163))(
+		$elm$core$Maybe$Just(65)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Highlander V6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(27930))(
+		$elm$core$Maybe$Just(24915))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(3935))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Land Cruiser')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(54765))(
+		$elm$core$Maybe$Just(47986))(
+		$elm$core$Maybe$Just(4.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(325))(
+		$elm$core$Maybe$Just(13))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(5390))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(193))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Matrix XR')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(16695))(
+		$elm$core$Maybe$Just(15156))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(130))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(36))(
+		$elm$core$Maybe$Just(2679))(
+		$elm$core$Maybe$Just(102))(
+		$elm$core$Maybe$Just(171))(
+		$elm$core$Maybe$Just(70)),
+		$author$project$Uebung2aufgabe2$Car('Toyota MR2 Spyder convertible 2dr')($author$project$Uebung2aufgabe2$Sports_Car)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(25130))(
+		$elm$core$Maybe$Just(22787))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(138))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(32))(
+		$elm$core$Maybe$Just(2195))(
+		$elm$core$Maybe$Just(97))(
+		$elm$core$Maybe$Just(153))(
+		$elm$core$Maybe$Just(67)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Prius 4dr (gas/electric)')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(20510))(
+		$elm$core$Maybe$Just(18926))(
+		$elm$core$Maybe$Just(1.5))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(59))(
+		$elm$core$Maybe$Just(51))(
+		$elm$core$Maybe$Just(2890))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(175))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Toyota RAV4')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(20290))(
+		$elm$core$Maybe$Just(18553))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(161))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3119))(
+		$elm$core$Maybe$Just(98))(
+		$elm$core$Maybe$Just(167))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Sequoia SR5')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(35695))(
+		$elm$core$Maybe$Just(31827))(
+		$elm$core$Maybe$Just(4.7))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(240))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(5270))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(78)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Sienna CE')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23495))(
+		$elm$core$Maybe$Just(21198))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(4120))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Sienna XLE Limited')($author$project$Uebung2aufgabe2$Minivan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(28800))(
+		$elm$core$Maybe$Just(25690))(
+		$elm$core$Maybe$Just(3.3))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(230))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(4165))(
+		$elm$core$Maybe$Just(119))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(77)),
+		$author$project$Uebung2aufgabe2$Car('Toyota Tacoma')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(12800))(
+		$elm$core$Maybe$Just(11879))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(142))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(2750))(
+		$elm$core$Maybe$Just(103))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Toyota Tundra Access Cab V6 SR5')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(25935))(
+		$elm$core$Maybe$Just(23520))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(14))(
+		$elm$core$Maybe$Just(17))(
+		$elm$core$Maybe$Just(4435))(
+		$elm$core$Maybe$Just(128))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Toyota Tundra Regular Cab V6')($author$project$Uebung2aufgabe2$Pickup)($author$project$Uebung2aufgabe2$Rear_Wheel_Drive)(
+		$elm$core$Maybe$Just(16495))(
+		$elm$core$Maybe$Just(14978))(
+		$elm$core$Maybe$Just(3.4))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(16))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(3925))(
+		$elm$core$Maybe$Just(128))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Golf GLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(18715))(
+		$elm$core$Maybe$Just(17478))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2897))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(165))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen GTI 1.8T 2dr hatch')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19825))(
+		$elm$core$Maybe$Just(18109))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2934))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(168))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Jetta GL')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(19005))(
+		$elm$core$Maybe$Just(17427))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3034))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(174))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Jetta GLI VR6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23785))(
+		$elm$core$Maybe$Just(21686))(
+		$elm$core$Maybe$Just(2.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(200))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3179))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(172))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Jetta GLS TDI 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21055))(
+		$elm$core$Maybe$Just(19638))(
+		$elm$core$Maybe$Just(1.9))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(100))(
+		$elm$core$Maybe$Just(38))(
+		$elm$core$Maybe$Just(46))(
+		$elm$core$Maybe$Just(3003))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(172))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen New Beetle GLS 1.8T 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(21055))(
+		$elm$core$Maybe$Just(19638))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(150))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(2820))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(161))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen New Beetle GLS convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23215))(
+		$elm$core$Maybe$Just(21689))(
+		$elm$core$Maybe$Just(2))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(115))(
+		$elm$core$Maybe$Just(24))(
+		$elm$core$Maybe$Just(30))(
+		$elm$core$Maybe$Just(3082))(
+		$elm$core$Maybe$Just(99))(
+		$elm$core$Maybe$Just(161))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Passat GLS 1.8T')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(24955))(
+		$elm$core$Maybe$Just(22801))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(3338))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Passat GLS 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(23955))(
+		$elm$core$Maybe$Just(21898))(
+		$elm$core$Maybe$Just(1.8))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(31))(
+		$elm$core$Maybe$Just(3241))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Passat GLX V6 4MOTION 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(33180))(
+		$elm$core$Maybe$Just(30583))(
+		$elm$core$Maybe$Just(2.8))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3721))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Passat W8')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(40235))(
+		$elm$core$Maybe$Just(36956))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(270))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(4067))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(184))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Passat W8 4MOTION 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(39235))(
+		$elm$core$Maybe$Just(36052))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(270))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3953))(
+		$elm$core$Maybe$Just(106))(
+		$elm$core$Maybe$Just(185))(
+		$elm$core$Maybe$Just(69)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Phaeton 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(65000))(
+		$elm$core$Maybe$Just(59912))(
+		$elm$core$Maybe$Just(4.2))(
+		$elm$core$Maybe$Just(8))(
+		$elm$core$Maybe$Just(335))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(5194))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Phaeton W12 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(75000))(
+		$elm$core$Maybe$Just(69130))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(12))(
+		$elm$core$Maybe$Just(420))($elm$core$Maybe$Nothing)($elm$core$Maybe$Nothing)(
+		$elm$core$Maybe$Just(5399))(
+		$elm$core$Maybe$Just(118))(
+		$elm$core$Maybe$Just(204))(
+		$elm$core$Maybe$Just(75)),
+		$author$project$Uebung2aufgabe2$Car('Volkswagen Touareg V6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(35515))(
+		$elm$core$Maybe$Just(32243))(
+		$elm$core$Maybe$Just(3.2))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(220))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(5086))(
+		$elm$core$Maybe$Just(112))(
+		$elm$core$Maybe$Just(187))(
+		$elm$core$Maybe$Just(76)),
+		$author$project$Uebung2aufgabe2$Car('Volvo C70 HPT convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(42565))(
+		$elm$core$Maybe$Just(40083))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(242))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3450))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Volvo C70 LPT convertible 2dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(40565))(
+		$elm$core$Maybe$Just(38203))(
+		$elm$core$Maybe$Just(2.4))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(197))(
+		$elm$core$Maybe$Just(21))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3450))(
+		$elm$core$Maybe$Just(105))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S40 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(25135))(
+		$elm$core$Maybe$Just(23701))(
+		$elm$core$Maybe$Just(1.9))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2767))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(178))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S60 2.5 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(31745))(
+		$elm$core$Maybe$Just(29916))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3903))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S60 R 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37560))(
+		$elm$core$Maybe$Just(35382))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(300))(
+		$elm$core$Maybe$Just(18))(
+		$elm$core$Maybe$Just(25))(
+		$elm$core$Maybe$Just(3571))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(181))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S60 T5 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(34845))(
+		$elm$core$Maybe$Just(32902))(
+		$elm$core$Maybe$Just(2.3))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(247))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3766))(
+		$elm$core$Maybe$Just(107))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(71)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S80 2.5T 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(37885))(
+		$elm$core$Maybe$Just(35688))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(194))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3691))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S80 2.9 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(37730))(
+		$elm$core$Maybe$Just(35542))(
+		$elm$core$Maybe$Just(2.9))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(28))(
+		$elm$core$Maybe$Just(3576))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Volvo S80 T6 4dr')($author$project$Uebung2aufgabe2$Small_Sporty_Compact_Large_Sedan)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(45210))(
+		$elm$core$Maybe$Just(42573))(
+		$elm$core$Maybe$Just(2.9))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(268))(
+		$elm$core$Maybe$Just(19))(
+		$elm$core$Maybe$Just(26))(
+		$elm$core$Maybe$Just(3653))(
+		$elm$core$Maybe$Just(110))(
+		$elm$core$Maybe$Just(190))(
+		$elm$core$Maybe$Just(72)),
+		$author$project$Uebung2aufgabe2$Car('Volvo V40')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$Front_Wheel_Drive)(
+		$elm$core$Maybe$Just(26135))(
+		$elm$core$Maybe$Just(24641))(
+		$elm$core$Maybe$Just(1.9))(
+		$elm$core$Maybe$Just(4))(
+		$elm$core$Maybe$Just(170))(
+		$elm$core$Maybe$Just(22))(
+		$elm$core$Maybe$Just(29))(
+		$elm$core$Maybe$Just(2822))(
+		$elm$core$Maybe$Just(101))(
+		$elm$core$Maybe$Just(180))(
+		$elm$core$Maybe$Just(68)),
+		$author$project$Uebung2aufgabe2$Car('Volvo XC70')($author$project$Uebung2aufgabe2$Wagon)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(35145))(
+		$elm$core$Maybe$Just(33112))(
+		$elm$core$Maybe$Just(2.5))(
+		$elm$core$Maybe$Just(5))(
+		$elm$core$Maybe$Just(208))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(27))(
+		$elm$core$Maybe$Just(3823))(
+		$elm$core$Maybe$Just(109))(
+		$elm$core$Maybe$Just(186))(
+		$elm$core$Maybe$Just(73)),
+		$author$project$Uebung2aufgabe2$Car('Volvo XC90 T6')($author$project$Uebung2aufgabe2$SUV)($author$project$Uebung2aufgabe2$All_Wheel_Drive)(
+		$elm$core$Maybe$Just(41250))(
+		$elm$core$Maybe$Just(38851))(
+		$elm$core$Maybe$Just(2.9))(
+		$elm$core$Maybe$Just(6))(
+		$elm$core$Maybe$Just(268))(
+		$elm$core$Maybe$Just(15))(
+		$elm$core$Maybe$Just(20))(
+		$elm$core$Maybe$Just(4638))(
+		$elm$core$Maybe$Just(113))(
+		$elm$core$Maybe$Just(189))(
+		$elm$core$Maybe$Just(75))
+	]);
+var $elm$core$Maybe$map4 = F5(
+	function (func, ma, mb, mc, md) {
+		if (ma.$ === 'Nothing') {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			var a = ma.a;
+			if (mb.$ === 'Nothing') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var b = mb.a;
+				if (mc.$ === 'Nothing') {
+					return $elm$core$Maybe$Nothing;
+				} else {
+					var c = mc.a;
+					if (md.$ === 'Nothing') {
+						return $elm$core$Maybe$Nothing;
+					} else {
+						var d = md.a;
+						return $elm$core$Maybe$Just(
+							A4(func, a, b, c, d));
+					}
+				}
+			}
+		}
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Uebung2aufgabe2$isComplete = function (car) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		false,
+		A5(
+			$elm$core$Maybe$map4,
+			F4(
+				function (_v0, _v1, _v2, _v3) {
+					return true;
+				}),
+			car.cityMPG,
+			car.retailPrice,
+			car.dealerCost,
+			car.carLen));
+};
+var $author$project$Uebung2aufgabe2$filteredCars = A2($elm$core$List$filter, $author$project$Uebung2aufgabe2$isComplete, $author$project$Uebung2aufgabe2$cars);
+var $author$project$Uebung2aufgabe2$selectedClass = $author$project$Uebung2aufgabe2$SUV;
+var $author$project$Uebung2aufgabe2$carsInClass = A2(
+	$elm$core$List$filter,
+	function (c) {
+		return _Utils_eq(c.carType, $author$project$Uebung2aufgabe2$selectedClass);
+	},
+	$author$project$Uebung2aufgabe2$filteredCars);
 var $elm$core$List$maybeCons = F3(
 	function (f, mx, xs) {
 		var _v0 = f(mx);
@@ -9636,429 +9662,6 @@ var $elm$core$List$filterMap = F2(
 			_List_Nil,
 			xs);
 	});
-var $elm$core$Maybe$map2 = F3(
-	function (func, ma, mb) {
-		if (ma.$ === 'Nothing') {
-			return $elm$core$Maybe$Nothing;
-		} else {
-			var a = ma.a;
-			if (mb.$ === 'Nothing') {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var b = mb.a;
-				return $elm$core$Maybe$Just(
-					A2(func, a, b));
-			}
-		}
-	});
-var $author$project$Uebung1aufgabe4$filterAndReduceCars = function (my_cars) {
-	var filteredPoints = A2(
-		$elm$core$List$filterMap,
-		function (car) {
-			return A3(
-				$elm$core$Maybe$map2,
-				F2(
-					function (city, price) {
-						return {
-							pointName: car.vehicleName + (' (' + ($elm$core$String$fromInt(city) + (',' + ($elm$core$String$fromInt(price) + ')')))),
-							x: city,
-							y: price
-						};
-					}),
-				car.cityMPG,
-				car.retailPrice);
-		},
-		my_cars);
-	return A3($author$project$Uebung1aufgabe4$XyData, 'cityMPG', 'retailPrice', filteredPoints);
-};
-var $elm$html$Html$p = _VirtualDom_node('p');
-var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
-var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
-	return {$: 'Percent', a: a};
-};
-var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
-	return {$: 'Px', a: a};
-};
-var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
-	function (a, b) {
-		return {$: 'Translate', a: a, b: b};
-	});
-var $gampleman$elm_visualization$Scale$convert = F2(
-	function (_v0, value) {
-		var scale = _v0.a;
-		return A3(scale.convert, scale.domain, scale.range, value);
-	});
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
-var $elm_community$typed_svg$TypedSvg$Attributes$fontFamily = function (families) {
-	if (!families.b) {
-		return A2($elm_community$typed_svg$TypedSvg$Core$attribute, 'font-family', 'inherit');
-	} else {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$Core$attribute,
-			'font-family',
-			A2($elm$core$String$join, ', ', families));
-	}
-};
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
-	switch (length.$) {
-		case 'Cm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'cm';
-		case 'Em':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'em';
-		case 'Ex':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'ex';
-		case 'In':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'in';
-		case 'Mm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'mm';
-		case 'Num':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x);
-		case 'Pc':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pc';
-		case 'Percent':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + '%';
-		case 'Pt':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pt';
-		case 'Px':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'px';
-		default:
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'rem';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$fontSize = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'font-size',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm$virtual_dom$VirtualDom$nodeNS = F2(
-	function (namespace, tag) {
-		return A2(
-			_VirtualDom_nodeNS,
-			namespace,
-			_VirtualDom_noScript(tag));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
-var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
-var $author$project$Uebung1aufgabe4$h = 450;
-var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'height',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						$elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
-var $author$project$Uebung1aufgabe4$padding = 60;
-var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
-var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'class',
-		A2($elm$core$String$join, ' ', names));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$cx = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cx',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cx = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cx(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$cy = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cy',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'r',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$r(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Uebung1aufgabe4$radius = 5.0;
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
-	switch (anchorAlignment.$) {
-		case 'AnchorInherit':
-			return 'inherit';
-		case 'AnchorStart':
-			return 'start';
-		case 'AnchorMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'text-anchor',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
-};
-var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
-var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Uebung1aufgabe4$point = F3(
-	function (scaleX, scaleY, xyPoint) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$g,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['point'])),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-					$elm_community$typed_svg$TypedSvg$Types$Px(10.0)),
-					$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-					_List_fromArray(
-						['sans-serif']))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$circle,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(
-							A2($gampleman$elm_visualization$Scale$convert, scaleX, xyPoint.x)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(
-							A2($gampleman$elm_visualization$Scale$convert, scaleY, xyPoint.y)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r($author$project$Uebung1aufgabe4$radius)
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-							A2($gampleman$elm_visualization$Scale$convert, scaleX, xyPoint.x)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-							A2($gampleman$elm_visualization$Scale$convert, scaleY, xyPoint.y) - 8),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(xyPoint.pointName)
-						]))
-				]));
-	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm$core$String$concat = function (strings) {
-	return A2($elm$core$String$join, '', strings);
-};
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString = function (xform) {
-	var tr = F2(
-		function (name, args) {
-			return $elm$core$String$concat(
-				_List_fromArray(
-					[
-						name,
-						'(',
-						A2(
-						$elm$core$String$join,
-						' ',
-						A2($elm$core$List$map, $elm$core$String$fromFloat, args)),
-						')'
-					]));
-		});
-	switch (xform.$) {
-		case 'Matrix':
-			var a = xform.a;
-			var b = xform.b;
-			var c = xform.c;
-			var d = xform.d;
-			var e = xform.e;
-			var f = xform.f;
-			return A2(
-				tr,
-				'matrix',
-				_List_fromArray(
-					[a, b, c, d, e, f]));
-		case 'Rotate':
-			var a = xform.a;
-			var x = xform.b;
-			var y = xform.c;
-			return A2(
-				tr,
-				'rotate',
-				_List_fromArray(
-					[a, x, y]));
-		case 'Scale':
-			var x = xform.a;
-			var y = xform.b;
-			return A2(
-				tr,
-				'scale',
-				_List_fromArray(
-					[x, y]));
-		case 'SkewX':
-			var x = xform.a;
-			return A2(
-				tr,
-				'skewX',
-				_List_fromArray(
-					[x]));
-		case 'SkewY':
-			var y = xform.a;
-			return A2(
-				tr,
-				'skewY',
-				_List_fromArray(
-					[y]));
-		default:
-			var x = xform.a;
-			var y = xform.b;
-			return A2(
-				tr,
-				'translate',
-				_List_fromArray(
-					[x, y]));
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transforms) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'transform',
-		A2(
-			$elm$core$String$join,
-			' ',
-			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
-	function (minX, minY, vWidth, vHeight) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$Core$attribute,
-			'viewBox',
-			A2(
-				$elm$core$String$join,
-				' ',
-				A2(
-					$elm$core$List$map,
-					$elm$core$String$fromFloat,
-					_List_fromArray(
-						[minX, minY, vWidth, vHeight]))));
-	});
-var $author$project$Uebung1aufgabe4$w = 900;
-var $author$project$Uebung1aufgabe4$defaultExtent = _Utils_Tuple2(0, 100);
-var $gampleman$elm_visualization$Statistics$extentBy = F2(
-	function (fn, list) {
-		var min = F2(
-			function (a, b) {
-				return (_Utils_cmp(
-					fn(a),
-					fn(b)) < 0) ? a : b;
-			});
-		var max = F2(
-			function (a, b) {
-				return (_Utils_cmp(
-					fn(a),
-					fn(b)) > 0) ? a : b;
-			});
-		var helper = F2(
-			function (l, _v0) {
-				helper:
-				while (true) {
-					var mini = _v0.a;
-					var maxi = _v0.b;
-					if (!l.b) {
-						return _Utils_Tuple2(mini, maxi);
-					} else {
-						var x = l.a;
-						var xs = l.b;
-						var $temp$l = xs,
-							$temp$_v0 = _Utils_Tuple2(
-							A2(min, mini, x),
-							A2(max, maxi, x));
-						l = $temp$l;
-						_v0 = $temp$_v0;
-						continue helper;
-					}
-				}
-			});
-		if (!list.b) {
-			return $elm$core$Maybe$Nothing;
-		} else {
-			var x = list.a;
-			var xs = list.b;
-			return $elm$core$Maybe$Just(
-				A2(
-					helper,
-					xs,
-					_Utils_Tuple2(x, x)));
-		}
-	});
-var $elm$core$Basics$identity = function (x) {
-	return x;
-};
-var $gampleman$elm_visualization$Statistics$extent = $gampleman$elm_visualization$Statistics$extentBy($elm$core$Basics$identity);
 var $elm$core$Maybe$map = F2(
 	function (f, maybe) {
 		if (maybe.$ === 'Just') {
@@ -10069,798 +9672,122 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
-var $author$project$Uebung1aufgabe4$tickCount = 5;
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Uebung1aufgabe4$wideExtent = function (values) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		$author$project$Uebung1aufgabe4$defaultExtent,
-		A2(
-			$elm$core$Maybe$map,
-			function (_v0) {
-				var minValue = _v0.a;
-				var maxValue = _v0.b;
-				var dataRange = maxValue - minValue;
-				var paddingStep = (!dataRange) ? 1 : (dataRange / (2 * $author$project$Uebung1aufgabe4$tickCount));
-				var lowerBound = A2($elm$core$Basics$max, 0, minValue - paddingStep);
-				return _Utils_Tuple2(lowerBound, maxValue + paddingStep);
-			},
-			$gampleman$elm_visualization$Statistics$extent(values)));
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'width',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
-var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
-	var opts = _v0.a;
-	return opts.tickFormat(opts.domain);
-};
-var $gampleman$elm_visualization$Scale$ticks = F2(
-	function (_v0, count) {
-		var scale = _v0.a;
-		return A2(scale.ticks, scale.domain, count);
-	});
-var $gampleman$elm_visualization$Axis$computeOptions = F2(
-	function (attrs, scale) {
-		var _v0 = A3(
-			$elm$core$List$foldl,
-			F2(
-				function (attr, _v1) {
-					var babyOpts = _v1.a;
-					var post = _v1.b;
-					switch (attr.$) {
-						case 'TickCount':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickCount: val}),
-								post);
-						case 'TickSizeInner':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickSizeInner: val}),
-								post);
-						case 'TickSizeOuter':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickSizeOuter: val}),
-								post);
-						case 'TickPadding':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickPadding: val}),
-								post);
-						default:
-							return _Utils_Tuple2(
-								babyOpts,
-								A2($elm$core$List$cons, attr, post));
-					}
-				}),
-			_Utils_Tuple2(
-				{tickCount: 10, tickPadding: 3, tickSizeInner: 6, tickSizeOuter: 6},
-				_List_Nil),
-			attrs);
-		var opts = _v0.a;
-		var postList = _v0.b;
-		return A3(
-			$elm$core$List$foldl,
-			F2(
-				function (attr, options) {
-					switch (attr.$) {
-						case 'Ticks':
-							var val = attr.a;
-							return _Utils_update(
-								options,
-								{ticks: val});
-						case 'TickFormat':
-							var val = attr.a;
-							return _Utils_update(
-								options,
-								{tickFormat: val});
-						default:
-							return options;
-					}
-				}),
-			{
-				tickCount: opts.tickCount,
-				tickFormat: A2($gampleman$elm_visualization$Scale$tickFormat, scale, opts.tickCount),
-				tickPadding: opts.tickPadding,
-				tickSizeInner: opts.tickSizeInner,
-				tickSizeOuter: opts.tickSizeOuter,
-				ticks: A2($gampleman$elm_visualization$Scale$ticks, scale, opts.tickCount)
-			},
-			postList);
-	});
-var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
-var $elm$svg$Svg$Attributes$dy = _VirtualDom_attribute('dy');
-var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
-var $elm$svg$Svg$Attributes$fontFamily = _VirtualDom_attribute('font-family');
-var $elm$svg$Svg$Attributes$fontSize = _VirtualDom_attribute('font-size');
-var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
-var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
-var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
-var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
-var $gampleman$elm_visualization$Scale$rangeExtent = function (_v0) {
-	var options = _v0.a;
-	return A2(options.rangeExtent, options.domain, options.range);
-};
-var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
-var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$svg$Svg$Attributes$textAnchor = _VirtualDom_attribute('text-anchor');
-var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
-var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
-var $gampleman$elm_visualization$Axis$element = F4(
-	function (_v0, k, displacement, textAnchorPosition) {
-		var x = _v0.x;
-		var y = _v0.y;
-		var x2 = _v0.x2;
-		var y1 = _v0.y1;
-		var y2 = _v0.y2;
-		var translate = _v0.translate;
-		var horizontal = _v0.horizontal;
-		return F2(
-			function (attrs, scale) {
-				var rangeExtent = $gampleman$elm_visualization$Scale$rangeExtent(scale);
-				var range1 = rangeExtent.b + 0.5;
-				var range0 = rangeExtent.a + 0.5;
-				var position = $gampleman$elm_visualization$Scale$convert(scale);
-				var opts = A2($gampleman$elm_visualization$Axis$computeOptions, attrs, scale);
-				var spacing = A2($elm$core$Basics$max, opts.tickSizeInner, 0) + opts.tickPadding;
-				var drawTick = function (tick) {
-					return A2(
-						$elm$svg$Svg$g,
-						_List_fromArray(
-							[
-								$elm$svg$Svg$Attributes$class('tick'),
-								$elm$svg$Svg$Attributes$transform(
-								translate(
-									position(tick)))
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$svg$Svg$line,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$stroke('#000'),
-										x2(k * opts.tickSizeInner),
-										y1(0.5),
-										y2(0.5)
-									]),
-								_List_Nil),
-								A2(
-								$elm$svg$Svg$text_,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$fill('#000'),
-										x(k * spacing),
-										y(0.5),
-										$elm$svg$Svg$Attributes$dy(displacement)
-									]),
-								_List_fromArray(
-									[
-										$elm$svg$Svg$text(
-										opts.tickFormat(tick))
-									]))
-							]));
-				};
-				var domainLine = horizontal ? ('M' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + (',' + ($elm$core$String$fromFloat(range0) + ('H0.5V' + ($elm$core$String$fromFloat(range1) + ('H' + $elm$core$String$fromFloat(k * opts.tickSizeOuter)))))))) : ('M' + ($elm$core$String$fromFloat(range0) + (',' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + ('V0.5H' + ($elm$core$String$fromFloat(range1) + ('V' + $elm$core$String$fromFloat(k * opts.tickSizeOuter))))))));
-				return A2(
-					$elm$svg$Svg$g,
-					_List_fromArray(
-						[
-							$elm$svg$Svg$Attributes$fill('none'),
-							$elm$svg$Svg$Attributes$fontSize('10'),
-							$elm$svg$Svg$Attributes$fontFamily('sans-serif'),
-							$elm$svg$Svg$Attributes$textAnchor(textAnchorPosition)
-						]),
-					A2(
-						$elm$core$List$cons,
-						A2(
-							$elm$svg$Svg$path,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$class('domain'),
-									$elm$svg$Svg$Attributes$stroke('#000'),
-									$elm$svg$Svg$Attributes$d(domainLine)
-								]),
-							_List_Nil),
-						A2($elm$core$List$map, drawTick, opts.ticks)));
-			});
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
-var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
-var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
-var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
-var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
-var $gampleman$elm_visualization$Axis$verticalAttrs = {
-	horizontal: false,
-	translate: function (x) {
-		return 'translate(' + ($elm$core$String$fromFloat(x) + ', 0)');
-	},
-	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
-	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
-	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat),
-	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
-	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
-	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
-};
-var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
-var $gampleman$elm_visualization$Axis$TickCount = function (a) {
-	return {$: 'TickCount', a: a};
-};
-var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
-var $gampleman$elm_visualization$Scale$Scale = function (a) {
-	return {$: 'Scale', a: a};
-};
-var $elm$core$Basics$always = F2(
-	function (a, _v0) {
-		return a;
-	});
-var $elm$core$Basics$isNaN = _Basics_isNaN;
-var $gampleman$elm_visualization$Scale$Continuous$normalize = F2(
-	function (a, b) {
-		var c = b - a;
-		return (!c) ? $elm$core$Basics$always(0.5) : ($elm$core$Basics$isNaN(c) ? $elm$core$Basics$always(0 / 0) : function (x) {
-			return (x - a) / c;
-		});
-	});
-var $gampleman$elm_visualization$Scale$Continuous$bimap = F3(
-	function (_v0, _v1, interpolate) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		var r0 = _v1.a;
-		var r1 = _v1.b;
-		var _v2 = (_Utils_cmp(d1, d0) < 0) ? _Utils_Tuple2(
-			A2($gampleman$elm_visualization$Scale$Continuous$normalize, d1, d0),
-			A2(interpolate, r1, r0)) : _Utils_Tuple2(
-			A2($gampleman$elm_visualization$Scale$Continuous$normalize, d0, d1),
-			A2(interpolate, r0, r1));
-		var de = _v2.a;
-		var re = _v2.b;
-		return A2($elm$core$Basics$composeL, re, de);
-	});
-var $elm$core$Basics$composeR = F3(
-	function (f, g, x) {
-		return g(
-			f(x));
-	});
-var $gampleman$elm_visualization$Scale$Continuous$convertTransform = F4(
-	function (transform, interpolate, _v0, range) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		return A2(
-			$elm$core$Basics$composeR,
-			transform,
-			A3(
-				$gampleman$elm_visualization$Scale$Continuous$bimap,
-				_Utils_Tuple2(
-					transform(d0),
-					transform(d1)),
-				range,
-				interpolate));
-	});
-var $gampleman$elm_visualization$Interpolation$float = F2(
-	function (a, to) {
-		var b = to - a;
-		return function (t) {
-			return a + (b * t);
-		};
-	});
-var $gampleman$elm_visualization$Scale$Continuous$invertTransform = F4(
-	function (transform, untransform, _v0, range) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		return A2(
-			$elm$core$Basics$composeR,
-			A3(
-				$gampleman$elm_visualization$Scale$Continuous$bimap,
-				range,
-				_Utils_Tuple2(
-					transform(d0),
-					transform(d1)),
-				$gampleman$elm_visualization$Interpolation$float),
-			untransform);
-	});
-var $elm$core$Basics$ge = _Utils_ge;
-var $gampleman$elm_visualization$Scale$Continuous$fixPoint = F3(
-	function (maxIterations, initialInput, fn) {
-		var helper = F2(
-			function (iters, _v0) {
-				helper:
-				while (true) {
-					var a = _v0.a;
-					var b = _v0.b;
-					if (_Utils_cmp(iters + 1, maxIterations) > -1) {
-						return b;
-					} else {
-						var _v1 = fn(b);
-						var outA = _v1.a;
-						var outB = _v1.b;
-						if (_Utils_eq(outA, a)) {
-							return b;
-						} else {
-							if (!outA) {
-								return b;
-							} else {
-								var $temp$iters = iters + 1,
-									$temp$_v0 = _Utils_Tuple2(outA, outB);
-								iters = $temp$iters;
-								_v0 = $temp$_v0;
-								continue helper;
-							}
-						}
-					}
-				}
-			});
-		return A2(
-			helper,
-			1,
-			fn(initialInput));
-	});
-var $elm$core$Basics$e = _Basics_e;
-var $elm$core$Basics$sqrt = _Basics_sqrt;
-var $gampleman$elm_visualization$Scale$Continuous$e10 = $elm$core$Basics$sqrt(50);
-var $gampleman$elm_visualization$Scale$Continuous$e2 = $elm$core$Basics$sqrt(2);
-var $gampleman$elm_visualization$Scale$Continuous$e5 = $elm$core$Basics$sqrt(10);
-var $gampleman$elm_visualization$Scale$Continuous$ln10 = A2($elm$core$Basics$logBase, $elm$core$Basics$e, 10);
-var $elm$core$Basics$pow = _Basics_pow;
-var $gampleman$elm_visualization$Scale$Continuous$tickIncrement = F3(
-	function (start, stop, count) {
-		var step = (stop - start) / A2($elm$core$Basics$max, 0, count);
-		var powr = $elm$core$Basics$floor(
-			A2($elm$core$Basics$logBase, $elm$core$Basics$e, step) / $gampleman$elm_visualization$Scale$Continuous$ln10);
-		var error = step / A2($elm$core$Basics$pow, 10, powr);
-		var order = (_Utils_cmp(error, $gampleman$elm_visualization$Scale$Continuous$e10) > -1) ? 10 : ((_Utils_cmp(error, $gampleman$elm_visualization$Scale$Continuous$e5) > -1) ? 5 : ((_Utils_cmp(error, $gampleman$elm_visualization$Scale$Continuous$e2) > -1) ? 2 : 1));
-		return (powr >= 0) ? (order * A2($elm$core$Basics$pow, 10, powr)) : ((-A2($elm$core$Basics$pow, 10, -powr)) / order);
-	});
-var $gampleman$elm_visualization$Scale$Continuous$withNormalizedDomain = F2(
-	function (fn, _v0) {
-		var a = _v0.a;
-		var b = _v0.b;
-		if (_Utils_cmp(a, b) < 0) {
-			return fn(
-				_Utils_Tuple2(a, b));
-		} else {
-			var _v1 = fn(
-				_Utils_Tuple2(b, a));
-			var d = _v1.a;
-			var c = _v1.b;
-			return _Utils_Tuple2(c, d);
-		}
-	});
-var $gampleman$elm_visualization$Scale$Continuous$nice = F2(
-	function (domain, count) {
-		var computation = function (_v0) {
-			var start = _v0.a;
-			var stop = _v0.b;
-			var step = A3($gampleman$elm_visualization$Scale$Continuous$tickIncrement, start, stop, count);
-			return _Utils_Tuple2(
-				step,
-				(step > 0) ? _Utils_Tuple2(
-					$elm$core$Basics$floor(start / step) * step,
-					$elm$core$Basics$ceiling(stop / step) * step) : ((step < 0) ? _Utils_Tuple2(
-					$elm$core$Basics$ceiling(start * step) / step,
-					$elm$core$Basics$floor(stop * step) / step) : _Utils_Tuple2(start, stop)));
-		};
-		return A2(
-			$gampleman$elm_visualization$Scale$Continuous$withNormalizedDomain,
-			function (dmn) {
-				return A3($gampleman$elm_visualization$Scale$Continuous$fixPoint, 10, dmn, computation);
-			},
-			domain);
-	});
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
-var $gampleman$elm_visualization$Scale$Continuous$exponent = function (num) {
-	var helper = F2(
-		function (soFar, x) {
-			helper:
-			while (true) {
-				if (!x) {
-					return soFar;
-				} else {
-					if (x < 1) {
-						var $temp$soFar = 1 + soFar,
-							$temp$x = x * 10;
-						soFar = $temp$soFar;
-						x = $temp$x;
-						continue helper;
-					} else {
-						return soFar;
-					}
-				}
-			}
-		});
-	return A2(helper, 0, num);
-};
-var $gampleman$elm_visualization$Scale$Continuous$precisionFixed = function (step) {
-	return A2(
-		$elm$core$Basics$max,
-		0,
-		$gampleman$elm_visualization$Scale$Continuous$exponent(
-			$elm$core$Basics$abs(step)));
-};
-var $gampleman$elm_visualization$Statistics$tickStep = F3(
-	function (start, stop, count) {
-		var step0 = $elm$core$Basics$abs(stop - start) / A2($elm$core$Basics$max, 0, count);
-		var step1 = A2(
-			$elm$core$Basics$pow,
-			10,
-			$elm$core$Basics$floor(
-				A2($elm$core$Basics$logBase, $elm$core$Basics$e, step0) / A2($elm$core$Basics$logBase, $elm$core$Basics$e, 10)));
-		var error = step0 / step1;
-		var step2 = (_Utils_cmp(
-			error,
-			$elm$core$Basics$sqrt(50)) > -1) ? (step1 * 10) : ((_Utils_cmp(
-			error,
-			$elm$core$Basics$sqrt(10)) > -1) ? (step1 * 5) : ((_Utils_cmp(
-			error,
-			$elm$core$Basics$sqrt(2)) > -1) ? (step1 * 2) : step1));
-		return (_Utils_cmp(stop, start) < 0) ? (-step2) : step2;
-	});
-var $elm$core$String$cons = _String_cons;
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$String$length = _String_length;
-var $elm$core$Bitwise$and = _Bitwise_and;
-var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
-var $elm$core$String$repeatHelp = F3(
-	function (n, chunk, result) {
-		return (n <= 0) ? result : A3(
-			$elm$core$String$repeatHelp,
-			n >> 1,
-			_Utils_ap(chunk, chunk),
-			(!(n & 1)) ? result : _Utils_ap(result, chunk));
-	});
-var $elm$core$String$repeat = F2(
-	function (n, chunk) {
-		return A3($elm$core$String$repeatHelp, n, chunk, '');
-	});
-var $elm$core$String$padRight = F3(
-	function (n, _char, string) {
-		return _Utils_ap(
-			string,
-			A2(
-				$elm$core$String$repeat,
-				n - $elm$core$String$length(string),
-				$elm$core$String$fromChar(_char)));
-	});
-var $elm$core$Basics$round = _Basics_round;
-var $gampleman$elm_visualization$Scale$Continuous$toFixed = F2(
-	function (precision, value) {
-		var power_ = A2($elm$core$Basics$pow, 10, precision);
-		var pad = function (num) {
-			_v0$2:
-			while (true) {
-				if (num.b) {
-					if (num.b.b) {
-						if (!num.b.b.b) {
-							var x = num.a;
-							var _v1 = num.b;
-							var y = _v1.a;
-							return _List_fromArray(
-								[
-									x,
-									A3(
-									$elm$core$String$padRight,
-									precision,
-									_Utils_chr('0'),
-									y)
-								]);
-						} else {
-							break _v0$2;
-						}
-					} else {
-						var val = num.a;
-						return (precision > 0) ? _List_fromArray(
-							[
-								val,
-								A3(
-								$elm$core$String$padRight,
-								precision,
-								_Utils_chr('0'),
-								'')
-							]) : _List_fromArray(
-							[val]);
-					}
-				} else {
-					break _v0$2;
-				}
-			}
-			var val = num;
-			return val;
-		};
-		return A2(
-			$elm$core$String$join,
-			'.',
-			pad(
-				A2(
-					$elm$core$String$split,
-					'.',
-					$elm$core$String$fromFloat(
-						$elm$core$Basics$round(value * power_) / power_))));
-	});
-var $gampleman$elm_visualization$Scale$Continuous$tickFormat = F2(
-	function (_v0, count) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		return $gampleman$elm_visualization$Scale$Continuous$toFixed(
-			$gampleman$elm_visualization$Scale$Continuous$precisionFixed(
-				A3($gampleman$elm_visualization$Statistics$tickStep, start, stop, count)));
-	});
-var $elmcraft$core_extra$Float$Extra$range = F3(
-	function (start, stop, step) {
-		if (!step) {
-			return _List_Nil;
-		} else {
-			var n = A2(
-				$elm$core$Basics$max,
-				0,
-				$elm$core$Basics$ceiling((stop - start) / step));
-			var helper = F2(
-				function (i, list) {
-					helper:
-					while (true) {
-						if (i >= 0) {
-							var $temp$i = i - 1,
-								$temp$list = A2($elm$core$List$cons, start + (step * i), list);
-							i = $temp$i;
-							list = $temp$list;
-							continue helper;
-						} else {
-							return list;
-						}
-					}
-				});
-			return A2(helper, n - 1, _List_Nil);
-		}
-	});
-var $gampleman$elm_visualization$Statistics$range = $elmcraft$core_extra$Float$Extra$range;
-var $gampleman$elm_visualization$Statistics$ticks = F3(
-	function (start, stop, count) {
-		var step = A3($gampleman$elm_visualization$Statistics$tickStep, start, stop, count);
-		var end = ($elm$core$Basics$floor(stop / step) * step) + (step / 2);
-		var beg = $elm$core$Basics$ceiling(start / step) * step;
-		return A3($gampleman$elm_visualization$Statistics$range, beg, end, step);
-	});
-var $gampleman$elm_visualization$Scale$Continuous$ticks = F2(
-	function (_v0, count) {
-		var start = _v0.a;
-		var end = _v0.b;
-		return A3($gampleman$elm_visualization$Statistics$ticks, start, end, count);
-	});
-var $gampleman$elm_visualization$Scale$Continuous$scaleWithTransform = F4(
-	function (transform, untransform, range_, domain_) {
-		return {
-			convert: A2($gampleman$elm_visualization$Scale$Continuous$convertTransform, transform, $gampleman$elm_visualization$Interpolation$float),
-			domain: domain_,
-			invert: A2($gampleman$elm_visualization$Scale$Continuous$invertTransform, transform, untransform),
-			nice: $gampleman$elm_visualization$Scale$Continuous$nice,
-			range: range_,
-			rangeExtent: F2(
-				function (_v0, r) {
-					return r;
-				}),
-			tickFormat: $gampleman$elm_visualization$Scale$Continuous$tickFormat,
-			ticks: $gampleman$elm_visualization$Scale$Continuous$ticks
-		};
-	});
-var $gampleman$elm_visualization$Scale$Continuous$linear = A2($gampleman$elm_visualization$Scale$Continuous$scaleWithTransform, $elm$core$Basics$identity, $elm$core$Basics$identity);
-var $gampleman$elm_visualization$Scale$linear = F2(
-	function (range_, domain_) {
-		return $gampleman$elm_visualization$Scale$Scale(
-			A2($gampleman$elm_visualization$Scale$Continuous$linear, range_, domain_));
-	});
-var $author$project$Uebung1aufgabe4$xScale = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2(0, $author$project$Uebung1aufgabe4$w - (2 * $author$project$Uebung1aufgabe4$padding)),
-		$author$project$Uebung1aufgabe4$wideExtent(values));
-};
-var $author$project$Uebung1aufgabe4$xAxis = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Axis$bottom,
-		_List_fromArray(
-			[
-				$gampleman$elm_visualization$Axis$tickCount($author$project$Uebung1aufgabe4$tickCount)
-			]),
-		$author$project$Uebung1aufgabe4$xScale(values));
-};
-var $gampleman$elm_visualization$Axis$horizontalAttrs = {
-	horizontal: true,
-	translate: function (y) {
-		return 'translate(0, ' + ($elm$core$String$fromFloat(y) + ')');
-	},
-	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
-	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
-	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat),
-	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
-	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
-	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat)
-};
-var $gampleman$elm_visualization$Axis$left = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$horizontalAttrs, -1, '0.32em', 'end');
-var $author$project$Uebung1aufgabe4$yScale = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Scale$linear,
-		_Utils_Tuple2($author$project$Uebung1aufgabe4$h - (2 * $author$project$Uebung1aufgabe4$padding), 0),
-		$author$project$Uebung1aufgabe4$wideExtent(values));
-};
-var $author$project$Uebung1aufgabe4$yAxis = function (values) {
-	return A2(
-		$gampleman$elm_visualization$Axis$left,
-		_List_fromArray(
-			[
-				$gampleman$elm_visualization$Axis$tickCount($author$project$Uebung1aufgabe4$tickCount)
-			]),
-		$author$project$Uebung1aufgabe4$yScale(values));
-};
-var $author$project$Uebung1aufgabe4$scatterplot = function (model) {
-	var yValues = A2(
-		$elm$core$List$map,
-		function ($) {
-			return $.y;
+var $author$project$Uebung2aufgabe2$averageCityMPG = function () {
+	var mpgValues = A2(
+		$elm$core$List$filterMap,
+		function (c) {
+			return A2($elm$core$Maybe$map, $elm$core$Basics$toFloat, c.cityMPG);
 		},
-		model.data);
-	var yScaleLocal = $author$project$Uebung1aufgabe4$yScale(yValues);
-	var xValues = A2(
-		$elm$core$List$map,
-		function ($) {
-			return $.x;
-		},
-		model.data);
-	var xScaleLocal = $author$project$Uebung1aufgabe4$xScale(xValues);
-	var half = function (t) {
-		return (t.b - t.a) / 2;
-	};
-	var labelPositions = {
-		x: half(
-			$author$project$Uebung1aufgabe4$wideExtent(xValues)),
-		y: $author$project$Uebung1aufgabe4$wideExtent(yValues).b
-	};
-	return A2(
-		$elm_community$typed_svg$TypedSvg$svg,
-		_List_fromArray(
-			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Uebung1aufgabe4$w, $author$project$Uebung1aufgabe4$h),
-				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100)),
-				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm_community$typed_svg$TypedSvg$style,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text('\r\n            .point circle { stroke: rgba(0, 0, 0,0.4); fill: rgba(255, 255, 255,0.3); }\r\n            .point text { display: none; }\r\n            .point:hover circle { stroke: rgba(0, 0, 0,1.0); fill: rgb(118, 214, 78); }\r\n            .point:hover text { display: inline; }\r\n          ')
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Uebung1aufgabe4$padding, $author$project$Uebung1aufgabe4$padding)
-							]))
-					]),
-				A2(
-					$elm$core$List$map,
-					A2($author$project$Uebung1aufgabe4$point, xScaleLocal, yScaleLocal),
-					model.data)),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Uebung1aufgabe4$padding, $author$project$Uebung1aufgabe4$h - $author$project$Uebung1aufgabe4$padding)
-							]))
-					]),
-				_List_fromArray(
-					[
-						$author$project$Uebung1aufgabe4$xAxis(xValues)
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$g,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$transform(
-						_List_fromArray(
-							[
-								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Uebung1aufgabe4$padding, $author$project$Uebung1aufgabe4$padding)
-							]))
-					]),
-				_List_fromArray(
-					[
-						$author$project$Uebung1aufgabe4$yAxis(yValues)
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$text_,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-						$author$project$Uebung1aufgabe4$padding + A2($gampleman$elm_visualization$Scale$convert, xScaleLocal, labelPositions.x)),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(($author$project$Uebung1aufgabe4$h - $author$project$Uebung1aufgabe4$padding) + 35),
-						$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-						_List_fromArray(
-							['sans-serif'])),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-						$elm_community$typed_svg$TypedSvg$Types$Px(14))
-					]),
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text(model.xDescription)
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$text_,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(10),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-						($author$project$Uebung1aufgabe4$padding + A2($gampleman$elm_visualization$Scale$convert, yScaleLocal, labelPositions.y)) - 20),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontFamily(
-						_List_fromArray(
-							['sans-serif'])),
-						$elm_community$typed_svg$TypedSvg$Attributes$fontSize(
-						$elm_community$typed_svg$TypedSvg$Types$Px(14))
-					]),
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text(model.yDescription)
-					]))
-			]));
-};
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Uebung1aufgabe4$main = function () {
-	var numberCars = $elm$core$List$length($author$project$Uebung1aufgabe4$cars);
-	var filteredCars = $author$project$Uebung1aufgabe4$filterAndReduceCars($author$project$Uebung1aufgabe4$cars);
-	var numberFilterCars = $elm$core$List$length(filteredCars.data);
-	return A2(
-		$elm$html$Html$div,
-		_List_Nil,
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						'Original Car list: ' + ($elm$core$String$fromInt(numberCars) + (',   reduced Car list: ' + $elm$core$String$fromInt(numberFilterCars))))
-					])),
-				$author$project$Uebung1aufgabe4$scatterplot(filteredCars)
-			]));
+		$author$project$Uebung2aufgabe2$carsInClass);
+	if (!mpgValues.b) {
+		return 0;
+	} else {
+		return $elm$core$List$sum(mpgValues) / $elm$core$List$length(mpgValues);
+	}
 }();
-_Platform_export({'Uebung1aufgabe4':{'init':_VirtualDom_init($author$project$Uebung1aufgabe4$main)(0)(0)}});}(this));
+var $elm$core$Basics$ge = _Utils_ge;
+var $author$project$Uebung2aufgabe2$aboveAverage = A2(
+	$elm$core$List$filter,
+	function (c) {
+		var _v0 = c.cityMPG;
+		if (_v0.$ === 'Just') {
+			var mpg = _v0.a;
+			return _Utils_cmp(mpg, $author$project$Uebung2aufgabe2$averageCityMPG) > -1;
+		} else {
+			return false;
+		}
+	},
+	$author$project$Uebung2aufgabe2$carsInClass);
+var $author$project$Uebung2aufgabe2$belowAverage = A2(
+	$elm$core$List$filter,
+	function (c) {
+		var _v0 = c.cityMPG;
+		if (_v0.$ === 'Just') {
+			var mpg = _v0.a;
+			return _Utils_cmp(mpg, $author$project$Uebung2aufgabe2$averageCityMPG) < 0;
+		} else {
+			return false;
+		}
+	},
+	$author$project$Uebung2aufgabe2$carsInClass);
+var $author$project$Uebung2aufgabe2$carTypeToString = function (ct) {
+	switch (ct.$) {
+		case 'Small_Sporty_Compact_Large_Sedan':
+			return 'Sedan';
+		case 'Sports_Car':
+			return 'Sports Car';
+		case 'SUV':
+			return 'SUV';
+		case 'Wagon':
+			return 'Wagon';
+		case 'Minivan':
+			return 'Minivan';
+		default:
+			return 'Pickup';
+	}
+};
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $author$project$Uebung2aufgabe2$notInClass = A2(
+	$elm$core$List$filter,
+	function (c) {
+		return !_Utils_eq(c.carType, $author$project$Uebung2aufgabe2$selectedClass);
+	},
+	$author$project$Uebung2aufgabe2$filteredCars);
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Uebung2aufgabe2$main = A2(
+	$elm$html$Html$div,
+	_List_Nil,
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Gewählte Klasse: ' + $author$project$Uebung2aufgabe2$carTypeToString($author$project$Uebung2aufgabe2$selectedClass))
+				])),
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Anzahl nicht in Klasse: ' + $elm$core$String$fromInt(
+						$elm$core$List$length($author$project$Uebung2aufgabe2$notInClass)))
+				])),
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Anzahl unter Durchschnitt: ' + $elm$core$String$fromInt(
+						$elm$core$List$length($author$project$Uebung2aufgabe2$belowAverage)))
+				])),
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Anzahl über Durchschnitt: ' + $elm$core$String$fromInt(
+						$elm$core$List$length($author$project$Uebung2aufgabe2$aboveAverage)))
+				])),
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Durchschnitt cityMPG: ' + $elm$core$String$fromFloat($author$project$Uebung2aufgabe2$averageCityMPG))
+				]))
+		]));
+_Platform_export({'Uebung2aufgabe2':{'init':_VirtualDom_init($author$project$Uebung2aufgabe2$main)(0)(0)}});}(this));
