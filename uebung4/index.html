@@ -10422,6 +10422,66 @@ var $elm$core$List$minimum = function (list) {
 	}
 };
 var $elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Uebung4Aufgabe1$referenceLine = F2(
+	function (xData, yData) {
+		var nLocal = $elm$core$List$length(xData);
+		var i75 = $elm$core$Basics$floor(0.75 * (nLocal - 1));
+		var x75 = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$head(
+				A2($elm$core$List$drop, i75, xData)));
+		var y75 = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$head(
+				A2($elm$core$List$drop, i75, yData)));
+		var i25 = $elm$core$Basics$floor(0.25 * (nLocal - 1));
+		var x25 = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$head(
+				A2($elm$core$List$drop, i25, xData)));
+		var y25 = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$head(
+				A2($elm$core$List$drop, i25, yData)));
+		var slope = (y75 - y25) / (x75 - x25);
+		var intercept = y25 - (slope * x25);
+		return _Utils_Tuple2(slope, intercept);
+	});
+var $elm$svg$Svg$Attributes$strokeWidth = _VirtualDom_attribute('stroke-width');
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $elm$svg$Svg$style = $elm$svg$Svg$trustedNode('style');
@@ -10429,8 +10489,8 @@ var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$svg$Svg$Attributes$viewBox = _VirtualDom_attribute('viewBox');
 var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
-var $author$project$Uebung4Aufgabe1$plot = F5(
-	function (title, xData, yData, xLabel, yLabel) {
+var $author$project$Uebung4Aufgabe1$plot = F6(
+	function (title, xData, yData, xLabel, yLabel, showLine) {
 		var yMin = A2(
 			$elm$core$Maybe$withDefault,
 			0,
@@ -10442,24 +10502,22 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 		var yScale = A2(
 			$gampleman$elm_visualization$Scale$linear,
 			_Utils_Tuple2(750, 0),
-			_Utils_Tuple2(yMin - 0.5, yMax + 0.5));
+			_Utils_Tuple2(yMin - 1, yMax + 1));
 		var xMin = A2(
 			$elm$core$Maybe$withDefault,
-			0,
+			-2,
 			$elm$core$List$minimum(xData));
 		var xMax = A2(
 			$elm$core$Maybe$withDefault,
-			1,
+			2,
 			$elm$core$List$maximum(xData));
 		var xScale = A2(
 			$gampleman$elm_visualization$Scale$linear,
 			_Utils_Tuple2(0, 1200),
-			_Utils_Tuple2(xMin - 0.05, xMax + 0.05));
-		var point = function (_v0) {
-			var x = _v0.a;
-			var y = _v0.b;
-			var py = A2($gampleman$elm_visualization$Scale$convert, yScale, y);
-			var px = A2($gampleman$elm_visualization$Scale$convert, xScale, x);
+			_Utils_Tuple2(xMin - 0.2, xMax + 0.2));
+		var point = function (_v1) {
+			var x = _v1.a;
+			var y = _v1.b;
 			return A2(
 				$elm$svg$Svg$g,
 				_List_fromArray(
@@ -10473,9 +10531,11 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 						_List_fromArray(
 							[
 								$elm$svg$Svg$Attributes$cx(
-								$elm$core$String$fromFloat(px)),
+								$elm$core$String$fromFloat(
+									A2($gampleman$elm_visualization$Scale$convert, xScale, x))),
 								$elm$svg$Svg$Attributes$cy(
-								$elm$core$String$fromFloat(py)),
+								$elm$core$String$fromFloat(
+									A2($gampleman$elm_visualization$Scale$convert, yScale, y))),
 								$elm$svg$Svg$Attributes$r('6')
 							]),
 						_List_Nil),
@@ -10484,19 +10544,46 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 						_List_fromArray(
 							[
 								$elm$svg$Svg$Attributes$x(
-								$elm$core$String$fromFloat(px)),
+								$elm$core$String$fromFloat(
+									A2($gampleman$elm_visualization$Scale$convert, xScale, x))),
 								$elm$svg$Svg$Attributes$y(
-								$elm$core$String$fromFloat(py - 10)),
-								$elm$svg$Svg$Attributes$textAnchor('middle'),
-								$elm$svg$Svg$Attributes$fontSize('12px')
+								$elm$core$String$fromFloat(
+									A2($gampleman$elm_visualization$Scale$convert, yScale, y) - 10)),
+								$elm$svg$Svg$Attributes$textAnchor('middle')
 							]),
 						_List_fromArray(
 							[
 								$elm$svg$Svg$text(
-								'(' + ($elm$core$String$fromFloat(x) + (', ' + ($elm$core$String$fromFloat(y) + ''))))
+								'(' + ($elm$core$String$fromFloat(x) + (', ' + ($elm$core$String$fromFloat(y) + ')'))))
 							]))
 					]));
 		};
+		var _v0 = A2($author$project$Uebung4Aufgabe1$referenceLine, xData, yData);
+		var slope = _v0.a;
+		var intercept = _v0.b;
+		var lineElement = showLine ? _List_fromArray(
+			[
+				A2(
+				$elm$svg$Svg$line,
+				_List_fromArray(
+					[
+						$elm$svg$Svg$Attributes$x1(
+						$elm$core$String$fromFloat(
+							A2($gampleman$elm_visualization$Scale$convert, xScale, xMin))),
+						$elm$svg$Svg$Attributes$y1(
+						$elm$core$String$fromFloat(
+							A2($gampleman$elm_visualization$Scale$convert, yScale, (slope * xMin) + intercept))),
+						$elm$svg$Svg$Attributes$x2(
+						$elm$core$String$fromFloat(
+							A2($gampleman$elm_visualization$Scale$convert, xScale, xMax))),
+						$elm$svg$Svg$Attributes$y2(
+						$elm$core$String$fromFloat(
+							A2($gampleman$elm_visualization$Scale$convert, yScale, (slope * xMax) + intercept))),
+						$elm$svg$Svg$Attributes$stroke('black'),
+						$elm$svg$Svg$Attributes$strokeWidth('2')
+					]),
+				_List_Nil)
+			]) : _List_Nil;
 		return A2(
 			$elm$html$Html$div,
 			_List_fromArray(
@@ -10524,25 +10611,23 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 							$elm$svg$Svg$Attributes$width('95vw'),
 							$elm$svg$Svg$Attributes$height('80vh')
 						]),
-					_Utils_ap(
-						_List_fromArray(
-							[
-								A2(
-								$elm$svg$Svg$style,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$text('\r\n                    .point circle {\r\n                        stroke: rgba(0,0,0,0.4);\r\n                        fill: rgba(255,255,255,0.3);\r\n                    }\r\n\r\n                    .point text {\r\n                        display: none;\r\n                    }\r\n\r\n                    .point:hover circle {\r\n                        fill: rgb(118,214,78);\r\n                        stroke: black;\r\n                    }\r\n\r\n                    .point:hover text {\r\n                        display: inline;\r\n                    }\r\n                ')
-									]))
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$svg$Svg$g,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$transform('translate(60,40)')
-									]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$svg$Svg$style,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$text('\r\n                    .point circle { stroke: #777; fill: white; }\r\n                    .point text { display: none; font-size: 14px; }\r\n                    .point:hover circle { fill: green; }\r\n                    .point:hover text { display: block; }\r\n                ')
+								])),
+							A2(
+							$elm$svg$Svg$g,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$Attributes$transform('translate(60,40)')
+								]),
+							_Utils_ap(
+								lineElement,
 								A3(
 									$elm$core$List$map2,
 									F2(
@@ -10551,40 +10636,40 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 												_Utils_Tuple2(x, y));
 										}),
 									xData,
-									yData)),
-								A2(
-								$elm$svg$Svg$g,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$transform('translate(60,790)')
-									]),
-								_List_fromArray(
-									[
-										A2($gampleman$elm_visualization$Axis$bottom, _List_Nil, xScale)
-									])),
-								A2(
-								$elm$svg$Svg$g,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$transform('translate(60,40)')
-									]),
-								_List_fromArray(
-									[
-										A2($gampleman$elm_visualization$Axis$left, _List_Nil, yScale)
-									])),
-								A2(
-								$elm$svg$Svg$text_,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$x('60'),
-										$elm$svg$Svg$Attributes$y('30'),
-										$elm$svg$Svg$Attributes$fontSize('18px')
-									]),
-								_List_fromArray(
-									[
-										$elm$svg$Svg$text(yLabel)
-									]))
-							]))),
+									yData))),
+							A2(
+							$elm$svg$Svg$g,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$Attributes$transform('translate(60,790)')
+								]),
+							_List_fromArray(
+								[
+									A2($gampleman$elm_visualization$Axis$bottom, _List_Nil, xScale)
+								])),
+							A2(
+							$elm$svg$Svg$g,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$Attributes$transform('translate(60,40)')
+								]),
+							_List_fromArray(
+								[
+									A2($gampleman$elm_visualization$Axis$left, _List_Nil, yScale)
+								])),
+							A2(
+							$elm$svg$Svg$text_,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$Attributes$x('60'),
+									$elm$svg$Svg$Attributes$y('30'),
+									$elm$svg$Svg$Attributes$fontSize('18px')
+								]),
+							_List_fromArray(
+								[
+									$elm$svg$Svg$text(yLabel)
+								]))
+						])),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -10636,9 +10721,9 @@ var $author$project$Uebung4Aufgabe1$view = A2(
 					'Number of SUVs: ' + $elm$core$String$fromInt(
 						$elm$core$List$length($author$project$Uebung4Aufgabe1$carsOfClass)))
 				])),
-			A5($author$project$Uebung4Aufgabe1$plot, 'Q-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$quantilePositions, $author$project$Uebung4Aufgabe1$sorted, 'f-Value cityMPG', 'quantiles cityMPG'),
-			A5($author$project$Uebung4Aufgabe1$plot, 'Normal-QQ-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$normalQuantiles, $author$project$Uebung4Aufgabe1$sorted, 'Normal quantiles', 'quantiles cityMPG SUVs'),
-			A5($author$project$Uebung4Aufgabe1$plot, 'Normal-01-QQ-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$standardNormalQuantiles, $author$project$Uebung4Aufgabe1$sorted, 'Normal quantiles', 'quantiles cityMPG SUVs')
+			A6($author$project$Uebung4Aufgabe1$plot, 'Q-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$quantilePositions, $author$project$Uebung4Aufgabe1$sorted, 'f-Value cityMPG', 'quantiles cityMPG', false),
+			A6($author$project$Uebung4Aufgabe1$plot, 'Normal-QQ-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$normalQuantiles, $author$project$Uebung4Aufgabe1$sorted, 'Normal quantiles (μ,σ)', 'quantiles cityMPG SUVs', true),
+			A6($author$project$Uebung4Aufgabe1$plot, 'Normal-01-QQ-Plot cityMPG for SUVs', $author$project$Uebung4Aufgabe1$standardNormalQuantiles, $author$project$Uebung4Aufgabe1$sorted, 'Standard normal quantiles', 'quantiles cityMPG SUVs', true)
 		]));
 var $author$project$Uebung4Aufgabe1$main = $author$project$Uebung4Aufgabe1$view;
 _Platform_export({'Uebung4Aufgabe1':{'init':_VirtualDom_init($author$project$Uebung4Aufgabe1$main)(0)(0)}});}(this));

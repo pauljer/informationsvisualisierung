@@ -2,7 +2,7 @@ module Uebung4Aufgabe1 exposing (main)
 
 import Html exposing (Html, div)
 import Html.Attributes as HA
-import Svg exposing (Svg, svg, g, circle)
+import Svg exposing (Svg, svg, g, circle, line, text_)
 import Svg.Attributes as Attr
 import Scale
 import Axis
@@ -85,23 +85,61 @@ invNormalCdf f =
         -5.5556 * (1 - (f / (1 - f)) ^ 0.1186)
 
 
+-- 🔥 WICHTIG: zwei verschiedene QQ-Varianten
+
+-- Normalverteilung mit μ und σ
 normalQuantiles =
     List.map (\f -> mu + sigma * invNormalCdf f) quantilePositions
 
 
+-- Standardnormalverteilung
 standardNormalQuantiles =
     List.map invNormalCdf quantilePositions
 
 
+-- REFERENZLINIE (über Quartile)
+
+referenceLine xData yData =
+    let
+        nLocal =
+            List.length xData
+
+        i25 =
+            floor (0.25 * toFloat (nLocal - 1))
+
+        i75 =
+            floor (0.75 * toFloat (nLocal - 1))
+
+        x25 =
+            List.drop i25 xData |> List.head |> Maybe.withDefault 0
+
+        y25 =
+            List.drop i25 yData |> List.head |> Maybe.withDefault 0
+
+        x75 =
+            List.drop i75 xData |> List.head |> Maybe.withDefault 0
+
+        y75 =
+            List.drop i75 yData |> List.head |> Maybe.withDefault 0
+
+        slope =
+            (y75 - y25) / (x75 - x25)
+
+        intercept =
+            y25 - slope * x25
+    in
+    ( slope, intercept )
+
+
 -- PLOT
 
-plot title xData yData xLabel yLabel =
+plot title xData yData xLabel yLabel showLine =
     let
         xMin =
-            List.minimum xData |> Maybe.withDefault 0
+            List.minimum xData |> Maybe.withDefault -2
 
         xMax =
-            List.maximum xData |> Maybe.withDefault 1
+            List.maximum xData |> Maybe.withDefault 2
 
         yMin =
             List.minimum yData |> Maybe.withDefault 0
@@ -111,34 +149,55 @@ plot title xData yData xLabel yLabel =
 
         xScale =
             Scale.linear ( 0, 1200 )
-                ( xMin - 0.05, xMax + 0.05 )
+                ( xMin - 0.2, xMax + 0.2 )
 
         yScale =
             Scale.linear ( 750, 0 )
-                ( yMin - 0.5, yMax + 0.5 )
+                ( yMin - 1, yMax + 1 )
+
+
+        ( slope, intercept ) =
+            referenceLine xData yData
+
+
+        lineElement =
+            if showLine then
+                [ line
+                    [ Attr.x1 (String.fromFloat (Scale.convert xScale xMin))
+                    , Attr.y1 (String.fromFloat (Scale.convert yScale (slope * xMin + intercept)))
+                    , Attr.x2 (String.fromFloat (Scale.convert xScale xMax))
+                    , Attr.y2 (String.fromFloat (Scale.convert yScale (slope * xMax + intercept)))
+                    , Attr.stroke "black"
+                    , Attr.strokeWidth "2"
+                    ]
+                    []
+                ]
+
+            else
+                []
+
 
         point ( x, y ) =
-            let
-                px =
-                    Scale.convert xScale x
-
-                py =
-                    Scale.convert yScale y
-            in
             g [ Attr.class "point" ]
                 [ circle
-                    [ Attr.cx (String.fromFloat px)
-                    , Attr.cy (String.fromFloat py)
+                    [ Attr.cx (String.fromFloat (Scale.convert xScale x))
+                    , Attr.cy (String.fromFloat (Scale.convert yScale y))
                     , Attr.r "6"
                     ]
                     []
-                , Svg.text_
-                    [ Attr.x (String.fromFloat px)
-                    , Attr.y (String.fromFloat (py - 10))
+                , text_
+                    [ Attr.x (String.fromFloat (Scale.convert xScale x))
+                    , Attr.y (String.fromFloat (Scale.convert yScale y - 10))
                     , Attr.textAnchor "middle"
-                    , Attr.fontSize "12px"
                     ]
-                    [ Svg.text ("(" ++String.fromFloat x ++ ", " ++ String.fromFloat y ++ "") ]
+                    [ Svg.text
+                        ("("
+                            ++ String.fromFloat x
+                            ++ ", "
+                            ++ String.fromFloat y
+                            ++ ")"
+                        )
+                    ]
                 ]
     in
     div [ HA.style "margin-top" "50px" ]
@@ -153,45 +212,32 @@ plot title xData yData xLabel yLabel =
             , Attr.width "95vw"
             , Attr.height "80vh"
             ]
-            ([ Svg.style []
+            [ Svg.style []
                 [ Svg.text """
-                    .point circle {
-                        stroke: rgba(0,0,0,0.4);
-                        fill: rgba(255,255,255,0.3);
-                    }
-
-                    .point text {
-                        display: none;
-                    }
-
-                    .point:hover circle {
-                        fill: rgb(118,214,78);
-                        stroke: black;
-                    }
-
-                    .point:hover text {
-                        display: inline;
-                    }
+                    .point circle { stroke: #777; fill: white; }
+                    .point text { display: none; font-size: 14px; }
+                    .point:hover circle { fill: green; }
+                    .point:hover text { display: block; }
                 """ ]
-             ]
 
-                ++ [ g [ Attr.transform "translate(60,40)" ]
-                        (List.map2 (\x y -> point ( x, y )) xData yData)
+            , g [ Attr.transform "translate(60,40)" ]
+                ( lineElement
+                    ++ List.map2 (\x y -> point ( x, y )) xData yData
+                )
 
-                   , g [ Attr.transform "translate(60,790)" ]
-                        [ Axis.bottom [] xScale ]
+            , g [ Attr.transform "translate(60,790)" ]
+                [ Axis.bottom [] xScale ]
 
-                   , g [ Attr.transform "translate(60,40)" ]
-                        [ Axis.left [] yScale ]
+            , g [ Attr.transform "translate(60,40)" ]
+                [ Axis.left [] yScale ]
 
-                   , Svg.text_
-                        [ Attr.x "60"
-                        , Attr.y "30"
-                        , Attr.fontSize "18px"
-                        ]
-                        [ Svg.text yLabel ]
-                   ]
-            )
+            , text_
+                [ Attr.x "60"
+                , Attr.y "30"
+                , Attr.fontSize "18px"
+                ]
+                [ Svg.text yLabel ]
+            ]
 
         , div
             [ HA.style "text-align" "center"
@@ -225,23 +271,29 @@ view =
                 )
             ]
 
+        -- Q-Plot
         , plot "Q-Plot cityMPG for SUVs"
             quantilePositions
             sorted
             "f-Value cityMPG"
             "quantiles cityMPG"
+            False
 
+        -- Normal-QQ (μ,σ)
         , plot "Normal-QQ-Plot cityMPG for SUVs"
             normalQuantiles
             sorted
-            "Normal quantiles"
+            "Normal quantiles (μ,σ)"
             "quantiles cityMPG SUVs"
+            True
 
+        -- Standardnormal QQ
         , plot "Normal-01-QQ-Plot cityMPG for SUVs"
             standardNormalQuantiles
             sorted
-            "Normal quantiles"
+            "Standard normal quantiles"
             "quantiles cityMPG SUVs"
+            True
         ]
 
 
