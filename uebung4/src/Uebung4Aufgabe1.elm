@@ -93,12 +93,6 @@ standardNormalQuantiles =
     List.map invNormalCdf quantilePositions
 
 
--- HILFSFUNKTION
-
-round2 x =
-    (toFloat (round (x * 100))) / 100
-
-
 -- PLOT
 
 plot title xData yData xLabel yLabel =
@@ -124,15 +118,28 @@ plot title xData yData xLabel yLabel =
                 ( yMin - 0.5, yMax + 0.5 )
 
         point ( x, y ) =
-            circle
-                [ Attr.cx (String.fromFloat (Scale.convert xScale x))
-                , Attr.cy (String.fromFloat (Scale.convert yScale y))
-                , Attr.r "6"
-                , Attr.fill "none"
-                , Attr.stroke "#777"
-                , HA.title (String.fromFloat (round2 x))
+            let
+                px =
+                    Scale.convert xScale x
+
+                py =
+                    Scale.convert yScale y
+            in
+            g [ Attr.class "point" ]
+                [ circle
+                    [ Attr.cx (String.fromFloat px)
+                    , Attr.cy (String.fromFloat py)
+                    , Attr.r "6"
+                    ]
+                    []
+                , Svg.text_
+                    [ Attr.x (String.fromFloat px)
+                    , Attr.y (String.fromFloat (py - 10))
+                    , Attr.textAnchor "middle"
+                    , Attr.fontSize "12px"
+                    ]
+                    [ Svg.text ("(" ++String.fromFloat x ++ ", " ++ String.fromFloat y ++ "") ]
                 ]
-                []
     in
     div [ HA.style "margin-top" "50px" ]
         [ div
@@ -146,22 +153,45 @@ plot title xData yData xLabel yLabel =
             , Attr.width "95vw"
             , Attr.height "80vh"
             ]
-            [ g [ Attr.transform "translate(60,40)" ]
-                (List.map2 (\x y -> point ( x, y )) xData yData)
+            ([ Svg.style []
+                [ Svg.text """
+                    .point circle {
+                        stroke: rgba(0,0,0,0.4);
+                        fill: rgba(255,255,255,0.3);
+                    }
 
-            , g [ Attr.transform "translate(60,790)" ]
-                [ Axis.bottom [] xScale ]
+                    .point text {
+                        display: none;
+                    }
 
-            , g [ Attr.transform "translate(60,40)" ]
-                [ Axis.left [] yScale ]
+                    .point:hover circle {
+                        fill: rgb(118,214,78);
+                        stroke: black;
+                    }
 
-            , Svg.text_
-                [ Attr.x "60"
-                , Attr.y "30"
-                , Attr.fontSize "18px"
-                ]
-                [ Svg.text yLabel ]
-            ]
+                    .point:hover text {
+                        display: inline;
+                    }
+                """ ]
+             ]
+
+                ++ [ g [ Attr.transform "translate(60,40)" ]
+                        (List.map2 (\x y -> point ( x, y )) xData yData)
+
+                   , g [ Attr.transform "translate(60,790)" ]
+                        [ Axis.bottom [] xScale ]
+
+                   , g [ Attr.transform "translate(60,40)" ]
+                        [ Axis.left [] yScale ]
+
+                   , Svg.text_
+                        [ Attr.x "60"
+                        , Attr.y "30"
+                        , Attr.fontSize "18px"
+                        ]
+                        [ Svg.text yLabel ]
+                   ]
+            )
 
         , div
             [ HA.style "text-align" "center"

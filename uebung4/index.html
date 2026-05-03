@@ -10422,22 +10422,11 @@ var $elm$core$List$minimum = function (list) {
 	}
 };
 var $elm$svg$Svg$Attributes$r = _VirtualDom_attribute('r');
-var $author$project$Uebung4Aufgabe1$round2 = function (x) {
-	return $elm$core$Basics$round(x * 100) / 100;
-};
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $elm$svg$Svg$style = $elm$svg$Svg$trustedNode('style');
 var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
-var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
 var $elm$svg$Svg$Attributes$viewBox = _VirtualDom_attribute('viewBox');
 var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
 var $author$project$Uebung4Aufgabe1$plot = F5(
@@ -10469,24 +10458,44 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 		var point = function (_v0) {
 			var x = _v0.a;
 			var y = _v0.b;
+			var py = A2($gampleman$elm_visualization$Scale$convert, yScale, y);
+			var px = A2($gampleman$elm_visualization$Scale$convert, xScale, x);
 			return A2(
-				$elm$svg$Svg$circle,
+				$elm$svg$Svg$g,
 				_List_fromArray(
 					[
-						$elm$svg$Svg$Attributes$cx(
-						$elm$core$String$fromFloat(
-							A2($gampleman$elm_visualization$Scale$convert, xScale, x))),
-						$elm$svg$Svg$Attributes$cy(
-						$elm$core$String$fromFloat(
-							A2($gampleman$elm_visualization$Scale$convert, yScale, y))),
-						$elm$svg$Svg$Attributes$r('6'),
-						$elm$svg$Svg$Attributes$fill('none'),
-						$elm$svg$Svg$Attributes$stroke('#777'),
-						$elm$html$Html$Attributes$title(
-						$elm$core$String$fromFloat(
-							$author$project$Uebung4Aufgabe1$round2(x)))
+						$elm$svg$Svg$Attributes$class('point')
 					]),
-				_List_Nil);
+				_List_fromArray(
+					[
+						A2(
+						$elm$svg$Svg$circle,
+						_List_fromArray(
+							[
+								$elm$svg$Svg$Attributes$cx(
+								$elm$core$String$fromFloat(px)),
+								$elm$svg$Svg$Attributes$cy(
+								$elm$core$String$fromFloat(py)),
+								$elm$svg$Svg$Attributes$r('6')
+							]),
+						_List_Nil),
+						A2(
+						$elm$svg$Svg$text_,
+						_List_fromArray(
+							[
+								$elm$svg$Svg$Attributes$x(
+								$elm$core$String$fromFloat(px)),
+								$elm$svg$Svg$Attributes$y(
+								$elm$core$String$fromFloat(py - 10)),
+								$elm$svg$Svg$Attributes$textAnchor('middle'),
+								$elm$svg$Svg$Attributes$fontSize('12px')
+							]),
+						_List_fromArray(
+							[
+								$elm$svg$Svg$text(
+								'(' + ($elm$core$String$fromFloat(x) + (', ' + ($elm$core$String$fromFloat(y) + ''))))
+							]))
+					]));
 		};
 		return A2(
 			$elm$html$Html$div,
@@ -10515,56 +10524,67 @@ var $author$project$Uebung4Aufgabe1$plot = F5(
 							$elm$svg$Svg$Attributes$width('95vw'),
 							$elm$svg$Svg$Attributes$height('80vh')
 						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$svg$Svg$g,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$transform('translate(60,40)')
-								]),
-							A3(
-								$elm$core$List$map2,
-								F2(
-									function (x, y) {
-										return point(
-											_Utils_Tuple2(x, y));
-									}),
-								xData,
-								yData)),
-							A2(
-							$elm$svg$Svg$g,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$transform('translate(60,790)')
-								]),
-							_List_fromArray(
-								[
-									A2($gampleman$elm_visualization$Axis$bottom, _List_Nil, xScale)
-								])),
-							A2(
-							$elm$svg$Svg$g,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$transform('translate(60,40)')
-								]),
-							_List_fromArray(
-								[
-									A2($gampleman$elm_visualization$Axis$left, _List_Nil, yScale)
-								])),
-							A2(
-							$elm$svg$Svg$text_,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$x('60'),
-									$elm$svg$Svg$Attributes$y('30'),
-									$elm$svg$Svg$Attributes$fontSize('18px')
-								]),
-							_List_fromArray(
-								[
-									$elm$svg$Svg$text(yLabel)
-								]))
-						])),
+					_Utils_ap(
+						_List_fromArray(
+							[
+								A2(
+								$elm$svg$Svg$style,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$text('\r\n                    .point circle {\r\n                        stroke: rgba(0,0,0,0.4);\r\n                        fill: rgba(255,255,255,0.3);\r\n                    }\r\n\r\n                    .point text {\r\n                        display: none;\r\n                    }\r\n\r\n                    .point:hover circle {\r\n                        fill: rgb(118,214,78);\r\n                        stroke: black;\r\n                    }\r\n\r\n                    .point:hover text {\r\n                        display: inline;\r\n                    }\r\n                ')
+									]))
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$svg$Svg$g,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$transform('translate(60,40)')
+									]),
+								A3(
+									$elm$core$List$map2,
+									F2(
+										function (x, y) {
+											return point(
+												_Utils_Tuple2(x, y));
+										}),
+									xData,
+									yData)),
+								A2(
+								$elm$svg$Svg$g,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$transform('translate(60,790)')
+									]),
+								_List_fromArray(
+									[
+										A2($gampleman$elm_visualization$Axis$bottom, _List_Nil, xScale)
+									])),
+								A2(
+								$elm$svg$Svg$g,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$transform('translate(60,40)')
+									]),
+								_List_fromArray(
+									[
+										A2($gampleman$elm_visualization$Axis$left, _List_Nil, yScale)
+									])),
+								A2(
+								$elm$svg$Svg$text_,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$x('60'),
+										$elm$svg$Svg$Attributes$y('30'),
+										$elm$svg$Svg$Attributes$fontSize('18px')
+									]),
+								_List_fromArray(
+									[
+										$elm$svg$Svg$text(yLabel)
+									]))
+							]))),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
