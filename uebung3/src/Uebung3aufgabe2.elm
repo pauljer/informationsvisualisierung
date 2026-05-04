@@ -17,12 +17,12 @@ import TypedSvg.Types exposing (AnchorAlignment(..))
 
 plotWidth : Float
 plotWidth =
-    520
+    900
 
 
 plotHeight : Float
 plotHeight =
-    420
+    480
 
 
 padding : Float
@@ -46,7 +46,32 @@ classA =
 
 classB : CarType
 classB =
-    Small_Sporty_Compact_Large_Sedan
+    Minivan
+
+
+-- Pluralform für die Anzeige ("SUVs", "Minivans", ...)
+
+
+plural : CarType -> String
+plural carType =
+    case carType of
+        SUV ->
+            "SUVs"
+
+        Minivan ->
+            "Minivans"
+
+        Sports_Car ->
+            "Sports Cars"
+
+        Wagon ->
+            "Wagons"
+
+        Pickup ->
+            "Pickups"
+
+        Small_Sporty_Compact_Large_Sedan ->
+            "Sedans"
 
 
 
@@ -265,12 +290,12 @@ scaleY yExtent value =
 axisStyles : String
 axisStyles =
     """
-    .axis-line { stroke: #1f2933; stroke-width: 1.5px; }
-    .tick-line { stroke: #52606d; stroke-width: 1px; }
-    .tick-label { fill: #334e68; font-size: 11px; font-family: sans-serif; }
-    .axis-label { fill: #102a43; font-size: 13px; font-family: sans-serif; font-weight: 600; }
-    .data-point { fill: #2f6feb; stroke: #1d3f8a; stroke-width: 1px; }
-    .diagonal { stroke: #d64545; stroke-width: 2px; stroke-dasharray: 8 6; }
+    .axis-line { stroke: #1f2933; stroke-width: 1px; }
+    .tick-line { stroke: #1f2933; stroke-width: 1px; }
+    .tick-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }
+    .axis-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }
+    .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; }
+    .diagonal { stroke: #1f2933; stroke-width: 1px; }
     """
 
 
@@ -427,42 +452,21 @@ qqPlot xLabel yLabel points =
 
 main : Html msg
 main =
-    let
-        labelA =
-            carTypeToString classA
-
-        labelB =
-            carTypeToString classB
-    in
     Html.div
         [ Html.Attributes.style "font-family" "sans-serif"
         , Html.Attributes.style "padding" "16px"
         , Html.Attributes.style "line-height" "1.5"
         ]
-        [ Html.h2 [] [ Html.text "Aufgabe 3.2 — QQ-Plot zweier Autoklassen" ]
-        , Html.p []
-            [ Html.text ("Klasse A: " ++ labelA ++ " (n = " ++ String.fromInt (List.length valuesA) ++ ")") ]
-        , Html.p []
-            [ Html.text ("Klasse B: " ++ labelB ++ " (n = " ++ String.fromInt (List.length valuesB) ++ ")") ]
-        , Html.h3 [] [ Html.text "Quantil-Plots beider Klassen" ]
-        , Html.div
-            [ Html.Attributes.style "display" "flex"
-            , Html.Attributes.style "gap" "24px"
-            , Html.Attributes.style "flex-wrap" "wrap"
+        [ Html.h3 [] [ Html.text (plural classA ++ " versus " ++ plural classB) ]
+        , Html.ul []
+            [ Html.li [] [ Html.text ("Number of filtered Cars: " ++ String.fromInt (List.length filteredCars)) ]
+            , Html.li [] [ Html.text ("Number of " ++ plural classA ++ ": " ++ String.fromInt (List.length valuesA)) ]
+            , Html.li [] [ Html.text ("Number of " ++ plural classB ++ ": " ++ String.fromInt (List.length valuesB)) ]
             ]
-            [ Html.div []
-                [ Html.h4 [] [ Html.text ("Q-Plot " ++ labelA) ]
-                , qPlot ("cityMPG (" ++ labelA ++ ")") qPointsA
-                ]
-            , Html.div []
-                [ Html.h4 [] [ Html.text ("Q-Plot " ++ labelB) ]
-                , qPlot ("cityMPG (" ++ labelB ++ ")") qPointsB
-                ]
-            ]
-        , Html.h3 [] [ Html.text "QQ-Plot mit Diagonale f(x) = x" ]
-        , Html.p []
-            [ Html.text
-                ("F-Values stammen aus Klasse A (" ++ labelA ++ "). Die Quantile der Klasse B (" ++ labelB ++ ") wurden für diese F-Values mittels linearer Interpolation berechnet. Die rote gestrichelte Linie ist die Diagonale: Liegen die Punkte parallel dazu verschoben, deutet das auf eine additive Verschiebung der Verteilungen hin.")
-            ]
-        , qqPlot ("cityMPG (" ++ labelA ++ ")") ("cityMPG (" ++ labelB ++ ")") qqPoints
+        , Html.h3 [] [ Html.text ("Q-Plot cityMPG for " ++ plural classA) ]
+        , qPlot "quantiles cityMPG" qPointsA
+        , Html.h3 [] [ Html.text ("Q-Plot cityMPG for " ++ plural classB) ]
+        , qPlot "quantiles cityMPG" qPointsB
+        , Html.h3 [] [ Html.text ("QQ-Plot cityMPG for " ++ plural classA ++ " and " ++ plural classB) ]
+        , qqPlot ("quantiles cityMPG " ++ plural classA) ("quantiles cityMPG " ++ plural classB) qqPoints
         ]

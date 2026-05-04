@@ -4464,629 +4464,11 @@ var $elm$virtual_dom$VirtualDom$toHandlerInt = function (handler) {
 			return 3;
 	}
 };
-var $author$project$Cars$carTypeToString = function (carType) {
-	switch (carType.$) {
-		case 'Small_Sporty_Compact_Large_Sedan':
-			return 'Sedan';
-		case 'Sports_Car':
-			return 'Sports Car';
-		case 'SUV':
-			return 'SUV';
-		case 'Wagon':
-			return 'Wagon';
-		case 'Minivan':
-			return 'Minivan';
-		default:
-			return 'Pickup';
-	}
-};
 var $author$project$Cars$SUV = {$: 'SUV'};
 var $author$project$Uebung3aufgabe2$classA = $author$project$Cars$SUV;
-var $author$project$Cars$Small_Sporty_Compact_Large_Sedan = {$: 'Small_Sporty_Compact_Large_Sedan'};
-var $author$project$Uebung3aufgabe2$classB = $author$project$Cars$Small_Sporty_Compact_Large_Sedan;
+var $author$project$Cars$Minivan = {$: 'Minivan'};
+var $author$project$Uebung3aufgabe2$classB = $author$project$Cars$Minivan;
 var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
-var $elm$html$Html$h3 = _VirtualDom_node('h3');
-var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $elm$html$Html$p = _VirtualDom_node('p');
-var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
-var $author$project$Uebung3aufgabe2$axisStyles = '\n    .axis-line { stroke: #1f2933; stroke-width: 1.5px; }\n    .tick-line { stroke: #52606d; stroke-width: 1px; }\n    .tick-label { fill: #334e68; font-size: 11px; font-family: sans-serif; }\n    .axis-label { fill: #102a43; font-size: 13px; font-family: sans-serif; font-weight: 600; }\n    .data-point { fill: #2f6feb; stroke: #1d3f8a; stroke-width: 1px; }\n    .diagonal { stroke: #d64545; stroke-width: 2px; stroke-dasharray: 8 6; }\n    ';
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
-var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'class',
-		A2($elm$core$String$join, ' ', names));
-};
-var $elm$virtual_dom$VirtualDom$nodeNS = F2(
-	function (namespace, tag) {
-		return A2(
-			_VirtualDom_nodeNS,
-			namespace,
-			_VirtualDom_noScript(tag));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
-var $elm_community$typed_svg$TypedSvg$line = $elm_community$typed_svg$TypedSvg$Core$node('line');
-var $author$project$Uebung3aufgabe2$padding = 70;
-var $author$project$Uebung3aufgabe2$plotHeight = 420;
-var $author$project$Uebung3aufgabe2$plotWidth = 520;
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
-	switch (anchorAlignment.$) {
-		case 'AnchorInherit':
-			return 'inherit';
-		case 'AnchorStart':
-			return 'start';
-		case 'AnchorMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'text-anchor',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
-};
-var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
-var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
-	return {$: 'Px', a: a};
-};
-var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
-	switch (length.$) {
-		case 'Cm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'cm';
-		case 'Em':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'em';
-		case 'Ex':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'ex';
-		case 'In':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'in';
-		case 'Mm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'mm';
-		case 'Num':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x);
-		case 'Pc':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pc';
-		case 'Percent':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + '%';
-		case 'Pt':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pt';
-		case 'Px':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'px';
-		default:
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'rem';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$x1 = function (position) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x1',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x1 = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x1(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$x2 = function (position) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x2',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x2 = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x2(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm$core$List$foldrHelper = F4(
-	function (fn, acc, ctr, ls) {
-		if (!ls.b) {
-			return acc;
-		} else {
-			var a = ls.a;
-			var r1 = ls.b;
-			if (!r1.b) {
-				return A2(fn, a, acc);
-			} else {
-				var b = r1.a;
-				var r2 = r1.b;
-				if (!r2.b) {
-					return A2(
-						fn,
-						a,
-						A2(fn, b, acc));
-				} else {
-					var c = r2.a;
-					var r3 = r2.b;
-					if (!r3.b) {
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(fn, c, acc)));
-					} else {
-						var d = r3.a;
-						var r4 = r3.b;
-						var res = (ctr > 500) ? A3(
-							$elm$core$List$foldl,
-							fn,
-							acc,
-							$elm$core$List$reverse(r4)) : A4($elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
-						return A2(
-							fn,
-							a,
-							A2(
-								fn,
-								b,
-								A2(
-									fn,
-									c,
-									A2(fn, d, res))));
-					}
-				}
-			}
-		}
-	});
-var $elm$core$List$foldr = F3(
-	function (fn, acc, ls) {
-		return A4($elm$core$List$foldrHelper, fn, acc, 0, ls);
-	});
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
-var $elm$core$List$concat = function (lists) {
-	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
-};
-var $elm$core$List$map = F2(
-	function (f, xs) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, acc) {
-					return A2(
-						$elm$core$List$cons,
-						f(x),
-						acc);
-				}),
-			_List_Nil,
-			xs);
-	});
-var $elm$core$List$concatMap = F2(
-	function (f, list) {
-		return $elm$core$List$concat(
-			A2($elm$core$List$map, f, list));
-	});
-var $elm$core$Basics$round = _Basics_round;
-var $author$project$Uebung3aufgabe2$formatTick = function (value) {
-	var rounded = $elm$core$Basics$round(value * 100) / 100;
-	return $elm$core$String$fromFloat(rounded);
-};
-var $author$project$Uebung3aufgabe2$scale = F5(
-	function (value, domainMin, domainMax, rangeMin, rangeMax) {
-		return _Utils_eq(domainMax, domainMin) ? ((rangeMin + rangeMax) / 2) : (rangeMin + (((value - domainMin) / (domainMax - domainMin)) * (rangeMax - rangeMin)));
-	});
-var $author$project$Uebung3aufgabe2$scaleX = F2(
-	function (xExtent, value) {
-		return A5($author$project$Uebung3aufgabe2$scale, value, xExtent.min, xExtent.max, $author$project$Uebung3aufgabe2$padding, $author$project$Uebung3aufgabe2$plotWidth - $author$project$Uebung3aufgabe2$padding);
-	});
-var $author$project$Uebung3aufgabe2$tickCount = 5;
-var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$y1 = function (position) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y1',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y1 = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y1(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$y2 = function (position) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y2',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y2 = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y2(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Uebung3aufgabe2$xTicks = function (xExtent) {
-	return A2(
-		$elm$core$List$concatMap,
-		function (tickIndex) {
-			var ratio = tickIndex / $author$project$Uebung3aufgabe2$tickCount;
-			var tickValue = xExtent.min + (ratio * (xExtent.max - xExtent.min));
-			var tickX = A2($author$project$Uebung3aufgabe2$scaleX, xExtent, tickValue);
-			return _List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$line,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1(tickX),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2(tickX),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2(($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding) + 6),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['tick-line']))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(tickX),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding) + 22),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['tick-label']))
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(
-							$author$project$Uebung3aufgabe2$formatTick(tickValue))
-						]))
-				]);
-		},
-		A2($elm$core$List$range, 0, $author$project$Uebung3aufgabe2$tickCount));
-};
-var $elm_community$typed_svg$TypedSvg$Types$AnchorEnd = {$: 'AnchorEnd'};
-var $author$project$Uebung3aufgabe2$scaleY = F2(
-	function (yExtent, value) {
-		return A5($author$project$Uebung3aufgabe2$scale, value, yExtent.min, yExtent.max, $author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding, $author$project$Uebung3aufgabe2$padding);
-	});
-var $author$project$Uebung3aufgabe2$yTicks = function (yExtent) {
-	return A2(
-		$elm$core$List$concatMap,
-		function (tickIndex) {
-			var ratio = tickIndex / $author$project$Uebung3aufgabe2$tickCount;
-			var tickValue = yExtent.min + (ratio * (yExtent.max - yExtent.min));
-			var tickY = A2($author$project$Uebung3aufgabe2$scaleY, yExtent, tickValue);
-			return _List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$line,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding - 6),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1(tickY),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2(tickY),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['tick-line']))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Uebung3aufgabe2$padding - 10),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(tickY + 4),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorEnd),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['tick-label']))
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(
-							$author$project$Uebung3aufgabe2$formatTick(tickValue))
-						]))
-				]);
-		},
-		A2($elm$core$List$range, 0, $author$project$Uebung3aufgabe2$tickCount));
-};
-var $author$project$Uebung3aufgabe2$axisFrame = F4(
-	function (xLabel, yLabel, xExtent, yExtent) {
-		return _Utils_ap(
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$style,
-					_List_Nil,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text($author$project$Uebung3aufgabe2$axisStyles)
-						])),
-					A2(
-					$elm_community$typed_svg$TypedSvg$line,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$plotWidth - $author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['axis-line']))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$line,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['axis-line']))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Uebung3aufgabe2$plotWidth / 2),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y($author$project$Uebung3aufgabe2$plotHeight - 14),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['axis-label']))
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(xLabel)
-						])),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(14),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(26),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['axis-label']))
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(yLabel)
-						]))
-				]),
-			_Utils_ap(
-				$author$project$Uebung3aufgabe2$xTicks(xExtent),
-				$author$project$Uebung3aufgabe2$yTicks(yExtent)));
-	});
-var $elm$core$List$maximum = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(
-			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Basics$min = F2(
-	function (x, y) {
-		return (_Utils_cmp(x, y) < 0) ? x : y;
-	});
-var $elm$core$List$minimum = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(
-			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Uebung3aufgabe2$extentWithPadding = function (values) {
-	var minValue = A2(
-		$elm$core$Maybe$withDefault,
-		0,
-		$elm$core$List$minimum(values));
-	var maxValue = A2(
-		$elm$core$Maybe$withDefault,
-		1,
-		$elm$core$List$maximum(values));
-	var rawRange = maxValue - minValue;
-	var paddingValue = (!rawRange) ? 1 : (rawRange * 0.08);
-	return {max: maxValue + paddingValue, min: minValue - paddingValue};
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'height',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$height(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
-var $elm_community$typed_svg$TypedSvg$Attributes$cx = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cx',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cx = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cx(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$cy = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'cy',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'r',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$r(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Uebung3aufgabe2$renderPoints = F3(
-	function (points, xExtent, yExtent) {
-		return A2(
-			$elm$core$List$map,
-			function (_v0) {
-				var px = _v0.a;
-				var py = _v0.b;
-				return A2(
-					$elm_community$typed_svg$TypedSvg$circle,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(
-							A2($author$project$Uebung3aufgabe2$scaleX, xExtent, px)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(
-							A2($author$project$Uebung3aufgabe2$scaleY, yExtent, py)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(4),
-							$elm_community$typed_svg$TypedSvg$Attributes$class(
-							_List_fromArray(
-								['data-point']))
-						]),
-					_List_Nil);
-			},
-			points);
-	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
-	function (minX, minY, vWidth, vHeight) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$Core$attribute,
-			'viewBox',
-			A2(
-				$elm$core$String$join,
-				' ',
-				A2(
-					$elm$core$List$map,
-					$elm$core$String$fromFloat,
-					_List_fromArray(
-						[minX, minY, vWidth, vHeight]))));
-	});
-var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'width',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$width(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Uebung3aufgabe2$qPlot = F2(
-	function (yLabel, points) {
-		var ys = A2($elm$core$List$map, $elm$core$Tuple$second, points);
-		var yExtent = $author$project$Uebung3aufgabe2$extentWithPadding(ys);
-		var xExtent = {max: 1, min: 0};
-		return A2(
-			$elm_community$typed_svg$TypedSvg$svg,
-			_List_fromArray(
-				[
-					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Uebung3aufgabe2$plotWidth, $author$project$Uebung3aufgabe2$plotHeight),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$width($author$project$Uebung3aufgabe2$plotWidth),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$height($author$project$Uebung3aufgabe2$plotHeight)
-				]),
-			_Utils_ap(
-				A4($author$project$Uebung3aufgabe2$axisFrame, 'f-Value', yLabel, xExtent, yExtent),
-				A3($author$project$Uebung3aufgabe2$renderPoints, points, xExtent, yExtent)));
-	});
-var $elm$core$Basics$identity = function (x) {
-	return x;
-};
-var $elm$core$List$sortBy = _List_sortBy;
-var $elm$core$List$sort = function (xs) {
-	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
-};
-var $author$project$Uebung3aufgabe2$qPlotPoints = function (values) {
-	var sorted = $elm$core$List$sort(values);
-	var n = $elm$core$List$length(sorted);
-	return A2(
-		$elm$core$List$indexedMap,
-		F2(
-			function (i, v) {
-				return _Utils_Tuple2((i + 0.5) / n, v);
-			}),
-		sorted);
-};
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
 var $author$project$Cars$All_Wheel_Drive = {$: 'All_Wheel_Drive'};
 var $author$project$Cars$Car = function (vehicleName) {
 	return function (carType) {
@@ -5118,9 +4500,9 @@ var $author$project$Cars$Car = function (vehicleName) {
 	};
 };
 var $author$project$Cars$Front_Wheel_Drive = {$: 'Front_Wheel_Drive'};
-var $author$project$Cars$Minivan = {$: 'Minivan'};
 var $author$project$Cars$Pickup = {$: 'Pickup'};
 var $author$project$Cars$Rear_Wheel_Drive = {$: 'Rear_Wheel_Drive'};
+var $author$project$Cars$Small_Sporty_Compact_Large_Sedan = {$: 'Small_Sporty_Compact_Large_Sedan'};
 var $author$project$Cars$Sports_Car = {$: 'Sports_Car'};
 var $author$project$Cars$Wagon = {$: 'Wagon'};
 var $elm$core$Basics$negate = function (n) {
@@ -10179,6 +9561,72 @@ var $author$project$Cars$cars = _List_fromArray(
 		$elm$core$Maybe$Just(189))(
 		$elm$core$Maybe$Just(75))
 	]);
+var $elm$core$List$foldrHelper = F4(
+	function (fn, acc, ctr, ls) {
+		if (!ls.b) {
+			return acc;
+		} else {
+			var a = ls.a;
+			var r1 = ls.b;
+			if (!r1.b) {
+				return A2(fn, a, acc);
+			} else {
+				var b = r1.a;
+				var r2 = r1.b;
+				if (!r2.b) {
+					return A2(
+						fn,
+						a,
+						A2(fn, b, acc));
+				} else {
+					var c = r2.a;
+					var r3 = r2.b;
+					if (!r3.b) {
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(fn, c, acc)));
+					} else {
+						var d = r3.a;
+						var r4 = r3.b;
+						var res = (ctr > 500) ? A3(
+							$elm$core$List$foldl,
+							fn,
+							acc,
+							$elm$core$List$reverse(r4)) : A4($elm$core$List$foldrHelper, fn, acc, ctr + 1, r4);
+						return A2(
+							fn,
+							a,
+							A2(
+								fn,
+								b,
+								A2(
+									fn,
+									c,
+									A2(fn, d, res))));
+					}
+				}
+			}
+		}
+	});
+var $elm$core$List$foldr = F3(
+	function (fn, acc, ls) {
+		return A4($elm$core$List$foldrHelper, fn, acc, 0, ls);
+	});
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
 var $elm$core$Maybe$map4 = F5(
 	function (func, ma, mb, mc, md) {
 		if (ma.$ === 'Nothing') {
@@ -10204,6 +9652,15 @@ var $elm$core$Maybe$map4 = F5(
 			}
 		}
 	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
 var $author$project$Uebung3aufgabe2$isComplete = function (car) {
 	return A2(
 		$elm$core$Maybe$withDefault,
@@ -10220,6 +9677,547 @@ var $author$project$Uebung3aufgabe2$isComplete = function (car) {
 			car.carLen));
 };
 var $author$project$Uebung3aufgabe2$filteredCars = A2($elm$core$List$filter, $author$project$Uebung3aufgabe2$isComplete, $author$project$Cars$cars);
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
+var $elm$html$Html$li = _VirtualDom_node('li');
+var $author$project$Uebung3aufgabe2$plural = function (carType) {
+	switch (carType.$) {
+		case 'SUV':
+			return 'SUVs';
+		case 'Minivan':
+			return 'Minivans';
+		case 'Sports_Car':
+			return 'Sports Cars';
+		case 'Wagon':
+			return 'Wagons';
+		case 'Pickup':
+			return 'Pickups';
+		default:
+			return 'Sedans';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
+var $author$project$Uebung3aufgabe2$axisStyles = '\n    .axis-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .axis-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; }\n    .diagonal { stroke: #1f2933; stroke-width: 1px; }\n    ';
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'class',
+		A2($elm$core$String$join, ' ', names));
+};
+var $elm$virtual_dom$VirtualDom$nodeNS = F2(
+	function (namespace, tag) {
+		return A2(
+			_VirtualDom_nodeNS,
+			namespace,
+			_VirtualDom_noScript(tag));
+	});
+var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
+var $elm_community$typed_svg$TypedSvg$line = $elm_community$typed_svg$TypedSvg$Core$node('line');
+var $author$project$Uebung3aufgabe2$padding = 70;
+var $author$project$Uebung3aufgabe2$plotHeight = 480;
+var $author$project$Uebung3aufgabe2$plotWidth = 900;
+var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
+	switch (anchorAlignment.$) {
+		case 'AnchorInherit':
+			return 'inherit';
+		case 'AnchorStart':
+			return 'start';
+		case 'AnchorMiddle':
+			return 'middle';
+		default:
+			return 'end';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'text-anchor',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
+};
+var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
+var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
+	return {$: 'Px', a: a};
+};
+var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
+	switch (length.$) {
+		case 'Cm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'cm';
+		case 'Em':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'em';
+		case 'Ex':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'ex';
+		case 'In':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'in';
+		case 'Mm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'mm';
+		case 'Num':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x);
+		case 'Pc':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pc';
+		case 'Percent':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + '%';
+		case 'Pt':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pt';
+		case 'Px':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'px';
+		default:
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'rem';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'x',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$x(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$x1 = function (position) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'x1',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x1 = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$x1(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$x2 = function (position) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'x2',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x2 = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$x2(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$map = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, acc) {
+					return A2(
+						$elm$core$List$cons,
+						f(x),
+						acc);
+				}),
+			_List_Nil,
+			xs);
+	});
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
+	});
+var $elm$core$Basics$round = _Basics_round;
+var $author$project$Uebung3aufgabe2$formatTick = function (value) {
+	var rounded = $elm$core$Basics$round(value * 100) / 100;
+	return $elm$core$String$fromFloat(rounded);
+};
+var $author$project$Uebung3aufgabe2$scale = F5(
+	function (value, domainMin, domainMax, rangeMin, rangeMax) {
+		return _Utils_eq(domainMax, domainMin) ? ((rangeMin + rangeMax) / 2) : (rangeMin + (((value - domainMin) / (domainMax - domainMin)) * (rangeMax - rangeMin)));
+	});
+var $author$project$Uebung3aufgabe2$scaleX = F2(
+	function (xExtent, value) {
+		return A5($author$project$Uebung3aufgabe2$scale, value, xExtent.min, xExtent.max, $author$project$Uebung3aufgabe2$padding, $author$project$Uebung3aufgabe2$plotWidth - $author$project$Uebung3aufgabe2$padding);
+	});
+var $author$project$Uebung3aufgabe2$tickCount = 5;
+var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'y',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$y(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$y1 = function (position) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'y1',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y1 = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$y1(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$y2 = function (position) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'y2',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(position));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y2 = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$y2(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Uebung3aufgabe2$xTicks = function (xExtent) {
+	return A2(
+		$elm$core$List$concatMap,
+		function (tickIndex) {
+			var ratio = tickIndex / $author$project$Uebung3aufgabe2$tickCount;
+			var tickValue = xExtent.min + (ratio * (xExtent.max - xExtent.min));
+			var tickX = A2($author$project$Uebung3aufgabe2$scaleX, xExtent, tickValue);
+			return _List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$line,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1(tickX),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2(tickX),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2(($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding) + 6),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['tick-line']))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(tickX),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding) + 22),
+							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['tick-label']))
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text(
+							$author$project$Uebung3aufgabe2$formatTick(tickValue))
+						]))
+				]);
+		},
+		A2($elm$core$List$range, 0, $author$project$Uebung3aufgabe2$tickCount));
+};
+var $elm_community$typed_svg$TypedSvg$Types$AnchorEnd = {$: 'AnchorEnd'};
+var $author$project$Uebung3aufgabe2$scaleY = F2(
+	function (yExtent, value) {
+		return A5($author$project$Uebung3aufgabe2$scale, value, yExtent.min, yExtent.max, $author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding, $author$project$Uebung3aufgabe2$padding);
+	});
+var $author$project$Uebung3aufgabe2$yTicks = function (yExtent) {
+	return A2(
+		$elm$core$List$concatMap,
+		function (tickIndex) {
+			var ratio = tickIndex / $author$project$Uebung3aufgabe2$tickCount;
+			var tickValue = yExtent.min + (ratio * (yExtent.max - yExtent.min));
+			var tickY = A2($author$project$Uebung3aufgabe2$scaleY, yExtent, tickValue);
+			return _List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$line,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding - 6),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1(tickY),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2(tickY),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['tick-line']))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Uebung3aufgabe2$padding - 10),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(tickY + 4),
+							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorEnd),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['tick-label']))
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text(
+							$author$project$Uebung3aufgabe2$formatTick(tickValue))
+						]))
+				]);
+		},
+		A2($elm$core$List$range, 0, $author$project$Uebung3aufgabe2$tickCount));
+};
+var $author$project$Uebung3aufgabe2$axisFrame = F4(
+	function (xLabel, yLabel, xExtent, yExtent) {
+		return _Utils_ap(
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$style,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text($author$project$Uebung3aufgabe2$axisStyles)
+						])),
+					A2(
+					$elm_community$typed_svg$TypedSvg$line,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$plotWidth - $author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['axis-line']))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$line,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x1($author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y1($author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x2($author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y2($author$project$Uebung3aufgabe2$plotHeight - $author$project$Uebung3aufgabe2$padding),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['axis-line']))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x($author$project$Uebung3aufgabe2$plotWidth / 2),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y($author$project$Uebung3aufgabe2$plotHeight - 14),
+							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['axis-label']))
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text(xLabel)
+						])),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(14),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(26),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['axis-label']))
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text(yLabel)
+						]))
+				]),
+			_Utils_ap(
+				$author$project$Uebung3aufgabe2$xTicks(xExtent),
+				$author$project$Uebung3aufgabe2$yTicks(yExtent)));
+	});
+var $elm$core$List$maximum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $elm$core$List$minimum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$min, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Uebung3aufgabe2$extentWithPadding = function (values) {
+	var minValue = A2(
+		$elm$core$Maybe$withDefault,
+		0,
+		$elm$core$List$minimum(values));
+	var maxValue = A2(
+		$elm$core$Maybe$withDefault,
+		1,
+		$elm$core$List$maximum(values));
+	var rawRange = maxValue - minValue;
+	var paddingValue = (!rawRange) ? 1 : (rawRange * 0.08);
+	return {max: maxValue + paddingValue, min: minValue - paddingValue};
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'height',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$height(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$circle = $elm_community$typed_svg$TypedSvg$Core$node('circle');
+var $elm_community$typed_svg$TypedSvg$Attributes$cx = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'cx',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cx = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$cx(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$cy = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'cy',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'r',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$r(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Uebung3aufgabe2$renderPoints = F3(
+	function (points, xExtent, yExtent) {
+		return A2(
+			$elm$core$List$map,
+			function (_v0) {
+				var px = _v0.a;
+				var py = _v0.b;
+				return A2(
+					$elm_community$typed_svg$TypedSvg$circle,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(
+							A2($author$project$Uebung3aufgabe2$scaleX, xExtent, px)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(
+							A2($author$project$Uebung3aufgabe2$scaleY, yExtent, py)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(4),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['data-point']))
+						]),
+					_List_Nil);
+			},
+			points);
+	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
+var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
+	function (minX, minY, vWidth, vHeight) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$Core$attribute,
+			'viewBox',
+			A2(
+				$elm$core$String$join,
+				' ',
+				A2(
+					$elm$core$List$map,
+					$elm$core$String$fromFloat,
+					_List_fromArray(
+						[minX, minY, vWidth, vHeight]))));
+	});
+var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'width',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$width(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $author$project$Uebung3aufgabe2$qPlot = F2(
+	function (yLabel, points) {
+		var ys = A2($elm$core$List$map, $elm$core$Tuple$second, points);
+		var yExtent = $author$project$Uebung3aufgabe2$extentWithPadding(ys);
+		var xExtent = {max: 1, min: 0};
+		return A2(
+			$elm_community$typed_svg$TypedSvg$svg,
+			_List_fromArray(
+				[
+					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Uebung3aufgabe2$plotWidth, $author$project$Uebung3aufgabe2$plotHeight),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$width($author$project$Uebung3aufgabe2$plotWidth),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$height($author$project$Uebung3aufgabe2$plotHeight)
+				]),
+			_Utils_ap(
+				A4($author$project$Uebung3aufgabe2$axisFrame, 'f-Value', yLabel, xExtent, yExtent),
+				A3($author$project$Uebung3aufgabe2$renderPoints, points, xExtent, yExtent)));
+	});
+var $elm$core$Basics$identity = function (x) {
+	return x;
+};
+var $elm$core$List$sortBy = _List_sortBy;
+var $elm$core$List$sort = function (xs) {
+	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
+};
+var $author$project$Uebung3aufgabe2$qPlotPoints = function (values) {
+	var sorted = $elm$core$List$sort(values);
+	var n = $elm$core$List$length(sorted);
+	return A2(
+		$elm$core$List$indexedMap,
+		F2(
+			function (i, v) {
+				return _Utils_Tuple2((i + 0.5) / n, v);
+			}),
+		sorted);
+};
 var $author$project$Uebung3aufgabe2$carsOfClass = function (carType) {
 	return A2(
 		$elm$core$List$filter,
@@ -10415,105 +10413,88 @@ var $author$project$Uebung3aufgabe2$qqPoints = A2($author$project$Uebung3aufgabe
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Uebung3aufgabe2$main = function () {
-	var labelB = $author$project$Cars$carTypeToString($author$project$Uebung3aufgabe2$classB);
-	var labelA = $author$project$Cars$carTypeToString($author$project$Uebung3aufgabe2$classA);
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				A2($elm$html$Html$Attributes$style, 'font-family', 'sans-serif'),
-				A2($elm$html$Html$Attributes$style, 'padding', '16px'),
-				A2($elm$html$Html$Attributes$style, 'line-height', '1.5')
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$h2,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Aufgabe 3.2 — QQ-Plot zweier Autoklassen')
-					])),
-				A2(
-				$elm$html$Html$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						'Klasse A: ' + (labelA + (' (n = ' + ($elm$core$String$fromInt(
-							$elm$core$List$length($author$project$Uebung3aufgabe2$valuesA)) + ')'))))
-					])),
-				A2(
-				$elm$html$Html$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						'Klasse B: ' + (labelB + (' (n = ' + ($elm$core$String$fromInt(
-							$elm$core$List$length($author$project$Uebung3aufgabe2$valuesB)) + ')'))))
-					])),
-				A2(
-				$elm$html$Html$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Quantil-Plots beider Klassen')
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-						A2($elm$html$Html$Attributes$style, 'gap', '24px'),
-						A2($elm$html$Html$Attributes$style, 'flex-wrap', 'wrap')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$div,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$h4,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Q-Plot ' + labelA)
-									])),
-								A2($author$project$Uebung3aufgabe2$qPlot, 'cityMPG (' + (labelA + ')'), $author$project$Uebung3aufgabe2$qPointsA)
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_Nil,
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$h4,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Q-Plot ' + labelB)
-									])),
-								A2($author$project$Uebung3aufgabe2$qPlot, 'cityMPG (' + (labelB + ')'), $author$project$Uebung3aufgabe2$qPointsB)
-							]))
-					])),
-				A2(
-				$elm$html$Html$h3,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text('QQ-Plot mit Diagonale f(x) = x')
-					])),
-				A2(
-				$elm$html$Html$p,
-				_List_Nil,
-				_List_fromArray(
-					[
-						$elm$html$Html$text('F-Values stammen aus Klasse A (' + (labelA + ('). Die Quantile der Klasse B (' + (labelB + ') wurden für diese F-Values mittels linearer Interpolation berechnet. Die rote gestrichelte Linie ist die Diagonale: Liegen die Punkte parallel dazu verschoben, deutet das auf eine additive Verschiebung der Verteilungen hin.'))))
-					])),
-				A3($author$project$Uebung3aufgabe2$qqPlot, 'cityMPG (' + (labelA + ')'), 'cityMPG (' + (labelB + ')'), $author$project$Uebung3aufgabe2$qqPoints)
-			]));
-}();
+var $elm$html$Html$ul = _VirtualDom_node('ul');
+var $author$project$Uebung3aufgabe2$main = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			A2($elm$html$Html$Attributes$style, 'font-family', 'sans-serif'),
+			A2($elm$html$Html$Attributes$style, 'padding', '16px'),
+			A2($elm$html$Html$Attributes$style, 'line-height', '1.5')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$h3,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					$author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classA) + (' versus ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classB)))
+				])),
+			A2(
+			$elm$html$Html$ul,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							'Number of filtered Cars: ' + $elm$core$String$fromInt(
+								$elm$core$List$length($author$project$Uebung3aufgabe2$filteredCars)))
+						])),
+					A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							'Number of ' + ($author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classA) + (': ' + $elm$core$String$fromInt(
+								$elm$core$List$length($author$project$Uebung3aufgabe2$valuesA)))))
+						])),
+					A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							'Number of ' + ($author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classB) + (': ' + $elm$core$String$fromInt(
+								$elm$core$List$length($author$project$Uebung3aufgabe2$valuesB)))))
+						]))
+				])),
+			A2(
+			$elm$html$Html$h3,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Q-Plot cityMPG for ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classA))
+				])),
+			A2($author$project$Uebung3aufgabe2$qPlot, 'quantiles cityMPG', $author$project$Uebung3aufgabe2$qPointsA),
+			A2(
+			$elm$html$Html$h3,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'Q-Plot cityMPG for ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classB))
+				])),
+			A2($author$project$Uebung3aufgabe2$qPlot, 'quantiles cityMPG', $author$project$Uebung3aufgabe2$qPointsB),
+			A2(
+			$elm$html$Html$h3,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					'QQ-Plot cityMPG for ' + ($author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classA) + (' and ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classB))))
+				])),
+			A3(
+			$author$project$Uebung3aufgabe2$qqPlot,
+			'quantiles cityMPG ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classA),
+			'quantiles cityMPG ' + $author$project$Uebung3aufgabe2$plural($author$project$Uebung3aufgabe2$classB),
+			$author$project$Uebung3aufgabe2$qqPoints)
+		]));
 _Platform_export({'Uebung3aufgabe2':{'init':_VirtualDom_init($author$project$Uebung3aufgabe2$main)(0)(0)}});}(this));
