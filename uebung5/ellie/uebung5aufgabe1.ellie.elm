@@ -11,7 +11,7 @@ import TypedSvg exposing (g, svg, text_)
 import TypedSvg.Attributes as TA exposing (transform, viewBox)
 import TypedSvg.Attributes.InPx exposing (fontSize, strokeWidth, x, y)
 import TypedSvg.Core exposing (Svg)
-import TypedSvg.Types exposing (AnchorAlignment(..), Align(..), Length(..), MeetOrSlice(..), Scale(..), Transform(..))
+import TypedSvg.Types exposing (AnchorAlignment(..), Align(..), Length(..), MeetOrSlice(..), Paint(..), Scale(..), Transform(..))
 
 
 
@@ -213,15 +213,15 @@ lineplot w ar model =
                 |> Shape.line Shape.linearCurve
 
         lineNodes =
-        model.data
-            |> List.map
-                (\( pts, _ ) ->
-                    Path.element (toLinePath pts)
-                        [ TA.stroke lineColor    -- Einfach direkt die Farbe übergeben
-                        , TA.fill PaintNone      -- PaintNone ist meist noch verfügbar oder nutze TA.noFill
-                        , strokeWidth 1
-                        ]
-                )
+            model.data
+                |> List.map
+                    (\( pts, _ ) ->
+                        Path.element (toLinePath pts)
+                            [ TA.stroke (Paint lineColor)
+                            , TA.fill PaintNone
+                            , strokeWidth 1
+                            ]
+                    )
     in
     svg
         [ viewBox 0 0 (w + 2 * padding) (h + 2 * padding)
