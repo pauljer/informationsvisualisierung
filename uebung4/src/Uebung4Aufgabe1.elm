@@ -177,6 +177,9 @@ plot title xData yData xLabel yLabel showLine =
                 []
 
 
+        round2 v =
+            (v * 100 |> round |> toFloat) / 100
+
         point ( x, y ) =
             g [ Attr.class "point" ]
                 [ circle
@@ -192,9 +195,9 @@ plot title xData yData xLabel yLabel showLine =
                     ]
                     [ Svg.text
                         ("("
-                            ++ String.fromFloat x
+                            ++ String.fromFloat (round2 x)
                             ++ ", "
-                            ++ String.fromFloat y
+                            ++ String.fromFloat (round2 y)
                             ++ ")"
                         )
                     ]
