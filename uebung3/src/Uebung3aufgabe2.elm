@@ -126,7 +126,7 @@ qPlotPoints values =
     in
     List.indexedMap
         (\i v ->
-            ( (toFloat i + 0.5) / toFloat n, v )
+            ( (toFloat i + 1) / toFloat n, v )
         )
         sorted
 
