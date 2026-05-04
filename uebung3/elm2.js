@@ -9696,7 +9696,7 @@ var $author$project$Uebung3aufgabe2$plural = function (carType) {
 	}
 };
 var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
-var $author$project$Uebung3aufgabe2$axisStyles = '\n    .axis-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .axis-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; }\n    .diagonal { stroke: #1f2933; stroke-width: 1px; }\n    ';
+var $author$project$Uebung3aufgabe2$axisStyles = '\n    .axis-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-line { stroke: #1f2933; stroke-width: 1px; }\n    .tick-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .axis-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }\n    .point-group .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; cursor: pointer; transition: fill 0.1s, stroke 0.1s, r 0.1s; }\n    .point-group .point-label { fill: #1f7a3a; font-size: 12px; font-family: sans-serif; font-weight: 600; pointer-events: none; visibility: hidden; }\n    .point-group:hover .data-point { fill: #2ecc71; stroke: #1f7a3a; stroke-width: 2px; }\n    .point-group:hover .point-label { visibility: visible; }\n    .diagonal { stroke: #1f2933; stroke-width: 1px; }\n    ';
 var $elm$virtual_dom$VirtualDom$attribute = F2(
 	function (key, value) {
 		return A2(
@@ -10120,6 +10120,11 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$cy = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$cy(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
+var $author$project$Uebung3aufgabe2$formatNum = function (value) {
+	var rounded = $elm$core$Basics$round(value * 100) / 100;
+	return $elm$core$String$fromFloat(rounded);
+};
+var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
 var $elm_community$typed_svg$TypedSvg$Attributes$r = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -10130,6 +10135,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$r = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$r(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
+var $elm_community$typed_svg$TypedSvg$title = $elm_community$typed_svg$TypedSvg$Core$node('title');
 var $author$project$Uebung3aufgabe2$renderPoints = F3(
 	function (points, xExtent, yExtent) {
 		return A2(
@@ -10137,20 +10143,55 @@ var $author$project$Uebung3aufgabe2$renderPoints = F3(
 			function (_v0) {
 				var px = _v0.a;
 				var py = _v0.b;
+				var label = '(' + ($author$project$Uebung3aufgabe2$formatNum(px) + (', ' + ($author$project$Uebung3aufgabe2$formatNum(py) + ')')));
+				var cyPos = A2($author$project$Uebung3aufgabe2$scaleY, yExtent, py);
+				var cxPos = A2($author$project$Uebung3aufgabe2$scaleX, xExtent, px);
 				return A2(
-					$elm_community$typed_svg$TypedSvg$circle,
+					$elm_community$typed_svg$TypedSvg$g,
 					_List_fromArray(
 						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(
-							A2($author$project$Uebung3aufgabe2$scaleX, xExtent, px)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(
-							A2($author$project$Uebung3aufgabe2$scaleY, yExtent, py)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(4),
 							$elm_community$typed_svg$TypedSvg$Attributes$class(
 							_List_fromArray(
-								['data-point']))
+								['point-group']))
 						]),
-					_List_Nil);
+					_List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$circle,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$cx(cxPos),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$cy(cyPos),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$r(4),
+									$elm_community$typed_svg$TypedSvg$Attributes$class(
+									_List_fromArray(
+										['data-point']))
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm_community$typed_svg$TypedSvg$title,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm_community$typed_svg$TypedSvg$Core$text(label)
+										]))
+								])),
+							A2(
+							$elm_community$typed_svg$TypedSvg$text_,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(cxPos + 8),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(cyPos - 8),
+									$elm_community$typed_svg$TypedSvg$Attributes$class(
+									_List_fromArray(
+										['point-label']))
+								]),
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Core$text(label)
+								]))
+						]));
 			},
 			points);
 	});

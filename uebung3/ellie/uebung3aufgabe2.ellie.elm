@@ -3,7 +3,7 @@ module Main exposing (main)
 import Array
 import Html exposing (Html)
 import Html.Attributes
-import TypedSvg exposing (circle, g, line, style, svg, text_)
+import TypedSvg exposing (circle, g, line, style, svg, text_, title)
 import TypedSvg.Attributes exposing (class, textAnchor, viewBox)
 import TypedSvg.Attributes.InPx exposing (cx, cy, height, r, width, x, x1, x2, y, y1, y2)
 import TypedSvg.Core exposing (Svg)
@@ -778,7 +778,10 @@ axisStyles =
     .tick-line { stroke: #1f2933; stroke-width: 1px; }
     .tick-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }
     .axis-label { fill: #1f2933; font-size: 12px; font-family: sans-serif; }
-    .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; }
+    .point-group .data-point { fill: #ffffff; stroke: #1f2933; stroke-width: 1px; cursor: pointer; transition: fill 0.1s, stroke 0.1s, r 0.1s; }
+    .point-group .point-label { fill: #1f7a3a; font-size: 12px; font-family: sans-serif; font-weight: 600; pointer-events: none; visibility: hidden; }
+    .point-group:hover .data-point { fill: #2ecc71; stroke: #1f7a3a; stroke-width: 2px; }
+    .point-group:hover .point-label { visibility: visible; }
     .diagonal { stroke: #1f2933; stroke-width: 1px; }
     """
 
@@ -850,17 +853,44 @@ axisFrame xLabel yLabel xExtent yExtent =
         ++ yTicks yExtent
 
 
+formatNum : Float -> String
+formatNum value =
+    let
+        rounded =
+            (value * 100 |> round |> toFloat) / 100
+    in
+    String.fromFloat rounded
+
+
 renderPoints : List ( Float, Float ) -> Extent -> Extent -> List (Svg msg)
 renderPoints points xExtent yExtent =
     List.map
         (\( px, py ) ->
-            circle
-                [ cx (scaleX xExtent px)
-                , cy (scaleY yExtent py)
-                , r 4
-                , class [ "data-point" ]
+            let
+                cxPos =
+                    scaleX xExtent px
+
+                cyPos =
+                    scaleY yExtent py
+
+                label =
+                    "(" ++ formatNum px ++ ", " ++ formatNum py ++ ")"
+            in
+            g [ class [ "point-group" ] ]
+                [ circle
+                    [ cx cxPos
+                    , cy cyPos
+                    , r 4
+                    , class [ "data-point" ]
+                    ]
+                    [ title [] [ TypedSvg.Core.text label ] ]
+                , text_
+                    [ x (cxPos + 8)
+                    , y (cyPos - 8)
+                    , class [ "point-label" ]
+                    ]
+                    [ TypedSvg.Core.text label ]
                 ]
-                []
         )
         points
 
