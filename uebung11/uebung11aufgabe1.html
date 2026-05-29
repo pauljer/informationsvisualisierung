@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Übung 11.1 – Sentence Tokenization (Dagre)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://dagrejs.github.io/project/dagre/latest/dagre.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="elm"></div>
+  <script src="elm.js"></script>
+  <script>
+    var app = Elm.Uebung11Aufgabe1.init({
+      node: document.getElementById("elm")
+    });
+
+    app.ports.layout.subscribe(function (data) {
+      var g = dagre.graphlib.json.read(JSON.parse(data));
+      dagre.layout(g);
+      var graph = dagre.graphlib.json.write(g);
+      app.ports.graphs.send(graph);
+    });
+  </script>
+</body>
+
+</html>

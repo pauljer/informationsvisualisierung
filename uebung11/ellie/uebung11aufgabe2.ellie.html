@@ -1,0 +1,53 @@
+<!--
+  HTML-Teil für https://ellie-app.com – im Ellie-Editor unter "HTML"
+  einfügen. Lädt dagre.min.js und verkabelt die Ports. CSS-Regeln
+  visualisieren die "class"-Attribute, die der Elm-Code an
+  <g class="node leaf"> / <g class="node inner"> setzt.
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <style>
+        g.node.leaf rect {
+            fill: #1ae8c3;
+            stroke: #14b496;
+        }
+
+        g.node.inner rect {
+            fill: #ffffff;
+            stroke: #8c8c8c;
+        }
+
+        g.node text {
+            pointer-events: none;
+        }
+
+        g.edge polyline {
+            stroke: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="elm"></div>
+    <script>
+        if (typeof dagre === "undefined") {
+            document.getElementById("elm").innerHTML =
+                '<p style="color:#a00;font-family:sans-serif;padding:20px">' +
+                'Fehler: dagre.min.js konnte nicht geladen werden.</p>';
+        } else {
+            var app = Elm.Main.init({ node: document.getElementById("elm") });
+
+            app.ports.layout.subscribe(function (data) {
+                var g = dagre.graphlib.json.read(JSON.parse(data));
+                dagre.layout(g);
+                app.ports.graphs.send(dagre.graphlib.json.write(g));
+            });
+        }
+    </script>
+</body>
+
+</html>

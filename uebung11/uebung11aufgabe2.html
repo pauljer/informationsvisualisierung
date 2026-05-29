@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Übung 11.2 – Sentence Tokenization (Dagre + CSS-Klassen)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* CSS-Klassen werden vom Elm-Code als <g class="node leaf"> bzw.
+       <g class="node inner"> gesetzt – hier visuell ausgewertet. */
+        g.node.leaf rect {
+            fill: #1ae8c3;
+            stroke: #14b496;
+        }
+
+        g.node.inner rect {
+            fill: #ffffff;
+            stroke: #8c8c8c;
+        }
+
+        g.node text {
+            pointer-events: none;
+        }
+
+        g.edge polyline {
+            stroke: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="elm"></div>
+    <script src="elm2.js"></script>
+    <script>
+        if (typeof dagre === "undefined") {
+            document.getElementById("elm").innerHTML =
+                '<p style="color:#a00;padding:20px">Fehler: dagre.min.js konnte nicht geladen werden.</p>';
+        } else {
+            var app = Elm.Uebung11Aufgabe2.init({
+                node: document.getElementById("elm")
+            });
+
+            app.ports.layout.subscribe(function (data) {
+                var g = dagre.graphlib.json.read(JSON.parse(data));
+                dagre.layout(g);
+                app.ports.graphs.send(dagre.graphlib.json.write(g));
+            });
+        }
+    </script>
+</body>
+
+</html>
