@@ -66,11 +66,17 @@ ins Feld einfügen). Daten werden geladen, die drei Diagramme erscheinen.
 - Tabelle `energycharts_publicpower`: pro Zeile `unix_seconds`, `country_id`,
   `load_in_gw` und ~18 Quellen-Spalten in GW. ~32 Länder + Aggregat `all`/`eu`,
   stündlich bzw. 15-minütig.
-- **Filter auf `country_id` funktioniert serverseitig nicht** (String-Gleichheit
-  liefert leer). Daher wird per numerischem `unix_seconds`-Fenster geladen
-  (`limit_val` ≤ 5000, Pagination über `offset_val`) und das Land
-  **client-seitig** gefiltert. Sortierung `unix_seconds, id` → echte Daten zuerst,
-  stabile Pagination.
+- **Zwei API-Eigenheiten** bestimmen das Laden (selbst gemessen):
+  1. Filter auf `country_id` (String) funktionieren serverseitig **nicht**.
+  2. Abfragen mit **leerem** `where_` materialisieren die ganze Tabelle (~15 s);
+     mit numerischem Filter sind sie schnell (<1 s).
+- **Schneller Lade-Trick:** Die Zeilen liegen pro Land in **zusammenhängenden
+  `id`-Blöcken** (zeitlich aufsteigend). Eine gefilterte Abfrage der jüngsten
+  Daten (`unix_seconds > jetzt−90 Tage`) liefert zugleich `tmax` und je Land die
+  größte `id` (Block-Obergrenze). Danach wird ein Land per **numerischem
+  `id`-Bereich** `(lo, hi]` + `unix_seconds >= tmin` in **einer** kleinen Abfrage
+  geladen (≈170–2900 Zeilen). Ergebnis: erste Diagramme in ~2–3 s,
+  Land-/Fenster-Wechsel in <1 s (statt zehntausender Zeilen über viele Seiten).
 - **Hinweis zur Entwicklungs-DB:** In der bereitgestellten Demo-DB sind mehrere
   Länder (u. a. **DE**, AT, NL, ES) nur **Null-Platzhalter**. Befüllt sind das
   Europa-Aggregat **`all`** (Voreinstellung) sowie z. B. **FR, IT, PL, CZ, CH,
@@ -86,7 +92,7 @@ Projekt/
 ├── elm.json                 Abhängigkeiten (elm-visualization, typed-svg, rosetree …)
 └── src/
     ├── Main.elm             TEA: Steuerung, Laden/Pagination, Linked-View-Zustand, Layout
-    ├── Api.elm              Token, paginiertes Laden, null-toleranter Row-Decoder
+    ├── Api.elm              Token, schnelles id-Block-Laden, null-toleranter Decoder
     ├── Energy.elm           Domäne: Bänder/Palette, Metriken, Stunden-Binning, Treemap-Summen
     └── Chart/
         ├── StackedArea.elm  Sicht 1 – Zeitreihen (Shape.stack/area, Path, Scale, Axis)

@@ -1,18 +1,27 @@
 module Api exposing
-    ( pageLimit
-    , getToken
-    , getLatest
-    , loadPage
+    ( getToken
+    , getRecent
+    , loadCountryWindow
     )
 
 {-| Zugriff auf die ScienceData-/EnergyCharts-API über den lokalen Proxy
 (`proxy.js`, Port 3001).
 
-Wichtige API-Eigenheit (selbst verifiziert): Filter auf der String-Spalte
-`country_id` funktionieren **nicht** (`=`/`like` liefern leer). Daher wird per
-**numerischem** `unix_seconds`-Fenster geladen und das Land anschließend
-**client-seitig** gefiltert (siehe `Main`). `limit_val` ist bis 5000 nutzbar,
-Pagination über `offset_val`.
+**Performance-Tricks.** Zwei API-Eigenheiten dieser DB:
+
+  - Filter auf der String-Spalte `country_id` funktionieren serverseitig nicht.
+  - Abfragen mit **leerem** `where_` materialisieren die ganze Tabelle (~15 s);
+    Abfragen mit numerischem Filter sind schnell (<1 s).
+
+Die Zeilen liegen **pro Land in zusammenhängenden `id`-Blöcken** (zeitlich
+aufsteigend). Deshalb:
+
+1.  `getRecent` lädt **eine** gefilterte Abfrage (`unix_seconds > jetzt−90 T`,
+    nach Zeit absteigend) und liefert daraus zugleich den jüngsten Zeitpunkt
+    `tmax` **und** je Land die größte `id` (= Obergrenze seines Blocks).
+2.  `loadCountryWindow` lädt ein Land per **numerischem** `id`-Bereich
+    `(lo, hi]` plus `unix_seconds >= tmin` – **eine** kleine Abfrage
+    (≈170–2900 Zeilen) statt zehntausender Zeilen über mehrere Seiten.
 -}
 
 import Energy exposing (Row)
@@ -32,9 +41,8 @@ tableName =
     "energycharts_publicpower"
 
 
-{-| Zeilen pro Seite (Server-Limit). -}
-pageLimit : Int
-pageLimit =
+limit : Int
+limit =
     5000
 
 
@@ -44,7 +52,6 @@ pageLimit =
 -- ============================================================
 
 
-{-| Holt über den Proxy ein Bearer-Token (Basic-Auth passiert im Proxy). -}
 getToken : (Result Http.Error String -> msg) -> Cmd msg
 getToken toMsg =
     Http.post
@@ -60,24 +67,29 @@ getToken toMsg =
 -- ============================================================
 
 
-{-| Jüngster Zeitstempel der Tabelle (order by desc, 1 Zeile). -}
-getLatest : String -> (Result Http.Error (Maybe Int) -> msg) -> Cmd msg
-getLatest token toMsg =
+{-| Eine gefilterte Abfrage der jüngsten Daten (ab `lbUnix`), nach Zeit
+absteigend. Liefert `(country_id, id, unix_seconds)`-Tripel, woraus `Main`
+sowohl `tmax` (größtes `unix_seconds`) als auch je Land die größte `id`
+(Block-Obergrenze) bildet. -}
+getRecent : String -> Int -> (Result Http.Error (List ( String, Int, Int )) -> msg) -> Cmd msg
+getRecent token lbUnix toMsg =
     request token
-        (queryBody [] [ orderBy "unix_seconds" "desc" ] 1 0)
-        (D.map (List.head >> Maybe.map .unixSeconds) (D.list rowDecoder))
+        (queryBody [ whereInt "unix_seconds" ">" lbUnix ] [ orderBy "unix_seconds" "desc" ] limit)
+        (D.list recentDecoder)
         toMsg
 
 
-{-| Eine Seite des Zeitfensters `unix_seconds >= tmin` (stabile Sortierung
-über `id`, daher sicher paginierbar). -}
-loadPage : String -> Int -> Int -> (Result Http.Error (List Row) -> msg) -> Cmd msg
-loadPage token tmin offset toMsg =
+{-| Lädt genau ein Land über seinen `id`-Block `(lo, hi]` im Zeitfenster. -}
+loadCountryWindow : String -> ( Int, Int ) -> Int -> (Result Http.Error (List Row) -> msg) -> Cmd msg
+loadCountryWindow token ( lo, hi ) tmin toMsg =
     request token
-        (queryBody [ whereGte "unix_seconds" tmin ]
-            [ orderBy "unix_seconds" "asc", orderBy "id" "asc" ]
-            pageLimit
-            offset
+        (queryBody
+            [ whereInt "id" ">" lo
+            , whereInt "id" "<=" hi
+            , whereInt "unix_seconds" ">=" tmin
+            ]
+            [ orderBy "unix_seconds" "asc" ]
+            limit
         )
         (D.list rowDecoder)
         toMsg
@@ -102,22 +114,22 @@ request token body decoder toMsg =
         }
 
 
-queryBody : List E.Value -> List E.Value -> Int -> Int -> E.Value
-queryBody whereList orderList limit offset =
+queryBody : List E.Value -> List E.Value -> Int -> E.Value
+queryBody whereList orderList limit_ =
     E.object
         [ ( "p_table_name", E.string tableName )
         , ( "where_", E.list identity whereList )
         , ( "order_by", E.list identity orderList )
-        , ( "limit_val", E.int limit )
-        , ( "offset_val", E.int offset )
+        , ( "limit_val", E.int limit_ )
+        , ( "offset_val", E.int 0 )
         ]
 
 
-whereGte : String -> Int -> E.Value
-whereGte col val =
+whereInt : String -> String -> Int -> E.Value
+whereInt col op val =
     E.object
         [ ( "col", E.string col )
-        , ( "op", E.string ">=" )
+        , ( "op", E.string op )
         , ( "val", E.int val )
         , ( "logic", E.string "and" )
         ]
@@ -130,8 +142,16 @@ orderBy col dir =
 
 
 -- ============================================================
--- DECODER  (null-tolerant: fehlende/None-Werte -> 0)
+-- DECODER
 -- ============================================================
+
+
+recentDecoder : Decoder ( String, Int, Int )
+recentDecoder =
+    D.map3 (\c i u -> ( c, i, u ))
+        (D.field "country_id" D.string)
+        (D.field "id" D.int)
+        (D.field "unix_seconds" D.int)
 
 
 num : Decoder Float

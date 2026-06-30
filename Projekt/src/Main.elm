@@ -18,6 +18,7 @@ import Chart.Heatmap as Heatmap
 import Chart.StackedArea as StackedArea
 import Chart.Treemap as Treemap
 import Color
+import Dict exposing (Dict)
 import Energy exposing (Metric(..), Row)
 import Html exposing (Html)
 import Html.Attributes as HA
@@ -34,8 +35,8 @@ import Http
 type Status
     = NeedConnect
     | Connecting
-    | LoadingLatest
-    | Loading Int
+    | LoadingBounds
+    | LoadingRows
     | Ready
     | Failed String
 
@@ -43,33 +44,32 @@ type Status
 type alias Model =
     { tokenInput : String
     , token : Maybe String
+    , nowSeconds : Int
     , country : String
     , windowDays : Int
     , metric : Metric
     , latest : Maybe Int
+    , ceilings : Dict String Int
     , rows : List Row
-    , pagesLoaded : Int
     , status : Status
     , hovered : Maybe String
     , focusedDay : Maybe Int
     }
 
 
-maxPages : Int
-maxPages =
-    24
-
-
-init : () -> ( Model, Cmd Msg )
-init _ =
+{-| Flag = `Date.now()` aus dem Browser (Millisekunden), um die jüngsten Daten
+ohne langsame Voll-Tabellen-Abfrage einzugrenzen. -}
+init : Float -> ( Model, Cmd Msg )
+init nowMillis =
     ( { tokenInput = ""
       , token = Nothing
+      , nowSeconds = round (nowMillis / 1000)
       , country = "all"
       , windowDays = 7
       , metric = SolarShare
       , latest = Nothing
+      , ceilings = Dict.empty
       , rows = []
-      , pagesLoaded = 0
       , status = NeedConnect
       , hovered = Nothing
       , focusedDay = Nothing
@@ -88,8 +88,8 @@ type Msg
     = TokenInput String
     | Connect
     | GotToken (Result Http.Error String)
-    | GotLatest (Result Http.Error (Maybe Int))
-    | GotPage (Result Http.Error (List Row))
+    | GotRecent (Result Http.Error (List ( String, Int, Int )))
+    | GotRows (Result Http.Error (List Row))
     | SelectCountry String
     | SelectWindow Int
     | SelectMetric Metric
@@ -98,18 +98,44 @@ type Msg
     | Reload
 
 
-tminOf : Model -> Int
-tminOf model =
-    Maybe.withDefault 0 model.latest - model.windowDays * 86400
+{-| Untergrenze für die „jüngste Daten"-Abfrage: Browser-Jetzt minus 90 Tage
+(großzügige Marge über den Daten-Verzug; vermeidet die langsame
+Voll-Tabellen-Abfrage). -}
+lbOf : Model -> Int
+lbOf model =
+    model.nowSeconds - 90 * 86400
 
 
-{-| Startet das paginierte Laden des aktuellen Fensters neu. -}
-beginPaging : Model -> ( Model, Cmd Msg )
-beginPaging model =
+{-| `id`-Block `(lo, hi]` des Landes aus den Block-Obergrenzen ableiten:
+`hi` = Obergrenze des Landes, `lo` = nächstkleinere Obergrenze (Blöcke sind
+zusammenhängend und nach `id` geordnet). Unbekanntes Land -> ganzer Bereich. -}
+boundsFor : Dict String Int -> String -> ( Int, Int )
+boundsFor ceilings code =
+    case Dict.get code ceilings of
+        Just hi ->
+            let
+                lo =
+                    Dict.values ceilings
+                        |> List.filter (\v -> v < hi)
+                        |> List.maximum
+                        |> Maybe.withDefault 0
+            in
+            ( lo, hi )
+
+        Nothing ->
+            ( 0, Dict.values ceilings |> List.maximum |> Maybe.withDefault 2000000000 )
+
+
+{-| Lädt das aktuell gewählte Land/Fenster in genau einer Abfrage. -}
+loadCurrent : Model -> ( Model, Cmd Msg )
+loadCurrent model =
     case ( model.token, model.latest ) of
         ( Just token, Just tmax ) ->
-            ( { model | rows = [], pagesLoaded = 0, status = Loading 0, focusedDay = Nothing }
-            , Api.loadPage token (tmax - model.windowDays * 86400) 0 GotPage
+            ( { model | rows = [], status = LoadingRows, focusedDay = Nothing }
+            , Api.loadCountryWindow token
+                (boundsFor model.ceilings model.country)
+                (tmax - model.windowDays * 86400)
+                GotRows
             )
 
         _ ->
@@ -128,60 +154,61 @@ update msg model =
                     String.trim model.tokenInput
             in
             if manual /= "" then
-                ( { model | token = Just manual, status = LoadingLatest }
-                , Api.getLatest manual GotLatest
+                ( { model | token = Just manual, status = LoadingBounds }
+                , Api.getRecent manual (lbOf model) GotRecent
                 )
 
             else
                 ( { model | status = Connecting }, Api.getToken GotToken )
 
         GotToken (Ok t) ->
-            ( { model | token = Just t, status = LoadingLatest }, Api.getLatest t GotLatest )
+            ( { model | token = Just t, status = LoadingBounds }
+            , Api.getRecent t (lbOf model) GotRecent
+            )
 
         GotToken (Err e) ->
             ( { model | status = Failed ("Token konnte nicht geholt werden – läuft der Proxy? (" ++ httpErr e ++ ")") }
             , Cmd.none
             )
 
-        GotLatest (Ok (Just tmax)) ->
-            beginPaging { model | latest = Just tmax }
+        GotRecent (Ok triples) ->
+            let
+                tmax =
+                    triples |> List.map (\( _, _, u ) -> u) |> List.maximum
 
-        GotLatest (Ok Nothing) ->
-            ( { model | status = Failed "Keine Daten in der Tabelle gefunden." }, Cmd.none )
+                ceilings =
+                    List.foldl
+                        (\( c, i, _ ) d -> Dict.update c (\m -> Just (max i (Maybe.withDefault 0 m))) d)
+                        Dict.empty
+                        triples
+            in
+            case tmax of
+                Just t ->
+                    loadCurrent { model | latest = Just t, ceilings = ceilings }
 
-        GotLatest (Err e) ->
+                Nothing ->
+                    ( { model | status = Failed "Keine aktuellen Daten gefunden (Zeitfenster zu eng?)." }, Cmd.none )
+
+        GotRecent (Err e) ->
             ( { model | status = Failed (httpErr e) }, Cmd.none )
 
-        GotPage (Ok pageRows) ->
-            let
-                newPages =
-                    model.pagesLoaded + 1
+        GotRows (Ok rows) ->
+            -- Server liefert bereits ein Land; Filter als Sicherheitsnetz.
+            ( { model
+                | rows = List.filter (\r -> r.countryId == model.country) rows
+                , status = Ready
+              }
+            , Cmd.none
+            )
 
-                filtered =
-                    List.filter (\r -> r.countryId == model.country) pageRows
-
-                acc =
-                    model.rows ++ filtered
-
-                token =
-                    Maybe.withDefault "" model.token
-            in
-            if List.length pageRows == Api.pageLimit && newPages < maxPages then
-                ( { model | rows = acc, pagesLoaded = newPages, status = Loading newPages }
-                , Api.loadPage token (tminOf model) (newPages * Api.pageLimit) GotPage
-                )
-
-            else
-                ( { model | rows = acc, pagesLoaded = newPages, status = Ready }, Cmd.none )
-
-        GotPage (Err e) ->
+        GotRows (Err e) ->
             ( { model | status = Failed (httpErr e) }, Cmd.none )
 
         SelectCountry c ->
-            beginPaging { model | country = c }
+            loadCurrent { model | country = c }
 
         SelectWindow d ->
-            beginPaging { model | windowDays = d }
+            loadCurrent { model | windowDays = d }
 
         SelectMetric m ->
             ( { model | metric = m }, Cmd.none )
@@ -202,7 +229,7 @@ update msg model =
             )
 
         Reload ->
-            beginPaging model
+            loadCurrent model
 
 
 httpErr : Http.Error -> String
@@ -423,11 +450,11 @@ statusView model =
                 Connecting ->
                     ( "🔄 Hole Token …", "#995d00" )
 
-                LoadingLatest ->
-                    ( "🔄 Ermittle aktuellsten Zeitpunkt …", "#995d00" )
+                LoadingBounds ->
+                    ( "🔄 Verbinde & ermittle Datenstruktur …", "#995d00" )
 
-                Loading n ->
-                    ( "🔄 Lade Daten … (Seite " ++ String.fromInt (n + 1) ++ ", " ++ String.fromInt (List.length model.rows) ++ " Zeilen für " ++ countryLabel model.country ++ ")", "#995d00" )
+                LoadingRows ->
+                    ( "🔄 Lade " ++ countryLabel model.country ++ " …", "#995d00" )
 
                 Ready ->
                     ( "✅ " ++ countryLabel model.country ++ " · " ++ String.fromInt model.windowDays ++ " Tage · " ++ String.fromInt (List.length model.rows) ++ " Messpunkte geladen.", "#2f7a3e" )
@@ -602,7 +629,7 @@ metricOption current m =
 -- ============================================================
 
 
-main : Program () Model Msg
+main : Program Float Model Msg
 main =
     Browser.element
         { init = init

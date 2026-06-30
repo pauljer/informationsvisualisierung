@@ -5379,13 +5379,30 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
+var $elm$json$Json$Decode$float = _Json_decodeFloat;
 var $author$project$Main$NeedConnect = {$: 'NeedConnect'};
 var $author$project$Energy$SolarShare = {$: 'SolarShare'};
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Main$init = function (_v0) {
+var $elm$core$Basics$round = _Basics_round;
+var $author$project$Main$init = function (nowMillis) {
 	return _Utils_Tuple2(
-		{country: 'all', focusedDay: $elm$core$Maybe$Nothing, hovered: $elm$core$Maybe$Nothing, latest: $elm$core$Maybe$Nothing, metric: $author$project$Energy$SolarShare, pagesLoaded: 0, rows: _List_Nil, status: $author$project$Main$NeedConnect, token: $elm$core$Maybe$Nothing, tokenInput: '', windowDays: 7},
+		{
+			ceilings: $elm$core$Dict$empty,
+			country: 'all',
+			focusedDay: $elm$core$Maybe$Nothing,
+			hovered: $elm$core$Maybe$Nothing,
+			latest: $elm$core$Maybe$Nothing,
+			metric: $author$project$Energy$SolarShare,
+			nowSeconds: $elm$core$Basics$round(nowMillis / 1000),
+			rows: _List_Nil,
+			status: $author$project$Main$NeedConnect,
+			token: $elm$core$Maybe$Nothing,
+			tokenInput: '',
+			windowDays: 7
+		},
 		$elm$core$Platform$Cmd$none);
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
@@ -5394,20 +5411,26 @@ var $author$project$Main$Connecting = {$: 'Connecting'};
 var $author$project$Main$Failed = function (a) {
 	return {$: 'Failed', a: a};
 };
-var $author$project$Main$GotLatest = function (a) {
-	return {$: 'GotLatest', a: a};
-};
-var $author$project$Main$GotPage = function (a) {
-	return {$: 'GotPage', a: a};
+var $author$project$Main$GotRecent = function (a) {
+	return {$: 'GotRecent', a: a};
 };
 var $author$project$Main$GotToken = function (a) {
 	return {$: 'GotToken', a: a};
 };
-var $author$project$Main$Loading = function (a) {
-	return {$: 'Loading', a: a};
-};
-var $author$project$Main$LoadingLatest = {$: 'LoadingLatest'};
+var $author$project$Main$LoadingBounds = {$: 'LoadingBounds'};
 var $author$project$Main$Ready = {$: 'Ready'};
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $author$project$Api$limit = 5000;
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $elm$json$Json$Encode$object = function (pairs) {
 	return _Json_wrap(
@@ -5436,7 +5459,6 @@ var $author$project$Api$orderBy = F2(
 					$elm$json$Json$Encode$string(dir))
 				]));
 	});
-var $author$project$Api$pageLimit = 5000;
 var $elm$json$Json$Encode$int = _Json_wrap;
 var $elm$json$Json$Encode$list = F2(
 	function (func, entries) {
@@ -5448,8 +5470,8 @@ var $elm$json$Json$Encode$list = F2(
 				entries));
 	});
 var $author$project$Api$tableName = 'energycharts_publicpower';
-var $author$project$Api$queryBody = F4(
-	function (whereList, orderList, limit, offset) {
+var $author$project$Api$queryBody = F3(
+	function (whereList, orderList, limit_) {
 		return $elm$json$Json$Encode$object(
 			_List_fromArray(
 				[
@@ -5464,12 +5486,25 @@ var $author$project$Api$queryBody = F4(
 					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, orderList)),
 					_Utils_Tuple2(
 					'limit_val',
-					$elm$json$Json$Encode$int(limit)),
+					$elm$json$Json$Encode$int(limit_)),
 					_Utils_Tuple2(
 					'offset_val',
-					$elm$json$Json$Encode$int(offset))
+					$elm$json$Json$Encode$int(0))
 				]));
 	});
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $elm$json$Json$Decode$map3 = _Json_map3;
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $author$project$Api$recentDecoder = A4(
+	$elm$json$Json$Decode$map3,
+	F3(
+		function (c, i, u) {
+			return _Utils_Tuple3(c, i, u);
+		}),
+	A2($elm$json$Json$Decode$field, 'country_id', $elm$json$Json$Decode$string),
+	A2($elm$json$Json$Decode$field, 'id', $elm$json$Json$Decode$int),
+	A2($elm$json$Json$Decode$field, 'unix_seconds', $elm$json$Json$Decode$int));
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
@@ -5490,8 +5525,6 @@ var $elm$http$Http$Sending = function (a) {
 	return {$: 'Sending', a: a};
 };
 var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
-var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
-var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
 var $elm$core$Maybe$isJust = function (maybe) {
 	if (maybe.$ === 'Just') {
 		return true;
@@ -6280,6 +6313,139 @@ var $author$project$Api$request = F4(
 				url: $author$project$Api$proxyBase + '/proxy'
 			});
 	});
+var $author$project$Api$whereInt = F3(
+	function (col, op, val) {
+		return $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'col',
+					$elm$json$Json$Encode$string(col)),
+					_Utils_Tuple2(
+					'op',
+					$elm$json$Json$Encode$string(op)),
+					_Utils_Tuple2(
+					'val',
+					$elm$json$Json$Encode$int(val)),
+					_Utils_Tuple2(
+					'logic',
+					$elm$json$Json$Encode$string('and'))
+				]));
+	});
+var $author$project$Api$getRecent = F3(
+	function (token, lbUnix, toMsg) {
+		return A4(
+			$author$project$Api$request,
+			token,
+			A3(
+				$author$project$Api$queryBody,
+				_List_fromArray(
+					[
+						A3($author$project$Api$whereInt, 'unix_seconds', '>', lbUnix)
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Api$orderBy, 'unix_seconds', 'desc')
+					]),
+				$author$project$Api$limit),
+			$elm$json$Json$Decode$list($author$project$Api$recentDecoder),
+			toMsg);
+	});
+var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$post = function (r) {
+	return $elm$http$Http$request(
+		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
+};
+var $author$project$Api$getToken = function (toMsg) {
+	return $elm$http$Http$post(
+		{
+			body: $elm$http$Http$emptyBody,
+			expect: A2(
+				$elm$http$Http$expectJson,
+				toMsg,
+				A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)),
+			url: $author$project$Api$proxyBase + '/token'
+		});
+};
+var $author$project$Main$httpErr = function (err) {
+	switch (err.$) {
+		case 'BadUrl':
+			var u = err.a;
+			return 'BadUrl ' + u;
+		case 'Timeout':
+			return 'Timeout';
+		case 'NetworkError':
+			return 'Netzwerkfehler (läuft der Proxy auf Port 3001?)';
+		case 'BadStatus':
+			var s = err.a;
+			return 'Status ' + $elm$core$String$fromInt(s);
+		default:
+			var b = err.a;
+			return 'Antwort nicht lesbar: ' + A2($elm$core$String$left, 120, b);
+	}
+};
+var $author$project$Main$lbOf = function (model) {
+	return model.nowSeconds - (90 * 86400);
+};
+var $author$project$Main$GotRows = function (a) {
+	return {$: 'GotRows', a: a};
+};
+var $author$project$Main$LoadingRows = {$: 'LoadingRows'};
+var $elm$core$List$maximum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Dict$values = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, valueList) {
+				return A2($elm$core$List$cons, value, valueList);
+			}),
+		_List_Nil,
+		dict);
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$boundsFor = F2(
+	function (ceilings, code) {
+		var _v0 = A2($elm$core$Dict$get, code, ceilings);
+		if (_v0.$ === 'Just') {
+			var hi = _v0.a;
+			var lo = A2(
+				$elm$core$Maybe$withDefault,
+				0,
+				$elm$core$List$maximum(
+					A2(
+						$elm$core$List$filter,
+						function (v) {
+							return _Utils_cmp(v, hi) < 0;
+						},
+						$elm$core$Dict$values(ceilings))));
+			return _Utils_Tuple2(lo, hi);
+		} else {
+			return _Utils_Tuple2(
+				0,
+				A2(
+					$elm$core$Maybe$withDefault,
+					2000000000,
+					$elm$core$List$maximum(
+						$elm$core$Dict$values(ceilings))));
+		}
+	});
 var $author$project$Energy$Row = function (unixSeconds) {
 	return function (countryId) {
 		return function (load) {
@@ -6319,8 +6485,6 @@ var $author$project$Energy$Row = function (unixSeconds) {
 		};
 	};
 };
-var $elm$json$Json$Decode$int = _Json_decodeInt;
-var $elm$json$Json$Decode$float = _Json_decodeFloat;
 var $elm$json$Json$Decode$null = _Json_decodeNull;
 var $elm$json$Json$Decode$oneOf = _Json_oneOf;
 var $author$project$Api$num = $elm$json$Json$Decode$oneOf(
@@ -6331,7 +6495,6 @@ var $author$project$Api$num = $elm$json$Json$Decode$oneOf(
 		]));
 var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$custom = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$at = F2(
 	function (fields, decoder) {
 		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
@@ -6393,7 +6556,6 @@ var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			A2($elm$json$Json$Decode$field, key, valDecoder),
 			decoder);
 	});
-var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Api$rowDecoder = A4(
 	$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$optional,
 	'others_in_gw',
@@ -6489,47 +6651,30 @@ var $author$project$Api$rowDecoder = A4(
 																			'unix_seconds',
 																			$elm$json$Json$Decode$int,
 																			$elm$json$Json$Decode$succeed($author$project$Energy$Row))))))))))))))))))));
-var $author$project$Api$whereGte = F2(
-	function (col, val) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'col',
-					$elm$json$Json$Encode$string(col)),
-					_Utils_Tuple2(
-					'op',
-					$elm$json$Json$Encode$string('>=')),
-					_Utils_Tuple2(
-					'val',
-					$elm$json$Json$Encode$int(val)),
-					_Utils_Tuple2(
-					'logic',
-					$elm$json$Json$Encode$string('and'))
-				]));
-	});
-var $author$project$Api$loadPage = F4(
-	function (token, tmin, offset, toMsg) {
+var $author$project$Api$loadCountryWindow = F4(
+	function (token, _v0, tmin, toMsg) {
+		var lo = _v0.a;
+		var hi = _v0.b;
 		return A4(
 			$author$project$Api$request,
 			token,
-			A4(
+			A3(
 				$author$project$Api$queryBody,
 				_List_fromArray(
 					[
-						A2($author$project$Api$whereGte, 'unix_seconds', tmin)
+						A3($author$project$Api$whereInt, 'id', '>', lo),
+						A3($author$project$Api$whereInt, 'id', '<=', hi),
+						A3($author$project$Api$whereInt, 'unix_seconds', '>=', tmin)
 					]),
 				_List_fromArray(
 					[
-						A2($author$project$Api$orderBy, 'unix_seconds', 'asc'),
-						A2($author$project$Api$orderBy, 'id', 'asc')
+						A2($author$project$Api$orderBy, 'unix_seconds', 'asc')
 					]),
-				$author$project$Api$pageLimit,
-				offset),
+				$author$project$Api$limit),
 			$elm$json$Json$Decode$list($author$project$Api$rowDecoder),
 			toMsg);
 	});
-var $author$project$Main$beginPaging = function (model) {
+var $author$project$Main$loadCurrent = function (model) {
 	var _v0 = _Utils_Tuple2(model.token, model.latest);
 	if ((_v0.a.$ === 'Just') && (_v0.b.$ === 'Just')) {
 		var token = _v0.a.a;
@@ -6537,120 +6682,18 @@ var $author$project$Main$beginPaging = function (model) {
 		return _Utils_Tuple2(
 			_Utils_update(
 				model,
-				{
-					focusedDay: $elm$core$Maybe$Nothing,
-					pagesLoaded: 0,
-					rows: _List_Nil,
-					status: $author$project$Main$Loading(0)
-				}),
-			A4($author$project$Api$loadPage, token, tmax - (model.windowDays * 86400), 0, $author$project$Main$GotPage));
+				{focusedDay: $elm$core$Maybe$Nothing, rows: _List_Nil, status: $author$project$Main$LoadingRows}),
+			A4(
+				$author$project$Api$loadCountryWindow,
+				token,
+				A2($author$project$Main$boundsFor, model.ceilings, model.country),
+				tmax - (model.windowDays * 86400),
+				$author$project$Main$GotRows));
 	} else {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	}
 };
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Maybe$map = F2(
-	function (f, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return $elm$core$Maybe$Just(
-				f(value));
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
-	});
-var $author$project$Api$getLatest = F2(
-	function (token, toMsg) {
-		return A4(
-			$author$project$Api$request,
-			token,
-			A4(
-				$author$project$Api$queryBody,
-				_List_Nil,
-				_List_fromArray(
-					[
-						A2($author$project$Api$orderBy, 'unix_seconds', 'desc')
-					]),
-				1,
-				0),
-			A2(
-				$elm$json$Json$Decode$map,
-				A2(
-					$elm$core$Basics$composeR,
-					$elm$core$List$head,
-					$elm$core$Maybe$map(
-						function ($) {
-							return $.unixSeconds;
-						})),
-				$elm$json$Json$Decode$list($author$project$Api$rowDecoder)),
-			toMsg);
-	});
-var $elm$http$Http$emptyBody = _Http_emptyBody;
-var $elm$http$Http$post = function (r) {
-	return $elm$http$Http$request(
-		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
-};
-var $author$project$Api$getToken = function (toMsg) {
-	return $elm$http$Http$post(
-		{
-			body: $elm$http$Http$emptyBody,
-			expect: A2(
-				$elm$http$Http$expectJson,
-				toMsg,
-				A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)),
-			url: $author$project$Api$proxyBase + '/token'
-		});
-};
-var $author$project$Main$httpErr = function (err) {
-	switch (err.$) {
-		case 'BadUrl':
-			var u = err.a;
-			return 'BadUrl ' + u;
-		case 'Timeout':
-			return 'Timeout';
-		case 'NetworkError':
-			return 'Netzwerkfehler (läuft der Proxy auf Port 3001?)';
-		case 'BadStatus':
-			var s = err.a;
-			return 'Status ' + $elm$core$String$fromInt(s);
-		default:
-			var b = err.a;
-			return 'Antwort nicht lesbar: ' + A2($elm$core$String$left, 120, b);
-	}
-};
-var $author$project$Main$maxPages = 24;
 var $elm$core$Basics$neq = _Utils_notEqual;
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Main$tminOf = function (model) {
-	return A2($elm$core$Maybe$withDefault, 0, model.latest) - (model.windowDays * 86400);
-};
 var $elm$core$String$trim = _String_trim;
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -6668,10 +6711,14 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							status: $author$project$Main$LoadingLatest,
+							status: $author$project$Main$LoadingBounds,
 							token: $elm$core$Maybe$Just(manual)
 						}),
-					A2($author$project$Api$getLatest, manual, $author$project$Main$GotLatest)) : _Utils_Tuple2(
+					A3(
+						$author$project$Api$getRecent,
+						manual,
+						$author$project$Main$lbOf(model),
+						$author$project$Main$GotRecent)) : _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{status: $author$project$Main$Connecting}),
@@ -6683,10 +6730,14 @@ var $author$project$Main$update = F2(
 						_Utils_update(
 							model,
 							{
-								status: $author$project$Main$LoadingLatest,
+								status: $author$project$Main$LoadingBounds,
 								token: $elm$core$Maybe$Just(t)
 							}),
-						A2($author$project$Api$getLatest, t, $author$project$Main$GotLatest));
+						A3(
+							$author$project$Api$getRecent,
+							t,
+							$author$project$Main$lbOf(model),
+							$author$project$Main$GotRecent));
 				} else {
 					var e = msg.a.a;
 					return _Utils_Tuple2(
@@ -6698,23 +6749,52 @@ var $author$project$Main$update = F2(
 							}),
 						$elm$core$Platform$Cmd$none);
 				}
-			case 'GotLatest':
+			case 'GotRecent':
 				if (msg.a.$ === 'Ok') {
-					if (msg.a.a.$ === 'Just') {
-						var tmax = msg.a.a.a;
-						return $author$project$Main$beginPaging(
+					var triples = msg.a.a;
+					var tmax = $elm$core$List$maximum(
+						A2(
+							$elm$core$List$map,
+							function (_v3) {
+								var u = _v3.c;
+								return u;
+							},
+							triples));
+					var ceilings = A3(
+						$elm$core$List$foldl,
+						F2(
+							function (_v2, d) {
+								var c = _v2.a;
+								var i = _v2.b;
+								return A3(
+									$elm$core$Dict$update,
+									c,
+									function (m) {
+										return $elm$core$Maybe$Just(
+											A2(
+												$elm$core$Basics$max,
+												i,
+												A2($elm$core$Maybe$withDefault, 0, m)));
+									},
+									d);
+							}),
+						$elm$core$Dict$empty,
+						triples);
+					if (tmax.$ === 'Just') {
+						var t = tmax.a;
+						return $author$project$Main$loadCurrent(
 							_Utils_update(
 								model,
 								{
-									latest: $elm$core$Maybe$Just(tmax)
+									ceilings: ceilings,
+									latest: $elm$core$Maybe$Just(t)
 								}));
 					} else {
-						var _v1 = msg.a.a;
 						return _Utils_Tuple2(
 							_Utils_update(
 								model,
 								{
-									status: $author$project$Main$Failed('Keine Daten in der Tabelle gefunden.')
+									status: $author$project$Main$Failed('Keine aktuellen Daten gefunden (Zeitfenster zu eng?).')
 								}),
 							$elm$core$Platform$Cmd$none);
 					}
@@ -6729,37 +6809,21 @@ var $author$project$Main$update = F2(
 							}),
 						$elm$core$Platform$Cmd$none);
 				}
-			case 'GotPage':
+			case 'GotRows':
 				if (msg.a.$ === 'Ok') {
-					var pageRows = msg.a.a;
-					var token = A2($elm$core$Maybe$withDefault, '', model.token);
-					var newPages = model.pagesLoaded + 1;
-					var filtered = A2(
-						$elm$core$List$filter,
-						function (r) {
-							return _Utils_eq(r.countryId, model.country);
-						},
-						pageRows);
-					var acc = _Utils_ap(model.rows, filtered);
-					return (_Utils_eq(
-						$elm$core$List$length(pageRows),
-						$author$project$Api$pageLimit) && (_Utils_cmp(newPages, $author$project$Main$maxPages) < 0)) ? _Utils_Tuple2(
+					var rows = msg.a.a;
+					return _Utils_Tuple2(
 						_Utils_update(
 							model,
 							{
-								pagesLoaded: newPages,
-								rows: acc,
-								status: $author$project$Main$Loading(newPages)
+								rows: A2(
+									$elm$core$List$filter,
+									function (r) {
+										return _Utils_eq(r.countryId, model.country);
+									},
+									rows),
+								status: $author$project$Main$Ready
 							}),
-						A4(
-							$author$project$Api$loadPage,
-							token,
-							$author$project$Main$tminOf(model),
-							newPages * $author$project$Api$pageLimit,
-							$author$project$Main$GotPage)) : _Utils_Tuple2(
-						_Utils_update(
-							model,
-							{pagesLoaded: newPages, rows: acc, status: $author$project$Main$Ready}),
 						$elm$core$Platform$Cmd$none);
 				} else {
 					var e = msg.a.a;
@@ -6774,13 +6838,13 @@ var $author$project$Main$update = F2(
 				}
 			case 'SelectCountry':
 				var c = msg.a;
-				return $author$project$Main$beginPaging(
+				return $author$project$Main$loadCurrent(
 					_Utils_update(
 						model,
 						{country: c}));
 			case 'SelectWindow':
 				var d = msg.a;
-				return $author$project$Main$beginPaging(
+				return $author$project$Main$loadCurrent(
 					_Utils_update(
 						model,
 						{windowDays: d}));
@@ -6810,7 +6874,7 @@ var $author$project$Main$update = F2(
 						}),
 					$elm$core$Platform$Cmd$none);
 			default:
-				return $author$project$Main$beginPaging(model);
+				return $author$project$Main$loadCurrent(model);
 		}
 	});
 var $author$project$Main$ClickDay = function (a) {
@@ -7204,16 +7268,6 @@ var $author$project$Energy$dayLabel = function (dayIndex) {
 	var d = A2($elm$time$Time$toDay, $elm$time$Time$utc, posix);
 	return pad(d) + ('.' + (pad(mon) + '.'));
 };
-var $elm$core$List$maximum = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(
-			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
 var $elm$core$Basics$min = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) < 0) ? x : y;
@@ -7605,6 +7659,15 @@ var $gampleman$elm_visualization$Scale$Color$infernoInterpolator = $gampleman$el
 				A3($avh4$elm_color$Color$rgb255, 250, 253, 161),
 				A3($avh4$elm_color$Color$rgb255, 252, 255, 164)
 			])));
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
 var $elm$core$String$cons = _String_cons;
 var $elm$core$String$fromChar = function (_char) {
 	return A2($elm$core$String$cons, _char, '');
@@ -7851,6 +7914,16 @@ var $elm$core$Basics$clamp = F3(
 	function (low, high, number) {
 		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
 	});
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
 var $elm$core$Tuple$second = function (_v0) {
 	var y = _v0.b;
 	return y;
@@ -7949,7 +8022,6 @@ var $gampleman$elm_visualization$Interpolation$rgbWithGamma = F3(
 			A2($gampleman$elm_visualization$Interpolation$float, start.alpha, end.alpha));
 	});
 var $gampleman$elm_visualization$Interpolation$rgb = $gampleman$elm_visualization$Interpolation$rgbWithGamma(1.0);
-var $elm$core$Basics$round = _Basics_round;
 var $gampleman$elm_visualization$Scale$Color$toHexColorStrings = function (palette) {
 	var n = $elm$core$Basics$round(
 		$elm$core$String$length(palette) / 6);
@@ -13512,13 +13584,11 @@ var $author$project$Main$statusView = function (model) {
 				return _Utils_Tuple2('Bereit – auf \'Verbinden\' klicken.', '#4e5b4e');
 			case 'Connecting':
 				return _Utils_Tuple2('🔄 Hole Token …', '#995d00');
-			case 'LoadingLatest':
-				return _Utils_Tuple2('🔄 Ermittle aktuellsten Zeitpunkt …', '#995d00');
-			case 'Loading':
-				var n = _v1.a;
+			case 'LoadingBounds':
+				return _Utils_Tuple2('🔄 Verbinde & ermittle Datenstruktur …', '#995d00');
+			case 'LoadingRows':
 				return _Utils_Tuple2(
-					'🔄 Lade Daten … (Seite ' + ($elm$core$String$fromInt(n + 1) + (', ' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + (' Zeilen für ' + ($author$project$Main$countryLabel(model.country) + ')'))))),
+					'🔄 Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
 					'#995d00');
 			case 'Ready':
 				return _Utils_Tuple2(
@@ -13612,5 +13682,4 @@ var $author$project$Main$main = $elm$browser$Browser$element(
 		update: $author$project$Main$update,
 		view: $author$project$Main$view
 	});
-_Platform_export({'Main':{'init':$author$project$Main$main(
-	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$float)(0)}});}(this));
