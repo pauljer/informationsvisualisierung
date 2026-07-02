@@ -7071,10 +7071,11 @@ var $author$project$Main$chartCard = F3(
 			$elm$html$Html$section,
 			_List_fromArray(
 				[
-					A2($elm$html$Html$Attributes$style, 'padding', '12px 14px'),
-					A2($elm$html$Html$Attributes$style, 'border', '1px solid rgba(31,42,31,0.18)'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '12px'),
-					A2($elm$html$Html$Attributes$style, 'background', 'rgba(255,255,255,0.78)')
+					A2($elm$html$Html$Attributes$style, 'padding', '16px 18px'),
+					A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '14px'),
+					A2($elm$html$Html$Attributes$style, 'background', '#ffffff'),
+					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 1px 2px rgba(15,23,42,0.04)')
 				]),
 			_List_fromArray(
 				[
@@ -7082,7 +7083,10 @@ var $author$project$Main$chartCard = F3(
 					$elm$html$Html$h3,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'margin', '2px 0 2px')
+							A2($elm$html$Html$Attributes$style, 'margin', '0 0 4px'),
+							A2($elm$html$Html$Attributes$style, 'font-size', '15px'),
+							A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
+							A2($elm$html$Html$Attributes$style, 'letter-spacing', '-0.01em')
 						]),
 					_List_fromArray(
 						[
@@ -7092,9 +7096,9 @@ var $author$project$Main$chartCard = F3(
 					$elm$html$Html$p,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'margin', '0 0 8px'),
+							A2($elm$html$Html$Attributes$style, 'margin', '0 0 10px'),
 							A2($elm$html$Html$Attributes$style, 'font-size', '12.5px'),
-							A2($elm$html$Html$Attributes$style, 'color', '#4e5b4e')
+							A2($elm$html$Html$Attributes$style, 'color', '#64748b')
 						]),
 					_List_fromArray(
 						[
@@ -13098,7 +13102,7 @@ var $author$project$Main$chartsView = F2(
 				[
 					A3(
 					$author$project$Main$chartCard,
-					'1 · Erzeugungsmix & Last (Zeitreihe)',
+					'Erzeugungsmix & Last',
 					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Wo die Stapelhöhe die Last erreicht, ist der Bedarf gedeckt.' + focusNote,
 					$author$project$Chart$StackedArea$view(
 						{focusedDay: model.focusedDay, height: 320, hovered: model.hovered, onHover: $author$project$Main$HoverSource, rows: sortedRows, width: 940})),
@@ -13108,14 +13112,14 @@ var $author$project$Main$chartsView = F2(
 						[
 							A2($elm$html$Html$Attributes$style, 'display', 'grid'),
 							A2($elm$html$Html$Attributes$style, 'grid-template-columns', 'repeat(auto-fit, minmax(360px, 1fr))'),
-							A2($elm$html$Html$Attributes$style, 'gap', '14px'),
-							A2($elm$html$Html$Attributes$style, 'margin-top', '14px')
+							A2($elm$html$Html$Attributes$style, 'gap', '16px'),
+							A2($elm$html$Html$Attributes$style, 'margin-top', '16px')
 						]),
 					_List_fromArray(
 						[
 							A3(
 							$author$project$Main$chartCard,
-							'2 · ' + ($author$project$Energy$metricLabel(model.metric) + ' nach Stunde & Tag (Pixel-Heatmap)'),
+							$author$project$Energy$metricLabel(model.metric) + ' nach Stunde & Tag',
 							'Jede Zelle = ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen Sichten.',
 							$author$project$Chart$Heatmap$view(
 								{
@@ -13130,7 +13134,7 @@ var $author$project$Main$chartsView = F2(
 								})),
 							A3(
 							$author$project$Main$chartCard,
-							'3 · Erzeugungsstruktur (Treemap)',
+							'Erzeugungsstruktur',
 							'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar/Konventionell.',
 							$author$project$Chart$Treemap$view(
 								{
@@ -13177,14 +13181,16 @@ var $author$project$Main$button = F3(
 			_List_fromArray(
 				[
 					$elm$html$Html$Events$onClick(msg),
-					A2($elm$html$Html$Attributes$style, 'height', '34px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '0 12px'),
+					A2($elm$html$Html$Attributes$style, 'height', '36px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '0 14px'),
 					A2($elm$html$Html$Attributes$style, 'background', bg),
 					A2($elm$html$Html$Attributes$style, 'color', 'white'),
 					A2($elm$html$Html$Attributes$style, 'border', 'none'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '8px'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
 					A2($elm$html$Html$Attributes$style, 'cursor', 'pointer'),
-					A2($elm$html$Html$Attributes$style, 'font-weight', '600')
+					A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
+					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 1px 2px rgba(15,23,42,0.12)')
 				]),
 			_List_fromArray(
 				[
@@ -13249,7 +13255,7 @@ var $author$project$Main$field = F2(
 			_List_fromArray(
 				[
 					A2($elm$html$Html$Attributes$style, 'display', 'grid'),
-					A2($elm$html$Html$Attributes$style, 'gap', '5px')
+					A2($elm$html$Html$Attributes$style, 'gap', '6px')
 				]),
 			_List_fromArray(
 				[
@@ -13257,9 +13263,11 @@ var $author$project$Main$field = F2(
 					$elm$html$Html$span,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
-							A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-							A2($elm$html$Html$Attributes$style, 'color', '#4e5b4e')
+							A2($elm$html$Html$Attributes$style, 'font-size', '11.5px'),
+							A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
+							A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.03em'),
+							A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
+							A2($elm$html$Html$Attributes$style, 'color', '#64748b')
 						]),
 					_List_fromArray(
 						[
@@ -13298,12 +13306,14 @@ var $author$project$Main$legendChip = F2(
 					A2($elm$html$Html$Attributes$style, 'display', 'inline-flex'),
 					A2($elm$html$Html$Attributes$style, 'align-items', 'center'),
 					A2($elm$html$Html$Attributes$style, 'gap', '5px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '2px 7px'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '20px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '3px 9px'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '999px'),
 					A2($elm$html$Html$Attributes$style, 'cursor', 'default'),
 					A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
-					A2($elm$html$Html$Attributes$style, 'background', 'rgba(255,255,255,0.6)'),
-					A2($elm$html$Html$Attributes$style, 'border', '1px solid rgba(31,42,31,0.12)'),
+					A2($elm$html$Html$Attributes$style, 'font-weight', '500'),
+					A2($elm$html$Html$Attributes$style, 'background', 'white'),
+					A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
+					A2($elm$html$Html$Attributes$style, 'transition', 'opacity 120ms ease'),
 					A2(
 					$elm$html$Html$Attributes$style,
 					'opacity',
@@ -13343,13 +13353,15 @@ var $author$project$Main$legend = function (hovered) {
 				$elm$html$Html$span,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
-						A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-						A2($elm$html$Html$Attributes$style, 'color', '#4e5b4e')
+						A2($elm$html$Html$Attributes$style, 'font-size', '11.5px'),
+						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
+						A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.03em'),
+						A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
+						A2($elm$html$Html$Attributes$style, 'color', '#64748b')
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Quellen:')
+						$elm$html$Html$text('Quellen')
 					])),
 			A2(
 				$elm$core$List$map,
@@ -13422,7 +13434,7 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 };
 var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$html$Html$select = _VirtualDom_node('select');
-var $author$project$Main$selectStyle = A2($elm$html$Html$Attributes$style, 'height', '34px');
+var $author$project$Main$selectStyle = A2($elm$html$Html$Attributes$style, 'height', '36px');
 var $author$project$Main$SelectWindow = function (a) {
 	return {$: 'SelectWindow', a: a};
 };
@@ -13434,20 +13446,24 @@ var $author$project$Main$windowButton = F2(
 				[
 					$elm$html$Html$Events$onClick(
 					$author$project$Main$SelectWindow(d)),
-					A2($elm$html$Html$Attributes$style, 'height', '34px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '0 12px'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '8px'),
+					A2($elm$html$Html$Attributes$style, 'height', '36px'),
+					A2($elm$html$Html$Attributes$style, 'padding', '0 14px'),
+					A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
 					A2($elm$html$Html$Attributes$style, 'cursor', 'pointer'),
 					A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-					A2($elm$html$Html$Attributes$style, 'border', '1px solid #6f8f5e'),
+					A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'border',
+					_Utils_eq(current, d) ? '1px solid #4f46e5' : '1px solid #e2e8f0'),
 					A2(
 					$elm$html$Html$Attributes$style,
 					'background',
-					_Utils_eq(current, d) ? '#6f8f5e' : 'white'),
+					_Utils_eq(current, d) ? '#4f46e5' : 'white'),
 					A2(
 					$elm$html$Html$Attributes$style,
 					'color',
-					_Utils_eq(current, d) ? 'white' : '#1f2a1f')
+					_Utils_eq(current, d) ? 'white' : '#0f172a')
 				]),
 			_List_fromArray(
 				[
@@ -13462,12 +13478,12 @@ var $author$project$Main$controlPanel = function (model) {
 			[
 				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
 				A2($elm$html$Html$Attributes$style, 'flex-wrap', 'wrap'),
-				A2($elm$html$Html$Attributes$style, 'gap', '16px'),
+				A2($elm$html$Html$Attributes$style, 'gap', '18px'),
 				A2($elm$html$Html$Attributes$style, 'align-items', 'flex-end'),
-				A2($elm$html$Html$Attributes$style, 'padding', '12px 14px'),
-				A2($elm$html$Html$Attributes$style, 'border', '1px solid rgba(31,42,31,0.18)'),
-				A2($elm$html$Html$Attributes$style, 'border-radius', '12px'),
-				A2($elm$html$Html$Attributes$style, 'background', 'rgba(255,255,255,0.7)')
+				A2($elm$html$Html$Attributes$style, 'padding', '16px 18px'),
+				A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
+				A2($elm$html$Html$Attributes$style, 'border-radius', '14px'),
+				A2($elm$html$Html$Attributes$style, 'background', '#f8fafc')
 			]),
 		_List_fromArray(
 			[
@@ -13538,15 +13554,16 @@ var $author$project$Main$controlPanel = function (model) {
 									$elm$html$Html$Attributes$placeholder('Token optional (sonst Proxy)'),
 									$elm$html$Html$Attributes$value(model.tokenInput),
 									$elm$html$Html$Events$onInput($author$project$Main$TokenInput),
-									A2($elm$html$Html$Attributes$style, 'height', '34px'),
+									A2($elm$html$Html$Attributes$style, 'height', '36px'),
 									A2($elm$html$Html$Attributes$style, 'width', '180px'),
-									A2($elm$html$Html$Attributes$style, 'padding', '0 8px'),
-									A2($elm$html$Html$Attributes$style, 'border-radius', '8px'),
-									A2($elm$html$Html$Attributes$style, 'border', '1px solid #7e8e7e')
+									A2($elm$html$Html$Attributes$style, 'padding', '0 10px'),
+									A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
+									A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
+									A2($elm$html$Html$Attributes$style, 'font-size', '13.5px')
 								]),
 							_List_Nil),
-							A3($author$project$Main$button, '🔗 Verbinden', '#226f7a', $author$project$Main$Connect),
-							A3($author$project$Main$button, '↻', '#1f2a1f', $author$project$Main$Reload)
+							A3($author$project$Main$button, 'Verbinden', '#4f46e5', $author$project$Main$Connect),
+							A3($author$project$Main$button, '↻', '#0f172a', $author$project$Main$Reload)
 						]))),
 				$author$project$Main$legend(model.hovered)
 			]));
@@ -13581,34 +13598,42 @@ var $author$project$Main$statusView = function (model) {
 		var _v1 = model.status;
 		switch (_v1.$) {
 			case 'NeedConnect':
-				return _Utils_Tuple2('Bereit – auf \'Verbinden\' klicken.', '#4e5b4e');
+				return _Utils_Tuple3('Bereit – auf \'Verbinden\' klicken.', '#64748b', '#f8fafc');
 			case 'Connecting':
-				return _Utils_Tuple2('🔄 Hole Token …', '#995d00');
+				return _Utils_Tuple3('Hole Token …', '#b45309', '#fffbeb');
 			case 'LoadingBounds':
-				return _Utils_Tuple2('🔄 Verbinde & ermittle Datenstruktur …', '#995d00');
+				return _Utils_Tuple3('Verbinde & ermittle Datenstruktur …', '#b45309', '#fffbeb');
 			case 'LoadingRows':
-				return _Utils_Tuple2(
-					'🔄 Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
-					'#995d00');
+				return _Utils_Tuple3(
+					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
+					'#b45309',
+					'#fffbeb');
 			case 'Ready':
-				return _Utils_Tuple2(
-					'✅ ' + ($author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + ' Messpunkte geladen.'))))),
-					'#2f7a3e');
+				return _Utils_Tuple3(
+					$author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
+						$elm$core$List$length(model.rows)) + ' Messpunkte geladen.')))),
+					'#047857',
+					'#ecfdf5');
 			default:
 				var e = _v1.a;
-				return _Utils_Tuple2('❌ ' + e, '#9b1d20');
+				return _Utils_Tuple3(e, '#b91c1c', '#fef2f2');
 		}
 	}();
 	var txt = _v0.a;
 	var col = _v0.b;
+	var bg = _v0.c;
 	return A2(
 		$elm$html$Html$p,
 		_List_fromArray(
 			[
-				A2($elm$html$Html$Attributes$style, 'margin', '10px 2px'),
+				A2($elm$html$Html$Attributes$style, 'margin', '12px 0 0'),
+				A2($elm$html$Html$Attributes$style, 'padding', '8px 14px'),
+				A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
 				A2($elm$html$Html$Attributes$style, 'color', col),
-				A2($elm$html$Html$Attributes$style, 'font-weight', '600')
+				A2($elm$html$Html$Attributes$style, 'background', bg),
+				A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
+				A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
+				A2($elm$html$Html$Attributes$style, 'display', 'inline-block')
 			]),
 		_List_fromArray(
 			[
@@ -13631,27 +13656,47 @@ var $author$project$Main$view = function (model) {
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				A2($elm$html$Html$Attributes$style, 'font-family', '\'Avenir Next\',\'Segoe UI\',sans-serif'),
-				A2($elm$html$Html$Attributes$style, 'color', '#1f2a1f')
+				A2($elm$html$Html$Attributes$style, 'font-family', '-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif'),
+				A2($elm$html$Html$Attributes$style, 'color', '#0f172a')
 			]),
 		_List_fromArray(
 			[
 				A2(
-				$elm$html$Html$h1,
+				$elm$html$Html$p,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'margin', '0 0 4px')
+						A2($elm$html$Html$Attributes$style, 'margin', '0 0 6px'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
+						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
+						A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.08em'),
+						A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
+						A2($elm$html$Html$Attributes$style, 'color', '#4f46e5')
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text('EnergyCharts – Visual Analytics')
+						$elm$html$Html$text('Visual Analytics')
+					])),
+				A2(
+				$elm$html$Html$h1,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'margin', '0 0 6px'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '28px'),
+						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
+						A2($elm$html$Html$Attributes$style, 'letter-spacing', '-0.02em')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('EnergyCharts')
 					])),
 				A2(
 				$elm$html$Html$p,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'margin', '0 0 14px'),
-						A2($elm$html$Html$Attributes$style, 'color', '#4e5b4e')
+						A2($elm$html$Html$Attributes$style, 'margin', '0 0 20px'),
+						A2($elm$html$Html$Attributes$style, 'color', '#64748b'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '14.5px'),
+						A2($elm$html$Html$Attributes$style, 'max-width', '62ch')
 					]),
 				_List_fromArray(
 					[
@@ -13663,14 +13708,24 @@ var $author$project$Main$view = function (model) {
 				$elm$html$Html$p,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'color', '#4e5b4e'),
-						A2($elm$html$Html$Attributes$style, 'margin-top', '18px')
+						A2($elm$html$Html$Attributes$style, 'color', '#64748b'),
+						A2($elm$html$Html$Attributes$style, 'margin-top', '20px'),
+						A2($elm$html$Html$Attributes$style, 'font-size', '14px')
 					]),
 				_List_fromArray(
 					[
 						$elm$html$Html$text(
 						$author$project$Main$emptyHint(model))
-					])) : A2($author$project$Main$chartsView, model, sortedRows)
+					])) : A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						A2($elm$html$Html$Attributes$style, 'margin-top', '20px')
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Main$chartsView, model, sortedRows)
+					]))
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
