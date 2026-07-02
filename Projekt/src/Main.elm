@@ -266,18 +266,47 @@ view model =
                 |> List.filter (\r -> Energy.totalGeneration r > 0 || r.load > 0)
                 |> List.sortBy .unixSeconds
     in
-    Html.div [ HA.style "font-family" "'Avenir Next','Segoe UI',sans-serif", HA.style "color" "#1f2a1f" ]
-        [ Html.h1 [ HA.style "margin" "0 0 4px" ] [ Html.text "EnergyCharts – Visual Analytics" ]
-        , Html.p [ HA.style "margin" "0 0 14px", HA.style "color" "#4e5b4e" ]
-            [ Html.text "Stromerzeugung in Europa und einzelnen Ländern: Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile – drei verbundene Sichten." ]
-        , controlPanel model
+    Html.div []
+        [ appHeader model
+        , Html.p [ HA.class "lead" ]
+            [ Html.text "Stromerzeugung in Europa und einzelnen Ländern – Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile in drei verbundenen Sichten. Eine Abfrage, drei Perspektiven auf dasselbe Stromsystem." ]
+        , toolbar model
         , statusView model
         , if List.isEmpty sortedRows then
-            Html.p [ HA.style "color" "#4e5b4e", HA.style "margin-top" "18px" ]
-                [ Html.text (emptyHint model) ]
+            emptyView model
 
           else
             chartsView model sortedRows
+        ]
+
+
+appHeader : Model -> Html Msg
+appHeader model =
+    Html.header [ HA.class "app-header" ]
+        [ Html.div [ HA.class "brand" ]
+            [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
+            , Html.div [ HA.class "brand-text" ]
+                [ Html.div [ HA.class "brand-title" ]
+                    [ Html.text "EnergyCharts "
+                    , Html.span [ HA.class "accent" ] [ Html.text "Visual Analytics" ]
+                    ]
+                , Html.div [ HA.class "brand-sub" ]
+                    [ Html.text "Europas Stromsystem verstehen · drei verbundene Sichten" ]
+                ]
+            ]
+        , Html.div [ HA.class "header-actions" ]
+            [ Html.input
+                [ HA.class "text-input"
+                , HA.placeholder "Token (optional – sonst Proxy)"
+                , HA.value model.tokenInput
+                , HE.onInput TokenInput
+                ]
+                []
+            , Html.button [ HA.class "btn btn-primary", HE.onClick Connect ]
+                [ Html.text "🔗 Verbinden" ]
+            , Html.button [ HA.class "btn btn-ghost btn-icon", HE.onClick Reload, HA.title "Aktuelle Auswahl neu laden" ]
+                [ Html.text "↻" ]
+            ]
         ]
 
 
@@ -285,119 +314,95 @@ emptyHint : Model -> String
 emptyHint model =
     case model.status of
         Ready ->
-            "Keine Daten für " ++ countryLabel model.country ++ " im gewählten Zeitfenster (in dieser DB evtl. nur Platzhalter – anderes Land wählen)."
+            "Keine Daten für " ++ countryLabel model.country ++ " im gewählten Zeitfenster – in dieser Entwicklungs-DB enthält das Land evtl. nur Platzhalter. Bitte ein anderes Land wählen."
 
         _ ->
-            "Noch keine Daten geladen – bitte auf 'Verbinden' klicken."
+            "Noch keine Daten geladen – bitte oben rechts auf „Verbinden“ klicken."
 
 
-controlPanel : Model -> Html Msg
-controlPanel model =
-    Html.div
-        [ HA.style "display" "flex"
-        , HA.style "flex-wrap" "wrap"
-        , HA.style "gap" "16px"
-        , HA.style "align-items" "flex-end"
-        , HA.style "padding" "12px 14px"
-        , HA.style "border" "1px solid rgba(31,42,31,0.18)"
-        , HA.style "border-radius" "12px"
-        , HA.style "background" "rgba(255,255,255,0.7)"
+emptyView : Model -> Html Msg
+emptyView model =
+    Html.div [ HA.class "empty" ]
+        [ Html.span [ HA.class "empty-emoji" ] [ Html.text "📭" ]
+        , Html.span [] [ Html.text (emptyHint model) ]
         ]
-        [ field "Land"
-            (Html.select [ HE.onInput SelectCountry, selectStyle, HA.value model.country ]
+
+
+toolbar : Model -> Html Msg
+toolbar model =
+    Html.div [ HA.class "toolbar" ]
+        [ control "Land"
+            (Html.select [ HA.class "select", HE.onInput SelectCountry, HA.value model.country ]
                 (List.map (countryOption model.country) countries)
             )
-        , field "Zeitfenster"
-            (Html.div [ HA.style "display" "flex", HA.style "gap" "6px" ]
+        , control "Zeitfenster"
+            (Html.div [ HA.class "segmented" ]
                 (List.map (windowButton model.windowDays) [ 7, 14, 30 ])
             )
-        , field "Heatmap-Metrik"
-            (Html.select [ HE.onInput (SelectMetric << metricFromString), selectStyle, HA.value (metricKey model.metric) ]
+        , control "Heatmap-Metrik"
+            (Html.select [ HA.class "select", HE.onInput (SelectMetric << metricFromString), HA.value (metricKey model.metric) ]
                 (List.map (metricOption model.metric) [ SolarShare, RenewableShare, LoadMetric ])
             )
-        , field "Verbindung"
-            (Html.div [ HA.style "display" "flex", HA.style "gap" "6px" ]
-                [ Html.input
-                    [ HA.placeholder "Token optional (sonst Proxy)"
-                    , HA.value model.tokenInput
-                    , HE.onInput TokenInput
-                    , HA.style "height" "34px"
-                    , HA.style "width" "180px"
-                    , HA.style "padding" "0 8px"
-                    , HA.style "border-radius" "8px"
-                    , HA.style "border" "1px solid #7e8e7e"
-                    ]
-                    []
-                , button "🔗 Verbinden" "#226f7a" Connect
-                , button "↻" "#1f2a1f" Reload
-                ]
-            )
-        , legend model.hovered
         ]
 
 
-field : String -> Html Msg -> Html Msg
-field labelText child =
-    Html.label [ HA.style "display" "grid", HA.style "gap" "5px" ]
-        [ Html.span [ HA.style "font-size" "12px", HA.style "font-weight" "600", HA.style "color" "#4e5b4e" ]
-            [ Html.text labelText ]
+control : String -> Html Msg -> Html Msg
+control labelText child =
+    Html.label [ HA.class "control" ]
+        [ Html.span [ HA.class "control-label" ] [ Html.text labelText ]
         , child
         ]
-
-
-selectStyle : Html.Attribute Msg
-selectStyle =
-    HA.style "height" "34px"
-
-
-button : String -> String -> Msg -> Html Msg
-button label bg msg =
-    Html.button
-        [ HE.onClick msg
-        , HA.style "height" "34px"
-        , HA.style "padding" "0 12px"
-        , HA.style "background" bg
-        , HA.style "color" "white"
-        , HA.style "border" "none"
-        , HA.style "border-radius" "8px"
-        , HA.style "cursor" "pointer"
-        , HA.style "font-weight" "600"
-        ]
-        [ Html.text label ]
 
 
 windowButton : Int -> Int -> Html Msg
 windowButton current d =
     Html.button
-        [ HE.onClick (SelectWindow d)
-        , HA.style "height" "34px"
-        , HA.style "padding" "0 12px"
-        , HA.style "border-radius" "8px"
-        , HA.style "cursor" "pointer"
-        , HA.style "font-weight" "600"
-        , HA.style "border" "1px solid #6f8f5e"
-        , HA.style "background"
-            (if current == d then
-                "#6f8f5e"
-
-             else
-                "white"
-            )
-        , HA.style "color"
-            (if current == d then
-                "white"
-
-             else
-                "#1f2a1f"
-            )
+        [ HA.classList [ ( "seg-btn", True ), ( "is-active", current == d ) ]
+        , HE.onClick (SelectWindow d)
         ]
-        [ Html.text (String.fromInt d ++ " T") ]
+        [ Html.text (String.fromInt d ++ " Tage") ]
+
+
+statusView : Model -> Html Msg
+statusView model =
+    let
+        ( txt, cls ) =
+            case model.status of
+                NeedConnect ->
+                    ( "Bereit – auf „Verbinden“ klicken, um Daten zu laden.", "is-idle" )
+
+                Connecting ->
+                    ( "Hole Zugriffs-Token …", "is-loading" )
+
+                LoadingBounds ->
+                    ( "Verbinde und ermittle Datenstruktur …", "is-loading" )
+
+                LoadingRows ->
+                    ( "Lade " ++ countryLabel model.country ++ " …", "is-loading" )
+
+                Ready ->
+                    ( countryLabel model.country
+                        ++ " · "
+                        ++ String.fromInt model.windowDays
+                        ++ " Tage · "
+                        ++ String.fromInt (List.length model.rows)
+                        ++ " Messpunkte geladen"
+                    , "is-ready"
+                    )
+
+                Failed e ->
+                    ( e, "is-error" )
+    in
+    Html.div [ HA.class ("statusbar " ++ cls) ]
+        [ Html.span [ HA.class "dot" ] []
+        , Html.span [] [ Html.text txt ]
+        ]
 
 
 legend : Maybe String -> Html Msg
 legend hovered =
-    Html.div [ HA.style "display" "flex", HA.style "flex-wrap" "wrap", HA.style "gap" "8px", HA.style "align-items" "center" ]
-        (Html.span [ HA.style "font-size" "12px", HA.style "font-weight" "600", HA.style "color" "#4e5b4e" ] [ Html.text "Quellen:" ]
+    Html.div [ HA.class "legend" ]
+        (Html.span [ HA.class "legend-title" ] [ Html.text "Quellen" ]
             :: List.map (legendChip hovered) Energy.bands
         )
 
@@ -405,78 +410,27 @@ legend hovered =
 legendChip : Maybe String -> Energy.Band -> Html Msg
 legendChip hovered band =
     let
-        active =
-            hovered == Nothing || hovered == Just band.name
+        dim =
+            case hovered of
+                Nothing ->
+                    False
+
+                Just h ->
+                    h /= band.name
     in
     Html.span
-        [ HE.onMouseOver (HoverSource (Just band.name))
+        [ HA.classList [ ( "chip", True ), ( "is-dim", dim ) ]
+        , HE.onMouseOver (HoverSource (Just band.name))
         , HE.onMouseOut (HoverSource Nothing)
-        , HA.style "display" "inline-flex"
-        , HA.style "align-items" "center"
-        , HA.style "gap" "5px"
-        , HA.style "padding" "2px 7px"
-        , HA.style "border-radius" "20px"
-        , HA.style "cursor" "default"
-        , HA.style "font-size" "12px"
-        , HA.style "background" "rgba(255,255,255,0.6)"
-        , HA.style "border" "1px solid rgba(31,42,31,0.12)"
-        , HA.style "opacity"
-            (if active then
-                "1"
-
-             else
-                "0.35"
-            )
         ]
-        [ Html.span
-            [ HA.style "width" "12px"
-            , HA.style "height" "12px"
-            , HA.style "border-radius" "3px"
-            , HA.style "background" (Color.toCssString band.color)
-            ]
-            []
+        [ Html.span [ HA.class "swatch", HA.style "background" (Color.toCssString band.color) ] []
         , Html.text band.name
         ]
-
-
-statusView : Model -> Html Msg
-statusView model =
-    let
-        ( txt, col ) =
-            case model.status of
-                NeedConnect ->
-                    ( "Bereit – auf 'Verbinden' klicken.", "#4e5b4e" )
-
-                Connecting ->
-                    ( "🔄 Hole Token …", "#995d00" )
-
-                LoadingBounds ->
-                    ( "🔄 Verbinde & ermittle Datenstruktur …", "#995d00" )
-
-                LoadingRows ->
-                    ( "🔄 Lade " ++ countryLabel model.country ++ " …", "#995d00" )
-
-                Ready ->
-                    ( "✅ " ++ countryLabel model.country ++ " · " ++ String.fromInt model.windowDays ++ " Tage · " ++ String.fromInt (List.length model.rows) ++ " Messpunkte geladen.", "#2f7a3e" )
-
-                Failed e ->
-                    ( "❌ " ++ e, "#9b1d20" )
-    in
-    Html.p [ HA.style "margin" "10px 2px", HA.style "color" col, HA.style "font-weight" "600" ]
-        [ Html.text txt ]
 
 
 chartsView : Model -> List Row -> Html Msg
 chartsView model sortedRows =
     let
-        focusNote =
-            case model.focusedDay of
-                Just d ->
-                    " · Fokus: " ++ Energy.dayLabel d ++ " (Klick zum Aufheben)"
-
-                Nothing ->
-                    ""
-
         heatCells =
             Energy.binHourly model.metric sortedRows
 
@@ -487,64 +441,79 @@ chartsView model sortedRows =
 
                 Nothing ->
                     sortedRows
+
+        focusNote =
+            case model.focusedDay of
+                Just d ->
+                    Just (" · Fokus auf " ++ Energy.dayLabel d ++ " (erneut klicken zum Aufheben)")
+
+                Nothing ->
+                    Nothing
     in
     Html.div []
-        [ chartCard "1 · Erzeugungsmix & Last (Zeitreihe)"
-            ("Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Wo die Stapelhöhe die Last erreicht, ist der Bedarf gedeckt." ++ focusNote)
-            (StackedArea.view
-                { width = 940
-                , height = 320
-                , rows = sortedRows
-                , hovered = model.hovered
-                , focusedDay = model.focusedDay
-                , onHover = HoverSource
-                }
-            )
-        , Html.div
-            [ HA.style "display" "grid"
-            , HA.style "grid-template-columns" "repeat(auto-fit, minmax(360px, 1fr))"
-            , HA.style "gap" "14px"
-            , HA.style "margin-top" "14px"
-            ]
-            [ chartCard ("2 · " ++ Energy.metricLabel model.metric ++ " nach Stunde & Tag (Pixel-Heatmap)")
-                "Jede Zelle = ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen Sichten."
-                (Heatmap.view
-                    { width = 560
-                    , height = 320
-                    , cells = heatCells
-                    , extent = Energy.heatExtent heatCells
-                    , unit = Energy.metricUnit model.metric
-                    , interpolator = Energy.metricInterpolator model.metric
-                    , focusedDay = model.focusedDay
-                    , onClickDay = ClickDay
-                    }
-                )
-            , chartCard "3 · Erzeugungsstruktur (Treemap)"
-                "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar/Konventionell."
-                (Treemap.view
-                    { width = 560
-                    , height = 320
-                    , sums = Energy.sumByBand treemapRows
+        [ legend model.hovered
+        , Html.div [ HA.class "chart-stack" ]
+            [ chartCard "1" "Erzeugungsmix & Last im Zeitverlauf"
+                "Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt."
+                focusNote
+                (StackedArea.view
+                    { width = 960
+                    , height = 340
+                    , rows = sortedRows
                     , hovered = model.hovered
+                    , focusedDay = model.focusedDay
                     , onHover = HoverSource
                     }
                 )
+            , Html.div [ HA.class "chart-grid" ]
+                [ chartCard "2" (Energy.metricLabel model.metric ++ " nach Stunde & Tag")
+                    "Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten."
+                    Nothing
+                    (Heatmap.view
+                        { width = 560
+                        , height = 340
+                        , cells = heatCells
+                        , extent = Energy.heatExtent heatCells
+                        , unit = Energy.metricUnit model.metric
+                        , interpolator = Energy.metricInterpolator model.metric
+                        , focusedDay = model.focusedDay
+                        , onClickDay = ClickDay
+                        }
+                    )
+                , chartCard "3" "Erzeugungsstruktur"
+                    "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell."
+                    Nothing
+                    (Treemap.view
+                        { width = 560
+                        , height = 340
+                        , sums = Energy.sumByBand treemapRows
+                        , hovered = model.hovered
+                        , onHover = HoverSource
+                        }
+                    )
+                ]
             ]
         ]
 
 
-chartCard : String -> String -> Html Msg -> Html Msg
-chartCard title insight chart =
-    Html.section
-        [ HA.style "padding" "12px 14px"
-        , HA.style "border" "1px solid rgba(31,42,31,0.18)"
-        , HA.style "border-radius" "12px"
-        , HA.style "background" "rgba(255,255,255,0.78)"
-        ]
-        [ Html.h3 [ HA.style "margin" "2px 0 2px" ] [ Html.text title ]
-        , Html.p [ HA.style "margin" "0 0 8px", HA.style "font-size" "12.5px", HA.style "color" "#4e5b4e" ]
-            [ Html.text insight ]
-        , Html.div [ HA.style "overflow" "hidden" ] [ chart ]
+chartCard : String -> String -> String -> Maybe String -> Html Msg -> Html Msg
+chartCard index title sub focusNote chart =
+    Html.section [ HA.class "card" ]
+        [ Html.div [ HA.class "card-head" ]
+            [ Html.span [ HA.class "card-index" ] [ Html.text index ]
+            , Html.h3 [ HA.class "card-title" ] [ Html.text title ]
+            ]
+        , Html.p [ HA.class "card-sub" ]
+            (Html.text sub
+                :: (case focusNote of
+                        Just n ->
+                            [ Html.span [ HA.class "focus-note" ] [ Html.text n ] ]
+
+                        Nothing ->
+                            []
+                   )
+            )
+        , Html.div [ HA.class "card-body" ] [ chart ]
         ]
 
 

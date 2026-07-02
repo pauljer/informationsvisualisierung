@@ -135,11 +135,11 @@ view cfg =
                 |> List.map
                     (\h ->
                         text_
-                            [ InPx.x -6
+                            [ InPx.x -8
                             , InPx.y (toFloat h * cellH + 4)
                             , TA.textAnchor AnchorEnd
-                            , InPx.fontSize 9
-                            , TA.fill (Paint (Color.rgb255 90 90 90))
+                            , InPx.fontSize 11
+                            , TA.fill (Paint (Color.rgb255 71 85 105))
                             ]
                             [ TypedSvg.Core.text (String.fromInt h ++ "h") ]
                     )
@@ -156,10 +156,10 @@ view cfg =
                             Just
                                 (text_
                                     [ InPx.x (toFloat i * cellW + cellW / 2)
-                                    , InPx.y (plotH + 12)
+                                    , InPx.y (plotH + 14)
                                     , TA.textAnchor AnchorMiddle
-                                    , InPx.fontSize 9
-                                    , TA.fill (Paint (Color.rgb255 90 90 90))
+                                    , InPx.fontSize 11
+                                    , TA.fill (Paint (Color.rgb255 71 85 105))
                                     ]
                                     [ TypedSvg.Core.text (Energy.dayLabel d) ]
                                 )

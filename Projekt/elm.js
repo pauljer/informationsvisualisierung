@@ -6877,6 +6877,184 @@ var $author$project$Main$update = F2(
 				return $author$project$Main$loadCurrent(model);
 		}
 	});
+var $author$project$Main$Connect = {$: 'Connect'};
+var $author$project$Main$Reload = {$: 'Reload'};
+var $author$project$Main$TokenInput = function (a) {
+	return {$: 'TokenInput', a: a};
+};
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$header = _VirtualDom_node('header');
+var $elm$html$Html$input = _VirtualDom_node('input');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var $elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$html$Html$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$elm$html$Html$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+};
+var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
+var $elm$html$Html$span = _VirtualDom_node('span');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $author$project$Main$appHeader = function (model) {
+	return A2(
+		$elm$html$Html$header,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('app-header')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('brand')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('brand-mark')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('⚡')
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('brand-text')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('brand-title')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('EnergyCharts '),
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('accent')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Visual Analytics')
+											]))
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('brand-sub')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Europas Stromsystem verstehen · drei verbundene Sichten')
+									]))
+							]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('header-actions')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$input,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('text-input'),
+								$elm$html$Html$Attributes$placeholder('Token (optional – sonst Proxy)'),
+								$elm$html$Html$Attributes$value(model.tokenInput),
+								$elm$html$Html$Events$onInput($author$project$Main$TokenInput)
+							]),
+						_List_Nil),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn btn-primary'),
+								$elm$html$Html$Events$onClick($author$project$Main$Connect)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('🔗 Verbinden')
+							])),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn btn-ghost btn-icon'),
+								$elm$html$Html$Events$onClick($author$project$Main$Reload),
+								$elm$html$Html$Attributes$title('Aktuelle Auswahl neu laden')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('↻')
+							]))
+					]))
+			]));
+};
 var $author$project$Main$ClickDay = function (a) {
 	return {$: 'ClickDay', a: a};
 };
@@ -7057,58 +7235,82 @@ var $author$project$Energy$binHourly = F2(
 			$elm$core$Dict$toList(
 				A3($elm$core$List$foldl, step, $elm$core$Dict$empty, rows)));
 	});
-var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$html$Html$section = _VirtualDom_node('section');
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $author$project$Main$chartCard = F3(
-	function (title, insight, chart) {
+var $author$project$Main$chartCard = F5(
+	function (index, title, sub, focusNote, chart) {
 		return A2(
 			$elm$html$Html$section,
 			_List_fromArray(
 				[
-					A2($elm$html$Html$Attributes$style, 'padding', '16px 18px'),
-					A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '14px'),
-					A2($elm$html$Html$Attributes$style, 'background', '#ffffff'),
-					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 1px 2px rgba(15,23,42,0.04)')
+					$elm$html$Html$Attributes$class('card')
 				]),
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$h3,
+					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'margin', '0 0 4px'),
-							A2($elm$html$Html$Attributes$style, 'font-size', '15px'),
-							A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
-							A2($elm$html$Html$Attributes$style, 'letter-spacing', '-0.01em')
+							$elm$html$Html$Attributes$class('card-head')
 						]),
 					_List_fromArray(
 						[
-							$elm$html$Html$text(title)
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('card-index')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(index)
+								])),
+							A2(
+							$elm$html$Html$h3,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('card-title')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(title)
+								]))
 						])),
 					A2(
 					$elm$html$Html$p,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'margin', '0 0 10px'),
-							A2($elm$html$Html$Attributes$style, 'font-size', '12.5px'),
-							A2($elm$html$Html$Attributes$style, 'color', '#64748b')
+							$elm$html$Html$Attributes$class('card-sub')
 						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(insight)
-						])),
+					A2(
+						$elm$core$List$cons,
+						$elm$html$Html$text(sub),
+						function () {
+							if (focusNote.$ === 'Just') {
+								var n = focusNote.a;
+								return _List_fromArray(
+									[
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('focus-note')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text(n)
+											]))
+									]);
+							} else {
+								return _List_Nil;
+							}
+						}())),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'overflow', 'hidden')
+							$elm$html$Html$Attributes$class('card-body')
 						]),
 					_List_fromArray(
 						[chart]))
@@ -7302,6 +7504,133 @@ var $author$project$Energy$heatExtent = function (cells) {
 			$elm$core$Maybe$withDefault,
 			1,
 			$elm$core$List$maximum(vals)));
+};
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $elm$html$Html$Attributes$classList = function (classes) {
+	return $elm$html$Html$Attributes$class(
+		A2(
+			$elm$core$String$join,
+			' ',
+			A2(
+				$elm$core$List$map,
+				$elm$core$Tuple$first,
+				A2($elm$core$List$filter, $elm$core$Tuple$second, classes))));
+};
+var $elm$html$Html$Events$onMouseOut = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseout',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$onMouseOver = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseover',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $avh4$elm_color$Color$toCssString = function (_v0) {
+	var r = _v0.a;
+	var g = _v0.b;
+	var b = _v0.c;
+	var a = _v0.d;
+	var roundTo = function (x) {
+		return $elm$core$Basics$round(x * 1000) / 1000;
+	};
+	var pct = function (x) {
+		return $elm$core$Basics$round(x * 10000) / 100;
+	};
+	return $elm$core$String$concat(
+		_List_fromArray(
+			[
+				'rgba(',
+				$elm$core$String$fromFloat(
+				pct(r)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(g)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(b)),
+				'%,',
+				$elm$core$String$fromFloat(
+				roundTo(a)),
+				')'
+			]));
+};
+var $author$project$Main$legendChip = F2(
+	function (hovered, band) {
+		var dim = function () {
+			if (hovered.$ === 'Nothing') {
+				return false;
+			} else {
+				var h = hovered.a;
+				return !_Utils_eq(h, band.name);
+			}
+		}();
+		return A2(
+			$elm$html$Html$span,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('chip', true),
+							_Utils_Tuple2('is-dim', dim)
+						])),
+					$elm$html$Html$Events$onMouseOver(
+					$author$project$Main$HoverSource(
+						$elm$core$Maybe$Just(band.name))),
+					$elm$html$Html$Events$onMouseOut(
+					$author$project$Main$HoverSource($elm$core$Maybe$Nothing))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('swatch'),
+							A2(
+							$elm$html$Html$Attributes$style,
+							'background',
+							$avh4$elm_color$Color$toCssString(band.color))
+						]),
+					_List_Nil),
+					$elm$html$Html$text(band.name)
+				]));
+	});
+var $author$project$Main$legend = function (hovered) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('legend')
+			]),
+		A2(
+			$elm$core$List$cons,
+			A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('legend-title')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Quellen')
+					])),
+			A2(
+				$elm$core$List$map,
+				$author$project$Main$legendChip(hovered),
+				$author$project$Energy$bands)));
 };
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
@@ -7928,10 +8257,6 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
 var $gampleman$elm_visualization$Interpolation$piecewise = F3(
 	function (makeInterpolator, head, tail) {
 		var n = $elm$core$List$length(tail);
@@ -8132,39 +8457,6 @@ var $elm$core$Basics$composeL = F3(
 		return g(
 			f(x));
 	});
-var $elm$core$String$concat = function (strings) {
-	return A2($elm$core$String$join, '', strings);
-};
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $avh4$elm_color$Color$toCssString = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	var roundTo = function (x) {
-		return $elm$core$Basics$round(x * 1000) / 1000;
-	};
-	var pct = function (x) {
-		return $elm$core$Basics$round(x * 10000) / 100;
-	};
-	return $elm$core$String$concat(
-		_List_fromArray(
-			[
-				'rgba(',
-				$elm$core$String$fromFloat(
-				pct(r)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(g)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(b)),
-				'%,',
-				$elm$core$String$fromFloat(
-				roundTo(a)),
-				')'
-			]));
-};
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString = function (paint) {
 	switch (paint.$) {
 		case 'Paint':
@@ -8274,10 +8566,6 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) 
 	return $elm_community$typed_svg$TypedSvg$Attributes$height(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
 var $elm_community$typed_svg$TypedSvg$Events$on = $elm$virtual_dom$VirtualDom$on;
 var $elm_community$typed_svg$TypedSvg$Events$simpleOn = function (name) {
 	return function (msg) {
@@ -8560,12 +8848,12 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					_List_fromArray(
 						[
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x((i * cellW) + (cellW / 2)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(plotH + 12),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(plotH + 14),
 							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(9),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
 							$elm_community$typed_svg$TypedSvg$Attributes$fill(
 							$elm_community$typed_svg$TypedSvg$Types$Paint(
-								A3($avh4$elm_color$Color$rgb255, 90, 90, 90)))
+								A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
 						]),
 					_List_fromArray(
 						[
@@ -8612,13 +8900,13 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$text_,
 				_List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(-6),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(-8),
 						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y((h * cellH) + 4),
 						$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorEnd),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(9),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
 						$elm_community$typed_svg$TypedSvg$Attributes$fill(
 						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							A3($avh4$elm_color$Color$rgb255, 90, 90, 90)))
+							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
 					]),
 				_List_fromArray(
 					[
@@ -11979,7 +12267,11 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 						_List_fromArray(
 							[
 								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Chart$StackedArea$pad.left, $author$project$Chart$StackedArea$pad.top + plotH)
-							]))
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint(
+							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
 					]),
 				_List_fromArray(
 					[
@@ -11999,7 +12291,11 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 						_List_fromArray(
 							[
 								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Chart$StackedArea$pad.left, $author$project$Chart$StackedArea$pad.top)
-							]))
+							])),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint(
+							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
 					]),
 				_List_fromArray(
 					[
@@ -12885,12 +13181,12 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 			$elm_community$typed_svg$TypedSvg$text_,
 			_List_fromArray(
 				[
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(item.x + 4),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(item.y + 12),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(item.x + 5),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(item.y + 14),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12),
 					$elm_community$typed_svg$TypedSvg$Attributes$fill(
 					$elm_community$typed_svg$TypedSvg$Types$Paint(
-						A3($avh4$elm_color$Color$rgb255, 40, 40, 40)))
+						A3($avh4$elm_color$Color$rgb255, 51, 65, 85)))
 				]),
 			_List_fromArray(
 				[
@@ -12912,15 +13208,15 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 		}();
 		var pct = (total <= 0) ? 0 : ((node.value / total) * 100);
 		var tip = node.name + (' — ' + (round1(pct) + ' %'));
-		var labelNodes = ((item.width > 46) && (item.height > 22)) ? _List_fromArray(
+		var labelNodes = ((item.width > 52) && (item.height > 26)) ? _List_fromArray(
 			[
 				A2(
 				$elm_community$typed_svg$TypedSvg$text_,
 				_List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(4),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(13),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(6),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(16),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12.5),
 						$elm_community$typed_svg$TypedSvg$Attributes$fill(
 						$elm_community$typed_svg$TypedSvg$Types$Paint(
 							$author$project$Chart$Treemap$textOn(node.color)))
@@ -12933,9 +13229,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$text_,
 				_List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(4),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(26),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(10),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(6),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(31),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
 						$elm_community$typed_svg$TypedSvg$Attributes$fill(
 						$elm_community$typed_svg$TypedSvg$Types$Paint(
 							$author$project$Chart$Treemap$textOn(node.color)))
@@ -13003,9 +13299,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 			[
 				$gampleman$elm_visualization$Hierarchy$tile($gampleman$elm_visualization$Hierarchy$squarify),
 				$gampleman$elm_visualization$Hierarchy$paddingInner(
-				$elm$core$Basics$always(2)),
+				$elm$core$Basics$always(3)),
 				$gampleman$elm_visualization$Hierarchy$paddingTop(
-				$elm$core$Basics$always(16)),
+				$elm$core$Basics$always(21)),
 				$gampleman$elm_visualization$Hierarchy$paddingOuter(
 				$elm$core$Basics$always(1)),
 				A2($gampleman$elm_visualization$Hierarchy$size, cfg.width, cfg.height)
@@ -13090,9 +13386,10 @@ var $author$project$Main$chartsView = F2(
 			var _v0 = model.focusedDay;
 			if (_v0.$ === 'Just') {
 				var d = _v0.a;
-				return ' · Fokus: ' + ($author$project$Energy$dayLabel(d) + ' (Klick zum Aufheben)');
+				return $elm$core$Maybe$Just(
+					' · Fokus auf ' + ($author$project$Energy$dayLabel(d) + ' (erneut klicken zum Aufheben)'));
 			} else {
-				return '';
+				return $elm$core$Maybe$Nothing;
 			}
 		}();
 		return A2(
@@ -13100,101 +13397,64 @@ var $author$project$Main$chartsView = F2(
 			_List_Nil,
 			_List_fromArray(
 				[
-					A3(
-					$author$project$Main$chartCard,
-					'Erzeugungsmix & Last',
-					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Wo die Stapelhöhe die Last erreicht, ist der Bedarf gedeckt.' + focusNote,
-					$author$project$Chart$StackedArea$view(
-						{focusedDay: model.focusedDay, height: 320, hovered: model.hovered, onHover: $author$project$Main$HoverSource, rows: sortedRows, width: 940})),
+					$author$project$Main$legend(model.hovered),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'display', 'grid'),
-							A2($elm$html$Html$Attributes$style, 'grid-template-columns', 'repeat(auto-fit, minmax(360px, 1fr))'),
-							A2($elm$html$Html$Attributes$style, 'gap', '16px'),
-							A2($elm$html$Html$Attributes$style, 'margin-top', '16px')
+							$elm$html$Html$Attributes$class('chart-stack')
 						]),
 					_List_fromArray(
 						[
-							A3(
+							A5(
 							$author$project$Main$chartCard,
-							$author$project$Energy$metricLabel(model.metric) + ' nach Stunde & Tag',
-							'Jede Zelle = ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen Sichten.',
-							$author$project$Chart$Heatmap$view(
-								{
-									cells: heatCells,
-									extent: $author$project$Energy$heatExtent(heatCells),
-									focusedDay: model.focusedDay,
-									height: 320,
-									interpolator: $author$project$Energy$metricInterpolator(model.metric),
-									onClickDay: $author$project$Main$ClickDay,
-									unit: $author$project$Energy$metricUnit(model.metric),
-									width: 560
-								})),
-							A3(
-							$author$project$Main$chartCard,
-							'Erzeugungsstruktur',
-							'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar/Konventionell.',
-							$author$project$Chart$Treemap$view(
-								{
-									height: 320,
-									hovered: model.hovered,
-									onHover: $author$project$Main$HoverSource,
-									sums: $author$project$Energy$sumByBand(treemapRows),
-									width: 560
-								}))
+							'1',
+							'Erzeugungsmix & Last im Zeitverlauf',
+							'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
+							focusNote,
+							$author$project$Chart$StackedArea$view(
+								{focusedDay: model.focusedDay, height: 340, hovered: model.hovered, onHover: $author$project$Main$HoverSource, rows: sortedRows, width: 960})),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('chart-grid')
+								]),
+							_List_fromArray(
+								[
+									A5(
+									$author$project$Main$chartCard,
+									'2',
+									$author$project$Energy$metricLabel(model.metric) + ' nach Stunde & Tag',
+									'Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten.',
+									$elm$core$Maybe$Nothing,
+									$author$project$Chart$Heatmap$view(
+										{
+											cells: heatCells,
+											extent: $author$project$Energy$heatExtent(heatCells),
+											focusedDay: model.focusedDay,
+											height: 340,
+											interpolator: $author$project$Energy$metricInterpolator(model.metric),
+											onClickDay: $author$project$Main$ClickDay,
+											unit: $author$project$Energy$metricUnit(model.metric),
+											width: 560
+										})),
+									A5(
+									$author$project$Main$chartCard,
+									'3',
+									'Erzeugungsstruktur',
+									'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell.',
+									$elm$core$Maybe$Nothing,
+									$author$project$Chart$Treemap$view(
+										{
+											height: 340,
+											hovered: model.hovered,
+											onHover: $author$project$Main$HoverSource,
+											sums: $author$project$Energy$sumByBand(treemapRows),
+											width: 560
+										}))
+								]))
 						]))
-				]));
-	});
-var $author$project$Main$Connect = {$: 'Connect'};
-var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
-var $author$project$Main$Reload = {$: 'Reload'};
-var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
-var $author$project$Main$SelectCountry = function (a) {
-	return {$: 'SelectCountry', a: a};
-};
-var $author$project$Main$SelectMetric = function (a) {
-	return {$: 'SelectMetric', a: a};
-};
-var $author$project$Main$TokenInput = function (a) {
-	return {$: 'TokenInput', a: a};
-};
-var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $author$project$Main$button = F3(
-	function (label, bg, msg) {
-		return A2(
-			$elm$html$Html$button,
-			_List_fromArray(
-				[
-					$elm$html$Html$Events$onClick(msg),
-					A2($elm$html$Html$Attributes$style, 'height', '36px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '0 14px'),
-					A2($elm$html$Html$Attributes$style, 'background', bg),
-					A2($elm$html$Html$Attributes$style, 'color', 'white'),
-					A2($elm$html$Html$Attributes$style, 'border', 'none'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
-					A2($elm$html$Html$Attributes$style, 'cursor', 'pointer'),
-					A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-					A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
-					A2($elm$html$Html$Attributes$style, 'box-shadow', '0 1px 2px rgba(15,23,42,0.12)')
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(label)
 				]));
 	});
 var $author$project$Main$countries = _List_fromArray(
@@ -13211,6 +13471,141 @@ var $author$project$Main$countries = _List_fromArray(
 		_Utils_Tuple2('dk', 'Dänemark'),
 		_Utils_Tuple2('de', 'Deutschland')
 	]);
+var $author$project$Main$countryLabel = function (code) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		$elm$core$String$toUpper(code),
+		A2(
+			$elm$core$Maybe$map,
+			$elm$core$Tuple$second,
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (_v0) {
+						var c = _v0.a;
+						return _Utils_eq(c, code);
+					},
+					$author$project$Main$countries))));
+};
+var $author$project$Main$emptyHint = function (model) {
+	var _v0 = model.status;
+	if (_v0.$ === 'Ready') {
+		return 'Keine Daten für ' + ($author$project$Main$countryLabel(model.country) + ' im gewählten Zeitfenster – in dieser Entwicklungs-DB enthält das Land evtl. nur Platzhalter. Bitte ein anderes Land wählen.');
+	} else {
+		return 'Noch keine Daten geladen – bitte oben rechts auf „Verbinden“ klicken.';
+	}
+};
+var $author$project$Main$emptyView = function (model) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('empty')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('empty-emoji')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('📭')
+					])),
+				A2(
+				$elm$html$Html$span,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(
+						$author$project$Main$emptyHint(model))
+					]))
+			]));
+};
+var $author$project$Main$statusView = function (model) {
+	var _v0 = function () {
+		var _v1 = model.status;
+		switch (_v1.$) {
+			case 'NeedConnect':
+				return _Utils_Tuple2('Bereit – auf „Verbinden“ klicken, um Daten zu laden.', 'is-idle');
+			case 'Connecting':
+				return _Utils_Tuple2('Hole Zugriffs-Token …', 'is-loading');
+			case 'LoadingBounds':
+				return _Utils_Tuple2('Verbinde und ermittle Datenstruktur …', 'is-loading');
+			case 'LoadingRows':
+				return _Utils_Tuple2(
+					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
+					'is-loading');
+			case 'Ready':
+				return _Utils_Tuple2(
+					$author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
+						$elm$core$List$length(model.rows)) + ' Messpunkte geladen')))),
+					'is-ready');
+			default:
+				var e = _v1.a;
+				return _Utils_Tuple2(e, 'is-error');
+		}
+	}();
+	var txt = _v0.a;
+	var cls = _v0.b;
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('statusbar ' + cls)
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('dot')
+					]),
+				_List_Nil),
+				A2(
+				$elm$html$Html$span,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(txt)
+					]))
+			]));
+};
+var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
+var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
+var $author$project$Main$SelectCountry = function (a) {
+	return {$: 'SelectCountry', a: a};
+};
+var $author$project$Main$SelectMetric = function (a) {
+	return {$: 'SelectMetric', a: a};
+};
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $author$project$Main$control = F2(
+	function (labelText, child) {
+		return A2(
+			$elm$html$Html$label,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('control')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('control-label')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(labelText)
+						])),
+					child
+				]));
+	});
 var $elm$html$Html$option = _VirtualDom_node('option');
 var $elm$json$Json$Encode$bool = _Json_wrap;
 var $elm$html$Html$Attributes$boolProperty = F2(
@@ -13221,14 +13616,6 @@ var $elm$html$Html$Attributes$boolProperty = F2(
 			$elm$json$Json$Encode$bool(bool));
 	});
 var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
-	});
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$countryOption = F2(
 	function (current, _v0) {
 		var code = _v0.a;
@@ -13246,128 +13633,6 @@ var $author$project$Main$countryOption = F2(
 					$elm$html$Html$text(name)
 				]));
 	});
-var $elm$html$Html$label = _VirtualDom_node('label');
-var $elm$html$Html$span = _VirtualDom_node('span');
-var $author$project$Main$field = F2(
-	function (labelText, child) {
-		return A2(
-			$elm$html$Html$label,
-			_List_fromArray(
-				[
-					A2($elm$html$Html$Attributes$style, 'display', 'grid'),
-					A2($elm$html$Html$Attributes$style, 'gap', '6px')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							A2($elm$html$Html$Attributes$style, 'font-size', '11.5px'),
-							A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
-							A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.03em'),
-							A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
-							A2($elm$html$Html$Attributes$style, 'color', '#64748b')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(labelText)
-						])),
-					child
-				]));
-	});
-var $elm$html$Html$input = _VirtualDom_node('input');
-var $elm$html$Html$Events$onMouseOut = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'mouseout',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$html$Html$Events$onMouseOver = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'mouseover',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $author$project$Main$legendChip = F2(
-	function (hovered, band) {
-		var active = _Utils_eq(hovered, $elm$core$Maybe$Nothing) || _Utils_eq(
-			hovered,
-			$elm$core$Maybe$Just(band.name));
-		return A2(
-			$elm$html$Html$span,
-			_List_fromArray(
-				[
-					$elm$html$Html$Events$onMouseOver(
-					$author$project$Main$HoverSource(
-						$elm$core$Maybe$Just(band.name))),
-					$elm$html$Html$Events$onMouseOut(
-					$author$project$Main$HoverSource($elm$core$Maybe$Nothing)),
-					A2($elm$html$Html$Attributes$style, 'display', 'inline-flex'),
-					A2($elm$html$Html$Attributes$style, 'align-items', 'center'),
-					A2($elm$html$Html$Attributes$style, 'gap', '5px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '3px 9px'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '999px'),
-					A2($elm$html$Html$Attributes$style, 'cursor', 'default'),
-					A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
-					A2($elm$html$Html$Attributes$style, 'font-weight', '500'),
-					A2($elm$html$Html$Attributes$style, 'background', 'white'),
-					A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
-					A2($elm$html$Html$Attributes$style, 'transition', 'opacity 120ms ease'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'opacity',
-					active ? '1' : '0.35')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							A2($elm$html$Html$Attributes$style, 'width', '12px'),
-							A2($elm$html$Html$Attributes$style, 'height', '12px'),
-							A2($elm$html$Html$Attributes$style, 'border-radius', '3px'),
-							A2(
-							$elm$html$Html$Attributes$style,
-							'background',
-							$avh4$elm_color$Color$toCssString(band.color))
-						]),
-					_List_Nil),
-					$elm$html$Html$text(band.name)
-				]));
-	});
-var $author$project$Main$legend = function (hovered) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-				A2($elm$html$Html$Attributes$style, 'flex-wrap', 'wrap'),
-				A2($elm$html$Html$Attributes$style, 'gap', '8px'),
-				A2($elm$html$Html$Attributes$style, 'align-items', 'center')
-			]),
-		A2(
-			$elm$core$List$cons,
-			A2(
-				$elm$html$Html$span,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'font-size', '11.5px'),
-						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
-						A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.03em'),
-						A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
-						A2($elm$html$Html$Attributes$style, 'color', '#64748b')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Quellen')
-					])),
-			A2(
-				$elm$core$List$map,
-				$author$project$Main$legendChip(hovered),
-				$author$project$Energy$bands)));
-};
 var $author$project$Main$metricFromString = function (s) {
 	switch (s) {
 		case 'ee':
@@ -13405,36 +13670,7 @@ var $author$project$Main$metricOption = F2(
 					$author$project$Energy$metricLabel(m))
 				]));
 	});
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
-};
-var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$html$Html$select = _VirtualDom_node('select');
-var $author$project$Main$selectStyle = A2($elm$html$Html$Attributes$style, 'height', '36px');
 var $author$project$Main$SelectWindow = function (a) {
 	return {$: 'SelectWindow', a: a};
 };
@@ -13444,58 +13680,41 @@ var $author$project$Main$windowButton = F2(
 			$elm$html$Html$button,
 			_List_fromArray(
 				[
+					$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('seg-btn', true),
+							_Utils_Tuple2(
+							'is-active',
+							_Utils_eq(current, d))
+						])),
 					$elm$html$Html$Events$onClick(
-					$author$project$Main$SelectWindow(d)),
-					A2($elm$html$Html$Attributes$style, 'height', '36px'),
-					A2($elm$html$Html$Attributes$style, 'padding', '0 14px'),
-					A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
-					A2($elm$html$Html$Attributes$style, 'cursor', 'pointer'),
-					A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-					A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'border',
-					_Utils_eq(current, d) ? '1px solid #4f46e5' : '1px solid #e2e8f0'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'background',
-					_Utils_eq(current, d) ? '#4f46e5' : 'white'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'color',
-					_Utils_eq(current, d) ? 'white' : '#0f172a')
+					$author$project$Main$SelectWindow(d))
 				]),
 			_List_fromArray(
 				[
 					$elm$html$Html$text(
-					$elm$core$String$fromInt(d) + ' T')
+					$elm$core$String$fromInt(d) + ' Tage')
 				]));
 	});
-var $author$project$Main$controlPanel = function (model) {
+var $author$project$Main$toolbar = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-				A2($elm$html$Html$Attributes$style, 'flex-wrap', 'wrap'),
-				A2($elm$html$Html$Attributes$style, 'gap', '18px'),
-				A2($elm$html$Html$Attributes$style, 'align-items', 'flex-end'),
-				A2($elm$html$Html$Attributes$style, 'padding', '16px 18px'),
-				A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
-				A2($elm$html$Html$Attributes$style, 'border-radius', '14px'),
-				A2($elm$html$Html$Attributes$style, 'background', '#f8fafc')
+				$elm$html$Html$Attributes$class('toolbar')
 			]),
 		_List_fromArray(
 			[
 				A2(
-				$author$project$Main$field,
+				$author$project$Main$control,
 				'Land',
 				A2(
 					$elm$html$Html$select,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('select'),
 							$elm$html$Html$Events$onInput($author$project$Main$SelectCountry),
-							$author$project$Main$selectStyle,
 							$elm$html$Html$Attributes$value(model.country)
 						]),
 					A2(
@@ -13503,14 +13722,13 @@ var $author$project$Main$controlPanel = function (model) {
 						$author$project$Main$countryOption(model.country),
 						$author$project$Main$countries))),
 				A2(
-				$author$project$Main$field,
+				$author$project$Main$control,
 				'Zeitfenster',
 				A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-							A2($elm$html$Html$Attributes$style, 'gap', '6px')
+							$elm$html$Html$Attributes$class('segmented')
 						]),
 					A2(
 						$elm$core$List$map,
@@ -13518,15 +13736,15 @@ var $author$project$Main$controlPanel = function (model) {
 						_List_fromArray(
 							[7, 14, 30])))),
 				A2(
-				$author$project$Main$field,
+				$author$project$Main$control,
 				'Heatmap-Metrik',
 				A2(
 					$elm$html$Html$select,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('select'),
 							$elm$html$Html$Events$onInput(
 							A2($elm$core$Basics$composeL, $author$project$Main$SelectMetric, $author$project$Main$metricFromString)),
-							$author$project$Main$selectStyle,
 							$elm$html$Html$Attributes$value(
 							$author$project$Main$metricKey(model.metric))
 						]),
@@ -13534,110 +13752,7 @@ var $author$project$Main$controlPanel = function (model) {
 						$elm$core$List$map,
 						$author$project$Main$metricOption(model.metric),
 						_List_fromArray(
-							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric])))),
-				A2(
-				$author$project$Main$field,
-				'Verbindung',
-				A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							A2($elm$html$Html$Attributes$style, 'display', 'flex'),
-							A2($elm$html$Html$Attributes$style, 'gap', '6px')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$input,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$placeholder('Token optional (sonst Proxy)'),
-									$elm$html$Html$Attributes$value(model.tokenInput),
-									$elm$html$Html$Events$onInput($author$project$Main$TokenInput),
-									A2($elm$html$Html$Attributes$style, 'height', '36px'),
-									A2($elm$html$Html$Attributes$style, 'width', '180px'),
-									A2($elm$html$Html$Attributes$style, 'padding', '0 10px'),
-									A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
-									A2($elm$html$Html$Attributes$style, 'border', '1px solid #e2e8f0'),
-									A2($elm$html$Html$Attributes$style, 'font-size', '13.5px')
-								]),
-							_List_Nil),
-							A3($author$project$Main$button, 'Verbinden', '#4f46e5', $author$project$Main$Connect),
-							A3($author$project$Main$button, '↻', '#0f172a', $author$project$Main$Reload)
-						]))),
-				$author$project$Main$legend(model.hovered)
-			]));
-};
-var $author$project$Main$countryLabel = function (code) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		$elm$core$String$toUpper(code),
-		A2(
-			$elm$core$Maybe$map,
-			$elm$core$Tuple$second,
-			$elm$core$List$head(
-				A2(
-					$elm$core$List$filter,
-					function (_v0) {
-						var c = _v0.a;
-						return _Utils_eq(c, code);
-					},
-					$author$project$Main$countries))));
-};
-var $author$project$Main$emptyHint = function (model) {
-	var _v0 = model.status;
-	if (_v0.$ === 'Ready') {
-		return 'Keine Daten für ' + ($author$project$Main$countryLabel(model.country) + ' im gewählten Zeitfenster (in dieser DB evtl. nur Platzhalter – anderes Land wählen).');
-	} else {
-		return 'Noch keine Daten geladen – bitte auf \'Verbinden\' klicken.';
-	}
-};
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $author$project$Main$statusView = function (model) {
-	var _v0 = function () {
-		var _v1 = model.status;
-		switch (_v1.$) {
-			case 'NeedConnect':
-				return _Utils_Tuple3('Bereit – auf \'Verbinden\' klicken.', '#64748b', '#f8fafc');
-			case 'Connecting':
-				return _Utils_Tuple3('Hole Token …', '#b45309', '#fffbeb');
-			case 'LoadingBounds':
-				return _Utils_Tuple3('Verbinde & ermittle Datenstruktur …', '#b45309', '#fffbeb');
-			case 'LoadingRows':
-				return _Utils_Tuple3(
-					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
-					'#b45309',
-					'#fffbeb');
-			case 'Ready':
-				return _Utils_Tuple3(
-					$author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + ' Messpunkte geladen.')))),
-					'#047857',
-					'#ecfdf5');
-			default:
-				var e = _v1.a;
-				return _Utils_Tuple3(e, '#b91c1c', '#fef2f2');
-		}
-	}();
-	var txt = _v0.a;
-	var col = _v0.b;
-	var bg = _v0.c;
-	return A2(
-		$elm$html$Html$p,
-		_List_fromArray(
-			[
-				A2($elm$html$Html$Attributes$style, 'margin', '12px 0 0'),
-				A2($elm$html$Html$Attributes$style, 'padding', '8px 14px'),
-				A2($elm$html$Html$Attributes$style, 'border-radius', '9px'),
-				A2($elm$html$Html$Attributes$style, 'color', col),
-				A2($elm$html$Html$Attributes$style, 'background', bg),
-				A2($elm$html$Html$Attributes$style, 'font-weight', '600'),
-				A2($elm$html$Html$Attributes$style, 'font-size', '13.5px'),
-				A2($elm$html$Html$Attributes$style, 'display', 'inline-block')
-			]),
-		_List_fromArray(
-			[
-				$elm$html$Html$text(txt)
+							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric]))))
 			]));
 };
 var $author$project$Main$view = function (model) {
@@ -13654,78 +13769,23 @@ var $author$project$Main$view = function (model) {
 			model.rows));
 	return A2(
 		$elm$html$Html$div,
+		_List_Nil,
 		_List_fromArray(
 			[
-				A2($elm$html$Html$Attributes$style, 'font-family', '-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,sans-serif'),
-				A2($elm$html$Html$Attributes$style, 'color', '#0f172a')
-			]),
-		_List_fromArray(
-			[
+				$author$project$Main$appHeader(model),
 				A2(
 				$elm$html$Html$p,
 				_List_fromArray(
 					[
-						A2($elm$html$Html$Attributes$style, 'margin', '0 0 6px'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '12px'),
-						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
-						A2($elm$html$Html$Attributes$style, 'letter-spacing', '0.08em'),
-						A2($elm$html$Html$Attributes$style, 'text-transform', 'uppercase'),
-						A2($elm$html$Html$Attributes$style, 'color', '#4f46e5')
+						$elm$html$Html$Attributes$class('lead')
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Visual Analytics')
+						$elm$html$Html$text('Stromerzeugung in Europa und einzelnen Ländern – Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile in drei verbundenen Sichten. Eine Abfrage, drei Perspektiven auf dasselbe Stromsystem.')
 					])),
-				A2(
-				$elm$html$Html$h1,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'margin', '0 0 6px'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '28px'),
-						A2($elm$html$Html$Attributes$style, 'font-weight', '700'),
-						A2($elm$html$Html$Attributes$style, 'letter-spacing', '-0.02em')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('EnergyCharts')
-					])),
-				A2(
-				$elm$html$Html$p,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'margin', '0 0 20px'),
-						A2($elm$html$Html$Attributes$style, 'color', '#64748b'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '14.5px'),
-						A2($elm$html$Html$Attributes$style, 'max-width', '62ch')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Stromerzeugung in Europa und einzelnen Ländern: Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile – drei verbundene Sichten.')
-					])),
-				$author$project$Main$controlPanel(model),
+				$author$project$Main$toolbar(model),
 				$author$project$Main$statusView(model),
-				$elm$core$List$isEmpty(sortedRows) ? A2(
-				$elm$html$Html$p,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'color', '#64748b'),
-						A2($elm$html$Html$Attributes$style, 'margin-top', '20px'),
-						A2($elm$html$Html$Attributes$style, 'font-size', '14px')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text(
-						$author$project$Main$emptyHint(model))
-					])) : A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						A2($elm$html$Html$Attributes$style, 'margin-top', '20px')
-					]),
-				_List_fromArray(
-					[
-						A2($author$project$Main$chartsView, model, sortedRows)
-					]))
+				$elm$core$List$isEmpty(sortedRows) ? $author$project$Main$emptyView(model) : A2($author$project$Main$chartsView, model, sortedRows)
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(

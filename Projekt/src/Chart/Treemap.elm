@@ -79,8 +79,8 @@ view cfg =
                 |> Tree.sortWith (\_ a b -> compare (Tree.label b).value (Tree.label a).value)
                 |> Hierarchy.treemap
                     [ Hierarchy.tile Hierarchy.squarify
-                    , Hierarchy.paddingInner (always 2)
-                    , Hierarchy.paddingTop (always 16)
+                    , Hierarchy.paddingInner (always 3)
+                    , Hierarchy.paddingTop (always 21)
                     , Hierarchy.paddingOuter (always 1)
                     , Hierarchy.size cfg.width cfg.height
                     ]
@@ -117,18 +117,18 @@ view cfg =
                     node.name ++ " — " ++ round1 pct ++ " %"
 
                 labelNodes =
-                    if item.width > 46 && item.height > 22 then
+                    if item.width > 52 && item.height > 26 then
                         [ text_
-                            [ InPx.x 4
-                            , InPx.y 13
-                            , InPx.fontSize 11
+                            [ InPx.x 6
+                            , InPx.y 16
+                            , InPx.fontSize 12.5
                             , TA.fill (Paint (textOn node.color))
                             ]
                             [ TypedSvg.Core.text node.name ]
                         , text_
-                            [ InPx.x 4
-                            , InPx.y 26
-                            , InPx.fontSize 10
+                            [ InPx.x 6
+                            , InPx.y 31
+                            , InPx.fontSize 11
                             , TA.fill (Paint (textOn node.color))
                             ]
                             [ TypedSvg.Core.text (round1 pct ++ " %") ]
@@ -154,10 +154,10 @@ view cfg =
 
         groupLabel item =
             text_
-                [ InPx.x (item.x + 4)
-                , InPx.y (item.y + 12)
-                , InPx.fontSize 11
-                , TA.fill (Paint (Color.rgb255 40 40 40))
+                [ InPx.x (item.x + 5)
+                , InPx.y (item.y + 14)
+                , InPx.fontSize 12
+                , TA.fill (Paint (Color.rgb255 51 65 85))
                 ]
                 [ TypedSvg.Core.text (item.node.name ++ " · " ++ round1 (groupPct total item.node.value) ++ " %") ]
 

@@ -177,8 +177,16 @@ view cfg =
         , TA.width (TypedSvg.Types.Percent 100)
         ]
         [ g [ transform [ Translate pad.left pad.top ] ] (areas ++ focusRect ++ [ loadLine ])
-        , g [ transform [ Translate pad.left (pad.top + plotH) ] ]
+        , g
+            [ transform [ Translate pad.left (pad.top + plotH) ]
+            , InPx.fontSize 11
+            , TA.fill (Paint (Color.rgb255 71 85 105))
+            ]
             [ Axis.bottom [ Axis.tickCount 6 ] xScale ]
-        , g [ transform [ Translate pad.left pad.top ] ]
+        , g
+            [ transform [ Translate pad.left pad.top ]
+            , InPx.fontSize 11
+            , TA.fill (Paint (Color.rgb255 71 85 105))
+            ]
             [ Axis.left [ Axis.tickCount 5 ] yScale ]
         ]
