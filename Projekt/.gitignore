@@ -1,0 +1,9 @@
+# Elm-Build-Cache
+elm-stuff/
+
+# Node
+node_modules/
+
+# macOS / Editor
+.DS_Store
+*.log
