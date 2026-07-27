@@ -79,9 +79,11 @@ view cfg =
                 |> Tree.sortWith (\_ a b -> compare (Tree.label b).value (Tree.label a).value)
                 |> Hierarchy.treemap
                     [ Hierarchy.tile Hierarchy.squarify
-                    , Hierarchy.paddingInner (always 3)
-                    , Hierarchy.paddingTop (always 21)
-                    , Hierarchy.paddingOuter (always 1)
+                    , Hierarchy.paddingInner (always 4)
+                    , Hierarchy.paddingOuter (always 2)
+                    -- paddingTop MUSS nach paddingOuter stehen: paddingOuter setzt
+                    -- intern auch den oberen Rand und würde ihn sonst überschreiben.
+                    , Hierarchy.paddingTop (\n -> if n.name == "Erzeugung" then 4 else 27)
                     , Hierarchy.size cfg.width cfg.height
                     ]
                     .value
@@ -152,17 +154,34 @@ view cfg =
                     :: labelNodes
                 )
 
-        groupLabel item =
-            text_
-                [ InPx.x (item.x + 5)
-                , InPx.y (item.y + 14)
-                , InPx.fontSize 12
-                , TA.fill (Paint (Color.rgb255 51 65 85))
+        -- Jede Gruppe erhält eine eigene Kopfleiste (Band + Titel), damit der
+        -- Gruppentitel nie mehr über den Kacheln liegt.
+        groupHeader item =
+            let
+                node =
+                    item.node
+            in
+            [ rect
+                [ InPx.x item.x
+                , InPx.y item.y
+                , InPx.width item.width
+                , InPx.height 22
+                , TA.fill (Paint node.color)
                 ]
-                [ TypedSvg.Core.text (item.node.name ++ " · " ++ round1 (groupPct total item.node.value) ++ " %") ]
+                []
+            , text_
+                [ InPx.x (item.x + 9)
+                , InPx.y (item.y + 15)
+                , InPx.fontSize 12
+                , TA.fill (Paint Color.white)
+                ]
+                [ TypedSvg.Core.text (node.name ++ "  ·  " ++ round1 (groupPct total node.value) ++ " %") ]
+            ]
 
-        groupLabels =
-            Tree.children layouted |> List.map Tree.label |> List.map groupLabel
+        groupHeaders =
+            Tree.children layouted
+                |> List.map Tree.label
+                |> List.concatMap groupHeader
     in
     if List.isEmpty cfg.sums then
         svg [ viewBox 0 0 cfg.width cfg.height, TA.width (TypedSvg.Types.Percent 100) ]
@@ -173,7 +192,7 @@ view cfg =
             [ viewBox 0 0 cfg.width cfg.height
             , TA.width (TypedSvg.Types.Percent 100)
             ]
-            (List.map leafSvg (Tree.leaves layouted) ++ groupLabels)
+            (groupHeaders ++ List.map leafSvg (Tree.leaves layouted))
 
 
 groupPct : Float -> Float -> Float

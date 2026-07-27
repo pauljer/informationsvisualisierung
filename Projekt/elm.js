@@ -77,7 +77,7 @@ function A9(fun, a, b, c, d, e, f, g, h, i) {
   return fun.a === 9 ? fun.f(a, b, c, d, e, f, g, h, i) : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
 
-console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.1/optimize for better performance and smaller assets.');
+console.warn('Compiled in DEV mode. Follow the advice at https://elm-lang.org/0.19.2/optimize for better performance and smaller assets.');
 
 
 // EQUALITY
@@ -4717,8 +4717,8 @@ var $elm$core$String$split = F2(
 var $elm$json$Json$Decode$indent = function (str) {
 	return A2(
 		$elm$core$String$join,
-		'\n    ',
-		A2($elm$core$String$split, '\n', str));
+		'\u000A    ',
+		A2($elm$core$String$split, '\u000A', str));
 };
 var $elm$core$List$foldl = F3(
 	function (func, acc, list) {
@@ -4810,7 +4810,7 @@ var $elm$core$List$reverse = function (list) {
 var $elm$core$String$uncons = _String_uncons;
 var $elm$json$Json$Decode$errorOneOf = F2(
 	function (i, error) {
-		return '\n\n(' + ($elm$core$String$fromInt(i + 1) + (') ' + $elm$json$Json$Decode$indent(
+		return '\u000A\u000A(' + ($elm$core$String$fromInt(i + 1) + (') ' + $elm$json$Json$Decode$indent(
 			$elm$json$Json$Decode$errorToString(error))));
 	});
 var $elm$json$Json$Decode$errorToString = function (error) {
@@ -4835,7 +4835,7 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 							return $elm$core$Char$isAlpha(_char) && A2($elm$core$String$all, $elm$core$Char$isAlphaNum, rest);
 						}
 					}();
-					var fieldName = isSimple ? ('.' + f) : ('[\'' + (f + '\']'));
+					var fieldName = isSimple ? ('.' + f) : ('[\u0027' + (f + '\u0027]'));
 					var $temp$error = err,
 						$temp$context = A2($elm$core$List$cons, fieldName, context);
 					error = $temp$error;
@@ -4886,7 +4886,7 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 								$elm$core$List$length(errors)) + ' ways:'));
 							return A2(
 								$elm$core$String$join,
-								'\n\n',
+								'\u000A\u000A',
 								A2(
 									$elm$core$List$cons,
 									introduction,
@@ -4898,16 +4898,16 @@ var $elm$json$Json$Decode$errorToStringHelp = F2(
 					var json = error.b;
 					var introduction = function () {
 						if (!context.b) {
-							return 'Problem with the given value:\n\n';
+							return 'Problem with the given value:\u000A\u000A';
 						} else {
 							return 'Problem with the value at json' + (A2(
 								$elm$core$String$join,
 								'',
-								$elm$core$List$reverse(context)) + ':\n\n    ');
+								$elm$core$List$reverse(context)) + ':\u000A\u000A    ');
 						}
 					}();
 					return introduction + ($elm$json$Json$Decode$indent(
-						A2($elm$json$Json$Encode$encode, 4, json)) + ('\n\n' + msg));
+						A2($elm$json$Json$Encode$encode, 4, json)) + ('\u000A\u000A' + msg));
 			}
 		}
 	});
@@ -8208,7 +8208,7 @@ var $rtfeldman$elm_hex$Hex$fromString = function (str) {
 				$elm$core$String$join,
 				' ',
 				_List_fromArray(
-					['\"' + (str + '\"'), 'is not a valid hexadecimal string because', err]));
+					['\u0022' + (str + '\u0022'), 'is not a valid hexadecimal string because', err]));
 		};
 		return A2($elm$core$Result$mapError, formatError, result);
 	}
@@ -8443,6 +8443,22 @@ var $elm$core$Maybe$andThen = F2(
 		} else {
 			return $elm$core$Maybe$Nothing;
 		}
+	});
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$concatMap = F2(
+	function (f, list) {
+		return $elm$core$List$concat(
+			A2($elm$core$List$map, f, list));
 	});
 var $elm$virtual_dom$VirtualDom$attribute = F2(
 	function (key, value) {
@@ -8813,12 +8829,7 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
 var $author$project$Chart$Heatmap$view = function (cfg) {
-	var plotW = (cfg.width - $author$project$Chart$Heatmap$pad.left) - $author$project$Chart$Heatmap$pad.right;
-	var plotH = (cfg.height - $author$project$Chart$Heatmap$pad.top) - $author$project$Chart$Heatmap$pad.bottom;
-	var pad2 = function (n) {
-		return (n < 10) ? ('0' + $elm$core$String$fromInt(n)) : $elm$core$String$fromInt(n);
-	};
-	var days = $elm$core$List$sort(
+	var presentDays = $elm$core$List$sort(
 		$elm_community$list_extra$List$Extra$unique(
 			A2(
 				$elm$core$List$map,
@@ -8826,6 +8837,39 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					return $.day;
 				},
 				cfg.cells)));
+	var plotW = (cfg.width - $author$project$Chart$Heatmap$pad.left) - $author$project$Chart$Heatmap$pad.right;
+	var plotH = (cfg.height - $author$project$Chart$Heatmap$pad.top) - $author$project$Chart$Heatmap$pad.bottom;
+	var pad2 = function (n) {
+		return (n < 10) ? ('0' + $elm$core$String$fromInt(n)) : $elm$core$String$fromInt(n);
+	};
+	var noDataColor = A3($avh4$elm_color$Color$rgb255, 237, 241, 246);
+	var frame = A2(
+		$elm_community$typed_svg$TypedSvg$rect,
+		_List_fromArray(
+			[
+				$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+				$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(0),
+				$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(plotW),
+				$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(plotH),
+				$elm_community$typed_svg$TypedSvg$Attributes$fill($elm_community$typed_svg$TypedSvg$Types$PaintNone),
+				$elm_community$typed_svg$TypedSvg$Attributes$stroke(
+				$elm_community$typed_svg$TypedSvg$Types$Paint(
+					A3($avh4$elm_color$Color$rgb255, 203, 213, 225))),
+				$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1)
+			]),
+		_List_Nil);
+	var days = function () {
+		var _v5 = _Utils_Tuple2(
+			$elm$core$List$minimum(presentDays),
+			$elm$core$List$maximum(presentDays));
+		if ((_v5.a.$ === 'Just') && (_v5.b.$ === 'Just')) {
+			var lo = _v5.a.a;
+			var hi = _v5.b.a;
+			return A2($elm$core$List$range, lo, hi);
+		} else {
+			return presentDays;
+		}
+	}();
 	var nDays = $elm$core$List$length(days);
 	var step = A2($elm$core$Basics$max, 1, (nDays / 10) | 0);
 	var dayCol = $elm$core$Dict$fromList(
@@ -8839,9 +8883,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 	var cellW = (!nDays) ? plotW : (plotW / nDays);
 	var dayLabels = A2(
 		$elm$core$List$filterMap,
-		function (_v2) {
-			var i = _v2.a;
-			var d = _v2.b;
+		function (_v4) {
+			var i = _v4.a;
+			var d = _v4.b;
 			return (!A2($elm$core$Basics$modBy, step, i)) ? $elm$core$Maybe$Just(
 				A2(
 					$elm_community$typed_svg$TypedSvg$text_,
@@ -8863,14 +8907,14 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 		},
 		A2($elm$core$List$indexedMap, $elm$core$Tuple$pair, days));
 	var focusOutline = function () {
-		var _v1 = A2(
+		var _v3 = A2(
 			$elm$core$Maybe$andThen,
 			function (d) {
 				return A2($elm$core$Dict$get, d, dayCol);
 			},
 			cfg.focusedDay);
-		if (_v1.$ === 'Just') {
-			var col = _v1.a;
+		if (_v3.$ === 'Just') {
+			var col = _v3.a;
 			return _List_fromArray(
 				[
 					A2(
@@ -8916,6 +8960,15 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 		},
 		_List_fromArray(
 			[0, 6, 12, 18]));
+	var cellDict = $elm$core$Dict$fromList(
+		A2(
+			$elm$core$List$map,
+			function (c) {
+				return _Utils_Tuple2(
+					_Utils_Tuple2(c.day, c.hour),
+					c.value);
+			},
+			cfg.cells));
 	var _v0 = cfg.extent;
 	var vmin = _v0.a;
 	var vmax = _v0.b;
@@ -8925,39 +8978,66 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 			0,
 			A2($elm$core$Basics$min, 1, (v - vmin) / (vmax - vmin)));
 	};
-	var cellSvg = function (c) {
-		var tip = $author$project$Energy$dayLabel(c.day) + ('  ' + (pad2(c.hour) + (':00  ·  ' + ($elm$core$String$fromFloat(
-			$elm$core$Basics$round(c.value * 10) / 10) + (' ' + cfg.unit)))));
-		var col = A2(
-			$elm$core$Maybe$withDefault,
-			0,
-			A2($elm$core$Dict$get, c.day, dayCol));
-		return A2(
-			$elm_community$typed_svg$TypedSvg$rect,
-			_List_fromArray(
+	var cellSvg = F3(
+		function (col, day, hour) {
+			var base = _List_fromArray(
 				[
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(col * cellW),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(c.hour * cellH),
+					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(hour * cellH),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(cellW + 0.6),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(cellH + 0.6),
-					$elm_community$typed_svg$TypedSvg$Attributes$fill(
-					$elm_community$typed_svg$TypedSvg$Types$Paint(
-						cfg.interpolator(
-							norm(c.value)))),
 					$elm_community$typed_svg$TypedSvg$Events$onClick(
-					cfg.onClickDay(c.day))
-				]),
-			_List_fromArray(
-				[
+					cfg.onClickDay(day))
+				]);
+			var _v2 = A2(
+				$elm$core$Dict$get,
+				_Utils_Tuple2(day, hour),
+				cellDict);
+			if (_v2.$ === 'Just') {
+				var v = _v2.a;
+				var tip = $author$project$Energy$dayLabel(day) + ('  ' + (pad2(hour) + (':00  ·  ' + ($elm$core$String$fromFloat(
+					$elm$core$Basics$round(v * 10) / 10) + (' ' + cfg.unit)))));
+				return A2(
+					$elm_community$typed_svg$TypedSvg$rect,
 					A2(
-					$elm_community$typed_svg$TypedSvg$title,
-					_List_Nil,
+						$elm$core$List$cons,
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+							$elm_community$typed_svg$TypedSvg$Types$Paint(
+								cfg.interpolator(
+									norm(v)))),
+						base),
 					_List_fromArray(
 						[
-							$elm_community$typed_svg$TypedSvg$Core$text(tip)
-						]))
-				]));
-	};
+							A2(
+							$elm_community$typed_svg$TypedSvg$title,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Core$text(tip)
+								]))
+						]));
+			} else {
+				return A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					A2(
+						$elm$core$List$cons,
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+							$elm_community$typed_svg$TypedSvg$Types$Paint(noDataColor)),
+						base),
+					_List_Nil);
+			}
+		});
+	var gridCells = A2(
+		$elm$core$List$concatMap,
+		function (_v1) {
+			var col = _v1.a;
+			var day = _v1.b;
+			return A2(
+				$elm$core$List$map,
+				A2(cellSvg, col, day),
+				A2($elm$core$List$range, 0, 23));
+		},
+		A2($elm$core$List$indexedMap, $elm$core$Tuple$pair, days));
 	return A2(
 		$elm_community$typed_svg$TypedSvg$svg,
 		_List_fromArray(
@@ -8979,10 +9059,13 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 							]))
 					]),
 				_Utils_ap(
-					A2($elm$core$List$map, cellSvg, cfg.cells),
+					gridCells,
 					_Utils_ap(
-						focusOutline,
-						_Utils_ap(hourLabels, dayLabels))))
+						_List_fromArray(
+							[frame]),
+						_Utils_ap(
+							focusOutline,
+							_Utils_ap(hourLabels, dayLabels)))))
 			]));
 };
 var $elm_community$typed_svg$TypedSvg$Types$Opacity = function (a) {
@@ -9183,10 +9266,10 @@ var $elm$core$List$take = F2(
 		return A3($elm$core$List$takeFast, 0, n, list);
 	});
 var $folkertdev$elm_deque$Internal$rebalance = function (deque) {
-	var sizeF = deque.sizeF;
-	var sizeR = deque.sizeR;
-	var front = deque.front;
 	var rear = deque.rear;
+	var front = deque.front;
+	var sizeR = deque.sizeR;
+	var sizeF = deque.sizeF;
 	var size1 = ((sizeF + sizeR) / 2) | 0;
 	var size2 = (sizeF + sizeR) - size1;
 	var balanceConstant = 4;
@@ -9483,13 +9566,13 @@ var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
 var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
 var $gampleman$elm_visualization$Axis$element = F4(
 	function (_v0, k, displacement, textAnchorPosition) {
-		var x = _v0.x;
-		var y = _v0.y;
-		var x2 = _v0.x2;
-		var y1 = _v0.y1;
-		var y2 = _v0.y2;
-		var translate = _v0.translate;
 		var horizontal = _v0.horizontal;
+		var translate = _v0.translate;
+		var y2 = _v0.y2;
+		var y1 = _v0.y1;
+		var x2 = _v0.x2;
+		var y = _v0.y;
+		var x = _v0.x;
 		return F2(
 			function (attrs, scale) {
 				var rangeExtent = $gampleman$elm_visualization$Scale$rangeExtent(scale);
@@ -9786,8 +9869,8 @@ var $folkertdev$one_true_path_experiment$SubPath$toLowLevel = function (subpath)
 	if (subpath.$ === 'Empty') {
 		return $elm$core$Maybe$Nothing;
 	} else {
-		var moveto = subpath.a.moveto;
 		var drawtos = subpath.a.drawtos;
+		var moveto = subpath.a.moveto;
 		return $elm$core$Maybe$Just(
 			{
 				drawtos: A2(
@@ -9932,11 +10015,11 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$encodeFlags = function (_v0) {
 };
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyEllipticalArcArgument = F2(
 	function (config, _v0) {
-		var radii = _v0.radii;
-		var xAxisRotate = _v0.xAxisRotate;
-		var arcFlag = _v0.arcFlag;
-		var direction = _v0.direction;
 		var target = _v0.target;
+		var direction = _v0.direction;
+		var arcFlag = _v0.arcFlag;
+		var xAxisRotate = _v0.xAxisRotate;
+		var radii = _v0.radii;
 		var _v1 = $folkertdev$svg_path_lowlevel$Path$LowLevel$encodeFlags(
 			_Utils_Tuple2(arcFlag, direction));
 		var arc = _v1.a;
@@ -10090,8 +10173,8 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyMoveTo = F2(
 	});
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$toStringSubPath = F2(
 	function (config, _v0) {
-		var moveto = _v0.moveto;
 		var drawtos = _v0.drawtos;
+		var moveto = _v0.moveto;
 		return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyMoveTo, config, moveto) + (' ' + A2(
 			$elm$core$String$join,
 			' ',
@@ -10672,9 +10755,9 @@ var $elm$core$List$unzip = function (pairs) {
 		pairs);
 };
 var $gampleman$elm_visualization$Shape$Stack$computeStack = function (_v0) {
-	var offset = _v0.offset;
-	var order = _v0.order;
 	var data = _v0.data;
+	var order = _v0.order;
+	var offset = _v0.offset;
 	var _v1 = $elm$core$List$unzip(
 		order(data));
 	var labels = _v1.a;
@@ -12624,23 +12707,12 @@ var $gampleman$elm_rosetree$Tree$sortWith = F2(
 			t).b;
 	});
 var $gampleman$elm_visualization$Hierarchy$Treemap$phi = (1 + $elm$core$Basics$sqrt(5)) / 2;
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
-var $elm$core$List$concat = function (lists) {
-	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
-};
 var $gampleman$elm_visualization$Hierarchy$Treemap$dice = F4(
 	function (_v0, _v1, value, children) {
-		var x0 = _v1.x0;
-		var x1 = _v1.x1;
-		var y0 = _v1.y0;
 		var y1 = _v1.y1;
+		var y0 = _v1.y0;
+		var x1 = _v1.x1;
+		var x0 = _v1.x0;
 		var k = (!value) ? 0 : ((x1 - x0) / value);
 		return $elm$core$List$reverse(
 			A3(
@@ -12662,10 +12734,10 @@ var $gampleman$elm_visualization$Hierarchy$Treemap$dice = F4(
 	});
 var $gampleman$elm_visualization$Hierarchy$Treemap$slice = F4(
 	function (_v0, _v1, value, children) {
-		var x0 = _v1.x0;
-		var x1 = _v1.x1;
-		var y0 = _v1.y0;
 		var y1 = _v1.y1;
+		var y0 = _v1.y0;
+		var x1 = _v1.x1;
+		var x0 = _v1.x0;
 		var k = (!value) ? 0 : ((y1 - y0) / value);
 		return $elm$core$List$reverse(
 			A3(
@@ -12728,10 +12800,10 @@ var $gampleman$elm_visualization$Hierarchy$Treemap$squarifyRatio = function (x) 
 	var ratio = (x > 1) ? x : 1;
 	return F4(
 		function (depth, _v0, value_, children) {
-			var x0 = _v0.x0;
-			var x1 = _v0.x1;
-			var y0 = _v0.y0;
 			var y1 = _v0.y1;
+			var y0 = _v0.y0;
+			var x1 = _v0.x1;
+			var x0 = _v0.x0;
 			var keepAddingWhileRatioImproves = F7(
 				function (sumValue_, minValue_, maxValue_, minRatio, alpha, soFar, nodes) {
 					keepAddingWhileRatioImproves:
@@ -12908,9 +12980,9 @@ var $gampleman$elm_visualization$Hierarchy$Treemap$squarify = $gampleman$elm_vis
 var $gampleman$elm_visualization$Hierarchy$squarify = $gampleman$elm_visualization$Hierarchy$Treemap$squarify;
 var $author$project$Chart$Treemap$textOn = function (c) {
 	var _v0 = $avh4$elm_color$Color$toRgba(c);
-	var red = _v0.red;
-	var green = _v0.green;
 	var blue = _v0.blue;
+	var green = _v0.green;
+	var red = _v0.red;
 	var lum = ((0.2126 * red) + (0.7152 * green)) + (0.0722 * blue);
 	return (lum > 0.6) ? A3($avh4$elm_color$Color$rgb255, 30, 30, 30) : A3($avh4$elm_color$Color$rgb255, 250, 250, 250);
 };
@@ -13176,24 +13248,39 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				return $gampleman$elm_rosetree$Tree$label(t).value;
 			},
 			children));
-	var groupLabel = function (item) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$text_,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(item.x + 5),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(item.y + 14),
-					$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12),
-					$elm_community$typed_svg$TypedSvg$Attributes$fill(
-					$elm_community$typed_svg$TypedSvg$Types$Paint(
-						A3($avh4$elm_color$Color$rgb255, 51, 65, 85)))
-				]),
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Core$text(
-					item.node.name + (' · ' + (round1(
-						A2($author$project$Chart$Treemap$groupPct, total, item.node.value)) + ' %')))
-				]));
+	var groupHeader = function (item) {
+		var node = item.node;
+		return _List_fromArray(
+			[
+				A2(
+				$elm_community$typed_svg$TypedSvg$rect,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(item.x),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(item.y),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(item.width),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(22),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint(node.color))
+					]),
+				_List_Nil),
+				A2(
+				$elm_community$typed_svg$TypedSvg$text_,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(item.x + 9),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(item.y + 15),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$white))
+					]),
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Core$text(
+						node.name + ('  ·  ' + (round1(
+							A2($author$project$Chart$Treemap$groupPct, total, node.value)) + ' %')))
+					]))
+			]);
 	};
 	var leafSvg = function (item) {
 		var node = item.node;
@@ -13299,11 +13386,13 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 			[
 				$gampleman$elm_visualization$Hierarchy$tile($gampleman$elm_visualization$Hierarchy$squarify),
 				$gampleman$elm_visualization$Hierarchy$paddingInner(
-				$elm$core$Basics$always(3)),
-				$gampleman$elm_visualization$Hierarchy$paddingTop(
-				$elm$core$Basics$always(21)),
+				$elm$core$Basics$always(4)),
 				$gampleman$elm_visualization$Hierarchy$paddingOuter(
-				$elm$core$Basics$always(1)),
+				$elm$core$Basics$always(2)),
+				$gampleman$elm_visualization$Hierarchy$paddingTop(
+				function (n) {
+					return (n.name === 'Erzeugung') ? 4 : 27;
+				}),
 				A2($gampleman$elm_visualization$Hierarchy$size, cfg.width, cfg.height)
 			]),
 		function ($) {
@@ -13319,9 +13408,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 						$gampleman$elm_rosetree$Tree$label(a).value);
 				}),
 			root));
-	var groupLabels = A2(
-		$elm$core$List$map,
-		groupLabel,
+	var groupHeaders = A2(
+		$elm$core$List$concatMap,
+		groupHeader,
 		A2(
 			$elm$core$List$map,
 			$gampleman$elm_rosetree$Tree$label,
@@ -13357,11 +13446,11 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
 			]),
 		_Utils_ap(
+			groupHeaders,
 			A2(
 				$elm$core$List$map,
 				leafSvg,
-				$gampleman$elm_rosetree$Tree$leaves(layouted)),
-			groupLabels));
+				$gampleman$elm_rosetree$Tree$leaves(layouted))));
 };
 var $author$project$Main$chartsView = F2(
 	function (model, sortedRows) {

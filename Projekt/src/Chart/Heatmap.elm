@@ -50,8 +50,23 @@ view cfg =
         plotH =
             cfg.height - pad.top - pad.bottom
 
-        days =
+        cellDict : Dict ( Int, Int ) Float
+        cellDict =
+            cfg.cells
+                |> List.map (\c -> ( ( c.day, c.hour ), c.value ))
+                |> Dict.fromList
+
+        presentDays =
             cfg.cells |> List.map .day |> List.Extra.unique |> List.sort
+
+        -- Lückenlose Tagesspanne -> vollständiges Rechteck ohne Treppenränder.
+        days =
+            case ( List.minimum presentDays, List.maximum presentDays ) of
+                ( Just lo, Just hi ) ->
+                    List.range lo hi
+
+                _ ->
+                    presentDays
 
         nDays =
             List.length days
@@ -87,30 +102,58 @@ view cfg =
             else
                 String.fromInt n
 
-        cellSvg : HeatCell -> Svg msg
-        cellSvg c =
-            let
-                col =
-                    Dict.get c.day dayCol |> Maybe.withDefault 0
+        -- Dezente Farbe für Stunden ohne Messwert (angebrochene Randtage).
+        noDataColor =
+            Color.rgb255 237 241 246
 
-                tip =
-                    Energy.dayLabel c.day
-                        ++ "  "
-                        ++ pad2 c.hour
-                        ++ ":00  ·  "
-                        ++ String.fromFloat (toFloat (round (c.value * 10)) / 10)
-                        ++ " "
-                        ++ cfg.unit
+        cellSvg : Int -> Int -> Int -> Svg msg
+        cellSvg col day hour =
+            let
+                base =
+                    [ InPx.x (toFloat col * cellW)
+                    , InPx.y (toFloat hour * cellH)
+                    , InPx.width (cellW + 0.6)
+                    , InPx.height (cellH + 0.6)
+                    , TE.onClick (cfg.onClickDay day)
+                    ]
             in
+            case Dict.get ( day, hour ) cellDict of
+                Just v ->
+                    let
+                        tip =
+                            Energy.dayLabel day
+                                ++ "  "
+                                ++ pad2 hour
+                                ++ ":00  ·  "
+                                ++ String.fromFloat (toFloat (round (v * 10)) / 10)
+                                ++ " "
+                                ++ cfg.unit
+                    in
+                    rect (TA.fill (Paint (cfg.interpolator (norm v))) :: base)
+                        [ title [] [ TypedSvg.Core.text tip ] ]
+
+                Nothing ->
+                    rect (TA.fill (Paint noDataColor) :: base) []
+
+        gridCells =
+            days
+                |> List.indexedMap Tuple.pair
+                |> List.concatMap
+                    (\( col, day ) ->
+                        List.range 0 23 |> List.map (cellSvg col day)
+                    )
+
+        frame =
             rect
-                [ InPx.x (toFloat col * cellW)
-                , InPx.y (toFloat c.hour * cellH)
-                , InPx.width (cellW + 0.6)
-                , InPx.height (cellH + 0.6)
-                , TA.fill (Paint (cfg.interpolator (norm c.value)))
-                , TE.onClick (cfg.onClickDay c.day)
+                [ InPx.x 0
+                , InPx.y 0
+                , InPx.width plotW
+                , InPx.height plotH
+                , TA.fill PaintNone
+                , TA.stroke (Paint (Color.rgb255 203 213 225))
+                , InPx.strokeWidth 1
                 ]
-                [ title [] [ TypedSvg.Core.text tip ] ]
+                []
 
         focusOutline =
             case cfg.focusedDay |> Maybe.andThen (\d -> Dict.get d dayCol) of
@@ -173,5 +216,5 @@ view cfg =
         , TA.width (TypedSvg.Types.Percent 100)
         ]
         [ g [ transform [ Translate pad.left pad.top ] ]
-            (List.map cellSvg cfg.cells ++ focusOutline ++ hourLabels ++ dayLabels)
+            (gridCells ++ [ frame ] ++ focusOutline ++ hourLabels ++ dayLabels)
         ]

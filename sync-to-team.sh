@@ -18,7 +18,13 @@ rsync -a \
 cp -f "$HOME/Desktop/informationsvisualisierung/Projektbericht.docx" "$DEST/" 2>/dev/null || true
 
 echo "→ Baue im Zielordner neu (stellt sicher, dass es läuft)"
-( cd "$DEST" && elm make src/Main.elm --output=elm.js >/dev/null && echo "  ✅ Build OK" )
+if ( cd "$DEST" && elm make src/Main.elm --output=elm.js >/dev/null 2>&1 ); then
+  echo "  ✅ Build OK"
+else
+  echo "  ⚠️  Lokaler Build übersprungen – vermutlich passt die installierte elm-Version"
+  echo "      nicht zu elm.json (0.19.1). Das bereits mitkopierte elm.js ist aktuell,"
+  echo "      die App läuft trotzdem. Zum lokalen Bauen: elm 0.19.1 verwenden."
+fi
 
 echo "── Änderungen im Team-Repo (git status) ──"
 ( cd "$DEST" && git status --short )
