@@ -5392,11 +5392,15 @@ var $author$project$Main$init = function (nowMillis) {
 		{
 			ceilings: $elm$core$Dict$empty,
 			country: 'all',
+			dark: false,
 			focusedDay: $elm$core$Maybe$Nothing,
 			hovered: $elm$core$Maybe$Nothing,
+			lastScroll: 0,
 			latest: $elm$core$Maybe$Nothing,
 			metric: $author$project$Energy$SolarShare,
 			mouse: _Utils_Tuple2(0, 0),
+			navHidden: false,
+			navPinned: false,
 			nowSeconds: $elm$core$Basics$round(nowMillis / 1000),
 			pinned: $elm$core$Maybe$Nothing,
 			rows: _List_Nil,
@@ -5407,8 +5411,13 @@ var $author$project$Main$init = function (nowMillis) {
 		},
 		$elm$core$Platform$Cmd$none);
 };
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main$Scrolled = function (a) {
+	return {$: 'Scrolled', a: a};
+};
+var $author$project$Main$onScroll = _Platform_incomingPort('onScroll', $elm$json$Json$Decode$float);
+var $author$project$Main$subscriptions = function (_v0) {
+	return $author$project$Main$onScroll($author$project$Main$Scrolled);
+};
 var $author$project$Main$Connecting = {$: 'Connecting'};
 var $author$project$Main$Failed = function (a) {
 	return {$: 'Failed', a: a};
@@ -6695,7 +6704,12 @@ var $author$project$Main$loadCurrent = function (model) {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	}
 };
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
 var $elm$core$Basics$neq = _Utils_notEqual;
+var $elm$core$Basics$not = _Basics_not;
+var $author$project$Main$setTheme = _Platform_outgoingPort('setTheme', $elm$json$Json$Encode$string);
 var $elm$core$String$trim = _String_trim;
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -6884,6 +6898,29 @@ var $author$project$Main$update = F2(
 						{
 							mouse: _Utils_Tuple2(x, y)
 						}),
+					$elm$core$Platform$Cmd$none);
+			case 'Scrolled':
+				var y = msg.a;
+				var delta = y - model.lastScroll;
+				var hidden = (y < 90) ? false : ((delta > 6) ? true : ((_Utils_cmp(delta, -6) < 0) ? false : model.navHidden));
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{lastScroll: y, navHidden: hidden}),
+					$elm$core$Platform$Cmd$none);
+			case 'ToggleTheme':
+				var d = !model.dark;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{dark: d}),
+					$author$project$Main$setTheme(
+						d ? 'dark' : 'light'));
+			case 'ToggleNavPin':
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{navPinned: !model.navPinned}),
 					$elm$core$Platform$Cmd$none);
 			case 'ClickDay':
 				var d = msg.a;
@@ -7257,9 +7294,6 @@ var $elm$time$Time$toAdjustedMinutes = F2(
 			eras);
 	});
 var $elm$core$Basics$ge = _Utils_ge;
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
 var $elm$time$Time$toCivil = function (minutes) {
 	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
 	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
@@ -8395,10 +8429,6 @@ var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$C
 var $elm$core$List$sort = function (xs) {
 	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$stroke = A2(
-	$elm$core$Basics$composeL,
-	$elm_community$typed_svg$TypedSvg$Core$attribute('stroke'),
-	$elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString);
 var $elm_community$typed_svg$TypedSvg$Attributes$strokeWidth = function (length) {
 	return A2(
 		$elm_community$typed_svg$TypedSvg$Core$attribute,
@@ -8634,7 +8664,6 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 	var pad2 = function (n) {
 		return (n < 10) ? ('0' + $elm$core$String$fromInt(n)) : $elm$core$String$fromInt(n);
 	};
-	var noDataColor = A3($avh4$elm_color$Color$rgb255, 237, 241, 246);
 	var frame = A2(
 		$elm_community$typed_svg$TypedSvg$rect,
 		_List_fromArray(
@@ -8644,9 +8673,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(plotW),
 				$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(plotH),
 				$elm_community$typed_svg$TypedSvg$Attributes$fill($elm_community$typed_svg$TypedSvg$Types$PaintNone),
-				$elm_community$typed_svg$TypedSvg$Attributes$stroke(
-				$elm_community$typed_svg$TypedSvg$Types$Paint(
-					A3($avh4$elm_color$Color$rgb255, 203, 213, 225))),
+				$elm_community$typed_svg$TypedSvg$Attributes$class(
+				_List_fromArray(
+					['hm-frame'])),
 				$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1)
 			]),
 		_List_Nil);
@@ -8687,9 +8716,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(plotH + 14),
 							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
-							$elm_community$typed_svg$TypedSvg$Attributes$fill(
-							$elm_community$typed_svg$TypedSvg$Types$Paint(
-								A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['axis-label']))
 						]),
 					_List_fromArray(
 						[
@@ -8718,8 +8747,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(cellW),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(plotH),
 							$elm_community$typed_svg$TypedSvg$Attributes$fill($elm_community$typed_svg$TypedSvg$Types$PaintNone),
-							$elm_community$typed_svg$TypedSvg$Attributes$stroke(
-							$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$black)),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['focus-outline'])),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1.6)
 						]),
 					_List_Nil)
@@ -8740,9 +8770,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y((h * cellH) + 4),
 						$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorEnd),
 						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+						_List_fromArray(
+							['axis-label']))
 					]),
 				_List_fromArray(
 					[
@@ -8778,9 +8808,6 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(hour * cellH),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(cellW + 0.6),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(cellH + 0.6),
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['cell'])),
 					$elm_community$typed_svg$TypedSvg$Events$onClick(
 					cfg.onClickDay(day))
 				]);
@@ -8796,11 +8823,16 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					$elm_community$typed_svg$TypedSvg$rect,
 					A2(
 						$elm$core$List$cons,
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-							$elm_community$typed_svg$TypedSvg$Types$Paint(
-								cfg.interpolator(
-									norm(v)))),
-						base),
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['cell'])),
+						A2(
+							$elm$core$List$cons,
+							$elm_community$typed_svg$TypedSvg$Attributes$fill(
+								$elm_community$typed_svg$TypedSvg$Types$Paint(
+									cfg.interpolator(
+										norm(v)))),
+							base)),
 					_List_fromArray(
 						[
 							A2(
@@ -8816,8 +8848,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					$elm_community$typed_svg$TypedSvg$rect,
 					A2(
 						$elm$core$List$cons,
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-							$elm_community$typed_svg$TypedSvg$Types$Paint(noDataColor)),
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+							_List_fromArray(
+								['cell', 'cell-empty'])),
 						base),
 					_List_Nil);
 			}
@@ -10607,6 +10640,10 @@ var $gampleman$elm_visualization$Shape$Stack$offsetNone = function (series) {
 	}
 };
 var $gampleman$elm_visualization$Shape$stackOffsetNone = $gampleman$elm_visualization$Shape$Stack$offsetNone;
+var $elm_community$typed_svg$TypedSvg$Attributes$stroke = A2(
+	$elm$core$Basics$composeL,
+	$elm_community$typed_svg$TypedSvg$Core$attribute('stroke'),
+	$elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString);
 var $elm_community$typed_svg$TypedSvg$Attributes$strokeDasharray = $elm_community$typed_svg$TypedSvg$Core$attribute('stroke-dasharray');
 var $gampleman$elm_visualization$Axis$TickCount = function (a) {
 	return {$: 'TickCount', a: a};
@@ -12012,9 +12049,9 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 				cfg.rows)),
 		_List_fromArray(
 			[
-				$elm_community$typed_svg$TypedSvg$Attributes$stroke(
-				$elm_community$typed_svg$TypedSvg$Types$Paint(
-					A3($avh4$elm_color$Color$rgb255, 20, 20, 20))),
+				$elm_community$typed_svg$TypedSvg$Attributes$class(
+				_List_fromArray(
+					['load-line'])),
 				$elm_community$typed_svg$TypedSvg$Attributes$fill($elm_community$typed_svg$TypedSvg$Types$PaintNone),
 				$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1.8),
 				$elm_community$typed_svg$TypedSvg$Attributes$strokeDasharray('5 3')
@@ -12151,9 +12188,9 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Chart$StackedArea$pad.left, $author$project$Chart$StackedArea$pad.top + plotH)
 							])),
 						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+						_List_fromArray(
+							['axis']))
 					]),
 				_List_fromArray(
 					[
@@ -12175,9 +12212,9 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 								A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Chart$StackedArea$pad.left, $author$project$Chart$StackedArea$pad.top)
 							])),
 						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							A3($avh4$elm_color$Color$rgb255, 71, 85, 105)))
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+						_List_fromArray(
+							['axis']))
 					]),
 				_List_fromArray(
 					[
@@ -12191,6 +12228,10 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 					]))
 			]));
 };
+var $elm_community$typed_svg$TypedSvg$Types$Rotate = F3(
+	function (a, b, c) {
+		return {$: 'Rotate', a: a, b: b, c: c};
+	});
 var $author$project$Chart$Treemap$TNode = F3(
 	function (name, color, value) {
 		return {color: color, name: name, value: value};
@@ -13085,40 +13126,91 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 		var node = item.node;
 		var pct = (total <= 0) ? 0 : ((node.value / total) * 100);
 		var tip = node.name + (' — ' + (round1(pct) + ' %'));
-		var labelNodes = ((item.width > 52) && (item.height > 26)) ? _List_fromArray(
-			[
-				A2(
-				$elm_community$typed_svg$TypedSvg$text_,
-				_List_fromArray(
+		var labelFill = $elm_community$typed_svg$TypedSvg$Attributes$fill(
+			$elm_community$typed_svg$TypedSvg$Types$Paint(
+				$author$project$Chart$Treemap$textOn(node.color)));
+		var labelNodes = function () {
+			if ((item.width > 54) && (item.height > 28)) {
+				return _List_fromArray(
 					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(6),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(16),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12.5),
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							$author$project$Chart$Treemap$textOn(node.color)))
-					]),
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text(node.name)
-					])),
-				A2(
-				$elm_community$typed_svg$TypedSvg$text_,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(6),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(31),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
-						$elm_community$typed_svg$TypedSvg$Attributes$fill(
-						$elm_community$typed_svg$TypedSvg$Types$Paint(
-							$author$project$Chart$Treemap$textOn(node.color)))
-					]),
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text(
-						round1(pct) + ' %')
-					]))
-			]) : _List_Nil;
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(17),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12.5),
+								labelFill
+							]),
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+							])),
+						A2(
+						$elm_community$typed_svg$TypedSvg$text_,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(32),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+								labelFill
+							]),
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Core$text(
+								round1(pct) + ' %')
+							]))
+					]);
+			} else {
+				if ((item.height > 40) && (item.width > 13)) {
+					var cy = item.height / 2;
+					var cx = item.width / 2;
+					return _List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$text_,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(cx),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(cy),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+									$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
+									labelFill,
+									$elm_community$typed_svg$TypedSvg$Attributes$transform(
+									_List_fromArray(
+										[
+											A3($elm_community$typed_svg$TypedSvg$Types$Rotate, -90, cx, cy)
+										]))
+								]),
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+								]))
+						]);
+				} else {
+					if ((item.width > 30) && (item.height > 14)) {
+						return _List_fromArray(
+							[
+								A2(
+								$elm_community$typed_svg$TypedSvg$text_,
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$y((item.height / 2) + 4),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(10.5),
+										labelFill
+									]),
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+									]))
+							]);
+					} else {
+						return _List_Nil;
+					}
+				}
+			}
+		}();
 		var dimmed = function () {
 			var _v1 = cfg.hovered;
 			if (_v1.$ === 'Nothing') {
@@ -13152,9 +13244,7 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 							dimmed ? _List_fromArray(
 								['tile', 'is-dim']) : _List_fromArray(
 								['tile'])),
-							$elm_community$typed_svg$TypedSvg$Attributes$stroke(
-							$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$white)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1.5),
 							$elm_community$typed_svg$TypedSvg$Events$onMouseOver(
 							cfg.onHover(
 								$elm$core$Maybe$Just(node.name))),
@@ -13309,7 +13399,7 @@ var $author$project$Main$chartsView = F5(
 					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
 					focusNote,
 					$author$project$Chart$StackedArea$view(
-						{focusedDay: focusedDay, height: 340, hovered: hl, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 960})),
+						{focusedDay: focusedDay, height: 450, hovered: hl, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 1120})),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -13329,11 +13419,11 @@ var $author$project$Main$chartsView = F5(
 									cells: heatCells,
 									extent: $author$project$Energy$heatExtent(heatCells),
 									focusedDay: focusedDay,
-									height: 340,
+									height: 480,
 									interpolator: $author$project$Energy$metricInterpolator(metric),
 									onClickDay: $author$project$Main$ClickDay,
 									unit: $author$project$Energy$metricUnit(metric),
-									width: 560
+									width: 660
 								})),
 							A5(
 							$author$project$Main$chartCard,
@@ -13343,12 +13433,12 @@ var $author$project$Main$chartsView = F5(
 							$elm$core$Maybe$Nothing,
 							$author$project$Chart$Treemap$view(
 								{
-									height: 340,
+									height: 480,
 									hovered: hl,
 									onHover: $author$project$Main$HoverSource,
 									onPin: $author$project$Main$PinSource,
 									sums: $author$project$Energy$sumByBand(treemapRows),
-									width: 560
+									width: 660
 								}))
 						]))
 				]));
@@ -13422,6 +13512,278 @@ var $author$project$Main$emptyView = function (model) {
 };
 var $elm$virtual_dom$VirtualDom$lazy5 = _VirtualDom_lazy5;
 var $elm$html$Html$Lazy$lazy5 = $elm$virtual_dom$VirtualDom$lazy5;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $author$project$Main$onMouseMove = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mousemove',
+		A3(
+			$elm$json$Json$Decode$map2,
+			tagger,
+			A2($elm$json$Json$Decode$field, 'clientX', $elm$json$Json$Decode$float),
+			A2($elm$json$Json$Decode$field, 'clientY', $elm$json$Json$Decode$float)));
+};
+var $author$project$Energy$bandColorByName = function (name) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		A3($avh4$elm_color$Color$rgb255, 148, 163, 184),
+		A2(
+			$elm$core$Maybe$map,
+			function ($) {
+				return $.color;
+			},
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (b) {
+						return _Utils_eq(b.name, name);
+					},
+					$author$project$Energy$bands))));
+};
+var $author$project$Energy$bandInfo = function (name) {
+	switch (name) {
+		case 'Solar':
+			return 'Photovoltaik – erzeugt nur tagsüber, Maximum um die Mittagszeit.';
+		case 'Wind':
+			return 'Wind an Land und auf See – wetterabhängig, oft nachts und im Winter stärker.';
+		case 'Wasserkraft':
+			return 'Lauf-, Speicher- und Pumpspeicherkraft – gut regel- und speicherbar.';
+		case 'Biomasse':
+			return 'Biomasse und Geothermie – planbare, grundlastfähige Erneuerbare.';
+		case 'Kernkraft':
+			return 'Kernenergie – konstante Grundlast, kaum tageszeitliche Schwankung.';
+		case 'Kohle':
+			return 'Braun- und Steinkohle – konventionell und CO₂-intensiv.';
+		case 'Gas/Öl':
+			return 'Gas- und Ölkraftwerke – flexibel, decken Spitzen und Residuallast.';
+		case 'Sonstige':
+			return 'Abfall und weitere, nicht separat ausgewiesene Quellen.';
+		default:
+			return '';
+	}
+};
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $author$project$Main$tooltipView = function (model) {
+	var _v0 = model.hovered;
+	if (_v0.$ === 'Just') {
+		var name = _v0.a;
+		var _v1 = model.mouse;
+		var x = _v1.a;
+		var y = _v1.b;
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('tooltip'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'left',
+					$elm$core$String$fromFloat(x) + 'px'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'top',
+					$elm$core$String$fromFloat(y) + 'px')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-head')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('tt-dot'),
+									A2(
+									$elm$html$Html$Attributes$style,
+									'background',
+									$avh4$elm_color$Color$toCssString(
+										$author$project$Energy$bandColorByName(name)))
+								]),
+							_List_Nil),
+							$elm$html$Html$text(name)
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-body')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							$author$project$Energy$bandInfo(name))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-hint')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							_Utils_eq(
+								model.pinned,
+								$elm$core$Maybe$Just(name)) ? 'Klick: Fixierung lösen' : 'Klick: fixieren')
+						]))
+				]));
+	} else {
+		return $elm$html$Html$text('');
+	}
+};
+var $author$project$Main$Connect = {$: 'Connect'};
+var $author$project$Main$Reload = {$: 'Reload'};
+var $author$project$Main$ToggleNavPin = {$: 'ToggleNavPin'};
+var $author$project$Main$ToggleTheme = {$: 'ToggleTheme'};
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
+var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
+var $author$project$Main$SelectCountry = function (a) {
+	return {$: 'SelectCountry', a: a};
+};
+var $author$project$Main$SelectMetric = function (a) {
+	return {$: 'SelectMetric', a: a};
+};
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $author$project$Main$control = F3(
+	function (iconClass, labelText, child) {
+		return A2(
+			$elm$html$Html$label,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('control')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('control-label')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('ico ico-sm ' + iconClass)
+								]),
+							_List_Nil),
+							$elm$html$Html$text(labelText)
+						])),
+					child
+				]));
+	});
+var $elm$html$Html$option = _VirtualDom_node('option');
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
+var $author$project$Main$countryOption = F2(
+	function (current, _v0) {
+		var code = _v0.a;
+		var name = _v0.b;
+		return A2(
+			$elm$html$Html$option,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$value(code),
+					$elm$html$Html$Attributes$selected(
+					_Utils_eq(code, current))
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(name)
+				]));
+	});
+var $author$project$Main$metricFromString = function (s) {
+	switch (s) {
+		case 'ee':
+			return $author$project$Energy$RenewableShare;
+		case 'load':
+			return $author$project$Energy$LoadMetric;
+		default:
+			return $author$project$Energy$SolarShare;
+	}
+};
+var $author$project$Main$metricKey = function (m) {
+	switch (m.$) {
+		case 'SolarShare':
+			return 'solar';
+		case 'RenewableShare':
+			return 'ee';
+		default:
+			return 'load';
+	}
+};
+var $author$project$Main$metricOption = F2(
+	function (current, m) {
+		return A2(
+			$elm$html$Html$option,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$value(
+					$author$project$Main$metricKey(m)),
+					$elm$html$Html$Attributes$selected(
+					_Utils_eq(m, current))
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					$author$project$Energy$metricLabel(m))
+				]));
+	});
+var $elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var $elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$html$Html$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$elm$html$Html$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+};
+var $elm$html$Html$select = _VirtualDom_node('select');
+var $author$project$Main$SelectWindow = function (a) {
+	return {$: 'SelectWindow', a: a};
+};
 var $elm$html$Html$Attributes$classList = function (classes) {
 	return $elm$html$Html$Attributes$class(
 		A2(
@@ -13432,19 +13794,123 @@ var $elm$html$Html$Attributes$classList = function (classes) {
 				$elm$core$Tuple$first,
 				A2($elm$core$List$filter, $elm$core$Tuple$second, classes))));
 };
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
 var $elm$html$Html$Events$onClick = function (msg) {
 	return A2(
 		$elm$html$Html$Events$on,
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $author$project$Main$windowButton = F2(
+	function (current, d) {
+		return A2(
+			$elm$html$Html$button,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('seg-btn', true),
+							_Utils_Tuple2(
+							'is-active',
+							_Utils_eq(current, d))
+						])),
+					$elm$html$Html$Events$onClick(
+					$author$project$Main$SelectWindow(d))
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text(
+					$elm$core$String$fromInt(d) + ' Tage')
+				]));
+	});
+var $author$project$Main$controlCluster = function (model) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('control-cluster')
+			]),
+		_List_fromArray(
+			[
+				A3(
+				$author$project$Main$control,
+				'ico-globe',
+				'Land',
+				A2(
+					$elm$html$Html$select,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('select'),
+							$elm$html$Html$Events$onInput($author$project$Main$SelectCountry),
+							$elm$html$Html$Attributes$value(model.country)
+						]),
+					A2(
+						$elm$core$List$map,
+						$author$project$Main$countryOption(model.country),
+						$author$project$Main$countries))),
+				A3(
+				$author$project$Main$control,
+				'ico-calendar',
+				'Zeitfenster',
+				A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('segmented')
+						]),
+					A2(
+						$elm$core$List$map,
+						$author$project$Main$windowButton(model.windowDays),
+						_List_fromArray(
+							[7, 14, 30])))),
+				A3(
+				$author$project$Main$control,
+				'ico-gauge',
+				'Metrik',
+				A2(
+					$elm$html$Html$select,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('select'),
+							$elm$html$Html$Events$onInput(
+							A2($elm$core$Basics$composeL, $author$project$Main$SelectMetric, $author$project$Main$metricFromString)),
+							$elm$html$Html$Attributes$value(
+							$author$project$Main$metricKey(model.metric))
+						]),
+					A2(
+						$elm$core$List$map,
+						$author$project$Main$metricOption(model.metric),
+						_List_fromArray(
+							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric]))))
+			]));
+};
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
+var $author$project$Main$iconToggle = F4(
+	function (active, msg, iconClass, tip) {
+		return A2(
+			$elm$html$Html$button,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('icon-btn', true),
+							_Utils_Tuple2('is-on', active)
+						])),
+					$elm$html$Html$Events$onClick(msg),
+					$elm$html$Html$Attributes$title(tip)
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('ico ' + iconClass)
+						]),
+					_List_Nil)
+				]));
+	});
 var $elm$html$Html$Events$onMouseOut = function (msg) {
 	return A2(
 		$elm$html$Html$Events$on,
@@ -13457,8 +13923,6 @@ var $elm$html$Html$Events$onMouseOver = function (msg) {
 		'mouseover',
 		$elm$json$Json$Decode$succeed(msg));
 };
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
 var $author$project$Main$legendChip = F3(
 	function (hl, pinned, band) {
 		var isPinned = _Utils_eq(
@@ -13551,47 +14015,56 @@ var $author$project$Main$legend = function (model) {
 				A2($author$project$Main$legendChip, hl, model.pinned),
 				$author$project$Energy$bands)));
 };
-var $author$project$Main$onMouseMove = function (tagger) {
+var $author$project$Main$navClass = function (model) {
 	return A2(
-		$elm$html$Html$Events$on,
-		'mousemove',
-		A3(
-			$elm$json$Json$Decode$map2,
-			tagger,
-			A2($elm$json$Json$Decode$field, 'clientX', $elm$json$Json$Decode$float),
-			A2($elm$json$Json$Decode$field, 'clientY', $elm$json$Json$Decode$float)));
+		$elm$core$String$join,
+		' ',
+		A2(
+			$elm$core$List$filterMap,
+			$elm$core$Basics$identity,
+			_List_fromArray(
+				[
+					$elm$core$Maybe$Just('topnav'),
+					(model.navHidden && (!model.navPinned)) ? $elm$core$Maybe$Just('is-hidden') : $elm$core$Maybe$Nothing,
+					model.navPinned ? $elm$core$Maybe$Just('is-pinned') : $elm$core$Maybe$Nothing
+				])));
 };
-var $author$project$Main$statusView = function (model) {
+var $author$project$Main$navStatus = function (model) {
 	var _v0 = function () {
 		var _v1 = model.status;
 		switch (_v1.$) {
 			case 'NeedConnect':
-				return _Utils_Tuple2('Bereit – auf „Verbinden“ klicken, um Daten zu laden.', 'is-idle');
+				return _Utils_Tuple3('Bereit', 'is-idle', 'Bereit – „Verbinden“ klicken, um Daten zu laden');
 			case 'Connecting':
-				return _Utils_Tuple2('Hole Zugriffs-Token …', 'is-loading');
+				return _Utils_Tuple3('Verbinde', 'is-loading', 'Hole Zugriffs-Token …');
 			case 'LoadingBounds':
-				return _Utils_Tuple2('Verbinde und ermittle Datenstruktur …', 'is-loading');
+				return _Utils_Tuple3('Verbinde', 'is-loading', 'Ermittle Datenstruktur …');
 			case 'LoadingRows':
-				return _Utils_Tuple2(
-					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'),
-					'is-loading');
+				return _Utils_Tuple3(
+					'Lädt',
+					'is-loading',
+					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'));
 			case 'Ready':
-				return _Utils_Tuple2(
+				return _Utils_Tuple3(
+					$elm$core$String$fromInt(
+						$elm$core$List$length(model.rows)) + ' Punkte',
+					'is-ready',
 					$author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + ' Messpunkte geladen')))),
-					'is-ready');
+						$elm$core$List$length(model.rows)) + ' Messpunkte geladen')))));
 			default:
 				var e = _v1.a;
-				return _Utils_Tuple2(e, 'is-error');
+				return _Utils_Tuple3('Fehler', 'is-error', e);
 		}
 	}();
-	var txt = _v0.a;
+	var _short = _v0.a;
 	var cls = _v0.b;
+	var full = _v0.c;
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('statusbar ' + cls)
+				$elm$html$Html$Attributes$class('status-chip ' + cls),
+				$elm$html$Html$Attributes$title(full)
 			]),
 		_List_fromArray(
 			[
@@ -13604,383 +14077,13 @@ var $author$project$Main$statusView = function (model) {
 				_List_Nil),
 				A2(
 				$elm$html$Html$span,
-				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text(txt)
-					]))
-			]));
-};
-var $author$project$Energy$bandColorByName = function (name) {
-	return A2(
-		$elm$core$Maybe$withDefault,
-		A3($avh4$elm_color$Color$rgb255, 148, 163, 184),
-		A2(
-			$elm$core$Maybe$map,
-			function ($) {
-				return $.color;
-			},
-			$elm$core$List$head(
-				A2(
-					$elm$core$List$filter,
-					function (b) {
-						return _Utils_eq(b.name, name);
-					},
-					$author$project$Energy$bands))));
-};
-var $author$project$Energy$bandInfo = function (name) {
-	switch (name) {
-		case 'Solar':
-			return 'Photovoltaik – erzeugt nur tagsüber, Maximum um die Mittagszeit.';
-		case 'Wind':
-			return 'Wind an Land und auf See – wetterabhängig, oft nachts und im Winter stärker.';
-		case 'Wasserkraft':
-			return 'Lauf-, Speicher- und Pumpspeicherkraft – gut regel- und speicherbar.';
-		case 'Biomasse':
-			return 'Biomasse und Geothermie – planbare, grundlastfähige Erneuerbare.';
-		case 'Kernkraft':
-			return 'Kernenergie – konstante Grundlast, kaum tageszeitliche Schwankung.';
-		case 'Kohle':
-			return 'Braun- und Steinkohle – konventionell und CO₂-intensiv.';
-		case 'Gas/Öl':
-			return 'Gas- und Ölkraftwerke – flexibel, decken Spitzen und Residuallast.';
-		case 'Sonstige':
-			return 'Abfall und weitere, nicht separat ausgewiesene Quellen.';
-		default:
-			return '';
-	}
-};
-var $author$project$Main$tooltipView = function (model) {
-	var _v0 = model.hovered;
-	if (_v0.$ === 'Just') {
-		var name = _v0.a;
-		var _v1 = model.mouse;
-		var x = _v1.a;
-		var y = _v1.b;
-		return A2(
-			$elm$html$Html$div,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('tooltip'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'left',
-					$elm$core$String$fromFloat(x) + 'px'),
-					A2(
-					$elm$html$Html$Attributes$style,
-					'top',
-					$elm$core$String$fromFloat(y) + 'px')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('tt-head')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$span,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('tt-dot'),
-									A2(
-									$elm$html$Html$Attributes$style,
-									'background',
-									$avh4$elm_color$Color$toCssString(
-										$author$project$Energy$bandColorByName(name)))
-								]),
-							_List_Nil),
-							$elm$html$Html$text(name)
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('tt-body')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(
-							$author$project$Energy$bandInfo(name))
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('tt-hint')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(
-							_Utils_eq(
-								model.pinned,
-								$elm$core$Maybe$Just(name)) ? 'Klick: Fixierung lösen' : 'Klick: fixieren')
-						]))
-				]));
-	} else {
-		return $elm$html$Html$text('');
-	}
-};
-var $author$project$Main$Connect = {$: 'Connect'};
-var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
-var $author$project$Main$Reload = {$: 'Reload'};
-var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
-var $author$project$Main$SelectCountry = function (a) {
-	return {$: 'SelectCountry', a: a};
-};
-var $author$project$Main$SelectMetric = function (a) {
-	return {$: 'SelectMetric', a: a};
-};
-var $author$project$Main$TokenInput = function (a) {
-	return {$: 'TokenInput', a: a};
-};
-var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$html$Html$label = _VirtualDom_node('label');
-var $author$project$Main$control = F2(
-	function (labelText, child) {
-		return A2(
-			$elm$html$Html$label,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$class('control')
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('control-label')
-						]),
-					_List_fromArray(
-						[
-							$elm$html$Html$text(labelText)
-						])),
-					child
-				]));
-	});
-var $elm$html$Html$option = _VirtualDom_node('option');
-var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$html$Html$Attributes$boolProperty = F2(
-	function (key, bool) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$bool(bool));
-	});
-var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Main$countryOption = F2(
-	function (current, _v0) {
-		var code = _v0.a;
-		var name = _v0.b;
-		return A2(
-			$elm$html$Html$option,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$value(code),
-					$elm$html$Html$Attributes$selected(
-					_Utils_eq(code, current))
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(name)
-				]));
-	});
-var $elm$html$Html$input = _VirtualDom_node('input');
-var $author$project$Main$metricFromString = function (s) {
-	switch (s) {
-		case 'ee':
-			return $author$project$Energy$RenewableShare;
-		case 'load':
-			return $author$project$Energy$LoadMetric;
-		default:
-			return $author$project$Energy$SolarShare;
-	}
-};
-var $author$project$Main$metricKey = function (m) {
-	switch (m.$) {
-		case 'SolarShare':
-			return 'solar';
-		case 'RenewableShare':
-			return 'ee';
-		default:
-			return 'load';
-	}
-};
-var $author$project$Main$metricOption = F2(
-	function (current, m) {
-		return A2(
-			$elm$html$Html$option,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$value(
-					$author$project$Main$metricKey(m)),
-					$elm$html$Html$Attributes$selected(
-					_Utils_eq(m, current))
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(
-					$author$project$Energy$metricLabel(m))
-				]));
-	});
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
-};
-var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
-var $elm$html$Html$select = _VirtualDom_node('select');
-var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
-var $author$project$Main$SelectWindow = function (a) {
-	return {$: 'SelectWindow', a: a};
-};
-var $author$project$Main$windowButton = F2(
-	function (current, d) {
-		return A2(
-			$elm$html$Html$button,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$classList(
-					_List_fromArray(
-						[
-							_Utils_Tuple2('seg-btn', true),
-							_Utils_Tuple2(
-							'is-active',
-							_Utils_eq(current, d))
-						])),
-					$elm$html$Html$Events$onClick(
-					$author$project$Main$SelectWindow(d))
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(
-					$elm$core$String$fromInt(d) + ' Tage')
-				]));
-	});
-var $author$project$Main$navControls = function (model) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				$elm$html$Html$Attributes$class('nav-controls')
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$author$project$Main$control,
-				'Land',
-				A2(
-					$elm$html$Html$select,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('select'),
-							$elm$html$Html$Events$onInput($author$project$Main$SelectCountry),
-							$elm$html$Html$Attributes$value(model.country)
-						]),
-					A2(
-						$elm$core$List$map,
-						$author$project$Main$countryOption(model.country),
-						$author$project$Main$countries))),
-				A2(
-				$author$project$Main$control,
-				'Zeitfenster',
-				A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('segmented')
-						]),
-					A2(
-						$elm$core$List$map,
-						$author$project$Main$windowButton(model.windowDays),
-						_List_fromArray(
-							[7, 14, 30])))),
-				A2(
-				$author$project$Main$control,
-				'Metrik',
-				A2(
-					$elm$html$Html$select,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('select'),
-							$elm$html$Html$Events$onInput(
-							A2($elm$core$Basics$composeL, $author$project$Main$SelectMetric, $author$project$Main$metricFromString)),
-							$elm$html$Html$Attributes$value(
-							$author$project$Main$metricKey(model.metric))
-						]),
-					A2(
-						$elm$core$List$map,
-						$author$project$Main$metricOption(model.metric),
-						_List_fromArray(
-							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric])))),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('nav-conn')
+						$elm$html$Html$Attributes$class('status-text')
 					]),
 				_List_fromArray(
 					[
-						A2(
-						$elm$html$Html$input,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('text-input'),
-								$elm$html$Html$Attributes$placeholder('Token (optional)'),
-								$elm$html$Html$Attributes$value(model.tokenInput),
-								$elm$html$Html$Events$onInput($author$project$Main$TokenInput)
-							]),
-						_List_Nil),
-						A2(
-						$elm$html$Html$button,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('btn btn-primary'),
-								$elm$html$Html$Events$onClick($author$project$Main$Connect)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('🔗 Verbinden')
-							])),
-						A2(
-						$elm$html$Html$button,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('btn btn-ghost btn-icon'),
-								$elm$html$Html$Events$onClick($author$project$Main$Reload),
-								$elm$html$Html$Attributes$title('Aktuelle Auswahl neu laden')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('↻')
-							]))
+						$elm$html$Html$text(_short)
 					]))
 			]));
 };
@@ -13995,7 +14098,8 @@ var $author$project$Main$topNav = function (model) {
 		'nav',
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('topnav')
+				$elm$html$Html$Attributes$class(
+				$author$project$Main$navClass(model))
 			]),
 		_List_fromArray(
 			[
@@ -14011,7 +14115,7 @@ var $author$project$Main$topNav = function (model) {
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('brand')
+								$elm$html$Html$Attributes$class('nav-row')
 							]),
 						_List_fromArray(
 							[
@@ -14019,34 +14123,89 @@ var $author$project$Main$topNav = function (model) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('brand-mark')
+										$elm$html$Html$Attributes$class('brand')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text('⚡')
+										A2(
+										$elm$html$Html$div,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('brand-mark')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('⚡')
+											])),
+										A2(
+										$elm$html$Html$div,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('brand-title')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('EnergyCharts '),
+												A2(
+												$elm$html$Html$span,
+												_List_fromArray(
+													[
+														$elm$html$Html$Attributes$class('accent')
+													]),
+												_List_fromArray(
+													[
+														$elm$html$Html$text('Visual Analytics')
+													]))
+											]))
 									])),
+								$author$project$Main$controlCluster(model),
 								A2(
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('brand-title')
+										$elm$html$Html$Attributes$class('nav-actions')
 									]),
 								_List_fromArray(
 									[
-										$elm$html$Html$text('EnergyCharts '),
+										$author$project$Main$navStatus(model),
 										A2(
-										$elm$html$Html$span,
+										$elm$html$Html$div,
 										_List_fromArray(
 											[
-												$elm$html$Html$Attributes$class('accent')
+												$elm$html$Html$Attributes$class('action-group')
 											]),
 										_List_fromArray(
 											[
-												$elm$html$Html$text('Visual Analytics')
+												A4($author$project$Main$iconToggle, false, $author$project$Main$Reload, 'ico-refresh', 'Aktuelle Auswahl neu laden'),
+												A4(
+												$author$project$Main$iconToggle,
+												model.dark,
+												$author$project$Main$ToggleTheme,
+												model.dark ? 'ico-sun' : 'ico-moon',
+												'Hell-/Dunkelmodus umschalten'),
+												A4($author$project$Main$iconToggle, model.navPinned, $author$project$Main$ToggleNavPin, 'ico-pin', 'Leiste dauerhaft einblenden')
+											])),
+										A2(
+										$elm$html$Html$button,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('btn btn-primary'),
+												$elm$html$Html$Events$onClick($author$project$Main$Connect)
+											]),
+										_List_fromArray(
+											[
+												A2(
+												$elm$html$Html$span,
+												_List_fromArray(
+													[
+														$elm$html$Html$Attributes$class('ico ico-link')
+													]),
+												_List_Nil),
+												$elm$html$Html$text('Verbinden')
 											]))
 									]))
 							])),
-						$author$project$Main$navControls(model)
+						$author$project$Main$legend(model)
 					]))
 			]));
 };
@@ -14059,7 +14218,11 @@ var $author$project$Main$view = function (model) {
 		model.rows);
 	return A2(
 		$elm$html$Html$div,
-		_List_Nil,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('app'),
+				$author$project$Main$onMouseMove($author$project$Main$MouseMove)
+			]),
 		_List_fromArray(
 			[
 				$author$project$Main$topNav(model),
@@ -14067,25 +14230,15 @@ var $author$project$Main$view = function (model) {
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('page'),
-						$author$project$Main$onMouseMove($author$project$Main$MouseMove)
+						$elm$html$Html$Attributes$class('page')
 					]),
 				_List_fromArray(
 					[
-						$author$project$Main$legend(model),
-						$author$project$Main$statusView(model),
 						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A6($elm$html$Html$Lazy$lazy5, $author$project$Main$chartsView, model.hovered, model.pinned, model.metric, model.focusedDay, model.rows)
 					])),
 				$author$project$Main$tooltipView(model)
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
-	{
-		init: $author$project$Main$init,
-		subscriptions: function (_v0) {
-			return $elm$core$Platform$Sub$none;
-		},
-		update: $author$project$Main$update,
-		view: $author$project$Main$view
-	});
+	{init: $author$project$Main$init, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
 _Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$float)(0)}});}(this));

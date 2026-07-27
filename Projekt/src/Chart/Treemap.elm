@@ -21,7 +21,7 @@ import TypedSvg.Attributes as TA exposing (transform, viewBox)
 import TypedSvg.Attributes.InPx as InPx
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Events as TE
-import TypedSvg.Types exposing (Opacity(..), Paint(..), Transform(..))
+import TypedSvg.Types exposing (AnchorAlignment(..), Opacity(..), Paint(..), Transform(..))
 
 
 type alias TNode =
@@ -115,22 +115,42 @@ view cfg =
                 tip =
                     node.name ++ " — " ++ round1 pct ++ " %"
 
+                labelFill =
+                    TA.fill (Paint (textOn node.color))
+
                 labelNodes =
-                    if item.width > 52 && item.height > 26 then
+                    if item.width > 54 && item.height > 28 then
+                        -- genug Platz: Name + Prozent horizontal
+                        [ text_ [ InPx.x 7, InPx.y 17, InPx.fontSize 12.5, labelFill ]
+                            [ TypedSvg.Core.text node.name ]
+                        , text_ [ InPx.x 7, InPx.y 32, InPx.fontSize 11, labelFill ]
+                            [ TypedSvg.Core.text (round1 pct ++ " %") ]
+                        ]
+
+                    else if item.height > 40 && item.width > 13 then
+                        -- schmale, hohe Kachel: Name vertikal, um die Kachelmitte gedreht
+                        let
+                            cx =
+                                item.width / 2
+
+                            cy =
+                                item.height / 2
+                        in
                         [ text_
-                            [ InPx.x 6
-                            , InPx.y 16
-                            , InPx.fontSize 12.5
-                            , TA.fill (Paint (textOn node.color))
+                            [ InPx.x cx
+                            , InPx.y cy
+                            , InPx.fontSize 11
+                            , TA.textAnchor AnchorMiddle
+                            , labelFill
+                            , TA.transform [ Rotate -90 cx cy ]
                             ]
                             [ TypedSvg.Core.text node.name ]
-                        , text_
-                            [ InPx.x 6
-                            , InPx.y 31
-                            , InPx.fontSize 11
-                            , TA.fill (Paint (textOn node.color))
-                            ]
-                            [ TypedSvg.Core.text (round1 pct ++ " %") ]
+                        ]
+
+                    else if item.width > 30 && item.height > 14 then
+                        -- flach & breit: nur der Name, horizontal
+                        [ text_ [ InPx.x 7, InPx.y (item.height / 2 + 4), InPx.fontSize 10.5, labelFill ]
+                            [ TypedSvg.Core.text node.name ]
                         ]
 
                     else
@@ -148,8 +168,7 @@ view cfg =
                          else
                             [ "tile" ]
                         )
-                    , TA.stroke (Paint Color.white)
-                    , InPx.strokeWidth 1
+                    , InPx.strokeWidth 1.5
                     , TE.onMouseOver (cfg.onHover (Just node.name))
                     , TE.onMouseOut (cfg.onHover Nothing)
                     , TE.onClick (cfg.onPin node.name)

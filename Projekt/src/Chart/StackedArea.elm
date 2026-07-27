@@ -141,7 +141,7 @@ view cfg =
                 (Shape.line Shape.linearCurve
                     (List.map (\r -> Just ( xOf r, Scale.convert yScale r.load )) cfg.rows)
                 )
-                [ TA.stroke (Paint (Color.rgb255 20 20 20))
+                [ TA.class [ "load-line" ]
                 , TA.fill PaintNone
                 , InPx.strokeWidth 1.8
                 , TA.strokeDasharray "5 3"
@@ -184,13 +184,13 @@ view cfg =
         , g
             [ transform [ Translate pad.left (pad.top + plotH) ]
             , InPx.fontSize 11
-            , TA.fill (Paint (Color.rgb255 71 85 105))
+            , TA.class [ "axis" ]
             ]
             [ Axis.bottom [ Axis.tickCount 6 ] xScale ]
         , g
             [ transform [ Translate pad.left pad.top ]
             , InPx.fontSize 11
-            , TA.fill (Paint (Color.rgb255 71 85 105))
+            , TA.class [ "axis" ]
             ]
             [ Axis.left [ Axis.tickCount 5 ] yScale ]
         ]

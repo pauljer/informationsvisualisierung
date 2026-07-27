@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 {-| EnergyCharts Visual Analytics – drei verbundene Sichten aus drei
 verschiedenen Bereichen, anwendungsgetrieben aus `energycharts_publicpower`:
@@ -26,6 +26,20 @@ import Html.Events as HE
 import Html.Lazy
 import Http
 import Json.Decode as Decode
+
+
+
+-- ============================================================
+-- PORTS
+-- ============================================================
+
+
+{-| Scroll-Position aus JS (für die automatisch ein-/ausblendende Navbar). -}
+port onScroll : (Float -> msg) -> Sub msg
+
+
+{-| Setzt `data-theme` am <html> (Hell/Dunkel) über JS. -}
+port setTheme : String -> Cmd msg
 
 
 
@@ -58,6 +72,10 @@ type alias Model =
     , pinned : Maybe String
     , focusedDay : Maybe Int
     , mouse : ( Float, Float )
+    , dark : Bool
+    , navHidden : Bool
+    , navPinned : Bool
+    , lastScroll : Float
     }
 
 
@@ -79,9 +97,15 @@ init nowMillis =
       , pinned = Nothing
       , focusedDay = Nothing
       , mouse = ( 0, 0 )
+      , dark = False
+      , navHidden = False
+      , navPinned = False
+      , lastScroll = 0
       }
     , Cmd.none
     )
+
+
 
 
 
@@ -104,6 +128,9 @@ type Msg
     | PinSource String
     | MouseMove Float Float
     | ClickDay Int
+    | Scrolled Float
+    | ToggleTheme
+    | ToggleNavPin
     | Reload
 
 
@@ -240,6 +267,44 @@ update msg model =
         MouseMove x y ->
             ( { model | mouse = ( x, y ) }, Cmd.none )
 
+        Scrolled y ->
+            let
+                delta =
+                    y - model.lastScroll
+
+                hidden =
+                    if y < 90 then
+                        False
+
+                    else if delta > 6 then
+                        True
+
+                    else if delta < -6 then
+                        False
+
+                    else
+                        model.navHidden
+            in
+            ( { model | lastScroll = y, navHidden = hidden }, Cmd.none )
+
+        ToggleTheme ->
+            let
+                d =
+                    not model.dark
+            in
+            ( { model | dark = d }
+            , setTheme
+                (if d then
+                    "dark"
+
+                 else
+                    "light"
+                )
+            )
+
+        ToggleNavPin ->
+            ( { model | navPinned = not model.navPinned }, Cmd.none )
+
         ClickDay d ->
             ( { model
                 | focusedDay =
@@ -289,12 +354,10 @@ view model =
             model.rows
                 |> List.filter (\r -> Energy.totalGeneration r > 0 || r.load > 0)
     in
-    Html.div []
+    Html.div [ HA.class "app", onMouseMove MouseMove ]
         [ topNav model
-        , Html.div [ HA.class "page", onMouseMove MouseMove ]
-            [ legend model
-            , statusView model
-            , if List.isEmpty visibleRows then
+        , Html.div [ HA.class "page" ]
+            [ if List.isEmpty visibleRows then
                 emptyView model
 
               else
@@ -367,18 +430,70 @@ tooltipView model =
 topNav : Model -> Html Msg
 topNav model =
     Html.node "nav"
-        [ HA.class "topnav" ]
+        [ HA.class (navClass model) ]
         [ Html.div [ HA.class "topnav-inner" ]
-            [ Html.div [ HA.class "brand" ]
-                [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
-                , Html.div [ HA.class "brand-title" ]
-                    [ Html.text "EnergyCharts "
-                    , Html.span [ HA.class "accent" ] [ Html.text "Visual Analytics" ]
+            [ Html.div [ HA.class "nav-row" ]
+                [ Html.div [ HA.class "brand" ]
+                    [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
+                    , Html.div [ HA.class "brand-title" ]
+                        [ Html.text "EnergyCharts "
+                        , Html.span [ HA.class "accent" ] [ Html.text "Visual Analytics" ]
+                        ]
+                    ]
+                , controlCluster model
+                , Html.div [ HA.class "nav-actions" ]
+                    [ navStatus model
+                    , Html.div [ HA.class "action-group" ]
+                        [ iconToggle False Reload "ico-refresh" "Aktuelle Auswahl neu laden"
+                        , iconToggle model.dark
+                            ToggleTheme
+                            (if model.dark then
+                                "ico-sun"
+
+                             else
+                                "ico-moon"
+                            )
+                            "Hell-/Dunkelmodus umschalten"
+                        , iconToggle model.navPinned ToggleNavPin "ico-pin" "Leiste dauerhaft einblenden"
+                        ]
+                    , Html.button [ HA.class "btn btn-primary", HE.onClick Connect ]
+                        [ Html.span [ HA.class "ico ico-link" ] []
+                        , Html.text "Verbinden"
+                        ]
                     ]
                 ]
-            , navControls model
+            , legend model
             ]
         ]
+
+
+navClass : Model -> String
+navClass model =
+    String.join " "
+        (List.filterMap identity
+            [ Just "topnav"
+            , if model.navHidden && not model.navPinned then
+                Just "is-hidden"
+
+              else
+                Nothing
+            , if model.navPinned then
+                Just "is-pinned"
+
+              else
+                Nothing
+            ]
+        )
+
+
+iconToggle : Bool -> Msg -> String -> String -> Html Msg
+iconToggle active msg iconClass tip =
+    Html.button
+        [ HA.classList [ ( "icon-btn", True ), ( "is-on", active ) ]
+        , HE.onClick msg
+        , HA.title tip
+        ]
+        [ Html.span [ HA.class ("ico " ++ iconClass) ] [] ]
 
 
 emptyHint : Model -> String
@@ -399,41 +514,31 @@ emptyView model =
         ]
 
 
-navControls : Model -> Html Msg
-navControls model =
-    Html.div [ HA.class "nav-controls" ]
-        [ control "Land"
+controlCluster : Model -> Html Msg
+controlCluster model =
+    Html.div [ HA.class "control-cluster" ]
+        [ control "ico-globe" "Land"
             (Html.select [ HA.class "select", HE.onInput SelectCountry, HA.value model.country ]
                 (List.map (countryOption model.country) countries)
             )
-        , control "Zeitfenster"
+        , control "ico-calendar" "Zeitfenster"
             (Html.div [ HA.class "segmented" ]
                 (List.map (windowButton model.windowDays) [ 7, 14, 30 ])
             )
-        , control "Metrik"
+        , control "ico-gauge" "Metrik"
             (Html.select [ HA.class "select", HE.onInput (SelectMetric << metricFromString), HA.value (metricKey model.metric) ]
                 (List.map (metricOption model.metric) [ SolarShare, RenewableShare, LoadMetric ])
             )
-        , Html.div [ HA.class "nav-conn" ]
-            [ Html.input
-                [ HA.class "text-input"
-                , HA.placeholder "Token (optional)"
-                , HA.value model.tokenInput
-                , HE.onInput TokenInput
-                ]
-                []
-            , Html.button [ HA.class "btn btn-primary", HE.onClick Connect ]
-                [ Html.text "🔗 Verbinden" ]
-            , Html.button [ HA.class "btn btn-ghost btn-icon", HE.onClick Reload, HA.title "Aktuelle Auswahl neu laden" ]
-                [ Html.text "↻" ]
-            ]
         ]
 
 
-control : String -> Html Msg -> Html Msg
-control labelText child =
+control : String -> String -> Html Msg -> Html Msg
+control iconClass labelText child =
     Html.label [ HA.class "control" ]
-        [ Html.span [ HA.class "control-label" ] [ Html.text labelText ]
+        [ Html.span [ HA.class "control-label" ]
+            [ Html.span [ HA.class ("ico ico-sm " ++ iconClass) ] []
+            , Html.text labelText
+            ]
         , child
         ]
 
@@ -447,39 +552,40 @@ windowButton current d =
         [ Html.text (String.fromInt d ++ " Tage") ]
 
 
-statusView : Model -> Html Msg
-statusView model =
+navStatus : Model -> Html Msg
+navStatus model =
     let
-        ( txt, cls ) =
+        ( short, cls, full ) =
             case model.status of
                 NeedConnect ->
-                    ( "Bereit – auf „Verbinden“ klicken, um Daten zu laden.", "is-idle" )
+                    ( "Bereit", "is-idle", "Bereit – „Verbinden“ klicken, um Daten zu laden" )
 
                 Connecting ->
-                    ( "Hole Zugriffs-Token …", "is-loading" )
+                    ( "Verbinde", "is-loading", "Hole Zugriffs-Token …" )
 
                 LoadingBounds ->
-                    ( "Verbinde und ermittle Datenstruktur …", "is-loading" )
+                    ( "Verbinde", "is-loading", "Ermittle Datenstruktur …" )
 
                 LoadingRows ->
-                    ( "Lade " ++ countryLabel model.country ++ " …", "is-loading" )
+                    ( "Lädt", "is-loading", "Lade " ++ countryLabel model.country ++ " …" )
 
                 Ready ->
-                    ( countryLabel model.country
+                    ( String.fromInt (List.length model.rows) ++ " Punkte"
+                    , "is-ready"
+                    , countryLabel model.country
                         ++ " · "
                         ++ String.fromInt model.windowDays
                         ++ " Tage · "
                         ++ String.fromInt (List.length model.rows)
                         ++ " Messpunkte geladen"
-                    , "is-ready"
                     )
 
                 Failed e ->
-                    ( e, "is-error" )
+                    ( "Fehler", "is-error", e )
     in
-    Html.div [ HA.class ("statusbar " ++ cls) ]
+    Html.div [ HA.class ("status-chip " ++ cls), HA.title full ]
         [ Html.span [ HA.class "dot" ] []
-        , Html.span [] [ Html.text txt ]
+        , Html.span [ HA.class "status-text" ] [ Html.text short ]
         ]
 
 
@@ -562,8 +668,8 @@ chartsView hovered pinned metric focusedDay rows =
             "Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt."
             focusNote
             (StackedArea.view
-                { width = 960
-                , height = 340
+                { width = 1120
+                , height = 450
                 , rows = sortedRows
                 , hovered = hl
                 , focusedDay = focusedDay
@@ -576,8 +682,8 @@ chartsView hovered pinned metric focusedDay rows =
                 "Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten."
                 Nothing
                 (Heatmap.view
-                    { width = 560
-                    , height = 340
+                    { width = 660
+                    , height = 480
                     , cells = heatCells
                     , extent = Energy.heatExtent heatCells
                     , unit = Energy.metricUnit metric
@@ -590,8 +696,8 @@ chartsView hovered pinned metric focusedDay rows =
                 "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell."
                 Nothing
                 (Treemap.view
-                    { width = 560
-                    , height = 340
+                    { width = 660
+                    , height = 480
                     , sums = Energy.sumByBand treemapRows
                     , hovered = hl
                     , onHover = HoverSource
@@ -704,11 +810,16 @@ metricOption current m =
 -- ============================================================
 
 
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    onScroll Scrolled
+
+
 main : Program Float Model Msg
 main =
     Browser.element
         { init = init
         , update = update
         , view = view
-        , subscriptions = \_ -> Sub.none
+        , subscriptions = subscriptions
         }

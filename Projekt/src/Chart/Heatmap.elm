@@ -102,10 +102,6 @@ view cfg =
             else
                 String.fromInt n
 
-        -- Dezente Farbe für Stunden ohne Messwert (angebrochene Randtage).
-        noDataColor =
-            Color.rgb255 237 241 246
-
         cellSvg : Int -> Int -> Int -> Svg msg
         cellSvg col day hour =
             let
@@ -114,7 +110,6 @@ view cfg =
                     , InPx.y (toFloat hour * cellH)
                     , InPx.width (cellW + 0.6)
                     , InPx.height (cellH + 0.6)
-                    , TA.class [ "cell" ]
                     , TE.onClick (cfg.onClickDay day)
                     ]
             in
@@ -130,11 +125,13 @@ view cfg =
                                 ++ " "
                                 ++ cfg.unit
                     in
-                    rect (TA.fill (Paint (cfg.interpolator (norm v))) :: base)
+                    rect (TA.class [ "cell" ] :: TA.fill (Paint (cfg.interpolator (norm v))) :: base)
                         [ title [] [ TypedSvg.Core.text tip ] ]
 
                 Nothing ->
-                    rect (TA.fill (Paint noDataColor) :: base) []
+                    -- Stunde ohne Messwert (angebrochener Randtag): dezente Klasse,
+                    -- Farbe kommt aus dem CSS-Theme (hell/dunkel).
+                    rect (TA.class [ "cell", "cell-empty" ] :: base) []
 
         gridCells =
             days
@@ -151,7 +148,7 @@ view cfg =
                 , InPx.width plotW
                 , InPx.height plotH
                 , TA.fill PaintNone
-                , TA.stroke (Paint (Color.rgb255 203 213 225))
+                , TA.class [ "hm-frame" ]
                 , InPx.strokeWidth 1
                 ]
                 []
@@ -165,7 +162,7 @@ view cfg =
                         , InPx.width cellW
                         , InPx.height plotH
                         , TA.fill PaintNone
-                        , TA.stroke (Paint Color.black)
+                        , TA.class [ "focus-outline" ]
                         , InPx.strokeWidth 1.6
                         ]
                         []
@@ -183,7 +180,7 @@ view cfg =
                             , InPx.y (toFloat h * cellH + 4)
                             , TA.textAnchor AnchorEnd
                             , InPx.fontSize 11
-                            , TA.fill (Paint (Color.rgb255 71 85 105))
+                            , TA.class [ "axis-label" ]
                             ]
                             [ TypedSvg.Core.text (String.fromInt h ++ "h") ]
                     )
@@ -203,7 +200,7 @@ view cfg =
                                     , InPx.y (plotH + 14)
                                     , TA.textAnchor AnchorMiddle
                                     , InPx.fontSize 11
-                                    , TA.fill (Paint (Color.rgb255 71 85 105))
+                                    , TA.class [ "axis-label" ]
                                     ]
                                     [ TypedSvg.Core.text (Energy.dayLabel d) ]
                                 )
