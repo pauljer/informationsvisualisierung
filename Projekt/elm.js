@@ -5396,7 +5396,9 @@ var $author$project$Main$init = function (nowMillis) {
 			hovered: $elm$core$Maybe$Nothing,
 			latest: $elm$core$Maybe$Nothing,
 			metric: $author$project$Energy$SolarShare,
+			mouse: _Utils_Tuple2(0, 0),
 			nowSeconds: $elm$core$Basics$round(nowMillis / 1000),
+			pinned: $elm$core$Maybe$Nothing,
 			rows: _List_Nil,
 			status: $author$project$Main$NeedConnect,
 			token: $elm$core$Maybe$Nothing,
@@ -6862,6 +6864,27 @@ var $author$project$Main$update = F2(
 						model,
 						{hovered: ms}),
 					$elm$core$Platform$Cmd$none);
+			case 'PinSource':
+				var name = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							pinned: _Utils_eq(
+								model.pinned,
+								$elm$core$Maybe$Just(name)) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(name)
+						}),
+					$elm$core$Platform$Cmd$none);
+			case 'MouseMove':
+				var x = msg.a;
+				var y = msg.b;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							mouse: _Utils_Tuple2(x, y)
+						}),
+					$elm$core$Platform$Cmd$none);
 			case 'ClickDay':
 				var d = msg.a;
 				return _Utils_Tuple2(
@@ -6877,189 +6900,18 @@ var $author$project$Main$update = F2(
 				return $author$project$Main$loadCurrent(model);
 		}
 	});
-var $author$project$Main$Connect = {$: 'Connect'};
-var $author$project$Main$Reload = {$: 'Reload'};
-var $author$project$Main$TokenInput = function (a) {
-	return {$: 'TokenInput', a: a};
-};
-var $elm$html$Html$button = _VirtualDom_node('button');
-var $elm$html$Html$Attributes$stringProperty = F2(
-	function (key, string) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$string(string));
+var $author$project$Main$MouseMove = F2(
+	function (a, b) {
+		return {$: 'MouseMove', a: a, b: b};
 	});
-var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$html$Html$header = _VirtualDom_node('header');
-var $elm$html$Html$input = _VirtualDom_node('input');
-var $elm$virtual_dom$VirtualDom$Normal = function (a) {
-	return {$: 'Normal', a: a};
-};
-var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
-var $elm$html$Html$Events$on = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$Normal(decoder));
-	});
-var $elm$html$Html$Events$onClick = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'click',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
-		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
-};
-var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
-var $elm$html$Html$span = _VirtualDom_node('span');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Main$appHeader = function (model) {
-	return A2(
-		$elm$html$Html$header,
-		_List_fromArray(
-			[
-				$elm$html$Html$Attributes$class('app-header')
-			]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('brand')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('brand-mark')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('⚡')
-							])),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('brand-text')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('brand-title')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('EnergyCharts '),
-										A2(
-										$elm$html$Html$span,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('accent')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text('Visual Analytics')
-											]))
-									])),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('brand-sub')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Europas Stromsystem verstehen · drei verbundene Sichten')
-									]))
-							]))
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('header-actions')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$input,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('text-input'),
-								$elm$html$Html$Attributes$placeholder('Token (optional – sonst Proxy)'),
-								$elm$html$Html$Attributes$value(model.tokenInput),
-								$elm$html$Html$Events$onInput($author$project$Main$TokenInput)
-							]),
-						_List_Nil),
-						A2(
-						$elm$html$Html$button,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('btn btn-primary'),
-								$elm$html$Html$Events$onClick($author$project$Main$Connect)
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('🔗 Verbinden')
-							])),
-						A2(
-						$elm$html$Html$button,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('btn btn-ghost btn-icon'),
-								$elm$html$Html$Events$onClick($author$project$Main$Reload),
-								$elm$html$Html$Attributes$title('Aktuelle Auswahl neu laden')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('↻')
-							]))
-					]))
-			]));
-};
 var $author$project$Main$ClickDay = function (a) {
 	return {$: 'ClickDay', a: a};
 };
 var $author$project$Main$HoverSource = function (a) {
 	return {$: 'HoverSource', a: a};
+};
+var $author$project$Main$PinSource = function (a) {
+	return {$: 'PinSource', a: a};
 };
 var $author$project$Energy$dayOf = function (unix) {
 	return (unix / 86400) | 0;
@@ -7235,9 +7087,21 @@ var $author$project$Energy$binHourly = F2(
 			$elm$core$Dict$toList(
 				A3($elm$core$List$foldl, step, $elm$core$Dict$empty, rows)));
 	});
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
+var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$html$Html$section = _VirtualDom_node('section');
+var $elm$html$Html$span = _VirtualDom_node('span');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $author$project$Main$chartCard = F5(
 	function (index, title, sub, focusNote, chart) {
 		return A2(
@@ -7505,133 +7369,14 @@ var $author$project$Energy$heatExtent = function (cells) {
 			1,
 			$elm$core$List$maximum(vals)));
 };
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm$html$Html$Attributes$classList = function (classes) {
-	return $elm$html$Html$Attributes$class(
-		A2(
-			$elm$core$String$join,
-			' ',
-			A2(
-				$elm$core$List$map,
-				$elm$core$Tuple$first,
-				A2($elm$core$List$filter, $elm$core$Tuple$second, classes))));
-};
-var $elm$html$Html$Events$onMouseOut = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'mouseout',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$html$Html$Events$onMouseOver = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'mouseover',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
-var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $elm$core$String$concat = function (strings) {
-	return A2($elm$core$String$join, '', strings);
-};
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $avh4$elm_color$Color$toCssString = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	var roundTo = function (x) {
-		return $elm$core$Basics$round(x * 1000) / 1000;
-	};
-	var pct = function (x) {
-		return $elm$core$Basics$round(x * 10000) / 100;
-	};
-	return $elm$core$String$concat(
-		_List_fromArray(
-			[
-				'rgba(',
-				$elm$core$String$fromFloat(
-				pct(r)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(g)),
-				'%,',
-				$elm$core$String$fromFloat(
-				pct(b)),
-				'%,',
-				$elm$core$String$fromFloat(
-				roundTo(a)),
-				')'
-			]));
-};
-var $author$project$Main$legendChip = F2(
-	function (hovered, band) {
-		var dim = function () {
-			if (hovered.$ === 'Nothing') {
-				return false;
-			} else {
-				var h = hovered.a;
-				return !_Utils_eq(h, band.name);
-			}
-		}();
-		return A2(
-			$elm$html$Html$span,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$classList(
-					_List_fromArray(
-						[
-							_Utils_Tuple2('chip', true),
-							_Utils_Tuple2('is-dim', dim)
-						])),
-					$elm$html$Html$Events$onMouseOver(
-					$author$project$Main$HoverSource(
-						$elm$core$Maybe$Just(band.name))),
-					$elm$html$Html$Events$onMouseOut(
-					$author$project$Main$HoverSource($elm$core$Maybe$Nothing))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$span,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('swatch'),
-							A2(
-							$elm$html$Html$Attributes$style,
-							'background',
-							$avh4$elm_color$Color$toCssString(band.color))
-						]),
-					_List_Nil),
-					$elm$html$Html$text(band.name)
-				]));
+var $author$project$Main$highlightOf = F2(
+	function (pinned, hovered) {
+		if (pinned.$ === 'Just') {
+			return pinned;
+		} else {
+			return hovered;
+		}
 	});
-var $author$project$Main$legend = function (hovered) {
-	return A2(
-		$elm$html$Html$div,
-		_List_fromArray(
-			[
-				$elm$html$Html$Attributes$class('legend')
-			]),
-		A2(
-			$elm$core$List$cons,
-			A2(
-				$elm$html$Html$span,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('legend-title')
-					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Quellen')
-					])),
-			A2(
-				$elm$core$List$map,
-				$author$project$Main$legendChip(hovered),
-				$author$project$Energy$bands)));
-};
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
 		fromListHelp:
@@ -8257,6 +8002,10 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
 var $gampleman$elm_visualization$Interpolation$piecewise = F3(
 	function (makeInterpolator, head, tail) {
 		var n = $elm$core$List$length(tail);
@@ -8405,6 +8154,7 @@ var $author$project$Energy$metricUnit = function (m) {
 		return '%';
 	}
 };
+var $elm$core$List$sortBy = _List_sortBy;
 var $author$project$Energy$sumByBand = function (rows) {
 	return A2(
 		$elm$core$List$filter,
@@ -8444,6 +8194,20 @@ var $elm$core$Maybe$andThen = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'class',
+		A2($elm$core$String$join, ' ', names));
+};
 var $elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -8460,19 +8224,44 @@ var $elm$core$List$concatMap = F2(
 		return $elm$core$List$concat(
 			A2($elm$core$List$map, f, list));
 	});
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
 			f(x));
 	});
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $avh4$elm_color$Color$toCssString = function (_v0) {
+	var r = _v0.a;
+	var g = _v0.b;
+	var b = _v0.c;
+	var a = _v0.d;
+	var roundTo = function (x) {
+		return $elm$core$Basics$round(x * 1000) / 1000;
+	};
+	var pct = function (x) {
+		return $elm$core$Basics$round(x * 10000) / 100;
+	};
+	return $elm$core$String$concat(
+		_List_fromArray(
+			[
+				'rgba(',
+				$elm$core$String$fromFloat(
+				pct(r)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(g)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(b)),
+				'%,',
+				$elm$core$String$fromFloat(
+				roundTo(a)),
+				')'
+			]));
+};
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString = function (paint) {
 	switch (paint.$) {
 		case 'Paint':
@@ -8582,6 +8371,10 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) 
 	return $elm_community$typed_svg$TypedSvg$Attributes$height(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
 var $elm_community$typed_svg$TypedSvg$Events$on = $elm$virtual_dom$VirtualDom$on;
 var $elm_community$typed_svg$TypedSvg$Events$simpleOn = function (name) {
 	return function (msg) {
@@ -8599,7 +8392,6 @@ var $elm$core$Tuple$pair = F2(
 		return _Utils_Tuple2(a, b);
 	});
 var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$Core$node('rect');
-var $elm$core$List$sortBy = _List_sortBy;
 var $elm$core$List$sort = function (xs) {
 	return A2($elm$core$List$sortBy, $elm$core$Basics$identity, xs);
 };
@@ -8986,6 +8778,9 @@ var $author$project$Chart$Heatmap$view = function (cfg) {
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(hour * cellH),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(cellW + 0.6),
 					$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(cellH + 0.6),
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['cell'])),
 					$elm_community$typed_svg$TypedSvg$Events$onClick(
 					cfg.onClickDay(day))
 				]);
@@ -12272,13 +12067,13 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 	}();
 	var areaFor = F2(
 		function (band, pairs) {
-			var op = function () {
+			var dimmed = function () {
 				var _v1 = cfg.hovered;
 				if (_v1.$ === 'Nothing') {
-					return 1.0;
+					return false;
 				} else {
 					var h = _v1.a;
-					return _Utils_eq(h, band.name) ? 1.0 : 0.18;
+					return !_Utils_eq(h, band.name);
 				}
 			}();
 			var areaPts = A3(
@@ -12305,14 +12100,18 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 					[
 						$elm_community$typed_svg$TypedSvg$Attributes$fill(
 						$elm_community$typed_svg$TypedSvg$Types$Paint(band.color)),
-						$elm_community$typed_svg$TypedSvg$Attributes$fillOpacity(
-						$elm_community$typed_svg$TypedSvg$Types$Opacity(op)),
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+						dimmed ? _List_fromArray(
+							['series', 'is-dim']) : _List_fromArray(
+							['series'])),
 						$elm_community$typed_svg$TypedSvg$Attributes$stroke($elm_community$typed_svg$TypedSvg$Types$PaintNone),
 						$elm_community$typed_svg$TypedSvg$Events$onMouseOver(
 						cfg.onHover(
 							$elm$core$Maybe$Just(band.name))),
 						$elm_community$typed_svg$TypedSvg$Events$onMouseOut(
-						cfg.onHover($elm$core$Maybe$Nothing))
+						cfg.onHover($elm$core$Maybe$Nothing)),
+						$elm_community$typed_svg$TypedSvg$Events$onClick(
+						cfg.onPin(band.name))
 					]));
 		});
 	var areas = A3($elm$core$List$map2, areaFor, $author$project$Energy$bandsStacked, stacked.values);
@@ -13284,15 +13083,6 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 	};
 	var leafSvg = function (item) {
 		var node = item.node;
-		var op = function () {
-			var _v1 = cfg.hovered;
-			if (_v1.$ === 'Nothing') {
-				return 1.0;
-			} else {
-				var h = _v1.a;
-				return _Utils_eq(h, node.name) ? 1.0 : 0.25;
-			}
-		}();
 		var pct = (total <= 0) ? 0 : ((node.value / total) * 100);
 		var tip = node.name + (' — ' + (round1(pct) + ' %'));
 		var labelNodes = ((item.width > 52) && (item.height > 26)) ? _List_fromArray(
@@ -13329,6 +13119,15 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 						round1(pct) + ' %')
 					]))
 			]) : _List_Nil;
+		var dimmed = function () {
+			var _v1 = cfg.hovered;
+			if (_v1.$ === 'Nothing') {
+				return false;
+			} else {
+				var h = _v1.a;
+				return !_Utils_eq(h, node.name);
+			}
+		}();
 		return A2(
 			$elm_community$typed_svg$TypedSvg$g,
 			_List_fromArray(
@@ -13349,8 +13148,10 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(item.height),
 							$elm_community$typed_svg$TypedSvg$Attributes$fill(
 							$elm_community$typed_svg$TypedSvg$Types$Paint(node.color)),
-							$elm_community$typed_svg$TypedSvg$Attributes$fillOpacity(
-							$elm_community$typed_svg$TypedSvg$Types$Opacity(op)),
+							$elm_community$typed_svg$TypedSvg$Attributes$class(
+							dimmed ? _List_fromArray(
+								['tile', 'is-dim']) : _List_fromArray(
+								['tile'])),
 							$elm_community$typed_svg$TypedSvg$Attributes$stroke(
 							$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$white)),
 							$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1),
@@ -13358,7 +13159,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 							cfg.onHover(
 								$elm$core$Maybe$Just(node.name))),
 							$elm_community$typed_svg$TypedSvg$Events$onMouseOut(
-							cfg.onHover($elm$core$Maybe$Nothing))
+							cfg.onHover($elm$core$Maybe$Nothing)),
+							$elm_community$typed_svg$TypedSvg$Events$onClick(
+							cfg.onPin(node.name))
 						]),
 					_List_fromArray(
 						[
@@ -13452,12 +13255,22 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				leafSvg,
 				$gampleman$elm_rosetree$Tree$leaves(layouted))));
 };
-var $author$project$Main$chartsView = F2(
-	function (model, sortedRows) {
+var $author$project$Main$chartsView = F5(
+	function (hovered, pinned, metric, focusedDay, rows) {
+		var sortedRows = A2(
+			$elm$core$List$sortBy,
+			function ($) {
+				return $.unixSeconds;
+			},
+			A2(
+				$elm$core$List$filter,
+				function (r) {
+					return ($author$project$Energy$totalGeneration(r) > 0) || (r.load > 0);
+				},
+				rows));
 		var treemapRows = function () {
-			var _v1 = model.focusedDay;
-			if (_v1.$ === 'Just') {
-				var d = _v1.a;
+			if (focusedDay.$ === 'Just') {
+				var d = focusedDay.a;
 				return A2(
 					$elm$core$List$filter,
 					function (r) {
@@ -13470,11 +13283,11 @@ var $author$project$Main$chartsView = F2(
 				return sortedRows;
 			}
 		}();
-		var heatCells = A2($author$project$Energy$binHourly, model.metric, sortedRows);
+		var hl = A2($author$project$Main$highlightOf, pinned, hovered);
+		var heatCells = A2($author$project$Energy$binHourly, metric, sortedRows);
 		var focusNote = function () {
-			var _v0 = model.focusedDay;
-			if (_v0.$ === 'Just') {
-				var d = _v0.a;
+			if (focusedDay.$ === 'Just') {
+				var d = focusedDay.a;
 				return $elm$core$Maybe$Just(
 					' · Fokus auf ' + ($author$project$Energy$dayLabel(d) + ' (erneut klicken zum Aufheben)'));
 			} else {
@@ -13483,66 +13296,60 @@ var $author$project$Main$chartsView = F2(
 		}();
 		return A2(
 			$elm$html$Html$div,
-			_List_Nil,
 			_List_fromArray(
 				[
-					$author$project$Main$legend(model.hovered),
+					$elm$html$Html$Attributes$class('chart-stack')
+				]),
+			_List_fromArray(
+				[
+					A5(
+					$author$project$Main$chartCard,
+					'1',
+					'Erzeugungsmix & Last im Zeitverlauf',
+					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
+					focusNote,
+					$author$project$Chart$StackedArea$view(
+						{focusedDay: focusedDay, height: 340, hovered: hl, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 960})),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('chart-stack')
+							$elm$html$Html$Attributes$class('chart-grid')
 						]),
 					_List_fromArray(
 						[
 							A5(
 							$author$project$Main$chartCard,
-							'1',
-							'Erzeugungsmix & Last im Zeitverlauf',
-							'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
-							focusNote,
-							$author$project$Chart$StackedArea$view(
-								{focusedDay: model.focusedDay, height: 340, hovered: model.hovered, onHover: $author$project$Main$HoverSource, rows: sortedRows, width: 960})),
-							A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('chart-grid')
-								]),
-							_List_fromArray(
-								[
-									A5(
-									$author$project$Main$chartCard,
-									'2',
-									$author$project$Energy$metricLabel(model.metric) + ' nach Stunde & Tag',
-									'Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten.',
-									$elm$core$Maybe$Nothing,
-									$author$project$Chart$Heatmap$view(
-										{
-											cells: heatCells,
-											extent: $author$project$Energy$heatExtent(heatCells),
-											focusedDay: model.focusedDay,
-											height: 340,
-											interpolator: $author$project$Energy$metricInterpolator(model.metric),
-											onClickDay: $author$project$Main$ClickDay,
-											unit: $author$project$Energy$metricUnit(model.metric),
-											width: 560
-										})),
-									A5(
-									$author$project$Main$chartCard,
-									'3',
-									'Erzeugungsstruktur',
-									'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell.',
-									$elm$core$Maybe$Nothing,
-									$author$project$Chart$Treemap$view(
-										{
-											height: 340,
-											hovered: model.hovered,
-											onHover: $author$project$Main$HoverSource,
-											sums: $author$project$Energy$sumByBand(treemapRows),
-											width: 560
-										}))
-								]))
+							'2',
+							$author$project$Energy$metricLabel(metric) + ' nach Stunde & Tag',
+							'Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten.',
+							$elm$core$Maybe$Nothing,
+							$author$project$Chart$Heatmap$view(
+								{
+									cells: heatCells,
+									extent: $author$project$Energy$heatExtent(heatCells),
+									focusedDay: focusedDay,
+									height: 340,
+									interpolator: $author$project$Energy$metricInterpolator(metric),
+									onClickDay: $author$project$Main$ClickDay,
+									unit: $author$project$Energy$metricUnit(metric),
+									width: 560
+								})),
+							A5(
+							$author$project$Main$chartCard,
+							'3',
+							'Erzeugungsstruktur',
+							'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell.',
+							$elm$core$Maybe$Nothing,
+							$author$project$Chart$Treemap$view(
+								{
+									height: 340,
+									hovered: hl,
+									onHover: $author$project$Main$HoverSource,
+									onPin: $author$project$Main$PinSource,
+									sums: $author$project$Energy$sumByBand(treemapRows),
+									width: 560
+								}))
 						]))
 				]));
 	});
@@ -13613,6 +13420,147 @@ var $author$project$Main$emptyView = function (model) {
 					]))
 			]));
 };
+var $elm$virtual_dom$VirtualDom$lazy5 = _VirtualDom_lazy5;
+var $elm$html$Html$Lazy$lazy5 = $elm$virtual_dom$VirtualDom$lazy5;
+var $elm$html$Html$Attributes$classList = function (classes) {
+	return $elm$html$Html$Attributes$class(
+		A2(
+			$elm$core$String$join,
+			' ',
+			A2(
+				$elm$core$List$map,
+				$elm$core$Tuple$first,
+				A2($elm$core$List$filter, $elm$core$Tuple$second, classes))));
+};
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$onMouseOut = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseout',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$onMouseOver = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseover',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $author$project$Main$legendChip = F3(
+	function (hl, pinned, band) {
+		var isPinned = _Utils_eq(
+			pinned,
+			$elm$core$Maybe$Just(band.name));
+		var dim = function () {
+			if (hl.$ === 'Nothing') {
+				return false;
+			} else {
+				var h = hl.a;
+				return !_Utils_eq(h, band.name);
+			}
+		}();
+		return A2(
+			$elm$html$Html$span,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('chip', true),
+							_Utils_Tuple2('is-dim', dim),
+							_Utils_Tuple2('is-pinned', isPinned)
+						])),
+					$elm$html$Html$Events$onMouseOver(
+					$author$project$Main$HoverSource(
+						$elm$core$Maybe$Just(band.name))),
+					$elm$html$Html$Events$onMouseOut(
+					$author$project$Main$HoverSource($elm$core$Maybe$Nothing)),
+					$elm$html$Html$Events$onClick(
+					$author$project$Main$PinSource(band.name))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('swatch'),
+							A2(
+							$elm$html$Html$Attributes$style,
+							'background',
+							$avh4$elm_color$Color$toCssString(band.color))
+						]),
+					_List_Nil),
+					$elm$html$Html$text(band.name)
+				]));
+	});
+var $author$project$Main$legend = function (model) {
+	var hl = A2($author$project$Main$highlightOf, model.pinned, model.hovered);
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('legend')
+			]),
+		A2(
+			$elm$core$List$cons,
+			A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('legend-title')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('legend-kicker')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Quellen')
+							])),
+						A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('legend-hint')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('hover erklärt · klick fixiert')
+							]))
+					])),
+			A2(
+				$elm$core$List$map,
+				A2($author$project$Main$legendChip, hl, model.pinned),
+				$author$project$Energy$bands)));
+};
+var $author$project$Main$onMouseMove = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mousemove',
+		A3(
+			$elm$json$Json$Decode$map2,
+			tagger,
+			A2($elm$json$Json$Decode$field, 'clientX', $elm$json$Json$Decode$float),
+			A2($elm$json$Json$Decode$field, 'clientY', $elm$json$Json$Decode$float)));
+};
 var $author$project$Main$statusView = function (model) {
 	var _v0 = function () {
 		var _v1 = model.status;
@@ -13663,7 +13611,122 @@ var $author$project$Main$statusView = function (model) {
 					]))
 			]));
 };
+var $author$project$Energy$bandColorByName = function (name) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		A3($avh4$elm_color$Color$rgb255, 148, 163, 184),
+		A2(
+			$elm$core$Maybe$map,
+			function ($) {
+				return $.color;
+			},
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (b) {
+						return _Utils_eq(b.name, name);
+					},
+					$author$project$Energy$bands))));
+};
+var $author$project$Energy$bandInfo = function (name) {
+	switch (name) {
+		case 'Solar':
+			return 'Photovoltaik – erzeugt nur tagsüber, Maximum um die Mittagszeit.';
+		case 'Wind':
+			return 'Wind an Land und auf See – wetterabhängig, oft nachts und im Winter stärker.';
+		case 'Wasserkraft':
+			return 'Lauf-, Speicher- und Pumpspeicherkraft – gut regel- und speicherbar.';
+		case 'Biomasse':
+			return 'Biomasse und Geothermie – planbare, grundlastfähige Erneuerbare.';
+		case 'Kernkraft':
+			return 'Kernenergie – konstante Grundlast, kaum tageszeitliche Schwankung.';
+		case 'Kohle':
+			return 'Braun- und Steinkohle – konventionell und CO₂-intensiv.';
+		case 'Gas/Öl':
+			return 'Gas- und Ölkraftwerke – flexibel, decken Spitzen und Residuallast.';
+		case 'Sonstige':
+			return 'Abfall und weitere, nicht separat ausgewiesene Quellen.';
+		default:
+			return '';
+	}
+};
+var $author$project$Main$tooltipView = function (model) {
+	var _v0 = model.hovered;
+	if (_v0.$ === 'Just') {
+		var name = _v0.a;
+		var _v1 = model.mouse;
+		var x = _v1.a;
+		var y = _v1.b;
+		return A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('tooltip'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'left',
+					$elm$core$String$fromFloat(x) + 'px'),
+					A2(
+					$elm$html$Html$Attributes$style,
+					'top',
+					$elm$core$String$fromFloat(y) + 'px')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-head')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('tt-dot'),
+									A2(
+									$elm$html$Html$Attributes$style,
+									'background',
+									$avh4$elm_color$Color$toCssString(
+										$author$project$Energy$bandColorByName(name)))
+								]),
+							_List_Nil),
+							$elm$html$Html$text(name)
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-body')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							$author$project$Energy$bandInfo(name))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('tt-hint')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text(
+							_Utils_eq(
+								model.pinned,
+								$elm$core$Maybe$Just(name)) ? 'Klick: Fixierung lösen' : 'Klick: fixieren')
+						]))
+				]));
+	} else {
+		return $elm$html$Html$text('');
+	}
+};
+var $author$project$Main$Connect = {$: 'Connect'};
 var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
+var $author$project$Main$Reload = {$: 'Reload'};
 var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
 var $author$project$Main$SelectCountry = function (a) {
 	return {$: 'SelectCountry', a: a};
@@ -13671,6 +13734,10 @@ var $author$project$Main$SelectCountry = function (a) {
 var $author$project$Main$SelectMetric = function (a) {
 	return {$: 'SelectMetric', a: a};
 };
+var $author$project$Main$TokenInput = function (a) {
+	return {$: 'TokenInput', a: a};
+};
+var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$label = _VirtualDom_node('label');
 var $author$project$Main$control = F2(
 	function (labelText, child) {
@@ -13705,6 +13772,7 @@ var $elm$html$Html$Attributes$boolProperty = F2(
 			$elm$json$Json$Encode$bool(bool));
 	});
 var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
+var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$countryOption = F2(
 	function (current, _v0) {
 		var code = _v0.a;
@@ -13722,6 +13790,7 @@ var $author$project$Main$countryOption = F2(
 					$elm$html$Html$text(name)
 				]));
 	});
+var $elm$html$Html$input = _VirtualDom_node('input');
 var $author$project$Main$metricFromString = function (s) {
 	switch (s) {
 		case 'ee':
@@ -13759,7 +13828,36 @@ var $author$project$Main$metricOption = F2(
 					$author$project$Energy$metricLabel(m))
 				]));
 	});
+var $elm$html$Html$Events$alwaysStop = function (x) {
+	return _Utils_Tuple2(x, true);
+};
+var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
+	return {$: 'MayStopPropagation', a: a};
+};
+var $elm$html$Html$Events$stopPropagationOn = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
+	});
+var $elm$html$Html$Events$targetValue = A2(
+	$elm$json$Json$Decode$at,
+	_List_fromArray(
+		['target', 'value']),
+	$elm$json$Json$Decode$string);
+var $elm$html$Html$Events$onInput = function (tagger) {
+	return A2(
+		$elm$html$Html$Events$stopPropagationOn,
+		'input',
+		A2(
+			$elm$json$Json$Decode$map,
+			$elm$html$Html$Events$alwaysStop,
+			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+};
+var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$html$Html$select = _VirtualDom_node('select');
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
 var $author$project$Main$SelectWindow = function (a) {
 	return {$: 'SelectWindow', a: a};
 };
@@ -13786,12 +13884,12 @@ var $author$project$Main$windowButton = F2(
 					$elm$core$String$fromInt(d) + ' Tage')
 				]));
 	});
-var $author$project$Main$toolbar = function (model) {
+var $author$project$Main$navControls = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('toolbar')
+				$elm$html$Html$Attributes$class('nav-controls')
 			]),
 		_List_fromArray(
 			[
@@ -13826,7 +13924,7 @@ var $author$project$Main$toolbar = function (model) {
 							[7, 14, 30])))),
 				A2(
 				$author$project$Main$control,
-				'Heatmap-Metrik',
+				'Metrik',
 				A2(
 					$elm$html$Html$select,
 					_List_fromArray(
@@ -13841,40 +13939,144 @@ var $author$project$Main$toolbar = function (model) {
 						$elm$core$List$map,
 						$author$project$Main$metricOption(model.metric),
 						_List_fromArray(
-							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric]))))
+							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric])))),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('nav-conn')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$input,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('text-input'),
+								$elm$html$Html$Attributes$placeholder('Token (optional)'),
+								$elm$html$Html$Attributes$value(model.tokenInput),
+								$elm$html$Html$Events$onInput($author$project$Main$TokenInput)
+							]),
+						_List_Nil),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn btn-primary'),
+								$elm$html$Html$Events$onClick($author$project$Main$Connect)
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('🔗 Verbinden')
+							])),
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn btn-ghost btn-icon'),
+								$elm$html$Html$Events$onClick($author$project$Main$Reload),
+								$elm$html$Html$Attributes$title('Aktuelle Auswahl neu laden')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('↻')
+							]))
+					]))
+			]));
+};
+var $elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
+var $author$project$Main$topNav = function (model) {
+	return A3(
+		$elm$html$Html$node,
+		'nav',
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('topnav')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('topnav-inner')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('brand')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('brand-mark')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('⚡')
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('brand-title')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('EnergyCharts '),
+										A2(
+										$elm$html$Html$span,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('accent')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('Visual Analytics')
+											]))
+									]))
+							])),
+						$author$project$Main$navControls(model)
+					]))
 			]));
 };
 var $author$project$Main$view = function (model) {
-	var sortedRows = A2(
-		$elm$core$List$sortBy,
-		function ($) {
-			return $.unixSeconds;
+	var visibleRows = A2(
+		$elm$core$List$filter,
+		function (r) {
+			return ($author$project$Energy$totalGeneration(r) > 0) || (r.load > 0);
 		},
-		A2(
-			$elm$core$List$filter,
-			function (r) {
-				return ($author$project$Energy$totalGeneration(r) > 0) || (r.load > 0);
-			},
-			model.rows));
+		model.rows);
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
 		_List_fromArray(
 			[
-				$author$project$Main$appHeader(model),
+				$author$project$Main$topNav(model),
 				A2(
-				$elm$html$Html$p,
+				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('lead')
+						$elm$html$Html$Attributes$class('page'),
+						$author$project$Main$onMouseMove($author$project$Main$MouseMove)
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Stromerzeugung in Europa und einzelnen Ländern – Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile in drei verbundenen Sichten. Eine Abfrage, drei Perspektiven auf dasselbe Stromsystem.')
+						$author$project$Main$legend(model),
+						$author$project$Main$statusView(model),
+						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A6($elm$html$Html$Lazy$lazy5, $author$project$Main$chartsView, model.hovered, model.pinned, model.metric, model.focusedDay, model.rows)
 					])),
-				$author$project$Main$toolbar(model),
-				$author$project$Main$statusView(model),
-				$elm$core$List$isEmpty(sortedRows) ? $author$project$Main$emptyView(model) : A2($author$project$Main$chartsView, model, sortedRows)
+				$author$project$Main$tooltipView(model)
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$element(

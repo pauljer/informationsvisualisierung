@@ -32,6 +32,7 @@ type alias Config msg =
     , hovered : Maybe String
     , focusedDay : Maybe Int
     , onHover : Maybe String -> msg
+    , onPin : String -> msg
     }
 
 
@@ -109,24 +110,27 @@ view cfg =
                         cfg.rows
                         pairs
 
-                op =
+                dimmed =
                     case cfg.hovered of
                         Nothing ->
-                            1.0
+                            False
 
                         Just h ->
-                            if h == band.name then
-                                1.0
-
-                            else
-                                0.18
+                            h /= band.name
             in
             Path.element (Shape.area Shape.linearCurve areaPts)
                 [ TA.fill (Paint band.color)
-                , TA.fillOpacity (Opacity op)
+                , TA.class
+                    (if dimmed then
+                        [ "series", "is-dim" ]
+
+                     else
+                        [ "series" ]
+                    )
                 , TA.stroke PaintNone
                 , TE.onMouseOver (cfg.onHover (Just band.name))
                 , TE.onMouseOut (cfg.onHover Nothing)
+                , TE.onClick (cfg.onPin band.name)
                 ]
 
         areas =

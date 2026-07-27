@@ -114,6 +114,7 @@ view cfg =
                     , InPx.y (toFloat hour * cellH)
                     , InPx.width (cellW + 0.6)
                     , InPx.height (cellH + 0.6)
+                    , TA.class [ "cell" ]
                     , TE.onClick (cfg.onClickDay day)
                     ]
             in

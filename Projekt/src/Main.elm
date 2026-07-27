@@ -23,7 +23,9 @@ import Energy exposing (Metric(..), Row)
 import Html exposing (Html)
 import Html.Attributes as HA
 import Html.Events as HE
+import Html.Lazy
 import Http
+import Json.Decode as Decode
 
 
 
@@ -53,7 +55,9 @@ type alias Model =
     , rows : List Row
     , status : Status
     , hovered : Maybe String
+    , pinned : Maybe String
     , focusedDay : Maybe Int
+    , mouse : ( Float, Float )
     }
 
 
@@ -72,10 +76,13 @@ init nowMillis =
       , rows = []
       , status = NeedConnect
       , hovered = Nothing
+      , pinned = Nothing
       , focusedDay = Nothing
+      , mouse = ( 0, 0 )
       }
     , Cmd.none
     )
+
 
 
 
@@ -94,6 +101,8 @@ type Msg
     | SelectWindow Int
     | SelectMetric Metric
     | HoverSource (Maybe String)
+    | PinSource String
+    | MouseMove Float Float
     | ClickDay Int
     | Reload
 
@@ -216,6 +225,21 @@ update msg model =
         HoverSource ms ->
             ( { model | hovered = ms }, Cmd.none )
 
+        PinSource name ->
+            ( { model
+                | pinned =
+                    if model.pinned == Just name then
+                        Nothing
+
+                    else
+                        Just name
+              }
+            , Cmd.none
+            )
+
+        MouseMove x y ->
+            ( { model | mouse = ( x, y ) }, Cmd.none )
+
         ClickDay d ->
             ( { model
                 | focusedDay =
@@ -261,51 +285,98 @@ view : Model -> Html Msg
 view model =
     let
         -- Platzhalter-/Vorschau-Zeilen (alle Werte null -> 0) ausblenden.
-        sortedRows =
+        visibleRows =
             model.rows
                 |> List.filter (\r -> Energy.totalGeneration r > 0 || r.load > 0)
-                |> List.sortBy .unixSeconds
     in
     Html.div []
-        [ appHeader model
-        , Html.p [ HA.class "lead" ]
-            [ Html.text "Stromerzeugung in Europa und einzelnen Ländern – Zusammensetzung über die Zeit, Tagesrhythmus und Strukturanteile in drei verbundenen Sichten. Eine Abfrage, drei Perspektiven auf dasselbe Stromsystem." ]
-        , toolbar model
-        , statusView model
-        , if List.isEmpty sortedRows then
-            emptyView model
+        [ topNav model
+        , Html.div [ HA.class "page", onMouseMove MouseMove ]
+            [ legend model
+            , statusView model
+            , if List.isEmpty visibleRows then
+                emptyView model
 
-          else
-            chartsView model sortedRows
+              else
+                -- Charts in `lazy` gekapselt: bei reiner Mausbewegung (Tooltip)
+                -- werden sie nicht neu gezeichnet – nur bei Hover/Pin/Daten.
+                Html.Lazy.lazy5 chartsView model.hovered model.pinned model.metric model.focusedDay model.rows
+            ]
+        , tooltipView model
         ]
 
 
-appHeader : Model -> Html Msg
-appHeader model =
-    Html.header [ HA.class "app-header" ]
-        [ Html.div [ HA.class "brand" ]
-            [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
-            , Html.div [ HA.class "brand-text" ]
-                [ Html.div [ HA.class "brand-title" ]
+{-| Effektive Hervorhebung: ein fixierter (angeklickter) Eintrag dominiert,
+sonst der gerade überfahrene. -}
+highlightOf : Maybe String -> Maybe String -> Maybe String
+highlightOf pinned hovered =
+    case pinned of
+        Just _ ->
+            pinned
+
+        Nothing ->
+            hovered
+
+
+onMouseMove : (Float -> Float -> msg) -> Html.Attribute msg
+onMouseMove tagger =
+    HE.on "mousemove"
+        (Decode.map2 tagger
+            (Decode.field "clientX" Decode.float)
+            (Decode.field "clientY" Decode.float)
+        )
+
+
+tooltipView : Model -> Html Msg
+tooltipView model =
+    case model.hovered of
+        Just name ->
+            let
+                ( x, y ) =
+                    model.mouse
+            in
+            Html.div
+                [ HA.class "tooltip"
+                , HA.style "left" (String.fromFloat x ++ "px")
+                , HA.style "top" (String.fromFloat y ++ "px")
+                ]
+                [ Html.div [ HA.class "tt-head" ]
+                    [ Html.span
+                        [ HA.class "tt-dot"
+                        , HA.style "background" (Color.toCssString (Energy.bandColorByName name))
+                        ]
+                        []
+                    , Html.text name
+                    ]
+                , Html.div [ HA.class "tt-body" ] [ Html.text (Energy.bandInfo name) ]
+                , Html.div [ HA.class "tt-hint" ]
+                    [ Html.text
+                        (if model.pinned == Just name then
+                            "Klick: Fixierung lösen"
+
+                         else
+                            "Klick: fixieren"
+                        )
+                    ]
+                ]
+
+        Nothing ->
+            Html.text ""
+
+
+topNav : Model -> Html Msg
+topNav model =
+    Html.node "nav"
+        [ HA.class "topnav" ]
+        [ Html.div [ HA.class "topnav-inner" ]
+            [ Html.div [ HA.class "brand" ]
+                [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
+                , Html.div [ HA.class "brand-title" ]
                     [ Html.text "EnergyCharts "
                     , Html.span [ HA.class "accent" ] [ Html.text "Visual Analytics" ]
                     ]
-                , Html.div [ HA.class "brand-sub" ]
-                    [ Html.text "Europas Stromsystem verstehen · drei verbundene Sichten" ]
                 ]
-            ]
-        , Html.div [ HA.class "header-actions" ]
-            [ Html.input
-                [ HA.class "text-input"
-                , HA.placeholder "Token (optional – sonst Proxy)"
-                , HA.value model.tokenInput
-                , HE.onInput TokenInput
-                ]
-                []
-            , Html.button [ HA.class "btn btn-primary", HE.onClick Connect ]
-                [ Html.text "🔗 Verbinden" ]
-            , Html.button [ HA.class "btn btn-ghost btn-icon", HE.onClick Reload, HA.title "Aktuelle Auswahl neu laden" ]
-                [ Html.text "↻" ]
+            , navControls model
             ]
         ]
 
@@ -328,9 +399,9 @@ emptyView model =
         ]
 
 
-toolbar : Model -> Html Msg
-toolbar model =
-    Html.div [ HA.class "toolbar" ]
+navControls : Model -> Html Msg
+navControls model =
+    Html.div [ HA.class "nav-controls" ]
         [ control "Land"
             (Html.select [ HA.class "select", HE.onInput SelectCountry, HA.value model.country ]
                 (List.map (countryOption model.country) countries)
@@ -339,10 +410,23 @@ toolbar model =
             (Html.div [ HA.class "segmented" ]
                 (List.map (windowButton model.windowDays) [ 7, 14, 30 ])
             )
-        , control "Heatmap-Metrik"
+        , control "Metrik"
             (Html.select [ HA.class "select", HE.onInput (SelectMetric << metricFromString), HA.value (metricKey model.metric) ]
                 (List.map (metricOption model.metric) [ SolarShare, RenewableShare, LoadMetric ])
             )
+        , Html.div [ HA.class "nav-conn" ]
+            [ Html.input
+                [ HA.class "text-input"
+                , HA.placeholder "Token (optional)"
+                , HA.value model.tokenInput
+                , HE.onInput TokenInput
+                ]
+                []
+            , Html.button [ HA.class "btn btn-primary", HE.onClick Connect ]
+                [ Html.text "🔗 Verbinden" ]
+            , Html.button [ HA.class "btn btn-ghost btn-icon", HE.onClick Reload, HA.title "Aktuelle Auswahl neu laden" ]
+                [ Html.text "↻" ]
+            ]
         ]
 
 
@@ -399,43 +483,66 @@ statusView model =
         ]
 
 
-legend : Maybe String -> Html Msg
-legend hovered =
+legend : Model -> Html Msg
+legend model =
+    let
+        hl =
+            highlightOf model.pinned model.hovered
+    in
     Html.div [ HA.class "legend" ]
-        (Html.span [ HA.class "legend-title" ] [ Html.text "Quellen" ]
-            :: List.map (legendChip hovered) Energy.bands
+        (Html.span [ HA.class "legend-title" ]
+            [ Html.span [ HA.class "legend-kicker" ] [ Html.text "Quellen" ]
+            , Html.span [ HA.class "legend-hint" ] [ Html.text "hover erklärt · klick fixiert" ]
+            ]
+            :: List.map (legendChip hl model.pinned) Energy.bands
         )
 
 
-legendChip : Maybe String -> Energy.Band -> Html Msg
-legendChip hovered band =
+legendChip : Maybe String -> Maybe String -> Energy.Band -> Html Msg
+legendChip hl pinned band =
     let
         dim =
-            case hovered of
+            case hl of
                 Nothing ->
                     False
 
                 Just h ->
                     h /= band.name
+
+        isPinned =
+            pinned == Just band.name
     in
     Html.span
-        [ HA.classList [ ( "chip", True ), ( "is-dim", dim ) ]
+        [ HA.classList
+            [ ( "chip", True )
+            , ( "is-dim", dim )
+            , ( "is-pinned", isPinned )
+            ]
         , HE.onMouseOver (HoverSource (Just band.name))
         , HE.onMouseOut (HoverSource Nothing)
+        , HE.onClick (PinSource band.name)
         ]
         [ Html.span [ HA.class "swatch", HA.style "background" (Color.toCssString band.color) ] []
         , Html.text band.name
         ]
 
 
-chartsView : Model -> List Row -> Html Msg
-chartsView model sortedRows =
+chartsView : Maybe String -> Maybe String -> Metric -> Maybe Int -> List Row -> Html Msg
+chartsView hovered pinned metric focusedDay rows =
     let
+        hl =
+            highlightOf pinned hovered
+
+        sortedRows =
+            rows
+                |> List.filter (\r -> Energy.totalGeneration r > 0 || r.load > 0)
+                |> List.sortBy .unixSeconds
+
         heatCells =
-            Energy.binHourly model.metric sortedRows
+            Energy.binHourly metric sortedRows
 
         treemapRows =
-            case model.focusedDay of
+            case focusedDay of
                 Just d ->
                     List.filter (\r -> Energy.dayOf r.unixSeconds == d) sortedRows
 
@@ -443,55 +550,54 @@ chartsView model sortedRows =
                     sortedRows
 
         focusNote =
-            case model.focusedDay of
+            case focusedDay of
                 Just d ->
                     Just (" · Fokus auf " ++ Energy.dayLabel d ++ " (erneut klicken zum Aufheben)")
 
                 Nothing ->
                     Nothing
     in
-    Html.div []
-        [ legend model.hovered
-        , Html.div [ HA.class "chart-stack" ]
-            [ chartCard "1" "Erzeugungsmix & Last im Zeitverlauf"
-                "Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt."
-                focusNote
-                (StackedArea.view
-                    { width = 960
+    Html.div [ HA.class "chart-stack" ]
+        [ chartCard "1" "Erzeugungsmix & Last im Zeitverlauf"
+            "Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt."
+            focusNote
+            (StackedArea.view
+                { width = 960
+                , height = 340
+                , rows = sortedRows
+                , hovered = hl
+                , focusedDay = focusedDay
+                , onHover = HoverSource
+                , onPin = PinSource
+                }
+            )
+        , Html.div [ HA.class "chart-grid" ]
+            [ chartCard "2" (Energy.metricLabel metric ++ " nach Stunde & Tag")
+                "Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten."
+                Nothing
+                (Heatmap.view
+                    { width = 560
                     , height = 340
-                    , rows = sortedRows
-                    , hovered = model.hovered
-                    , focusedDay = model.focusedDay
-                    , onHover = HoverSource
+                    , cells = heatCells
+                    , extent = Energy.heatExtent heatCells
+                    , unit = Energy.metricUnit metric
+                    , interpolator = Energy.metricInterpolator metric
+                    , focusedDay = focusedDay
+                    , onClickDay = ClickDay
                     }
                 )
-            , Html.div [ HA.class "chart-grid" ]
-                [ chartCard "2" (Energy.metricLabel model.metric ++ " nach Stunde & Tag")
-                    "Jede Zelle ist ein Stunden-Pixel (x = Tag, y = Stunde). Klick auf einen Tag fokussiert die anderen beiden Sichten."
-                    Nothing
-                    (Heatmap.view
-                        { width = 560
-                        , height = 340
-                        , cells = heatCells
-                        , extent = Energy.heatExtent heatCells
-                        , unit = Energy.metricUnit model.metric
-                        , interpolator = Energy.metricInterpolator model.metric
-                        , focusedDay = model.focusedDay
-                        , onClickDay = ClickDay
-                        }
-                    )
-                , chartCard "3" "Erzeugungsstruktur"
-                    "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell."
-                    Nothing
-                    (Treemap.view
-                        { width = 560
-                        , height = 340
-                        , sums = Energy.sumByBand treemapRows
-                        , hovered = model.hovered
-                        , onHover = HoverSource
-                        }
-                    )
-                ]
+            , chartCard "3" "Erzeugungsstruktur"
+                "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell."
+                Nothing
+                (Treemap.view
+                    { width = 560
+                    , height = 340
+                    , sums = Energy.sumByBand treemapRows
+                    , hovered = hl
+                    , onHover = HoverSource
+                    , onPin = PinSource
+                    }
+                )
             ]
         ]
 

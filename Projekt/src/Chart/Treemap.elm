@@ -37,6 +37,7 @@ type alias Config msg =
     , sums : List ( Band, Float )
     , hovered : Maybe String
     , onHover : Maybe String -> msg
+    , onPin : String -> msg
     }
 
 
@@ -96,17 +97,13 @@ view cfg =
                 node =
                     item.node
 
-                op =
+                dimmed =
                     case cfg.hovered of
                         Nothing ->
-                            1.0
+                            False
 
                         Just h ->
-                            if h == node.name then
-                                1.0
-
-                            else
-                                0.25
+                            h /= node.name
 
                 pct =
                     if total <= 0 then
@@ -144,11 +141,18 @@ view cfg =
                     [ InPx.width item.width
                     , InPx.height item.height
                     , TA.fill (Paint node.color)
-                    , TA.fillOpacity (Opacity op)
+                    , TA.class
+                        (if dimmed then
+                            [ "tile", "is-dim" ]
+
+                         else
+                            [ "tile" ]
+                        )
                     , TA.stroke (Paint Color.white)
                     , InPx.strokeWidth 1
                     , TE.onMouseOver (cfg.onHover (Just node.name))
                     , TE.onMouseOut (cfg.onHover Nothing)
+                    , TE.onClick (cfg.onPin node.name)
                     ]
                     [ title [] [ TypedSvg.Core.text tip ] ]
                     :: labelNodes

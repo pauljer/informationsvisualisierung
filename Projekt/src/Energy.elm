@@ -1,6 +1,7 @@
 module Energy exposing
     ( Row, Band, Group(..)
     , bands, bandsStacked, groupName, groupColor
+    , bandInfo, bandColorByName
     , totalGeneration, bandValue
     , Metric(..), metricLabel, metricUnit, metricValue, metricInterpolator
     , hourOf, dayOf, dayLabel
@@ -173,6 +174,48 @@ otherBand =
 bandValue : Band -> Row -> Float
 bandValue b r =
     b.value r
+
+
+{-| Kurze Erklärung je Quelle – für die Hover-Tooltips. -}
+bandInfo : String -> String
+bandInfo name =
+    case name of
+        "Solar" ->
+            "Photovoltaik – erzeugt nur tagsüber, Maximum um die Mittagszeit."
+
+        "Wind" ->
+            "Wind an Land und auf See – wetterabhängig, oft nachts und im Winter stärker."
+
+        "Wasserkraft" ->
+            "Lauf-, Speicher- und Pumpspeicherkraft – gut regel- und speicherbar."
+
+        "Biomasse" ->
+            "Biomasse und Geothermie – planbare, grundlastfähige Erneuerbare."
+
+        "Kernkraft" ->
+            "Kernenergie – konstante Grundlast, kaum tageszeitliche Schwankung."
+
+        "Kohle" ->
+            "Braun- und Steinkohle – konventionell und CO₂-intensiv."
+
+        "Gas/Öl" ->
+            "Gas- und Ölkraftwerke – flexibel, decken Spitzen und Residuallast."
+
+        "Sonstige" ->
+            "Abfall und weitere, nicht separat ausgewiesene Quellen."
+
+        _ ->
+            ""
+
+
+{-| Farbe einer Quelle über ihren Namen (für Legenden-/Tooltip-Punkte). -}
+bandColorByName : String -> Color
+bandColorByName name =
+    bands
+        |> List.filter (\b -> b.name == name)
+        |> List.head
+        |> Maybe.map .color
+        |> Maybe.withDefault (Color.rgb255 148 163 184)
 
 
 {-| Gesamte Erzeugung (Summe aller Bänder) – Basis für Anteile. -}
