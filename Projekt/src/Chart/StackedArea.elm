@@ -29,7 +29,7 @@ type alias Config msg =
     { width : Float
     , height : Float
     , rows : List Row
-    , hovered : Maybe String
+    , active : List String
     , focusedDay : Maybe Int
     , onHover : Maybe String -> msg
     , onPin : String -> msg
@@ -111,12 +111,7 @@ view cfg =
                         pairs
 
                 dimmed =
-                    case cfg.hovered of
-                        Nothing ->
-                            False
-
-                        Just h ->
-                            h /= band.name
+                    not (List.isEmpty cfg.active) && not (List.member band.name cfg.active)
             in
             Path.element (Shape.area Shape.linearCurve areaPts)
                 [ TA.fill (Paint band.color)

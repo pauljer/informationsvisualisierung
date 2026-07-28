@@ -70,7 +70,7 @@ type alias Model =
     , rowsByCountry : Dict String (List Row)
     , status : Status
     , hovered : Maybe String
-    , pinned : Maybe String
+    , pinned : List String
     , focusedDay : Maybe Int
     , mouse : ( Float, Float )
     , dark : Bool
@@ -120,7 +120,7 @@ init nowMillis =
       , rowsByCountry = Dict.empty
       , status = NeedConnect
       , hovered = Nothing
-      , pinned = Nothing
+      , pinned = []
       , focusedDay = Nothing
       , mouse = ( 0, 0 )
       , dark = False
@@ -133,6 +133,7 @@ init nowMillis =
       }
     , Cmd.none
     )
+
 
 
 
@@ -372,11 +373,11 @@ update msg model =
         PinSource name ->
             ( { model
                 | pinned =
-                    if model.pinned == Just name then
-                        Nothing
+                    if List.member name model.pinned then
+                        List.filter ((/=) name) model.pinned
 
                     else
-                        Just name
+                        name :: model.pinned
               }
             , Cmd.none
             )
@@ -495,16 +496,21 @@ view model =
         ]
 
 
-{-| Effektive Hervorhebung: ein fixierter (angeklickter) Eintrag dominiert,
-sonst der gerade überfahrene. -}
-highlightOf : Maybe String -> Maybe String -> Maybe String
-highlightOf pinned hovered =
-    case pinned of
-        Just _ ->
-            pinned
+{-| Menge der hervorgehobenen Quellen: die fixierten (angeklickten) dominieren;
+ist nichts fixiert, wird die gerade überfahrene hervorgehoben. Leere Liste =
+alles normal. Mehrere Quellen können parallel fixiert sein. -}
+activeOf : List String -> Maybe String -> List String
+activeOf pinned hovered =
+    if not (List.isEmpty pinned) then
+        pinned
 
-        Nothing ->
-            hovered
+    else
+        case hovered of
+            Just h ->
+                [ h ]
+
+            Nothing ->
+                []
 
 
 onMouseMove : (Float -> Float -> msg) -> Html.Attribute msg
@@ -540,7 +546,7 @@ tooltipView model =
                 , Html.div [ HA.class "tt-body" ] [ Html.text (Energy.bandInfo name) ]
                 , Html.div [ HA.class "tt-hint" ]
                     [ Html.text
-                        (if model.pinned == Just name then
+                        (if List.member name model.pinned then
                             "Klick: Fixierung lösen"
 
                          else
@@ -561,10 +567,7 @@ topNav model =
             -- Marken-Säule links (volle Höhe)
             [ Html.div [ HA.class "brand-col" ]
                 [ Html.div [ HA.class "brand-mark" ] [ Html.text "⚡" ]
-                , Html.div [ HA.class "brand-lockup" ]
-                    [ Html.div [ HA.class "brand-name" ] [ Html.text "EnergyCharts" ]
-                    , Html.div [ HA.class "brand-tag" ] [ Html.text "VISUAL ANALYTICS" ]
-                    ]
+                , Html.div [ HA.class "brand-name" ] [ Html.text "EnergyCharts" ]
                 ]
 
             -- Rechts: eine flache Zeile – Steuerungen · Quellen · Status/Aktionen/CTA
@@ -625,13 +628,6 @@ primaryButton model =
             else
                 Reload
 
-        timeTxt =
-            if busy then
-                " · " ++ oneDecimal model.elapsed ++ "s"
-
-            else
-                ""
-
         -- Batterie-Füllstand je Ladephase
         fillPct =
             case model.status of
@@ -668,7 +664,12 @@ primaryButton model =
                     )
                 ]
                 []
-            , Html.text (label ++ timeTxt)
+            , Html.span [ HA.class "btn-label" ] [ Html.text label ]
+            , if busy then
+                Html.span [ HA.class "btn-time" ] [ Html.text (oneDecimal model.elapsed ++ "s") ]
+
+              else
+                Html.text ""
             ]
         ]
 
@@ -741,7 +742,7 @@ controlCluster model =
                         )
                         countries
                     )
-                , countBadge model
+                , Html.div [ HA.class "count-slot" ] [ countBadge model ]
                 ]
             )
         , control "ico-calendar" "Zeitfenster"
@@ -846,7 +847,7 @@ legend : Model -> Html Msg
 legend model =
     let
         hl =
-            highlightOf model.pinned model.hovered
+            activeOf model.pinned model.hovered
     in
     Html.div [ HA.class "legend", HA.tabindex 0 ]
         [ Html.span [ HA.class "legend-kicker" ] [ Html.text "Quellen" ]
@@ -856,19 +857,14 @@ legend model =
         ]
 
 
-legendChip : Maybe String -> Maybe String -> Energy.Band -> Html Msg
+legendChip : List String -> List String -> Energy.Band -> Html Msg
 legendChip hl pinned band =
     let
         dim =
-            case hl of
-                Nothing ->
-                    False
-
-                Just h ->
-                    h /= band.name
+            not (List.isEmpty hl) && not (List.member band.name hl)
 
         isPinned =
-            pinned == Just band.name
+            List.member band.name pinned
     in
     Html.span
         [ HA.classList
@@ -885,11 +881,11 @@ legendChip hl pinned band =
         ]
 
 
-chartsView : Maybe String -> Maybe String -> Metric -> Maybe Int -> Int -> List Row -> Html Msg
+chartsView : Maybe String -> List String -> Metric -> Maybe Int -> Int -> List Row -> Html Msg
 chartsView hovered pinned metric focusedDay windowDays rows =
     let
         hl =
-            highlightOf pinned hovered
+            activeOf pinned hovered
 
         allSorted =
             rows
@@ -930,7 +926,7 @@ chartsView hovered pinned metric focusedDay windowDays rows =
                 { width = 1120
                 , height = 450
                 , rows = sortedRows
-                , hovered = hl
+                , active = hl
                 , focusedDay = focusedDay
                 , onHover = HoverSource
                 , onPin = PinSource
@@ -958,7 +954,7 @@ chartsView hovered pinned metric focusedDay windowDays rows =
                     { width = 660
                     , height = 480
                     , sums = Energy.sumByBand treemapRows
-                    , hovered = hl
+                    , active = hl
                     , onHover = HoverSource
                     , onPin = PinSource
                     }

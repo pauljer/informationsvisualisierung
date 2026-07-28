@@ -35,7 +35,7 @@ type alias Config msg =
     { width : Float
     , height : Float
     , sums : List ( Band, Float )
-    , hovered : Maybe String
+    , active : List String
     , onHover : Maybe String -> msg
     , onPin : String -> msg
     }
@@ -98,12 +98,7 @@ view cfg =
                     item.node
 
                 dimmed =
-                    case cfg.hovered of
-                        Nothing ->
-                            False
-
-                        Just h ->
-                            h /= node.name
+                    not (List.isEmpty cfg.active) && not (List.member node.name cfg.active)
 
                 pct =
                     if total <= 0 then

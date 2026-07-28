@@ -5449,7 +5449,7 @@ var $author$project$Main$init = function (nowMillis) {
 			navHidden: false,
 			navPinned: false,
 			nowSeconds: $elm$core$Basics$round(nowMillis / 1000),
-			pinned: $elm$core$Maybe$Nothing,
+			pinned: _List_Nil,
 			previewCountry: $elm$core$Maybe$Nothing,
 			previewMetric: $elm$core$Maybe$Nothing,
 			rowsByCountry: $elm$core$Dict$empty,
@@ -7104,6 +7104,36 @@ var $author$project$Main$loadAllCountries = function (model) {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	}
 };
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $elm$core$Basics$negate = function (n) {
 	return -n;
 };
@@ -7328,9 +7358,10 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							pinned: _Utils_eq(
-								model.pinned,
-								$elm$core$Maybe$Just(name)) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(name)
+							pinned: A2($elm$core$List$member, name, model.pinned) ? A2(
+								$elm$core$List$filter,
+								$elm$core$Basics$neq(name),
+								model.pinned) : A2($elm$core$List$cons, name, model.pinned)
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 'MouseMove':
@@ -7412,6 +7443,27 @@ var $author$project$Main$HoverSource = function (a) {
 var $author$project$Main$PinSource = function (a) {
 	return {$: 'PinSource', a: a};
 };
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$Main$activeOf = F2(
+	function (pinned, hovered) {
+		if (!$elm$core$List$isEmpty(pinned)) {
+			return pinned;
+		} else {
+			if (hovered.$ === 'Just') {
+				var h = hovered.a;
+				return _List_fromArray(
+					[h]);
+			} else {
+				return _List_Nil;
+			}
+		}
+	});
 var $author$project$Energy$dayOf = function (unix) {
 	return (unix / 86400) | 0;
 };
@@ -7857,14 +7909,6 @@ var $author$project$Energy$heatExtent = function (cells) {
 			1,
 			$elm$core$List$maximum(vals)));
 };
-var $author$project$Main$highlightOf = F2(
-	function (pinned, hovered) {
-		if (pinned.$ === 'Just') {
-			return pinned;
-		} else {
-			return hovered;
-		}
-	});
 var $elm$core$Array$fromListHelp = F3(
 	function (list, nodeList, nodeListSize) {
 		fromListHelp:
@@ -8988,36 +9032,6 @@ var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transform
 			' ',
 			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
 };
-var $elm$core$List$any = F2(
-	function (isOkay, list) {
-		any:
-		while (true) {
-			if (!list.b) {
-				return false;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (isOkay(x)) {
-					return true;
-				} else {
-					var $temp$isOkay = isOkay,
-						$temp$list = xs;
-					isOkay = $temp$isOkay;
-					list = $temp$list;
-					continue any;
-				}
-			}
-		}
-	});
-var $elm$core$List$member = F2(
-	function (x, xs) {
-		return A2(
-			$elm$core$List$any,
-			function (a) {
-				return _Utils_eq(a, x);
-			},
-			xs);
-	});
 var $elm_community$list_extra$List$Extra$uniqueHelp = F4(
 	function (f, existing, remaining, accumulator) {
 		uniqueHelp:
@@ -10188,13 +10202,6 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$optionFolder = F2(
 			});
 	});
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$accumulateOptions = A2($elm$core$List$foldl, $folkertdev$svg_path_lowlevel$Path$LowLevel$optionFolder, $folkertdev$svg_path_lowlevel$Path$LowLevel$defaultConfig);
-var $elm$core$List$isEmpty = function (xs) {
-	if (!xs.b) {
-		return true;
-	} else {
-		return false;
-	}
-};
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$isEmpty = function (command) {
 	switch (command.$) {
 		case 'LineTo':
@@ -12506,11 +12513,11 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$Attributes$strokeDasharray('5 3')
 			]));
 	var focusRect = function () {
-		var _v2 = cfg.focusedDay;
-		if (_v2.$ === 'Nothing') {
+		var _v1 = cfg.focusedDay;
+		if (_v1.$ === 'Nothing') {
 			return _List_Nil;
 		} else {
-			var d = _v2.a;
+			var d = _v1.a;
 			var clampX = function (v) {
 				return A2(
 					$elm$core$Basics$max,
@@ -12553,15 +12560,7 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 	}();
 	var areaFor = F2(
 		function (band, pairs) {
-			var dimmed = function () {
-				var _v1 = cfg.hovered;
-				if (_v1.$ === 'Nothing') {
-					return false;
-				} else {
-					var h = _v1.a;
-					return !_Utils_eq(h, band.name);
-				}
-			}();
+			var dimmed = (!$elm$core$List$isEmpty(cfg.active)) && (!A2($elm$core$List$member, band.name, cfg.active));
 			var areaPts = A3(
 				$elm$core$List$map2,
 				F2(
@@ -13488,26 +13487,26 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 	var leavesOf = function (grp) {
 		return A2(
 			$elm$core$List$map,
-			function (_v4) {
-				var b = _v4.a;
-				var v = _v4.b;
+			function (_v3) {
+				var b = _v3.a;
+				var v = _v3.b;
 				return $gampleman$elm_rosetree$Tree$singleton(
 					A3($author$project$Chart$Treemap$TNode, b.name, b.color, v));
 			},
 			A2(
 				$elm$core$List$filter,
-				function (_v3) {
-					var b = _v3.a;
+				function (_v2) {
+					var b = _v2.a;
 					return _Utils_eq(b.group, grp);
 				},
 				cfg.sums));
 	};
 	var groupNode = function (grp) {
-		var _v2 = leavesOf(grp);
-		if (!_v2.b) {
+		var _v1 = leavesOf(grp);
+		if (!_v1.b) {
 			return $elm$core$Maybe$Nothing;
 		} else {
-			var kids = _v2;
+			var kids = _v1;
 			return $elm$core$Maybe$Just(
 				A2(
 					$gampleman$elm_rosetree$Tree$tree,
@@ -13660,15 +13659,7 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				}
 			}
 		}();
-		var dimmed = function () {
-			var _v1 = cfg.hovered;
-			if (_v1.$ === 'Nothing') {
-				return false;
-			} else {
-				var h = _v1.a;
-				return !_Utils_eq(h, node.name);
-			}
-		}();
+		var dimmed = (!$elm$core$List$isEmpty(cfg.active)) && (!A2($elm$core$List$member, node.name, cfg.active));
 		return A2(
 			$elm_community$typed_svg$TypedSvg$g,
 			_List_fromArray(
@@ -13799,7 +13790,7 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 };
 var $author$project$Main$chartsView = F6(
 	function (hovered, pinned, metric, focusedDay, windowDays, rows) {
-		var hl = A2($author$project$Main$highlightOf, pinned, hovered);
+		var hl = A2($author$project$Main$activeOf, pinned, hovered);
 		var focusNote = function () {
 			if (focusedDay.$ === 'Just') {
 				var d = focusedDay.a;
@@ -13867,7 +13858,7 @@ var $author$project$Main$chartsView = F6(
 					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
 					focusNote,
 					$author$project$Chart$StackedArea$view(
-						{focusedDay: focusedDay, height: 450, hovered: hl, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 1120})),
+						{active: hl, focusedDay: focusedDay, height: 450, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 1120})),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -13901,8 +13892,8 @@ var $author$project$Main$chartsView = F6(
 							$elm$core$Maybe$Nothing,
 							$author$project$Chart$Treemap$view(
 								{
+									active: hl,
 									height: 480,
-									hovered: hl,
 									onHover: $author$project$Main$HoverSource,
 									onPin: $author$project$Main$PinSource,
 									sums: $author$project$Energy$sumByBand(treemapRows),
@@ -14089,9 +14080,7 @@ var $author$project$Main$tooltipView = function (model) {
 					_List_fromArray(
 						[
 							$elm$html$Html$text(
-							_Utils_eq(
-								model.pinned,
-								$elm$core$Maybe$Just(name)) ? 'Klick: Fixierung lösen' : 'Klick: fixieren')
+							A2($elm$core$List$member, name, model.pinned) ? 'Klick: Fixierung lösen' : 'Klick: fixieren')
 						]))
 				]));
 	} else {
@@ -14404,7 +14393,16 @@ var $author$project$Main$controlCluster = function (model) {
 										$author$project$Main$countryFlag(code) + ('  ' + name));
 								},
 								$author$project$Main$countries)),
-							$author$project$Main$countBadge(model)
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('count-slot')
+								]),
+							_List_fromArray(
+								[
+									$author$project$Main$countBadge(model)
+								]))
 						]))),
 				A3(
 				$author$project$Main$control,
@@ -14486,17 +14484,8 @@ var $elm$html$Html$Events$onMouseOut = function (msg) {
 };
 var $author$project$Main$legendChip = F3(
 	function (hl, pinned, band) {
-		var isPinned = _Utils_eq(
-			pinned,
-			$elm$core$Maybe$Just(band.name));
-		var dim = function () {
-			if (hl.$ === 'Nothing') {
-				return false;
-			} else {
-				var h = hl.a;
-				return !_Utils_eq(h, band.name);
-			}
-		}();
+		var isPinned = A2($elm$core$List$member, band.name, pinned);
+		var dim = (!$elm$core$List$isEmpty(hl)) && (!A2($elm$core$List$member, band.name, hl));
 		return A2(
 			$elm$html$Html$span,
 			_List_fromArray(
@@ -14533,7 +14522,7 @@ var $author$project$Main$legendChip = F3(
 				]));
 	});
 var $author$project$Main$legend = function (model) {
-	var hl = A2($author$project$Main$highlightOf, model.pinned, model.hovered);
+	var hl = A2($author$project$Main$activeOf, model.pinned, model.hovered);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -14621,7 +14610,6 @@ var $author$project$Main$primaryButton = function (model) {
 		}
 	}();
 	var busy = $author$project$Main$isBusy(model.status);
-	var timeTxt = busy ? (' · ' + ($author$project$Main$oneDecimal(model.elapsed) + 's')) : '';
 	var action = _Utils_eq(model.latest, $elm$core$Maybe$Nothing) ? $author$project$Main$Connect : $author$project$Main$Reload;
 	var _v0 = function () {
 		var _v1 = model.status;
@@ -14680,8 +14668,27 @@ var $author$project$Main$primaryButton = function (model) {
 								'ico ' + (iconClass + (busy ? ' spin' : '')))
 							]),
 						_List_Nil),
-						$elm$html$Html$text(
-						_Utils_ap(label, timeTxt))
+						A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn-label')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(label)
+							])),
+						busy ? A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('btn-time')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text(
+								$author$project$Main$oneDecimal(model.elapsed) + 's')
+							])) : $elm$html$Html$text('')
 					]))
 			]));
 };
@@ -14726,30 +14733,11 @@ var $author$project$Main$topNav = function (model) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('brand-lockup')
+										$elm$html$Html$Attributes$class('brand-name')
 									]),
 								_List_fromArray(
 									[
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('brand-name')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text('EnergyCharts')
-											])),
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('brand-tag')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text('VISUAL ANALYTICS')
-											]))
+										$elm$html$Html$text('EnergyCharts')
 									]))
 							])),
 						A2(
