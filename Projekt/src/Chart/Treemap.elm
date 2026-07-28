@@ -156,7 +156,7 @@ view cfg =
                     else
                         []
             in
-            g [ transform [ Translate item.x item.y ] ]
+            g [ TA.class [ "leaf" ], transform [ Translate item.x item.y ] ]
                 (rect
                     [ InPx.width item.width
                     , InPx.height item.height

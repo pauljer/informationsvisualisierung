@@ -4381,6 +4381,52 @@ function _Browser_load(url)
 
 
 
+function _Time_now(millisToPosix)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(millisToPosix(Date.now())));
+	});
+}
+
+var _Time_setInterval = F2(function(interval, task)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		var id = setInterval(function() { _Scheduler_rawSpawn(task); }, interval);
+		return function() { clearInterval(id); };
+	});
+});
+
+function _Time_here()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		callback(_Scheduler_succeed(
+			A2($elm$time$Time$customZone, -(new Date().getTimezoneOffset()), _List_Nil)
+		));
+	});
+}
+
+
+function _Time_getZoneName()
+{
+	return _Scheduler_binding(function(callback)
+	{
+		try
+		{
+			var name = $elm$time$Time$Name(Intl.DateTimeFormat().resolvedOptions().timeZone);
+		}
+		catch (e)
+		{
+			var name = $elm$time$Time$Offset(new Date().getTimezoneOffset());
+		}
+		callback(_Scheduler_succeed(name));
+	});
+}
+
+
+
 // SEND REQUEST
 
 var _Http_toTask = F3(function(router, toTask, request)
@@ -5393,6 +5439,7 @@ var $author$project$Main$init = function (nowMillis) {
 			ceilings: $elm$core$Dict$empty,
 			country: 'all',
 			dark: false,
+			elapsed: 0,
 			focusedDay: $elm$core$Maybe$Nothing,
 			hovered: $elm$core$Maybe$Nothing,
 			lastScroll: 0,
@@ -5403,7 +5450,9 @@ var $author$project$Main$init = function (nowMillis) {
 			navPinned: false,
 			nowSeconds: $elm$core$Basics$round(nowMillis / 1000),
 			pinned: $elm$core$Maybe$Nothing,
-			rows: _List_Nil,
+			previewCountry: $elm$core$Maybe$Nothing,
+			previewMetric: $elm$core$Maybe$Nothing,
+			rowsByCountry: $elm$core$Dict$empty,
 			status: $author$project$Main$NeedConnect,
 			token: $elm$core$Maybe$Nothing,
 			tokenInput: '',
@@ -5414,136 +5463,18 @@ var $author$project$Main$init = function (nowMillis) {
 var $author$project$Main$Scrolled = function (a) {
 	return {$: 'Scrolled', a: a};
 };
-var $author$project$Main$onScroll = _Platform_incomingPort('onScroll', $elm$json$Json$Decode$float);
-var $author$project$Main$subscriptions = function (_v0) {
-	return $author$project$Main$onScroll($author$project$Main$Scrolled);
-};
-var $author$project$Main$Connecting = {$: 'Connecting'};
-var $author$project$Main$Failed = function (a) {
-	return {$: 'Failed', a: a};
-};
-var $author$project$Main$GotRecent = function (a) {
-	return {$: 'GotRecent', a: a};
-};
-var $author$project$Main$GotToken = function (a) {
-	return {$: 'GotToken', a: a};
-};
-var $author$project$Main$LoadingBounds = {$: 'LoadingBounds'};
-var $author$project$Main$Ready = {$: 'Ready'};
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $author$project$Api$limit = 5000;
-var $elm$json$Json$Decode$list = _Json_decodeList;
-var $elm$json$Json$Encode$object = function (pairs) {
-	return _Json_wrap(
-		A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v0, obj) {
-					var k = _v0.a;
-					var v = _v0.b;
-					return A3(_Json_addField, k, v, obj);
-				}),
-			_Json_emptyObject(_Utils_Tuple0),
-			pairs));
-};
-var $elm$json$Json$Encode$string = _Json_wrap;
-var $author$project$Api$orderBy = F2(
-	function (col, dir) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'col',
-					$elm$json$Json$Encode$string(col)),
-					_Utils_Tuple2(
-					'dir',
-					$elm$json$Json$Encode$string(dir))
-				]));
-	});
-var $elm$json$Json$Encode$int = _Json_wrap;
-var $elm$json$Json$Encode$list = F2(
-	function (func, entries) {
-		return _Json_wrap(
-			A3(
-				$elm$core$List$foldl,
-				_Json_addEntry(func),
-				_Json_emptyArray(_Utils_Tuple0),
-				entries));
-	});
-var $author$project$Api$tableName = 'energycharts_publicpower';
-var $author$project$Api$queryBody = F3(
-	function (whereList, orderList, limit_) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'p_table_name',
-					$elm$json$Json$Encode$string($author$project$Api$tableName)),
-					_Utils_Tuple2(
-					'where_',
-					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, whereList)),
-					_Utils_Tuple2(
-					'order_by',
-					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, orderList)),
-					_Utils_Tuple2(
-					'limit_val',
-					$elm$json$Json$Encode$int(limit_)),
-					_Utils_Tuple2(
-					'offset_val',
-					$elm$json$Json$Encode$int(0))
-				]));
-	});
-var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$int = _Json_decodeInt;
-var $elm$json$Json$Decode$map3 = _Json_map3;
-var $elm$json$Json$Decode$string = _Json_decodeString;
-var $author$project$Api$recentDecoder = A4(
-	$elm$json$Json$Decode$map3,
-	F3(
-		function (c, i, u) {
-			return _Utils_Tuple3(c, i, u);
-		}),
-	A2($elm$json$Json$Decode$field, 'country_id', $elm$json$Json$Decode$string),
-	A2($elm$json$Json$Decode$field, 'id', $elm$json$Json$Decode$int),
-	A2($elm$json$Json$Decode$field, 'unix_seconds', $elm$json$Json$Decode$int));
-var $elm$json$Json$Decode$decodeString = _Json_runOnString;
-var $elm$http$Http$BadStatus_ = F2(
+var $author$project$Main$Tick = {$: 'Tick'};
+var $elm$core$Platform$Sub$batch = _Platform_batch;
+var $elm$time$Time$Every = F2(
 	function (a, b) {
-		return {$: 'BadStatus_', a: a, b: b};
+		return {$: 'Every', a: a, b: b};
 	});
-var $elm$http$Http$BadUrl_ = function (a) {
-	return {$: 'BadUrl_', a: a};
-};
-var $elm$http$Http$GoodStatus_ = F2(
-	function (a, b) {
-		return {$: 'GoodStatus_', a: a, b: b};
+var $elm$time$Time$State = F2(
+	function (taggers, processes) {
+		return {processes: processes, taggers: taggers};
 	});
-var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
-var $elm$http$Http$Receiving = function (a) {
-	return {$: 'Receiving', a: a};
-};
-var $elm$http$Http$Sending = function (a) {
-	return {$: 'Sending', a: a};
-};
-var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
-var $elm$core$Maybe$isJust = function (maybe) {
-	if (maybe.$ === 'Just') {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$time$Time$init = $elm$core$Task$succeed(
+	A2($elm$time$Time$State, $elm$core$Dict$empty, $elm$core$Dict$empty));
 var $elm$core$Basics$compare = _Utils_compare;
 var $elm$core$Dict$get = F2(
 	function (targetKey, dict) {
@@ -5684,6 +5615,468 @@ var $elm$core$Dict$insert = F3(
 			return x;
 		}
 	});
+var $elm$time$Time$addMySub = F2(
+	function (_v0, state) {
+		var interval = _v0.a;
+		var tagger = _v0.b;
+		var _v1 = A2($elm$core$Dict$get, interval, state);
+		if (_v1.$ === 'Nothing') {
+			return A3(
+				$elm$core$Dict$insert,
+				interval,
+				_List_fromArray(
+					[tagger]),
+				state);
+		} else {
+			var taggers = _v1.a;
+			return A3(
+				$elm$core$Dict$insert,
+				interval,
+				A2($elm$core$List$cons, tagger, taggers),
+				state);
+		}
+	});
+var $elm$core$Process$kill = _Scheduler_kill;
+var $elm$core$Dict$foldl = F3(
+	function (func, acc, dict) {
+		foldl:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return acc;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldl, func, acc, left)),
+					$temp$dict = right;
+				func = $temp$func;
+				acc = $temp$acc;
+				dict = $temp$dict;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$Dict$merge = F6(
+	function (leftStep, bothStep, rightStep, leftDict, rightDict, initialResult) {
+		var stepState = F3(
+			function (rKey, rValue, _v0) {
+				stepState:
+				while (true) {
+					var list = _v0.a;
+					var result = _v0.b;
+					if (!list.b) {
+						return _Utils_Tuple2(
+							list,
+							A3(rightStep, rKey, rValue, result));
+					} else {
+						var _v2 = list.a;
+						var lKey = _v2.a;
+						var lValue = _v2.b;
+						var rest = list.b;
+						if (_Utils_cmp(lKey, rKey) < 0) {
+							var $temp$rKey = rKey,
+								$temp$rValue = rValue,
+								$temp$_v0 = _Utils_Tuple2(
+								rest,
+								A3(leftStep, lKey, lValue, result));
+							rKey = $temp$rKey;
+							rValue = $temp$rValue;
+							_v0 = $temp$_v0;
+							continue stepState;
+						} else {
+							if (_Utils_cmp(lKey, rKey) > 0) {
+								return _Utils_Tuple2(
+									list,
+									A3(rightStep, rKey, rValue, result));
+							} else {
+								return _Utils_Tuple2(
+									rest,
+									A4(bothStep, lKey, lValue, rValue, result));
+							}
+						}
+					}
+				}
+			});
+		var _v3 = A3(
+			$elm$core$Dict$foldl,
+			stepState,
+			_Utils_Tuple2(
+				$elm$core$Dict$toList(leftDict),
+				initialResult),
+			rightDict);
+		var leftovers = _v3.a;
+		var intermediateResult = _v3.b;
+		return A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v4, result) {
+					var k = _v4.a;
+					var v = _v4.b;
+					return A3(leftStep, k, v, result);
+				}),
+			intermediateResult,
+			leftovers);
+	});
+var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$time$Time$Name = function (a) {
+	return {$: 'Name', a: a};
+};
+var $elm$time$Time$Offset = function (a) {
+	return {$: 'Offset', a: a};
+};
+var $elm$time$Time$Zone = F2(
+	function (a, b) {
+		return {$: 'Zone', a: a, b: b};
+	});
+var $elm$time$Time$customZone = $elm$time$Time$Zone;
+var $elm$time$Time$setInterval = _Time_setInterval;
+var $elm$core$Process$spawn = _Scheduler_spawn;
+var $elm$time$Time$spawnHelp = F3(
+	function (router, intervals, processes) {
+		if (!intervals.b) {
+			return $elm$core$Task$succeed(processes);
+		} else {
+			var interval = intervals.a;
+			var rest = intervals.b;
+			var spawnTimer = $elm$core$Process$spawn(
+				A2(
+					$elm$time$Time$setInterval,
+					interval,
+					A2($elm$core$Platform$sendToSelf, router, interval)));
+			var spawnRest = function (id) {
+				return A3(
+					$elm$time$Time$spawnHelp,
+					router,
+					rest,
+					A3($elm$core$Dict$insert, interval, id, processes));
+			};
+			return A2($elm$core$Task$andThen, spawnRest, spawnTimer);
+		}
+	});
+var $elm$time$Time$onEffects = F3(
+	function (router, subs, _v0) {
+		var processes = _v0.processes;
+		var rightStep = F3(
+			function (_v6, id, _v7) {
+				var spawns = _v7.a;
+				var existing = _v7.b;
+				var kills = _v7.c;
+				return _Utils_Tuple3(
+					spawns,
+					existing,
+					A2(
+						$elm$core$Task$andThen,
+						function (_v5) {
+							return kills;
+						},
+						$elm$core$Process$kill(id)));
+			});
+		var newTaggers = A3($elm$core$List$foldl, $elm$time$Time$addMySub, $elm$core$Dict$empty, subs);
+		var leftStep = F3(
+			function (interval, taggers, _v4) {
+				var spawns = _v4.a;
+				var existing = _v4.b;
+				var kills = _v4.c;
+				return _Utils_Tuple3(
+					A2($elm$core$List$cons, interval, spawns),
+					existing,
+					kills);
+			});
+		var bothStep = F4(
+			function (interval, taggers, id, _v3) {
+				var spawns = _v3.a;
+				var existing = _v3.b;
+				var kills = _v3.c;
+				return _Utils_Tuple3(
+					spawns,
+					A3($elm$core$Dict$insert, interval, id, existing),
+					kills);
+			});
+		var _v1 = A6(
+			$elm$core$Dict$merge,
+			leftStep,
+			bothStep,
+			rightStep,
+			newTaggers,
+			processes,
+			_Utils_Tuple3(
+				_List_Nil,
+				$elm$core$Dict$empty,
+				$elm$core$Task$succeed(_Utils_Tuple0)));
+		var spawnList = _v1.a;
+		var existingDict = _v1.b;
+		var killTask = _v1.c;
+		return A2(
+			$elm$core$Task$andThen,
+			function (newProcesses) {
+				return $elm$core$Task$succeed(
+					A2($elm$time$Time$State, newTaggers, newProcesses));
+			},
+			A2(
+				$elm$core$Task$andThen,
+				function (_v2) {
+					return A3($elm$time$Time$spawnHelp, router, spawnList, existingDict);
+				},
+				killTask));
+	});
+var $elm$time$Time$Posix = function (a) {
+	return {$: 'Posix', a: a};
+};
+var $elm$time$Time$millisToPosix = $elm$time$Time$Posix;
+var $elm$time$Time$now = _Time_now($elm$time$Time$millisToPosix);
+var $elm$time$Time$onSelfMsg = F3(
+	function (router, interval, state) {
+		var _v0 = A2($elm$core$Dict$get, interval, state.taggers);
+		if (_v0.$ === 'Nothing') {
+			return $elm$core$Task$succeed(state);
+		} else {
+			var taggers = _v0.a;
+			var tellTaggers = function (time) {
+				return $elm$core$Task$sequence(
+					A2(
+						$elm$core$List$map,
+						function (tagger) {
+							return A2(
+								$elm$core$Platform$sendToApp,
+								router,
+								tagger(time));
+						},
+						taggers));
+			};
+			return A2(
+				$elm$core$Task$andThen,
+				function (_v1) {
+					return $elm$core$Task$succeed(state);
+				},
+				A2($elm$core$Task$andThen, tellTaggers, $elm$time$Time$now));
+		}
+	});
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $elm$time$Time$subMap = F2(
+	function (f, _v0) {
+		var interval = _v0.a;
+		var tagger = _v0.b;
+		return A2(
+			$elm$time$Time$Every,
+			interval,
+			A2($elm$core$Basics$composeL, f, tagger));
+	});
+_Platform_effectManagers['Time'] = _Platform_createManager($elm$time$Time$init, $elm$time$Time$onEffects, $elm$time$Time$onSelfMsg, 0, $elm$time$Time$subMap);
+var $elm$time$Time$subscription = _Platform_leaf('Time');
+var $elm$time$Time$every = F2(
+	function (interval, tagger) {
+		return $elm$time$Time$subscription(
+			A2($elm$time$Time$Every, interval, tagger));
+	});
+var $author$project$Main$isBusy = function (status) {
+	switch (status.$) {
+		case 'Connecting':
+			return true;
+		case 'LoadingBounds':
+			return true;
+		case 'LoadingRows':
+			return true;
+		default:
+			return false;
+	}
+};
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main$onScroll = _Platform_incomingPort('onScroll', $elm$json$Json$Decode$float);
+var $author$project$Main$subscriptions = function (model) {
+	return $elm$core$Platform$Sub$batch(
+		_List_fromArray(
+			[
+				$author$project$Main$onScroll($author$project$Main$Scrolled),
+				$author$project$Main$isBusy(model.status) ? A2(
+				$elm$time$Time$every,
+				100,
+				function (_v0) {
+					return $author$project$Main$Tick;
+				}) : $elm$core$Platform$Sub$none
+			]));
+};
+var $author$project$Main$Connecting = {$: 'Connecting'};
+var $author$project$Main$Failed = function (a) {
+	return {$: 'Failed', a: a};
+};
+var $author$project$Main$GotRecent = function (a) {
+	return {$: 'GotRecent', a: a};
+};
+var $author$project$Main$GotToken = function (a) {
+	return {$: 'GotToken', a: a};
+};
+var $author$project$Main$LoadingBounds = {$: 'LoadingBounds'};
+var $author$project$Main$Ready = {$: 'Ready'};
+var $author$project$Main$GotCountryRows = F2(
+	function (a, b) {
+		return {$: 'GotCountryRows', a: a, b: b};
+	});
+var $author$project$Main$LoadingRows = {$: 'LoadingRows'};
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$List$maximum = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(
+			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Dict$values = function (dict) {
+	return A3(
+		$elm$core$Dict$foldr,
+		F3(
+			function (key, value, valueList) {
+				return A2($elm$core$List$cons, value, valueList);
+			}),
+		_List_Nil,
+		dict);
+};
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Main$boundsFor = F2(
+	function (ceilings, code) {
+		var _v0 = A2($elm$core$Dict$get, code, ceilings);
+		if (_v0.$ === 'Just') {
+			var hi = _v0.a;
+			var lo = A2(
+				$elm$core$Maybe$withDefault,
+				0,
+				$elm$core$List$maximum(
+					A2(
+						$elm$core$List$filter,
+						function (v) {
+							return _Utils_cmp(v, hi) < 0;
+						},
+						$elm$core$Dict$values(ceilings))));
+			return _Utils_Tuple2(lo, hi);
+		} else {
+			return _Utils_Tuple2(
+				0,
+				A2(
+					$elm$core$Maybe$withDefault,
+					2000000000,
+					$elm$core$List$maximum(
+						$elm$core$Dict$values(ceilings))));
+		}
+	});
+var $author$project$Api$limit = 5000;
+var $elm$json$Json$Decode$list = _Json_decodeList;
+var $elm$json$Json$Encode$object = function (pairs) {
+	return _Json_wrap(
+		A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v0, obj) {
+					var k = _v0.a;
+					var v = _v0.b;
+					return A3(_Json_addField, k, v, obj);
+				}),
+			_Json_emptyObject(_Utils_Tuple0),
+			pairs));
+};
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $author$project$Api$orderBy = F2(
+	function (col, dir) {
+		return $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'col',
+					$elm$json$Json$Encode$string(col)),
+					_Utils_Tuple2(
+					'dir',
+					$elm$json$Json$Encode$string(dir))
+				]));
+	});
+var $elm$json$Json$Encode$int = _Json_wrap;
+var $elm$json$Json$Encode$list = F2(
+	function (func, entries) {
+		return _Json_wrap(
+			A3(
+				$elm$core$List$foldl,
+				_Json_addEntry(func),
+				_Json_emptyArray(_Utils_Tuple0),
+				entries));
+	});
+var $author$project$Api$tableName = 'energycharts_publicpower';
+var $author$project$Api$queryBody = F3(
+	function (whereList, orderList, limit_) {
+		return $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'p_table_name',
+					$elm$json$Json$Encode$string($author$project$Api$tableName)),
+					_Utils_Tuple2(
+					'where_',
+					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, whereList)),
+					_Utils_Tuple2(
+					'order_by',
+					A2($elm$json$Json$Encode$list, $elm$core$Basics$identity, orderList)),
+					_Utils_Tuple2(
+					'limit_val',
+					$elm$json$Json$Encode$int(limit_)),
+					_Utils_Tuple2(
+					'offset_val',
+					$elm$json$Json$Encode$int(0))
+				]));
+	});
+var $elm$json$Json$Decode$decodeString = _Json_runOnString;
+var $elm$http$Http$BadStatus_ = F2(
+	function (a, b) {
+		return {$: 'BadStatus_', a: a, b: b};
+	});
+var $elm$http$Http$BadUrl_ = function (a) {
+	return {$: 'BadUrl_', a: a};
+};
+var $elm$http$Http$GoodStatus_ = F2(
+	function (a, b) {
+		return {$: 'GoodStatus_', a: a, b: b};
+	});
+var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
+var $elm$http$Http$Receiving = function (a) {
+	return {$: 'Receiving', a: a};
+};
+var $elm$http$Http$Sending = function (a) {
+	return {$: 'Sending', a: a};
+};
+var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
+var $elm$core$Maybe$isJust = function (maybe) {
+	if (maybe.$ === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
 var $elm$core$Dict$getMin = function (dict) {
 	getMin:
 	while (true) {
@@ -6149,8 +6542,6 @@ var $elm$http$Http$State = F2(
 	});
 var $elm$http$Http$init = $elm$core$Task$succeed(
 	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
-var $elm$core$Process$kill = _Scheduler_kill;
-var $elm$core$Process$spawn = _Scheduler_spawn;
 var $elm$http$Http$updateReqs = F3(
 	function (router, cmds, reqs) {
 		updateReqs:
@@ -6324,139 +6715,6 @@ var $author$project$Api$request = F4(
 				url: $author$project$Api$proxyBase + '/proxy'
 			});
 	});
-var $author$project$Api$whereInt = F3(
-	function (col, op, val) {
-		return $elm$json$Json$Encode$object(
-			_List_fromArray(
-				[
-					_Utils_Tuple2(
-					'col',
-					$elm$json$Json$Encode$string(col)),
-					_Utils_Tuple2(
-					'op',
-					$elm$json$Json$Encode$string(op)),
-					_Utils_Tuple2(
-					'val',
-					$elm$json$Json$Encode$int(val)),
-					_Utils_Tuple2(
-					'logic',
-					$elm$json$Json$Encode$string('and'))
-				]));
-	});
-var $author$project$Api$getRecent = F3(
-	function (token, lbUnix, toMsg) {
-		return A4(
-			$author$project$Api$request,
-			token,
-			A3(
-				$author$project$Api$queryBody,
-				_List_fromArray(
-					[
-						A3($author$project$Api$whereInt, 'unix_seconds', '>', lbUnix)
-					]),
-				_List_fromArray(
-					[
-						A2($author$project$Api$orderBy, 'unix_seconds', 'desc')
-					]),
-				$author$project$Api$limit),
-			$elm$json$Json$Decode$list($author$project$Api$recentDecoder),
-			toMsg);
-	});
-var $elm$http$Http$emptyBody = _Http_emptyBody;
-var $elm$http$Http$post = function (r) {
-	return $elm$http$Http$request(
-		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
-};
-var $author$project$Api$getToken = function (toMsg) {
-	return $elm$http$Http$post(
-		{
-			body: $elm$http$Http$emptyBody,
-			expect: A2(
-				$elm$http$Http$expectJson,
-				toMsg,
-				A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)),
-			url: $author$project$Api$proxyBase + '/token'
-		});
-};
-var $author$project$Main$httpErr = function (err) {
-	switch (err.$) {
-		case 'BadUrl':
-			var u = err.a;
-			return 'BadUrl ' + u;
-		case 'Timeout':
-			return 'Timeout';
-		case 'NetworkError':
-			return 'Netzwerkfehler (läuft der Proxy auf Port 3001?)';
-		case 'BadStatus':
-			var s = err.a;
-			return 'Status ' + $elm$core$String$fromInt(s);
-		default:
-			var b = err.a;
-			return 'Antwort nicht lesbar: ' + A2($elm$core$String$left, 120, b);
-	}
-};
-var $author$project$Main$lbOf = function (model) {
-	return model.nowSeconds - (90 * 86400);
-};
-var $author$project$Main$GotRows = function (a) {
-	return {$: 'GotRows', a: a};
-};
-var $author$project$Main$LoadingRows = {$: 'LoadingRows'};
-var $elm$core$List$maximum = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(
-			A3($elm$core$List$foldl, $elm$core$Basics$max, x, xs));
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Dict$values = function (dict) {
-	return A3(
-		$elm$core$Dict$foldr,
-		F3(
-			function (key, value, valueList) {
-				return A2($elm$core$List$cons, value, valueList);
-			}),
-		_List_Nil,
-		dict);
-};
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $author$project$Main$boundsFor = F2(
-	function (ceilings, code) {
-		var _v0 = A2($elm$core$Dict$get, code, ceilings);
-		if (_v0.$ === 'Just') {
-			var hi = _v0.a;
-			var lo = A2(
-				$elm$core$Maybe$withDefault,
-				0,
-				$elm$core$List$maximum(
-					A2(
-						$elm$core$List$filter,
-						function (v) {
-							return _Utils_cmp(v, hi) < 0;
-						},
-						$elm$core$Dict$values(ceilings))));
-			return _Utils_Tuple2(lo, hi);
-		} else {
-			return _Utils_Tuple2(
-				0,
-				A2(
-					$elm$core$Maybe$withDefault,
-					2000000000,
-					$elm$core$List$maximum(
-						$elm$core$Dict$values(ceilings))));
-		}
-	});
 var $author$project$Energy$Row = function (unixSeconds) {
 	return function (countryId) {
 		return function (load) {
@@ -6496,6 +6754,7 @@ var $author$project$Energy$Row = function (unixSeconds) {
 		};
 	};
 };
+var $elm$json$Json$Decode$int = _Json_decodeInt;
 var $elm$json$Json$Decode$null = _Json_decodeNull;
 var $elm$json$Json$Decode$oneOf = _Json_oneOf;
 var $author$project$Api$num = $elm$json$Json$Decode$oneOf(
@@ -6506,6 +6765,7 @@ var $author$project$Api$num = $elm$json$Json$Decode$oneOf(
 		]));
 var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$custom = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$field = _Json_decodeField;
 var $elm$json$Json$Decode$at = F2(
 	function (fields, decoder) {
 		return A3($elm$core$List$foldr, $elm$json$Json$Decode$field, decoder, fields);
@@ -6567,6 +6827,7 @@ var $NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$required = F3(
 			A2($elm$json$Json$Decode$field, key, valDecoder),
 			decoder);
 	});
+var $elm$json$Json$Decode$string = _Json_decodeString;
 var $author$project$Api$rowDecoder = A4(
 	$NoRedInk$elm_json_decode_pipeline$Json$Decode$Pipeline$optional,
 	'others_in_gw',
@@ -6662,6 +6923,25 @@ var $author$project$Api$rowDecoder = A4(
 																			'unix_seconds',
 																			$elm$json$Json$Decode$int,
 																			$elm$json$Json$Decode$succeed($author$project$Energy$Row))))))))))))))))))));
+var $author$project$Api$whereInt = F3(
+	function (col, op, val) {
+		return $elm$json$Json$Encode$object(
+			_List_fromArray(
+				[
+					_Utils_Tuple2(
+					'col',
+					$elm$json$Json$Encode$string(col)),
+					_Utils_Tuple2(
+					'op',
+					$elm$json$Json$Encode$string(op)),
+					_Utils_Tuple2(
+					'val',
+					$elm$json$Json$Encode$int(val)),
+					_Utils_Tuple2(
+					'logic',
+					$elm$json$Json$Encode$string('and'))
+				]));
+	});
 var $author$project$Api$loadCountryWindow = F4(
 	function (token, _v0, tmin, toMsg) {
 		var lo = _v0.a;
@@ -6685,7 +6965,120 @@ var $author$project$Api$loadCountryWindow = F4(
 			$elm$json$Json$Decode$list($author$project$Api$rowDecoder),
 			toMsg);
 	});
-var $author$project$Main$loadCurrent = function (model) {
+var $author$project$Main$maxWindowDays = 30;
+var $author$project$Main$loadCountry = F3(
+	function (isPrimary, code, model) {
+		var _v0 = _Utils_Tuple2(model.token, model.latest);
+		if ((_v0.a.$ === 'Just') && (_v0.b.$ === 'Just')) {
+			var token = _v0.a.a;
+			var tmax = _v0.b.a;
+			return _Utils_Tuple2(
+				isPrimary ? _Utils_update(
+					model,
+					{elapsed: 0, focusedDay: $elm$core$Maybe$Nothing, status: $author$project$Main$LoadingRows}) : model,
+				A4(
+					$author$project$Api$loadCountryWindow,
+					token,
+					A2($author$project$Main$boundsFor, model.ceilings, code),
+					tmax - ($author$project$Main$maxWindowDays * 86400),
+					$author$project$Main$GotCountryRows(code)));
+		} else {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}
+	});
+var $elm$core$Dict$member = F2(
+	function (key, dict) {
+		var _v0 = A2($elm$core$Dict$get, key, dict);
+		if (_v0.$ === 'Just') {
+			return true;
+		} else {
+			return false;
+		}
+	});
+var $author$project$Main$ensureCountry = F2(
+	function (code, model) {
+		return A2($elm$core$Dict$member, code, model.rowsByCountry) ? _Utils_Tuple2(model, $elm$core$Platform$Cmd$none) : A3($author$project$Main$loadCountry, false, code, model);
+	});
+var $elm$json$Json$Decode$map3 = _Json_map3;
+var $author$project$Api$recentDecoder = A4(
+	$elm$json$Json$Decode$map3,
+	F3(
+		function (c, i, u) {
+			return _Utils_Tuple3(c, i, u);
+		}),
+	A2($elm$json$Json$Decode$field, 'country_id', $elm$json$Json$Decode$string),
+	A2($elm$json$Json$Decode$field, 'id', $elm$json$Json$Decode$int),
+	A2($elm$json$Json$Decode$field, 'unix_seconds', $elm$json$Json$Decode$int));
+var $author$project$Api$getRecent = F3(
+	function (token, lbUnix, toMsg) {
+		return A4(
+			$author$project$Api$request,
+			token,
+			A3(
+				$author$project$Api$queryBody,
+				_List_fromArray(
+					[
+						A3($author$project$Api$whereInt, 'unix_seconds', '>', lbUnix)
+					]),
+				_List_fromArray(
+					[
+						A2($author$project$Api$orderBy, 'unix_seconds', 'desc')
+					]),
+				$author$project$Api$limit),
+			$elm$json$Json$Decode$list($author$project$Api$recentDecoder),
+			toMsg);
+	});
+var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$post = function (r) {
+	return $elm$http$Http$request(
+		{body: r.body, expect: r.expect, headers: _List_Nil, method: 'POST', timeout: $elm$core$Maybe$Nothing, tracker: $elm$core$Maybe$Nothing, url: r.url});
+};
+var $author$project$Api$getToken = function (toMsg) {
+	return $elm$http$Http$post(
+		{
+			body: $elm$http$Http$emptyBody,
+			expect: A2(
+				$elm$http$Http$expectJson,
+				toMsg,
+				A2($elm$json$Json$Decode$field, 'token', $elm$json$Json$Decode$string)),
+			url: $author$project$Api$proxyBase + '/token'
+		});
+};
+var $author$project$Main$httpErr = function (err) {
+	switch (err.$) {
+		case 'BadUrl':
+			var u = err.a;
+			return 'BadUrl ' + u;
+		case 'Timeout':
+			return 'Timeout';
+		case 'NetworkError':
+			return 'Netzwerkfehler (läuft der Proxy auf Port 3001?)';
+		case 'BadStatus':
+			var s = err.a;
+			return 'Status ' + $elm$core$String$fromInt(s);
+		default:
+			var b = err.a;
+			return 'Antwort nicht lesbar: ' + A2($elm$core$String$left, 120, b);
+	}
+};
+var $author$project$Main$lbOf = function (model) {
+	return model.nowSeconds - (90 * 86400);
+};
+var $author$project$Main$countries = _List_fromArray(
+	[
+		_Utils_Tuple2('all', 'Europa (gesamt)'),
+		_Utils_Tuple2('fr', 'Frankreich'),
+		_Utils_Tuple2('it', 'Italien'),
+		_Utils_Tuple2('pl', 'Polen'),
+		_Utils_Tuple2('cz', 'Tschechien'),
+		_Utils_Tuple2('ch', 'Schweiz'),
+		_Utils_Tuple2('be', 'Belgien'),
+		_Utils_Tuple2('se', 'Schweden'),
+		_Utils_Tuple2('no', 'Norwegen'),
+		_Utils_Tuple2('dk', 'Dänemark'),
+		_Utils_Tuple2('de', 'Deutschland')
+	]);
+var $author$project$Main$loadAllCountries = function (model) {
 	var _v0 = _Utils_Tuple2(model.token, model.latest);
 	if ((_v0.a.$ === 'Just') && (_v0.b.$ === 'Just')) {
 		var token = _v0.a.a;
@@ -6693,13 +7086,20 @@ var $author$project$Main$loadCurrent = function (model) {
 		return _Utils_Tuple2(
 			_Utils_update(
 				model,
-				{focusedDay: $elm$core$Maybe$Nothing, rows: _List_Nil, status: $author$project$Main$LoadingRows}),
-			A4(
-				$author$project$Api$loadCountryWindow,
-				token,
-				A2($author$project$Main$boundsFor, model.ceilings, model.country),
-				tmax - (model.windowDays * 86400),
-				$author$project$Main$GotRows));
+				{elapsed: 0, focusedDay: $elm$core$Maybe$Nothing, status: $author$project$Main$LoadingRows}),
+			$elm$core$Platform$Cmd$batch(
+				A2(
+					$elm$core$List$map,
+					function (_v1) {
+						var code = _v1.a;
+						return A4(
+							$author$project$Api$loadCountryWindow,
+							token,
+							A2($author$project$Main$boundsFor, model.ceilings, code),
+							tmax - ($author$project$Main$maxWindowDays * 86400),
+							$author$project$Main$GotCountryRows(code));
+					},
+					$author$project$Main$countries)));
 	} else {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	}
@@ -6727,6 +7127,7 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
+							elapsed: 0,
 							status: $author$project$Main$LoadingBounds,
 							token: $elm$core$Maybe$Just(manual)
 						}),
@@ -6737,7 +7138,7 @@ var $author$project$Main$update = F2(
 						$author$project$Main$GotRecent)) : _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{status: $author$project$Main$Connecting}),
+						{elapsed: 0, status: $author$project$Main$Connecting}),
 					$author$project$Api$getToken($author$project$Main$GotToken));
 			case 'GotToken':
 				if (msg.a.$ === 'Ok') {
@@ -6798,7 +7199,7 @@ var $author$project$Main$update = F2(
 						triples);
 					if (tmax.$ === 'Just') {
 						var t = tmax.a;
-						return $author$project$Main$loadCurrent(
+						return $author$project$Main$loadAllCountries(
 							_Utils_update(
 								model,
 								{
@@ -6825,51 +7226,94 @@ var $author$project$Main$update = F2(
 							}),
 						$elm$core$Platform$Cmd$none);
 				}
-			case 'GotRows':
-				if (msg.a.$ === 'Ok') {
-					var rows = msg.a.a;
+			case 'GotCountryRows':
+				if (msg.b.$ === 'Ok') {
+					var code = msg.a;
+					var rows = msg.b.a;
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
 							{
-								rows: A2(
-									$elm$core$List$filter,
-									function (r) {
-										return _Utils_eq(r.countryId, model.country);
-									},
-									rows),
-								status: $author$project$Main$Ready
+								rowsByCountry: A3(
+									$elm$core$Dict$insert,
+									code,
+									A2(
+										$elm$core$List$filter,
+										function (r) {
+											return _Utils_eq(r.countryId, code);
+										},
+										rows),
+									model.rowsByCountry),
+								status: _Utils_eq(code, model.country) ? $author$project$Main$Ready : model.status
 							}),
 						$elm$core$Platform$Cmd$none);
 				} else {
-					var e = msg.a.a;
+					var code = msg.a;
+					var e = msg.b.a;
 					return _Utils_Tuple2(
 						_Utils_update(
 							model,
 							{
-								status: $author$project$Main$Failed(
-									$author$project$Main$httpErr(e))
+								status: _Utils_eq(code, model.country) ? $author$project$Main$Failed(
+									$author$project$Main$httpErr(e)) : model.status
 							}),
 						$elm$core$Platform$Cmd$none);
 				}
 			case 'SelectCountry':
 				var c = msg.a;
-				return $author$project$Main$loadCurrent(
+				var m2 = _Utils_update(
+					model,
+					{country: c, previewCountry: $elm$core$Maybe$Nothing});
+				return A2($elm$core$Dict$member, c, model.rowsByCountry) ? _Utils_Tuple2(
 					_Utils_update(
-						model,
-						{country: c}));
+						m2,
+						{status: $author$project$Main$Ready}),
+					$elm$core$Platform$Cmd$none) : A3($author$project$Main$loadCountry, true, c, m2);
+			case 'HoverCountry':
+				var mc = msg.a;
+				if (mc.$ === 'Just') {
+					var code = mc.a;
+					return A2(
+						$author$project$Main$ensureCountry,
+						code,
+						_Utils_update(
+							model,
+							{
+								previewCountry: $elm$core$Maybe$Just(code)
+							}));
+				} else {
+					return _Utils_Tuple2(
+						_Utils_update(
+							model,
+							{previewCountry: $elm$core$Maybe$Nothing}),
+						$elm$core$Platform$Cmd$none);
+				}
 			case 'SelectWindow':
 				var d = msg.a;
-				return $author$project$Main$loadCurrent(
+				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{windowDays: d}));
+						{windowDays: d}),
+					$elm$core$Platform$Cmd$none);
 			case 'SelectMetric':
 				var m = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{metric: m}),
+						{metric: m, previewMetric: $elm$core$Maybe$Nothing}),
+					$elm$core$Platform$Cmd$none);
+			case 'HoverMetric':
+				var mm = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{previewMetric: mm}),
+					$elm$core$Platform$Cmd$none);
+			case 'Tick':
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{elapsed: model.elapsed + 0.1}),
 					$elm$core$Platform$Cmd$none);
 			case 'HoverSource':
 				var ms = msg.a;
@@ -6934,13 +7378,31 @@ var $author$project$Main$update = F2(
 						}),
 					$elm$core$Platform$Cmd$none);
 			default:
-				return $author$project$Main$loadCurrent(model);
+				return $author$project$Main$loadAllCountries(model);
 		}
 	});
 var $author$project$Main$MouseMove = F2(
 	function (a, b) {
 		return {$: 'MouseMove', a: a, b: b};
 	});
+var $author$project$Main$activeCountry = function (model) {
+	var _v0 = model.previewCountry;
+	if (_v0.$ === 'Just') {
+		var p = _v0.a;
+		return A2($elm$core$Dict$member, p, model.rowsByCountry) ? p : model.country;
+	} else {
+		return model.country;
+	}
+};
+var $author$project$Main$activeRows = function (model) {
+	return A2(
+		$elm$core$Maybe$withDefault,
+		_List_Nil,
+		A2(
+			$elm$core$Dict$get,
+			$author$project$Main$activeCountry(model),
+			model.rowsByCountry));
+};
 var $author$project$Main$ClickDay = function (a) {
 	return {$: 'ClickDay', a: a};
 };
@@ -7217,10 +7679,6 @@ var $author$project$Main$chartCard = F5(
 						[chart]))
 				]));
 	});
-var $elm$time$Time$Posix = function (a) {
-	return {$: 'Posix', a: a};
-};
-var $elm$time$Time$millisToPosix = $elm$time$Time$Posix;
 var $author$project$Energy$monthNum = function (m) {
 	switch (m.$) {
 		case 'Jan':
@@ -7356,10 +7814,6 @@ var $elm$time$Time$toMonth = F2(
 			default:
 				return $elm$time$Time$Dec;
 		}
-	});
-var $elm$time$Time$Zone = F2(
-	function (a, b) {
-		return {$: 'Zone', a: a, b: b};
 	});
 var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
 var $author$project$Energy$dayLabel = function (dayIndex) {
@@ -8257,11 +8711,6 @@ var $elm$core$List$concatMap = F2(
 	function (f, list) {
 		return $elm$core$List$concat(
 			A2($elm$core$List$map, f, list));
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
 	});
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
@@ -13224,6 +13673,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 			$elm_community$typed_svg$TypedSvg$g,
 			_List_fromArray(
 				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['leaf'])),
 					$elm_community$typed_svg$TypedSvg$Attributes$transform(
 					_List_fromArray(
 						[
@@ -13345,9 +13797,19 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 				leafSvg,
 				$gampleman$elm_rosetree$Tree$leaves(layouted))));
 };
-var $author$project$Main$chartsView = F5(
-	function (hovered, pinned, metric, focusedDay, rows) {
-		var sortedRows = A2(
+var $author$project$Main$chartsView = F6(
+	function (hovered, pinned, metric, focusedDay, windowDays, rows) {
+		var hl = A2($author$project$Main$highlightOf, pinned, hovered);
+		var focusNote = function () {
+			if (focusedDay.$ === 'Just') {
+				var d = focusedDay.a;
+				return $elm$core$Maybe$Just(
+					' · Fokus auf ' + ($author$project$Energy$dayLabel(d) + ' (erneut klicken zum Aufheben)'));
+			} else {
+				return $elm$core$Maybe$Nothing;
+			}
+		}();
+		var allSorted = A2(
 			$elm$core$List$sortBy,
 			function ($) {
 				return $.unixSeconds;
@@ -13358,6 +13820,23 @@ var $author$project$Main$chartsView = F5(
 					return ($author$project$Energy$totalGeneration(r) > 0) || (r.load > 0);
 				},
 				rows));
+		var tmaxLoaded = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			$elm$core$List$maximum(
+				A2(
+					$elm$core$List$map,
+					function ($) {
+						return $.unixSeconds;
+					},
+					allSorted)));
+		var sortedRows = A2(
+			$elm$core$List$filter,
+			function (r) {
+				return _Utils_cmp(r.unixSeconds, tmaxLoaded - (windowDays * 86400)) > -1;
+			},
+			allSorted);
+		var heatCells = A2($author$project$Energy$binHourly, metric, sortedRows);
 		var treemapRows = function () {
 			if (focusedDay.$ === 'Just') {
 				var d = focusedDay.a;
@@ -13371,17 +13850,6 @@ var $author$project$Main$chartsView = F5(
 					sortedRows);
 			} else {
 				return sortedRows;
-			}
-		}();
-		var hl = A2($author$project$Main$highlightOf, pinned, hovered);
-		var heatCells = A2($author$project$Energy$binHourly, metric, sortedRows);
-		var focusNote = function () {
-			if (focusedDay.$ === 'Just') {
-				var d = focusedDay.a;
-				return $elm$core$Maybe$Just(
-					' · Fokus auf ' + ($author$project$Energy$dayLabel(d) + ' (erneut klicken zum Aufheben)'));
-			} else {
-				return $elm$core$Maybe$Nothing;
 			}
 		}();
 		return A2(
@@ -13443,20 +13911,6 @@ var $author$project$Main$chartsView = F5(
 						]))
 				]));
 	});
-var $author$project$Main$countries = _List_fromArray(
-	[
-		_Utils_Tuple2('all', 'Europa (gesamt)'),
-		_Utils_Tuple2('fr', 'Frankreich'),
-		_Utils_Tuple2('it', 'Italien'),
-		_Utils_Tuple2('pl', 'Polen'),
-		_Utils_Tuple2('cz', 'Tschechien'),
-		_Utils_Tuple2('ch', 'Schweiz'),
-		_Utils_Tuple2('be', 'Belgien'),
-		_Utils_Tuple2('se', 'Schweden'),
-		_Utils_Tuple2('no', 'Norwegen'),
-		_Utils_Tuple2('dk', 'Dänemark'),
-		_Utils_Tuple2('de', 'Deutschland')
-	]);
 var $author$project$Main$countryLabel = function (code) {
 	return A2(
 		$elm$core$Maybe$withDefault,
@@ -13510,8 +13964,8 @@ var $author$project$Main$emptyView = function (model) {
 					]))
 			]));
 };
-var $elm$virtual_dom$VirtualDom$lazy5 = _VirtualDom_lazy5;
-var $elm$html$Html$Lazy$lazy5 = $elm$virtual_dom$VirtualDom$lazy5;
+var $elm$virtual_dom$VirtualDom$lazy6 = _VirtualDom_lazy6;
+var $elm$html$Html$Lazy$lazy6 = $elm$virtual_dom$VirtualDom$lazy6;
 var $elm$html$Html$Events$on = F2(
 	function (event, decoder) {
 		return A2(
@@ -13644,11 +14098,14 @@ var $author$project$Main$tooltipView = function (model) {
 		return $elm$html$Html$text('');
 	}
 };
-var $author$project$Main$Connect = {$: 'Connect'};
-var $author$project$Main$Reload = {$: 'Reload'};
 var $author$project$Main$ToggleNavPin = {$: 'ToggleNavPin'};
 var $author$project$Main$ToggleTheme = {$: 'ToggleTheme'};
-var $elm$html$Html$button = _VirtualDom_node('button');
+var $author$project$Main$HoverCountry = function (a) {
+	return {$: 'HoverCountry', a: a};
+};
+var $author$project$Main$HoverMetric = function (a) {
+	return {$: 'HoverMetric', a: a};
+};
 var $author$project$Energy$LoadMetric = {$: 'LoadMetric'};
 var $author$project$Energy$RenewableShare = {$: 'RenewableShare'};
 var $author$project$Main$SelectCountry = function (a) {
@@ -13657,11 +14114,10 @@ var $author$project$Main$SelectCountry = function (a) {
 var $author$project$Main$SelectMetric = function (a) {
 	return {$: 'SelectMetric', a: a};
 };
-var $elm$html$Html$label = _VirtualDom_node('label');
 var $author$project$Main$control = F3(
 	function (iconClass, labelText, child) {
 		return A2(
-			$elm$html$Html$label,
+			$elm$html$Html$div,
 			_List_fromArray(
 				[
 					$elm$html$Html$Attributes$class('control')
@@ -13688,102 +14144,136 @@ var $author$project$Main$control = F3(
 					child
 				]));
 	});
-var $elm$html$Html$option = _VirtualDom_node('option');
-var $elm$json$Json$Encode$bool = _Json_wrap;
-var $elm$html$Html$Attributes$boolProperty = F2(
-	function (key, bool) {
-		return A2(
-			_VirtualDom_property,
-			key,
-			$elm$json$Json$Encode$bool(bool));
-	});
-var $elm$html$Html$Attributes$selected = $elm$html$Html$Attributes$boolProperty('selected');
-var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
-var $author$project$Main$countryOption = F2(
-	function (current, _v0) {
-		var code = _v0.a;
-		var name = _v0.b;
-		return A2(
-			$elm$html$Html$option,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$value(code),
-					$elm$html$Html$Attributes$selected(
-					_Utils_eq(code, current))
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(name)
-				]));
-	});
-var $author$project$Main$metricFromString = function (s) {
-	switch (s) {
-		case 'ee':
-			return $author$project$Energy$RenewableShare;
-		case 'load':
-			return $author$project$Energy$LoadMetric;
-		default:
-			return $author$project$Energy$SolarShare;
-	}
-};
-var $author$project$Main$metricKey = function (m) {
-	switch (m.$) {
-		case 'SolarShare':
-			return 'solar';
-		case 'RenewableShare':
-			return 'ee';
-		default:
-			return 'load';
-	}
-};
-var $author$project$Main$metricOption = F2(
-	function (current, m) {
-		return A2(
-			$elm$html$Html$option,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$value(
-					$author$project$Main$metricKey(m)),
-					$elm$html$Html$Attributes$selected(
-					_Utils_eq(m, current))
-				]),
-			_List_fromArray(
-				[
-					$elm$html$Html$text(
-					$author$project$Energy$metricLabel(m))
-				]));
-	});
-var $elm$html$Html$Events$alwaysStop = function (x) {
-	return _Utils_Tuple2(x, true);
-};
-var $elm$virtual_dom$VirtualDom$MayStopPropagation = function (a) {
-	return {$: 'MayStopPropagation', a: a};
-};
-var $elm$html$Html$Events$stopPropagationOn = F2(
-	function (event, decoder) {
-		return A2(
-			$elm$virtual_dom$VirtualDom$on,
-			event,
-			$elm$virtual_dom$VirtualDom$MayStopPropagation(decoder));
-	});
-var $elm$html$Html$Events$targetValue = A2(
-	$elm$json$Json$Decode$at,
-	_List_fromArray(
-		['target', 'value']),
-	$elm$json$Json$Decode$string);
-var $elm$html$Html$Events$onInput = function (tagger) {
-	return A2(
-		$elm$html$Html$Events$stopPropagationOn,
-		'input',
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
+var $author$project$Main$countBadge = function (model) {
+	var count = $elm$core$List$length(
 		A2(
-			$elm$json$Json$Decode$map,
-			$elm$html$Html$Events$alwaysStop,
-			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
+			$elm$core$Maybe$withDefault,
+			_List_Nil,
+			A2(
+				$elm$core$Dict$get,
+				$author$project$Main$activeCountry(model),
+				model.rowsByCountry)));
+	var _v0 = model.status;
+	switch (_v0.$) {
+		case 'Ready':
+			return (count > 0) ? A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('count-badge'),
+						$elm$html$Html$Attributes$title(
+						$elm$core$String$fromInt(count) + (' Messpunkte · ' + ($elm$core$String$fromInt(model.windowDays) + ' Tage geladen')))
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('count-dot')
+							]),
+						_List_Nil),
+						$elm$html$Html$text(
+						$elm$core$String$fromInt(count) + ' Pkt')
+					])) : $elm$html$Html$text('');
+		case 'Failed':
+			var e = _v0.a;
+			return A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('count-badge is-error'),
+						$elm$html$Html$Attributes$title(e)
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Fehler')
+					]));
+		default:
+			return $elm$html$Html$text('');
+	}
 };
-var $elm$html$Html$select = _VirtualDom_node('select');
-var $author$project$Main$SelectWindow = function (a) {
-	return {$: 'SelectWindow', a: a};
+var $author$project$Main$countryFlag = function (code) {
+	switch (code) {
+		case 'all':
+			return '🇪🇺';
+		case 'fr':
+			return '🇫🇷';
+		case 'it':
+			return '🇮🇹';
+		case 'pl':
+			return '🇵🇱';
+		case 'cz':
+			return '🇨🇿';
+		case 'ch':
+			return '🇨🇭';
+		case 'be':
+			return '🇧🇪';
+		case 'se':
+			return '🇸🇪';
+		case 'no':
+			return '🇳🇴';
+		case 'dk':
+			return '🇩🇰';
+		case 'de':
+			return '🇩🇪';
+		default:
+			return '🏳️';
+	}
 };
+var $elm$html$Html$Attributes$tabindex = function (n) {
+	return A2(
+		_VirtualDom_attribute,
+		'tabIndex',
+		$elm$core$String$fromInt(n));
+};
+var $author$project$Main$dropdown = F3(
+	function (extra, current, items) {
+		return A2(
+			$elm$html$Html$div,
+			A2(
+				$elm$core$List$cons,
+				$elm$html$Html$Attributes$class('dropdown'),
+				extra),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('dropdown-trigger'),
+							$elm$html$Html$Attributes$tabindex(0)
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('dropdown-value')
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(current)
+								])),
+							A2(
+							$elm$html$Html$span,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('ico ico-sm ico-caret')
+								]),
+							_List_Nil)
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('dropdown-menu')
+						]),
+					items)
+				]));
+	});
 var $elm$html$Html$Attributes$classList = function (classes) {
 	return $elm$html$Html$Attributes$class(
 		A2(
@@ -13800,6 +14290,50 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $author$project$Main$dropdownItem = F4(
+	function (active, extra, clickMsg, label) {
+		return A2(
+			$elm$html$Html$div,
+			A2(
+				$elm$core$List$cons,
+				$elm$html$Html$Attributes$classList(
+					_List_fromArray(
+						[
+							_Utils_Tuple2('dropdown-item', true),
+							_Utils_Tuple2('is-active', active)
+						])),
+				A2(
+					$elm$core$List$cons,
+					$elm$html$Html$Events$onClick(clickMsg),
+					extra)),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$span,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('di-check')
+						]),
+					_List_Nil),
+					$elm$html$Html$text(label)
+				]));
+	});
+var $elm$html$Html$Events$onMouseLeave = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseleave',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$Events$onMouseOver = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'mouseover',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $author$project$Main$SelectWindow = function (a) {
+	return {$: 'SelectWindow', a: a};
+};
+var $elm$html$Html$button = _VirtualDom_node('button');
 var $author$project$Main$windowButton = F2(
 	function (current, d) {
 		return A2(
@@ -13820,7 +14354,7 @@ var $author$project$Main$windowButton = F2(
 			_List_fromArray(
 				[
 					$elm$html$Html$text(
-					$elm$core$String$fromInt(d) + ' Tage')
+					$elm$core$String$fromInt(d) + ' T')
 				]));
 	});
 var $author$project$Main$controlCluster = function (model) {
@@ -13837,17 +14371,41 @@ var $author$project$Main$controlCluster = function (model) {
 				'ico-globe',
 				'Land',
 				A2(
-					$elm$html$Html$select,
+					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('select'),
-							$elm$html$Html$Events$onInput($author$project$Main$SelectCountry),
-							$elm$html$Html$Attributes$value(model.country)
+							$elm$html$Html$Attributes$class('land-wrap')
 						]),
-					A2(
-						$elm$core$List$map,
-						$author$project$Main$countryOption(model.country),
-						$author$project$Main$countries))),
+					_List_fromArray(
+						[
+							A3(
+							$author$project$Main$dropdown,
+							_List_fromArray(
+								[
+									$elm$html$Html$Events$onMouseLeave(
+									$author$project$Main$HoverCountry($elm$core$Maybe$Nothing))
+								]),
+							$author$project$Main$countryFlag(model.country) + ('  ' + $author$project$Main$countryLabel(model.country)),
+							A2(
+								$elm$core$List$map,
+								function (_v0) {
+									var code = _v0.a;
+									var name = _v0.b;
+									return A4(
+										$author$project$Main$dropdownItem,
+										_Utils_eq(code, model.country),
+										_List_fromArray(
+											[
+												$elm$html$Html$Events$onMouseOver(
+												$author$project$Main$HoverCountry(
+													$elm$core$Maybe$Just(code)))
+											]),
+										$author$project$Main$SelectCountry(code),
+										$author$project$Main$countryFlag(code) + ('  ' + name));
+								},
+								$author$project$Main$countries)),
+							$author$project$Main$countBadge(model)
+						]))),
 				A3(
 				$author$project$Main$control,
 				'ico-calendar',
@@ -13867,24 +14425,33 @@ var $author$project$Main$controlCluster = function (model) {
 				$author$project$Main$control,
 				'ico-gauge',
 				'Metrik',
-				A2(
-					$elm$html$Html$select,
+				A3(
+					$author$project$Main$dropdown,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('select'),
-							$elm$html$Html$Events$onInput(
-							A2($elm$core$Basics$composeL, $author$project$Main$SelectMetric, $author$project$Main$metricFromString)),
-							$elm$html$Html$Attributes$value(
-							$author$project$Main$metricKey(model.metric))
+							$elm$html$Html$Events$onMouseLeave(
+							$author$project$Main$HoverMetric($elm$core$Maybe$Nothing))
 						]),
+					$author$project$Energy$metricLabel(model.metric),
 					A2(
 						$elm$core$List$map,
-						$author$project$Main$metricOption(model.metric),
+						function (m) {
+							return A4(
+								$author$project$Main$dropdownItem,
+								_Utils_eq(m, model.metric),
+								_List_fromArray(
+									[
+										$elm$html$Html$Events$onMouseOver(
+										$author$project$Main$HoverMetric(
+											$elm$core$Maybe$Just(m)))
+									]),
+								$author$project$Main$SelectMetric(m),
+								$author$project$Energy$metricLabel(m));
+						},
 						_List_fromArray(
 							[$author$project$Energy$SolarShare, $author$project$Energy$RenewableShare, $author$project$Energy$LoadMetric]))))
 			]));
 };
-var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
 var $author$project$Main$iconToggle = F4(
 	function (active, msg, iconClass, tip) {
 		return A2(
@@ -13915,12 +14482,6 @@ var $elm$html$Html$Events$onMouseOut = function (msg) {
 	return A2(
 		$elm$html$Html$Events$on,
 		'mouseout',
-		$elm$json$Json$Decode$succeed(msg));
-};
-var $elm$html$Html$Events$onMouseOver = function (msg) {
-	return A2(
-		$elm$html$Html$Events$on,
-		'mouseover',
 		$elm$json$Json$Decode$succeed(msg));
 };
 var $author$project$Main$legendChip = F3(
@@ -13977,43 +14538,39 @@ var $author$project$Main$legend = function (model) {
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('legend')
+				$elm$html$Html$Attributes$class('legend'),
+				$elm$html$Html$Attributes$tabindex(0)
 			]),
-		A2(
-			$elm$core$List$cons,
-			A2(
+		_List_fromArray(
+			[
+				A2(
 				$elm$html$Html$span,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('legend-title')
+						$elm$html$Html$Attributes$class('legend-kicker')
 					]),
 				_List_fromArray(
 					[
-						A2(
-						$elm$html$Html$span,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('legend-kicker')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Quellen')
-							])),
-						A2(
-						$elm$html$Html$span,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('legend-hint')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('hover erklärt · klick fixiert')
-							]))
+						$elm$html$Html$text('Quellen')
 					])),
-			A2(
-				$elm$core$List$map,
-				A2($author$project$Main$legendChip, hl, model.pinned),
-				$author$project$Energy$bands)));
+				A2(
+				$elm$html$Html$span,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('ico ico-sm ico-caret legend-caret')
+					]),
+				_List_Nil),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('legend-chips')
+					]),
+				A2(
+					$elm$core$List$map,
+					A2($author$project$Main$legendChip, hl, model.pinned),
+					$author$project$Energy$bands))
+			]));
 };
 var $author$project$Main$navClass = function (model) {
 	return A2(
@@ -14029,42 +14586,74 @@ var $author$project$Main$navClass = function (model) {
 					model.navPinned ? $elm$core$Maybe$Just('is-pinned') : $elm$core$Maybe$Nothing
 				])));
 };
-var $author$project$Main$navStatus = function (model) {
+var $elm$virtual_dom$VirtualDom$node = function (tag) {
+	return _VirtualDom_node(
+		_VirtualDom_noScript(tag));
+};
+var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
+var $author$project$Main$Connect = {$: 'Connect'};
+var $author$project$Main$Reload = {$: 'Reload'};
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$disabled = $elm$html$Html$Attributes$boolProperty('disabled');
+var $author$project$Main$oneDecimal = function (x) {
+	return $elm$core$String$fromFloat(
+		$elm$core$Basics$round(x * 10) / 10);
+};
+var $author$project$Main$primaryButton = function (model) {
+	var fillPct = function () {
+		var _v2 = model.status;
+		switch (_v2.$) {
+			case 'Connecting':
+				return '30%';
+			case 'LoadingBounds':
+				return '62%';
+			case 'LoadingRows':
+				return '88%';
+			default:
+				return '100%';
+		}
+	}();
+	var busy = $author$project$Main$isBusy(model.status);
+	var timeTxt = busy ? (' · ' + ($author$project$Main$oneDecimal(model.elapsed) + 's')) : '';
+	var action = _Utils_eq(model.latest, $elm$core$Maybe$Nothing) ? $author$project$Main$Connect : $author$project$Main$Reload;
 	var _v0 = function () {
 		var _v1 = model.status;
 		switch (_v1.$) {
-			case 'NeedConnect':
-				return _Utils_Tuple3('Bereit', 'is-idle', 'Bereit – „Verbinden“ klicken, um Daten zu laden');
 			case 'Connecting':
-				return _Utils_Tuple3('Verbinde', 'is-loading', 'Hole Zugriffs-Token …');
+				return _Utils_Tuple2('Token', 'ico-refresh');
 			case 'LoadingBounds':
-				return _Utils_Tuple3('Verbinde', 'is-loading', 'Ermittle Datenstruktur …');
+				return _Utils_Tuple2('Struktur', 'ico-refresh');
 			case 'LoadingRows':
-				return _Utils_Tuple3(
-					'Lädt',
-					'is-loading',
-					'Lade ' + ($author$project$Main$countryLabel(model.country) + ' …'));
+				return _Utils_Tuple2('Lädt', 'ico-refresh');
 			case 'Ready':
-				return _Utils_Tuple3(
-					$elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + ' Punkte',
-					'is-ready',
-					$author$project$Main$countryLabel(model.country) + (' · ' + ($elm$core$String$fromInt(model.windowDays) + (' Tage · ' + ($elm$core$String$fromInt(
-						$elm$core$List$length(model.rows)) + ' Messpunkte geladen')))));
+				return _Utils_Tuple2('Aktualisieren', 'ico-refresh');
 			default:
-				var e = _v1.a;
-				return _Utils_Tuple3('Fehler', 'is-error', e);
+				return _Utils_Tuple2('Verbinden', 'ico-link');
 		}
 	}();
-	var _short = _v0.a;
-	var cls = _v0.b;
-	var full = _v0.c;
+	var label = _v0.a;
+	var iconClass = _v0.b;
 	return A2(
-		$elm$html$Html$div,
+		$elm$html$Html$button,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('status-chip ' + cls),
-				$elm$html$Html$Attributes$title(full)
+				$elm$html$Html$Attributes$classList(
+				_List_fromArray(
+					[
+						_Utils_Tuple2('btn', true),
+						_Utils_Tuple2('btn-primary', true),
+						_Utils_Tuple2('is-busy', busy)
+					])),
+				$elm$html$Html$Events$onClick(action),
+				$elm$html$Html$Attributes$disabled(busy),
+				A2($elm$html$Html$Attributes$style, '--fill', fillPct)
 			]),
 		_List_fromArray(
 			[
@@ -14072,26 +14661,30 @@ var $author$project$Main$navStatus = function (model) {
 				$elm$html$Html$span,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('dot')
+						$elm$html$Html$Attributes$class('btn-fill')
 					]),
 				_List_Nil),
 				A2(
 				$elm$html$Html$span,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('status-text')
+						$elm$html$Html$Attributes$class('btn-face')
 					]),
 				_List_fromArray(
 					[
-						$elm$html$Html$text(_short)
+						A2(
+						$elm$html$Html$span,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class(
+								'ico ' + (iconClass + (busy ? ' spin' : '')))
+							]),
+						_List_Nil),
+						$elm$html$Html$text(
+						_Utils_ap(label, timeTxt))
 					]))
 			]));
 };
-var $elm$virtual_dom$VirtualDom$node = function (tag) {
-	return _VirtualDom_node(
-		_VirtualDom_noScript(tag));
-};
-var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
 var $author$project$Main$topNav = function (model) {
 	return A3(
 		$elm$html$Html$node,
@@ -14115,7 +14708,7 @@ var $author$project$Main$topNav = function (model) {
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('nav-row')
+								$elm$html$Html$Attributes$class('brand-col')
 							]),
 						_List_fromArray(
 							[
@@ -14123,99 +14716,108 @@ var $author$project$Main$topNav = function (model) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('brand')
+										$elm$html$Html$Attributes$class('brand-mark')
 									]),
 								_List_fromArray(
 									[
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('brand-mark')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text('⚡')
-											])),
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('brand-title')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text('EnergyCharts '),
-												A2(
-												$elm$html$Html$span,
-												_List_fromArray(
-													[
-														$elm$html$Html$Attributes$class('accent')
-													]),
-												_List_fromArray(
-													[
-														$elm$html$Html$text('Visual Analytics')
-													]))
-											]))
+										$elm$html$Html$text('⚡')
 									])),
-								$author$project$Main$controlCluster(model),
 								A2(
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('nav-actions')
+										$elm$html$Html$Attributes$class('brand-lockup')
 									]),
 								_List_fromArray(
 									[
-										$author$project$Main$navStatus(model),
 										A2(
 										$elm$html$Html$div,
 										_List_fromArray(
 											[
-												$elm$html$Html$Attributes$class('action-group')
+												$elm$html$Html$Attributes$class('brand-name')
 											]),
 										_List_fromArray(
 											[
-												A4($author$project$Main$iconToggle, false, $author$project$Main$Reload, 'ico-refresh', 'Aktuelle Auswahl neu laden'),
-												A4(
-												$author$project$Main$iconToggle,
-												model.dark,
-												$author$project$Main$ToggleTheme,
-												model.dark ? 'ico-sun' : 'ico-moon',
-												'Hell-/Dunkelmodus umschalten'),
-												A4($author$project$Main$iconToggle, model.navPinned, $author$project$Main$ToggleNavPin, 'ico-pin', 'Leiste dauerhaft einblenden')
+												$elm$html$Html$text('EnergyCharts')
 											])),
 										A2(
-										$elm$html$Html$button,
+										$elm$html$Html$div,
 										_List_fromArray(
 											[
-												$elm$html$Html$Attributes$class('btn btn-primary'),
-												$elm$html$Html$Events$onClick($author$project$Main$Connect)
+												$elm$html$Html$Attributes$class('brand-tag')
+											]),
+										_List_fromArray(
+											[
+												$elm$html$Html$text('VISUAL ANALYTICS')
+											]))
+									]))
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('nav-main')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('nav-line')
+									]),
+								_List_fromArray(
+									[
+										$author$project$Main$controlCluster(model),
+										A2(
+										$elm$html$Html$div,
+										_List_fromArray(
+											[
+												$elm$html$Html$Attributes$class('nav-actions')
 											]),
 										_List_fromArray(
 											[
 												A2(
-												$elm$html$Html$span,
+												$elm$html$Html$div,
 												_List_fromArray(
 													[
-														$elm$html$Html$Attributes$class('ico ico-link')
+														$elm$html$Html$Attributes$class('action-group')
 													]),
-												_List_Nil),
-												$elm$html$Html$text('Verbinden')
+												_List_fromArray(
+													[
+														A4(
+														$author$project$Main$iconToggle,
+														model.dark,
+														$author$project$Main$ToggleTheme,
+														model.dark ? 'ico-sun' : 'ico-moon',
+														'Hell-/Dunkelmodus umschalten'),
+														A4($author$project$Main$iconToggle, model.navPinned, $author$project$Main$ToggleNavPin, 'ico-pin', 'Leiste dauerhaft einblenden')
+													])),
+												$author$project$Main$primaryButton(model)
 											]))
+									])),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('nav-sub')
+									]),
+								_List_fromArray(
+									[
+										$author$project$Main$legend(model)
 									]))
-							])),
-						$author$project$Main$legend(model)
+							]))
 					]))
 			]));
 };
 var $author$project$Main$view = function (model) {
+	var rows = $author$project$Main$activeRows(model);
 	var visibleRows = A2(
 		$elm$core$List$filter,
 		function (r) {
 			return ($author$project$Energy$totalGeneration(r) > 0) || (r.load > 0);
 		},
-		model.rows);
+		rows);
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
@@ -14234,7 +14836,15 @@ var $author$project$Main$view = function (model) {
 					]),
 				_List_fromArray(
 					[
-						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A6($elm$html$Html$Lazy$lazy5, $author$project$Main$chartsView, model.hovered, model.pinned, model.metric, model.focusedDay, model.rows)
+						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A7(
+						$elm$html$Html$Lazy$lazy6,
+						$author$project$Main$chartsView,
+						model.hovered,
+						model.pinned,
+						A2($elm$core$Maybe$withDefault, model.metric, model.previewMetric),
+						model.focusedDay,
+						model.windowDays,
+						rows)
 					])),
 				$author$project$Main$tooltipView(model)
 			]));
