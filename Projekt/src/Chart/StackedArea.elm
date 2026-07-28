@@ -131,6 +131,47 @@ view cfg =
         areas =
             List.map2 areaFor Energy.bandsStacked stacked.values
 
+        -- Differenz Erzeugung ↔ Last = Saldo (muss über Import/Export bzw.
+        -- Speicher ausgeglichen werden). Defizit (Last > Erzeugung) rot über
+        -- dem Stapel, Überschuss (Erzeugung > Last) grün unter der Last-Linie.
+        diffArea : Bool -> Svg msg
+        diffArea toImport =
+            let
+                pts =
+                    List.map
+                        (\r ->
+                            let
+                                gen =
+                                    Energy.totalGeneration r
+
+                                load =
+                                    r.load
+
+                                ( lo, hi ) =
+                                    if toImport then
+                                        ( Basics.min load gen, load )
+
+                                    else
+                                        ( load, Basics.max load gen )
+                            in
+                            Just
+                                ( ( xOf r, Scale.convert yScale lo )
+                                , ( xOf r, Scale.convert yScale hi )
+                                )
+                        )
+                        cfg.rows
+            in
+            Path.element (Shape.area Shape.linearCurve pts)
+                [ TA.class
+                    [ if toImport then
+                        "deficit"
+
+                      else
+                        "surplus"
+                    ]
+                , TA.stroke PaintNone
+                ]
+
         loadLine =
             Path.element
                 (Shape.line Shape.linearCurve
@@ -175,7 +216,8 @@ view cfg =
         [ viewBox 0 0 cfg.width cfg.height
         , TA.width (TypedSvg.Types.Percent 100)
         ]
-        [ g [ transform [ Translate pad.left pad.top ] ] (areas ++ focusRect ++ [ loadLine ])
+        [ g [ transform [ Translate pad.left pad.top ] ]
+            (areas ++ [ diffArea False, diffArea True ] ++ focusRect ++ [ loadLine ])
         , g
             [ transform [ Translate pad.left (pad.top + plotH) ]
             , InPx.fontSize 11

@@ -7,6 +7,7 @@ module Energy exposing
     , hourOf, dayOf, dayLabel
     , HeatCell, binHourly, heatExtent
     , sumByBand
+    , SubSource, bandSubs, sumBySub
     )
 
 {-| Domänenmodell für die EnergyCharts-`publicpower`-Daten.
@@ -285,15 +286,18 @@ metricValue m r =
             r.load
 
 
-{-| Sequentielle Farbskala je Metrik (0..1 -> Farbe). -}
+{-| Sequentielle Farbskala je Metrik (0..1 -> Farbe). Bewusst
+**perzeptuell gleichmäßige** Skalen (viridis/plasma/inferno) statt einer reinen
+Gelb-Hell-Dunkel-Rampe: Helligkeit steigt monoton **und** der Farbton wechselt,
+sodass sich auch benachbarte Werte bei „Gelb" klar unterscheiden lassen. -}
 metricInterpolator : Metric -> Float -> Color
 metricInterpolator m =
     case m of
         SolarShare ->
-            Scale.Color.yellowOrangeRedInterpolator
+            Scale.Color.plasmaInterpolator
 
         RenewableShare ->
-            Scale.Color.yellowGreenInterpolator
+            Scale.Color.viridisInterpolator
 
         LoadMetric ->
             Scale.Color.infernoInterpolator
@@ -429,4 +433,83 @@ sumByBand : List Row -> List ( Band, Float )
 sumByBand rows =
     bands
         |> List.map (\b -> ( b, List.sum (List.map b.value rows) ))
+        |> List.filter (\( _, v ) -> v > 0)
+
+
+
+-- ============================================================
+-- ROHQUELLEN JE BAND (für interaktive Aufschlüsselung / Drill-down)
+-- ============================================================
+
+
+type alias SubSource =
+    { name : String
+    , color : Color
+    , value : Row -> Float
+    }
+
+
+{-| Farbton aufhellen (t>0) bzw. abdunkeln (t<0), für Schattierungen eines Bandes. -}
+tint : Float -> Color -> Color
+tint t c =
+    let
+        { red, green, blue } =
+            Color.toRgba c
+
+        f x =
+            if t >= 0 then
+                x + (1 - x) * t
+
+            else
+                x * (1 + t)
+    in
+    Color.rgb (f red) (f green) (f blue)
+
+
+{-| Rohquellen eines Bandes (Schattierungen der Bandfarbe). Leere Liste = das
+Band besteht aus einer einzigen Rohquelle und ist nicht weiter aufteilbar. -}
+bandSubs : String -> List SubSource
+bandSubs name =
+    case name of
+        "Wind" ->
+            [ SubSource "Onshore" (tint 0.12 (rgb 79 163 209)) .windOnshore
+            , SubSource "Offshore" (tint -0.28 (rgb 79 163 209)) .windOffshore
+            ]
+
+        "Wasserkraft" ->
+            [ SubSource "Laufwasser" (tint 0.22 (rgb 46 111 149)) .hydroRor
+            , SubSource "Speicher" (rgb 46 111 149) .hydroReservoir
+            , SubSource "Pumpspeicher" (tint -0.3 (rgb 46 111 149)) .hydroPumped
+            ]
+
+        "Biomasse" ->
+            [ SubSource "Biomasse" (rgb 91 168 91) .biomass
+            , SubSource "Geothermie" (tint -0.32 (rgb 91 168 91)) .geothermal
+            ]
+
+        "Kohle" ->
+            [ SubSource "Braunkohle" (tint -0.18 (rgb 74 74 74)) .brownCoal
+            , SubSource "Steinkohle" (tint 0.28 (rgb 74 74 74)) .hardCoal
+            , SubSource "Kokereigas" (tint 0.55 (rgb 74 74 74)) .coalDerivedGas
+            ]
+
+        "Gas/Öl" ->
+            [ SubSource "Gas" (tint 0.18 (rgb 156 122 91)) .gas
+            , SubSource "Öl" (tint -0.32 (rgb 156 122 91)) .oil
+            ]
+
+        "Sonstige" ->
+            [ SubSource "Abfall" (tint 0.16 (rgb 176 176 176)) .waste
+            , SubSource "Sonstige" (tint -0.22 (rgb 176 176 176)) .others
+            ]
+
+        _ ->
+            []
+
+
+{-| Summe je Rohquelle über den Zeitraum (leere/0-Quellen entfernt). -}
+sumBySub : List Row -> List SubSource -> List ( SubSource, Float )
+sumBySub rows subs =
+    subs
+        |> List.map (\s -> ( s, List.sum (List.map s.value rows) ))
         |> List.filter (\( _, v ) -> v > 0)

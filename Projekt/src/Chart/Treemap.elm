@@ -35,9 +35,12 @@ type alias Config msg =
     { width : Float
     , height : Float
     , sums : List ( Band, Float )
+    , subSums : List ( Energy.SubSource, Float )
+    , focus : Maybe String
     , active : List String
     , onHover : Maybe String -> msg
     , onPin : String -> msg
+    , onDrill : Maybe String -> msg
     }
 
 
@@ -166,9 +169,15 @@ view cfg =
                     , InPx.strokeWidth 1.5
                     , TE.onMouseOver (cfg.onHover (Just node.name))
                     , TE.onMouseOut (cfg.onHover Nothing)
-                    , TE.onClick (cfg.onPin node.name)
+                    , TE.onClick
+                        (if List.isEmpty (Energy.bandSubs node.name) then
+                            cfg.onPin node.name
+
+                         else
+                            cfg.onDrill (Just node.name)
+                        )
                     ]
-                    [ title [] [ TypedSvg.Core.text tip ] ]
+                    [ title [] [ TypedSvg.Core.text (drillTip node.name tip) ] ]
                     :: labelNodes
                 )
 
@@ -201,16 +210,135 @@ view cfg =
                 |> List.map Tree.label
                 |> List.concatMap groupHeader
     in
-    if List.isEmpty cfg.sums then
-        svg [ viewBox 0 0 cfg.width cfg.height, TA.width (TypedSvg.Types.Percent 100) ]
-            [ text_ [ InPx.x 8, InPx.y 20, InPx.fontSize 12 ] [ TypedSvg.Core.text "keine Daten" ] ]
+    case ( cfg.focus, cfg.subSums ) of
+        ( Just band, (_ :: _) as subs ) ->
+            drillView cfg band subs
+
+        _ ->
+            if List.isEmpty cfg.sums then
+                svg [ viewBox 0 0 cfg.width cfg.height, TA.width (TypedSvg.Types.Percent 100) ]
+                    [ text_ [ InPx.x 8, InPx.y 20, InPx.fontSize 12 ] [ TypedSvg.Core.text "keine Daten" ] ]
+
+            else
+                svg
+                    [ viewBox 0 0 cfg.width cfg.height
+                    , TA.width (TypedSvg.Types.Percent 100)
+                    ]
+                    (groupHeaders ++ List.map leafSvg (Tree.leaves layouted))
+
+
+{-| Drill-down: die Rohquellen eines Bandes als eigene Treemap, mit anklickbarer
+Kopfleiste „← zurück". -}
+drillView : Config msg -> String -> List ( Energy.SubSource, Float ) -> Svg msg
+drillView cfg band subs =
+    let
+        headerH : Float
+        headerH =
+            30
+
+        total =
+            List.sum (List.map Tuple.second subs)
+
+        round1 x =
+            String.fromFloat (toFloat (round (x * 10)) / 10)
+
+        leaves =
+            subs |> List.map (\( s, v ) -> Tree.singleton (TNode s.name s.color v))
+
+        root =
+            Tree.tree (TNode band (Color.rgb255 90 90 90) total) leaves
+
+        layouted =
+            root
+                |> Tree.sortWith (\_ a b -> compare (Tree.label b).value (Tree.label a).value)
+                |> Hierarchy.treemap
+                    [ Hierarchy.tile Hierarchy.squarify
+                    , Hierarchy.paddingInner (always 4)
+                    , Hierarchy.paddingOuter (always 2)
+                    , Hierarchy.paddingTop
+                        (\n ->
+                            if n.name == band then
+                                headerH
+
+                            else
+                                0
+                        )
+                    , Hierarchy.size cfg.width cfg.height
+                    ]
+                    .value
+
+        subLeaf item =
+            let
+                node =
+                    item.node
+
+                pct =
+                    if total <= 0 then
+                        0
+
+                    else
+                        node.value / total * 100
+
+                labelFill =
+                    TA.fill (Paint (textOn node.color))
+
+                labels =
+                    if item.width > 54 && item.height > 28 then
+                        [ text_ [ InPx.x 7, InPx.y 17, InPx.fontSize 12.5, labelFill ] [ TypedSvg.Core.text node.name ]
+                        , text_ [ InPx.x 7, InPx.y 32, InPx.fontSize 11, labelFill ] [ TypedSvg.Core.text (round1 pct ++ " %") ]
+                        ]
+
+                    else if item.height > 40 && item.width > 13 then
+                        let
+                            cx =
+                                item.width / 2
+
+                            cy =
+                                item.height / 2
+                        in
+                        [ text_ [ InPx.x cx, InPx.y cy, InPx.fontSize 11, TA.textAnchor AnchorMiddle, labelFill, TA.transform [ Rotate -90 cx cy ] ]
+                            [ TypedSvg.Core.text node.name ]
+                        ]
+
+                    else if item.width > 30 && item.height > 14 then
+                        [ text_ [ InPx.x 7, InPx.y (item.height / 2 + 4), InPx.fontSize 10.5, labelFill ] [ TypedSvg.Core.text node.name ] ]
+
+                    else
+                        []
+            in
+            g [ TA.class [ "leaf" ], transform [ Translate item.x item.y ] ]
+                (rect
+                    [ InPx.width item.width
+                    , InPx.height item.height
+                    , TA.fill (Paint node.color)
+                    , TA.class [ "tile" ]
+                    , InPx.strokeWidth 1.5
+                    , TE.onClick (cfg.onDrill Nothing)
+                    ]
+                    [ title [] [ TypedSvg.Core.text (node.name ++ " — " ++ round1 pct ++ " %") ] ]
+                    :: labels
+                )
+
+        backBar =
+            [ rect
+                [ InPx.x 0, InPx.y 0, InPx.width cfg.width, InPx.height headerH, TA.fill (Paint (Color.rgb255 51 65 85)), TE.onClick (cfg.onDrill Nothing) ]
+                []
+            , text_
+                [ InPx.x 11, InPx.y 20, InPx.fontSize 12.5, TA.fill (Paint Color.white), TE.onClick (cfg.onDrill Nothing) ]
+                [ TypedSvg.Core.text ("← " ++ band ++ " · zurück zur Übersicht") ]
+            ]
+    in
+    svg [ viewBox 0 0 cfg.width cfg.height, TA.width (TypedSvg.Types.Percent 100) ]
+        (List.map subLeaf (Tree.leaves layouted) ++ backBar)
+
+
+drillTip : String -> String -> String
+drillTip name tip =
+    if List.isEmpty (Energy.bandSubs name) then
+        tip
 
     else
-        svg
-            [ viewBox 0 0 cfg.width cfg.height
-            , TA.width (TypedSvg.Types.Percent 100)
-            ]
-            (groupHeaders ++ List.map leafSvg (Tree.leaves layouted))
+        tip ++ "  ·  klicken zum Aufschlüsseln"
 
 
 groupPct : Float -> Float -> Float

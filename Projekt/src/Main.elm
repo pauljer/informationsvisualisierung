@@ -79,6 +79,7 @@ type alias Model =
     , lastScroll : Float
     , previewMetric : Maybe Metric
     , previewCountry : Maybe String
+    , treemapFocus : Maybe String
     , elapsed : Float
     }
 
@@ -129,10 +130,12 @@ init nowMillis =
       , lastScroll = 0
       , previewMetric = Nothing
       , previewCountry = Nothing
+      , treemapFocus = Nothing
       , elapsed = 0
       }
     , Cmd.none
     )
+
 
 
 
@@ -165,6 +168,7 @@ type Msg
     | ToggleNavPin
     | HoverMetric (Maybe Metric)
     | HoverCountry (Maybe String)
+    | DrillBand (Maybe String)
     | Tick
     | Reload
 
@@ -364,6 +368,9 @@ update msg model =
         HoverMetric mm ->
             ( { model | previewMetric = mm }, Cmd.none )
 
+        DrillBand mb ->
+            ( { model | treemapFocus = mb }, Cmd.none )
+
         Tick ->
             ( { model | elapsed = model.elapsed + 0.1 }, Cmd.none )
 
@@ -484,12 +491,13 @@ view model =
               else
                 -- Charts in `lazy` gekapselt: bei reiner Mausbewegung (Tooltip)
                 -- werden sie nicht neu gezeichnet – nur bei Hover/Pin/Metrik/Fenster/Land/Daten.
-                Html.Lazy.lazy6 chartsView
+                Html.Lazy.lazy7 chartsView
                     model.hovered
                     model.pinned
                     (Maybe.withDefault model.metric model.previewMetric)
                     model.focusedDay
                     model.windowDays
+                    model.treemapFocus
                     rows
             ]
         , tooltipView model
@@ -881,8 +889,8 @@ legendChip hl pinned band =
         ]
 
 
-chartsView : Maybe String -> List String -> Metric -> Maybe Int -> Int -> List Row -> Html Msg
-chartsView hovered pinned metric focusedDay windowDays rows =
+chartsView : Maybe String -> List String -> Metric -> Maybe Int -> Int -> Maybe String -> List Row -> Html Msg
+chartsView hovered pinned metric focusedDay windowDays treemapFocus rows =
     let
         hl =
             activeOf pinned hovered
@@ -917,10 +925,18 @@ chartsView hovered pinned metric focusedDay windowDays rows =
 
                 Nothing ->
                     Nothing
+
+        treemapSubSums =
+            case treemapFocus of
+                Just band ->
+                    Energy.sumBySub treemapRows (Energy.bandSubs band)
+
+                Nothing ->
+                    []
     in
     Html.div [ HA.class "chart-stack" ]
-        [ chartCard "1" "Erzeugungsmix & Last im Zeitverlauf"
-            "Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt."
+        [ chartCard "1" "Erzeugungsmix & Saldo im Zeitverlauf"
+            "Gestapelte Erzeugung nach Quelle; gestrichelt = Last. Rote Fläche = Defizit (durch Import/Speicher zu decken), grüne Fläche = Überschuss (Export/Einspeicherung)."
             focusNote
             (StackedArea.view
                 { width = 1120
@@ -948,15 +964,18 @@ chartsView hovered pinned metric focusedDay windowDays rows =
                     }
                 )
             , chartCard "3" "Erzeugungsstruktur"
-                "Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell."
+                "Fläche ∝ Energieanteil; Ebenen Erneuerbar/Konventionell → Quelle. Klick auf ein Band (z. B. Wind, Kohle) schlüsselt es in seine Rohquellen auf."
                 Nothing
                 (Treemap.view
                     { width = 660
                     , height = 480
                     , sums = Energy.sumByBand treemapRows
+                    , subSums = treemapSubSums
+                    , focus = treemapFocus
                     , active = hl
                     , onHover = HoverSource
                     , onPin = PinSource
+                    , onDrill = DrillBand
                     }
                 )
             ]

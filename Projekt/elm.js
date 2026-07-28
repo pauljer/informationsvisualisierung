@@ -5456,6 +5456,7 @@ var $author$project$Main$init = function (nowMillis) {
 			status: $author$project$Main$NeedConnect,
 			token: $elm$core$Maybe$Nothing,
 			tokenInput: '',
+			treemapFocus: $elm$core$Maybe$Nothing,
 			windowDays: 7
 		},
 		$elm$core$Platform$Cmd$none);
@@ -7339,6 +7340,13 @@ var $author$project$Main$update = F2(
 						model,
 						{previewMetric: mm}),
 					$elm$core$Platform$Cmd$none);
+			case 'DrillBand':
+				var mb = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{treemapFocus: mb}),
+					$elm$core$Platform$Cmd$none);
 			case 'Tick':
 				return _Utils_Tuple2(
 					_Utils_update(
@@ -7437,6 +7445,9 @@ var $author$project$Main$activeRows = function (model) {
 var $author$project$Main$ClickDay = function (a) {
 	return {$: 'ClickDay', a: a};
 };
+var $author$project$Main$DrillBand = function (a) {
+	return {$: 'DrillBand', a: a};
+};
 var $author$project$Main$HoverSource = function (a) {
 	return {$: 'HoverSource', a: a};
 };
@@ -7464,17 +7475,9 @@ var $author$project$Main$activeOf = F2(
 			}
 		}
 	});
-var $author$project$Energy$dayOf = function (unix) {
-	return (unix / 86400) | 0;
-};
-var $elm$core$Basics$modBy = _Basics_modBy;
-var $author$project$Energy$hourOf = function (unix) {
-	return A2($elm$core$Basics$modBy, 24, (unix / 3600) | 0);
-};
-var $author$project$Energy$Renewable = {$: 'Renewable'};
-var $author$project$Energy$Band = F4(
-	function (name, group, color, value) {
-		return {color: color, group: group, name: name, value: value};
+var $author$project$Energy$SubSource = F3(
+	function (name, color, value) {
+		return {color: color, name: name, value: value};
 	});
 var $avh4$elm_color$Color$RgbaSpace = F4(
 	function (a, b, c, d) {
@@ -7493,6 +7496,209 @@ var $avh4$elm_color$Color$rgb255 = F3(
 			1.0);
 	});
 var $author$project$Energy$rgb = $avh4$elm_color$Color$rgb255;
+var $elm$core$Basics$ge = _Utils_ge;
+var $avh4$elm_color$Color$rgb = F3(
+	function (r, g, b) {
+		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, 1.0);
+	});
+var $avh4$elm_color$Color$toRgba = function (_v0) {
+	var r = _v0.a;
+	var g = _v0.b;
+	var b = _v0.c;
+	var a = _v0.d;
+	return {alpha: a, blue: b, green: g, red: r};
+};
+var $author$project$Energy$tint = F2(
+	function (t, c) {
+		var f = function (x) {
+			return (t >= 0) ? (x + ((1 - x) * t)) : (x * (1 + t));
+		};
+		var _v0 = $avh4$elm_color$Color$toRgba(c);
+		var blue = _v0.blue;
+		var green = _v0.green;
+		var red = _v0.red;
+		return A3(
+			$avh4$elm_color$Color$rgb,
+			f(red),
+			f(green),
+			f(blue));
+	});
+var $author$project$Energy$bandSubs = function (name) {
+	switch (name) {
+		case 'Wind':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Onshore',
+					A2(
+						$author$project$Energy$tint,
+						0.12,
+						A3($author$project$Energy$rgb, 79, 163, 209)),
+					function ($) {
+						return $.windOnshore;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Offshore',
+					A2(
+						$author$project$Energy$tint,
+						-0.28,
+						A3($author$project$Energy$rgb, 79, 163, 209)),
+					function ($) {
+						return $.windOffshore;
+					})
+				]);
+		case 'Wasserkraft':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Laufwasser',
+					A2(
+						$author$project$Energy$tint,
+						0.22,
+						A3($author$project$Energy$rgb, 46, 111, 149)),
+					function ($) {
+						return $.hydroRor;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Speicher',
+					A3($author$project$Energy$rgb, 46, 111, 149),
+					function ($) {
+						return $.hydroReservoir;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Pumpspeicher',
+					A2(
+						$author$project$Energy$tint,
+						-0.3,
+						A3($author$project$Energy$rgb, 46, 111, 149)),
+					function ($) {
+						return $.hydroPumped;
+					})
+				]);
+		case 'Biomasse':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Biomasse',
+					A3($author$project$Energy$rgb, 91, 168, 91),
+					function ($) {
+						return $.biomass;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Geothermie',
+					A2(
+						$author$project$Energy$tint,
+						-0.32,
+						A3($author$project$Energy$rgb, 91, 168, 91)),
+					function ($) {
+						return $.geothermal;
+					})
+				]);
+		case 'Kohle':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Braunkohle',
+					A2(
+						$author$project$Energy$tint,
+						-0.18,
+						A3($author$project$Energy$rgb, 74, 74, 74)),
+					function ($) {
+						return $.brownCoal;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Steinkohle',
+					A2(
+						$author$project$Energy$tint,
+						0.28,
+						A3($author$project$Energy$rgb, 74, 74, 74)),
+					function ($) {
+						return $.hardCoal;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Kokereigas',
+					A2(
+						$author$project$Energy$tint,
+						0.55,
+						A3($author$project$Energy$rgb, 74, 74, 74)),
+					function ($) {
+						return $.coalDerivedGas;
+					})
+				]);
+		case 'Gas/Öl':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Gas',
+					A2(
+						$author$project$Energy$tint,
+						0.18,
+						A3($author$project$Energy$rgb, 156, 122, 91)),
+					function ($) {
+						return $.gas;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Öl',
+					A2(
+						$author$project$Energy$tint,
+						-0.32,
+						A3($author$project$Energy$rgb, 156, 122, 91)),
+					function ($) {
+						return $.oil;
+					})
+				]);
+		case 'Sonstige':
+			return _List_fromArray(
+				[
+					A3(
+					$author$project$Energy$SubSource,
+					'Abfall',
+					A2(
+						$author$project$Energy$tint,
+						0.16,
+						A3($author$project$Energy$rgb, 176, 176, 176)),
+					function ($) {
+						return $.waste;
+					}),
+					A3(
+					$author$project$Energy$SubSource,
+					'Sonstige',
+					A2(
+						$author$project$Energy$tint,
+						-0.22,
+						A3($author$project$Energy$rgb, 176, 176, 176)),
+					function ($) {
+						return $.others;
+					})
+				]);
+		default:
+			return _List_Nil;
+	}
+};
+var $author$project$Energy$dayOf = function (unix) {
+	return (unix / 86400) | 0;
+};
+var $elm$core$Basics$modBy = _Basics_modBy;
+var $author$project$Energy$hourOf = function (unix) {
+	return A2($elm$core$Basics$modBy, 24, (unix / 3600) | 0);
+};
+var $author$project$Energy$Renewable = {$: 'Renewable'};
+var $author$project$Energy$Band = F4(
+	function (name, group, color, value) {
+		return {color: color, group: group, name: name, value: value};
+	});
 var $author$project$Energy$biomassBand = A4(
 	$author$project$Energy$Band,
 	'Biomasse',
@@ -7803,7 +8009,6 @@ var $elm$time$Time$toAdjustedMinutes = F2(
 				60000),
 			eras);
 	});
-var $elm$core$Basics$ge = _Utils_ge;
 var $elm$time$Time$toCivil = function (minutes) {
 	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
 	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
@@ -8269,402 +8474,534 @@ var $gampleman$elm_visualization$Scale$Color$infernoInterpolator = $gampleman$el
 				A3($avh4$elm_color$Color$rgb255, 250, 253, 161),
 				A3($avh4$elm_color$Color$rgb255, 252, 255, 164)
 			])));
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$String$cons = _String_cons;
-var $elm$core$String$fromChar = function (_char) {
-	return A2($elm$core$String$cons, _char, '');
-};
-var $elm$core$Basics$pow = _Basics_pow;
-var $rtfeldman$elm_hex$Hex$fromStringHelp = F3(
-	function (position, chars, accumulated) {
-		fromStringHelp:
-		while (true) {
-			if (!chars.b) {
-				return $elm$core$Result$Ok(accumulated);
-			} else {
-				var _char = chars.a;
-				var rest = chars.b;
-				switch (_char.valueOf()) {
-					case '0':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated;
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '1':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + A2($elm$core$Basics$pow, 16, position);
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '2':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (2 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '3':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (3 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '4':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (4 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '5':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (5 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '6':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (6 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '7':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (7 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '8':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (8 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case '9':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (9 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'a':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (10 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'b':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (11 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'c':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (12 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'd':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (13 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'e':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (14 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					case 'f':
-						var $temp$position = position - 1,
-							$temp$chars = rest,
-							$temp$accumulated = accumulated + (15 * A2($elm$core$Basics$pow, 16, position));
-						position = $temp$position;
-						chars = $temp$chars;
-						accumulated = $temp$accumulated;
-						continue fromStringHelp;
-					default:
-						var nonHex = _char;
-						return $elm$core$Result$Err(
-							$elm$core$String$fromChar(nonHex) + ' is not a valid hexadecimal character.');
-				}
-			}
-		}
-	});
-var $elm$core$Result$map = F2(
-	function (func, ra) {
-		if (ra.$ === 'Ok') {
-			var a = ra.a;
-			return $elm$core$Result$Ok(
-				func(a));
-		} else {
-			var e = ra.a;
-			return $elm$core$Result$Err(e);
-		}
-	});
-var $elm$core$List$tail = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(xs);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$String$foldr = _String_foldr;
-var $elm$core$String$toList = function (string) {
-	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
-};
-var $rtfeldman$elm_hex$Hex$fromString = function (str) {
-	if ($elm$core$String$isEmpty(str)) {
-		return $elm$core$Result$Err('Empty strings are not valid hexadecimal strings.');
-	} else {
-		var result = function () {
-			if (A2($elm$core$String$startsWith, '-', str)) {
-				var list = A2(
-					$elm$core$Maybe$withDefault,
-					_List_Nil,
-					$elm$core$List$tail(
-						$elm$core$String$toList(str)));
-				return A2(
-					$elm$core$Result$map,
-					$elm$core$Basics$negate,
-					A3(
-						$rtfeldman$elm_hex$Hex$fromStringHelp,
-						$elm$core$List$length(list) - 1,
-						list,
-						0));
-			} else {
-				return A3(
-					$rtfeldman$elm_hex$Hex$fromStringHelp,
-					$elm$core$String$length(str) - 1,
-					$elm$core$String$toList(str),
-					0);
-			}
-		}();
-		var formatError = function (err) {
-			return A2(
-				$elm$core$String$join,
-				' ',
-				_List_fromArray(
-					['\u0022' + (str + '\u0022'), 'is not a valid hexadecimal string because', err]));
-		};
-		return A2($elm$core$Result$mapError, formatError, result);
-	}
-};
-var $elm$core$Result$withDefault = F2(
-	function (def, result) {
-		if (result.$ === 'Ok') {
-			var a = result.a;
-			return a;
-		} else {
-			return def;
-		}
-	});
-var $gampleman$elm_visualization$Scale$Color$hexToColor = function (hex) {
-	return function (s) {
-		var r = A2(
-			$elm$core$Result$withDefault,
-			0,
-			$rtfeldman$elm_hex$Hex$fromString(
-				A3($elm$core$String$slice, 0, 2, s)));
-		var g = A2(
-			$elm$core$Result$withDefault,
-			0,
-			$rtfeldman$elm_hex$Hex$fromString(
-				A3($elm$core$String$slice, 2, 4, s)));
-		var b = A2(
-			$elm$core$Result$withDefault,
-			0,
-			$rtfeldman$elm_hex$Hex$fromString(
-				A3($elm$core$String$slice, 4, 6, s)));
-		return A3($avh4$elm_color$Color$rgb255, r, g, b);
-	}(
-		A2($elm$core$String$dropLeft, 1, hex));
-};
-var $elm$core$Basics$clamp = F3(
-	function (low, high, number) {
-		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
-	});
-var $elm$core$Maybe$map = F2(
-	function (f, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return $elm$core$Maybe$Just(
-				f(value));
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
-	});
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $gampleman$elm_visualization$Interpolation$piecewise = F3(
-	function (makeInterpolator, head, tail) {
-		var n = $elm$core$List$length(tail);
-		var interpolators = $elm$core$Array$fromList(
-			$elm$core$List$reverse(
-				A3(
-					$elm$core$List$foldl,
-					F2(
-						function (item, _v0) {
-							var prev = _v0.a;
-							var accu = _v0.b;
-							return _Utils_Tuple2(
-								item,
-								A2(
-									$elm$core$List$cons,
-									A2(makeInterpolator, prev, item),
-									accu));
-						}),
-					_Utils_Tuple2(head, _List_Nil),
-					tail).b));
-		return function (t) {
-			var tn = t * n;
-			var i = A3(
-				$elm$core$Basics$clamp,
-				0,
-				n - 1,
-				$elm$core$Basics$floor(tn));
-			return A2(
-				$elm$core$Maybe$withDefault,
-				head,
-				A2(
-					$elm$core$Maybe$map,
-					function (fn) {
-						return fn(tn - i);
-					},
-					A2($elm$core$Array$get, i, interpolators)));
-		};
-	});
-var $gampleman$elm_visualization$Interpolation$float = F2(
-	function (a, to) {
-		var b = to - a;
-		return function (t) {
-			return a + (b * t);
-		};
-	});
-var $gampleman$elm_visualization$Interpolation$gammaCorrected = F3(
-	function (gamma, from, to) {
-		if (gamma === 1) {
-			return A2($gampleman$elm_visualization$Interpolation$float, from, to);
-		} else {
-			var y = 1 / gamma;
-			var a = A2($elm$core$Basics$pow, from, gamma);
-			var b = A2($elm$core$Basics$pow, to, gamma) - a;
-			return function (t) {
-				return A2($elm$core$Basics$pow, a + (t * b), y);
-			};
-		}
-	});
-var $gampleman$elm_visualization$Interpolation$map4 = F5(
-	function (fn, a, b, c, d) {
-		return function (t) {
-			return A4(
-				fn,
-				a(t),
-				b(t),
-				c(t),
-				d(t));
-		};
-	});
-var $avh4$elm_color$Color$rgba = F4(
-	function (r, g, b, a) {
-		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, a);
-	});
-var $avh4$elm_color$Color$toRgba = function (_v0) {
-	var r = _v0.a;
-	var g = _v0.b;
-	var b = _v0.c;
-	var a = _v0.d;
-	return {alpha: a, blue: b, green: g, red: r};
-};
-var $gampleman$elm_visualization$Interpolation$rgbWithGamma = F3(
-	function (gamma, from, to) {
-		var start = $avh4$elm_color$Color$toRgba(from);
-		var end = $avh4$elm_color$Color$toRgba(to);
-		var c = $gampleman$elm_visualization$Interpolation$gammaCorrected(gamma);
-		return A5(
-			$gampleman$elm_visualization$Interpolation$map4,
-			$avh4$elm_color$Color$rgba,
-			A2(c, start.red, end.red),
-			A2(c, start.green, end.green),
-			A2(c, start.blue, end.blue),
-			A2($gampleman$elm_visualization$Interpolation$float, start.alpha, end.alpha));
-	});
-var $gampleman$elm_visualization$Interpolation$rgb = $gampleman$elm_visualization$Interpolation$rgbWithGamma(1.0);
-var $gampleman$elm_visualization$Scale$Color$toHexColorStrings = function (palette) {
-	var n = $elm$core$Basics$round(
-		$elm$core$String$length(palette) / 6);
-	var f = function (i) {
-		return '#' + A3($elm$core$String$slice, i * 6, (i + 1) * 6, palette);
-	};
-	return $elm$core$Array$toList(
-		A2($elm$core$Array$initialize, n, f));
-};
-var $gampleman$elm_visualization$Scale$Color$mkPiecewiseInterpolator = function (values) {
-	var hexColors = $gampleman$elm_visualization$Scale$Color$toHexColorStrings(values);
-	var tail = A2(
-		$elm$core$List$map,
-		$gampleman$elm_visualization$Scale$Color$hexToColor,
-		A2(
-			$elm$core$Maybe$withDefault,
-			_List_Nil,
-			$elm$core$List$tail(hexColors)));
-	var head = $gampleman$elm_visualization$Scale$Color$hexToColor(
-		A2(
-			$elm$core$Maybe$withDefault,
-			'#fff',
-			$elm$core$List$head(hexColors)));
-	return A3($gampleman$elm_visualization$Interpolation$piecewise, $gampleman$elm_visualization$Interpolation$rgb, head, tail);
-};
-var $gampleman$elm_visualization$Scale$Color$yellowGreenInterpolator = $gampleman$elm_visualization$Scale$Color$mkPiecewiseInterpolator('e4f4acd1eca0b9e2949ed68880c97c62bb6e47aa5e3297502083440e723b036034');
-var $gampleman$elm_visualization$Scale$Color$yellowOrangeRedInterpolator = $gampleman$elm_visualization$Scale$Color$mkPiecewiseInterpolator('fee087fed16ffebd59fea849fd903efc7335f9522bee3423de1b20ca0b22af0225');
+var $gampleman$elm_visualization$Scale$Color$plasmaInterpolator = $gampleman$elm_visualization$Scale$Color$mkInterpolator(
+	$elm$core$Array$fromList(
+		_List_fromArray(
+			[
+				A3($avh4$elm_color$Color$rgb255, 13, 8, 135),
+				A3($avh4$elm_color$Color$rgb255, 16, 7, 136),
+				A3($avh4$elm_color$Color$rgb255, 19, 7, 137),
+				A3($avh4$elm_color$Color$rgb255, 22, 7, 138),
+				A3($avh4$elm_color$Color$rgb255, 25, 6, 140),
+				A3($avh4$elm_color$Color$rgb255, 27, 6, 141),
+				A3($avh4$elm_color$Color$rgb255, 29, 6, 142),
+				A3($avh4$elm_color$Color$rgb255, 32, 6, 143),
+				A3($avh4$elm_color$Color$rgb255, 34, 6, 144),
+				A3($avh4$elm_color$Color$rgb255, 36, 6, 145),
+				A3($avh4$elm_color$Color$rgb255, 38, 5, 145),
+				A3($avh4$elm_color$Color$rgb255, 40, 5, 146),
+				A3($avh4$elm_color$Color$rgb255, 42, 5, 147),
+				A3($avh4$elm_color$Color$rgb255, 44, 5, 148),
+				A3($avh4$elm_color$Color$rgb255, 46, 5, 149),
+				A3($avh4$elm_color$Color$rgb255, 47, 5, 150),
+				A3($avh4$elm_color$Color$rgb255, 49, 5, 151),
+				A3($avh4$elm_color$Color$rgb255, 51, 5, 151),
+				A3($avh4$elm_color$Color$rgb255, 53, 4, 152),
+				A3($avh4$elm_color$Color$rgb255, 55, 4, 153),
+				A3($avh4$elm_color$Color$rgb255, 56, 4, 154),
+				A3($avh4$elm_color$Color$rgb255, 58, 4, 154),
+				A3($avh4$elm_color$Color$rgb255, 60, 4, 155),
+				A3($avh4$elm_color$Color$rgb255, 62, 4, 156),
+				A3($avh4$elm_color$Color$rgb255, 63, 4, 156),
+				A3($avh4$elm_color$Color$rgb255, 65, 4, 157),
+				A3($avh4$elm_color$Color$rgb255, 67, 3, 158),
+				A3($avh4$elm_color$Color$rgb255, 68, 3, 158),
+				A3($avh4$elm_color$Color$rgb255, 70, 3, 159),
+				A3($avh4$elm_color$Color$rgb255, 72, 3, 159),
+				A3($avh4$elm_color$Color$rgb255, 73, 3, 160),
+				A3($avh4$elm_color$Color$rgb255, 75, 3, 161),
+				A3($avh4$elm_color$Color$rgb255, 76, 2, 161),
+				A3($avh4$elm_color$Color$rgb255, 78, 2, 162),
+				A3($avh4$elm_color$Color$rgb255, 80, 2, 162),
+				A3($avh4$elm_color$Color$rgb255, 81, 2, 163),
+				A3($avh4$elm_color$Color$rgb255, 83, 2, 163),
+				A3($avh4$elm_color$Color$rgb255, 85, 2, 164),
+				A3($avh4$elm_color$Color$rgb255, 86, 1, 164),
+				A3($avh4$elm_color$Color$rgb255, 88, 1, 164),
+				A3($avh4$elm_color$Color$rgb255, 89, 1, 165),
+				A3($avh4$elm_color$Color$rgb255, 91, 1, 165),
+				A3($avh4$elm_color$Color$rgb255, 92, 1, 166),
+				A3($avh4$elm_color$Color$rgb255, 94, 1, 166),
+				A3($avh4$elm_color$Color$rgb255, 96, 1, 166),
+				A3($avh4$elm_color$Color$rgb255, 97, 0, 167),
+				A3($avh4$elm_color$Color$rgb255, 99, 0, 167),
+				A3($avh4$elm_color$Color$rgb255, 100, 0, 167),
+				A3($avh4$elm_color$Color$rgb255, 102, 0, 167),
+				A3($avh4$elm_color$Color$rgb255, 103, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 105, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 106, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 108, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 110, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 111, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 113, 0, 168),
+				A3($avh4$elm_color$Color$rgb255, 114, 1, 168),
+				A3($avh4$elm_color$Color$rgb255, 116, 1, 168),
+				A3($avh4$elm_color$Color$rgb255, 117, 1, 168),
+				A3($avh4$elm_color$Color$rgb255, 119, 1, 168),
+				A3($avh4$elm_color$Color$rgb255, 120, 1, 168),
+				A3($avh4$elm_color$Color$rgb255, 122, 2, 168),
+				A3($avh4$elm_color$Color$rgb255, 123, 2, 168),
+				A3($avh4$elm_color$Color$rgb255, 125, 3, 168),
+				A3($avh4$elm_color$Color$rgb255, 126, 3, 168),
+				A3($avh4$elm_color$Color$rgb255, 128, 4, 168),
+				A3($avh4$elm_color$Color$rgb255, 129, 4, 167),
+				A3($avh4$elm_color$Color$rgb255, 131, 5, 167),
+				A3($avh4$elm_color$Color$rgb255, 132, 5, 167),
+				A3($avh4$elm_color$Color$rgb255, 134, 6, 166),
+				A3($avh4$elm_color$Color$rgb255, 135, 7, 166),
+				A3($avh4$elm_color$Color$rgb255, 136, 8, 166),
+				A3($avh4$elm_color$Color$rgb255, 138, 9, 165),
+				A3($avh4$elm_color$Color$rgb255, 139, 10, 165),
+				A3($avh4$elm_color$Color$rgb255, 141, 11, 165),
+				A3($avh4$elm_color$Color$rgb255, 142, 12, 164),
+				A3($avh4$elm_color$Color$rgb255, 143, 13, 164),
+				A3($avh4$elm_color$Color$rgb255, 145, 14, 163),
+				A3($avh4$elm_color$Color$rgb255, 146, 15, 163),
+				A3($avh4$elm_color$Color$rgb255, 148, 16, 162),
+				A3($avh4$elm_color$Color$rgb255, 149, 17, 161),
+				A3($avh4$elm_color$Color$rgb255, 150, 19, 161),
+				A3($avh4$elm_color$Color$rgb255, 152, 20, 160),
+				A3($avh4$elm_color$Color$rgb255, 153, 21, 159),
+				A3($avh4$elm_color$Color$rgb255, 154, 22, 159),
+				A3($avh4$elm_color$Color$rgb255, 156, 23, 158),
+				A3($avh4$elm_color$Color$rgb255, 157, 24, 157),
+				A3($avh4$elm_color$Color$rgb255, 158, 25, 157),
+				A3($avh4$elm_color$Color$rgb255, 160, 26, 156),
+				A3($avh4$elm_color$Color$rgb255, 161, 27, 155),
+				A3($avh4$elm_color$Color$rgb255, 162, 29, 154),
+				A3($avh4$elm_color$Color$rgb255, 163, 30, 154),
+				A3($avh4$elm_color$Color$rgb255, 165, 31, 153),
+				A3($avh4$elm_color$Color$rgb255, 166, 32, 152),
+				A3($avh4$elm_color$Color$rgb255, 167, 33, 151),
+				A3($avh4$elm_color$Color$rgb255, 168, 34, 150),
+				A3($avh4$elm_color$Color$rgb255, 170, 35, 149),
+				A3($avh4$elm_color$Color$rgb255, 171, 36, 148),
+				A3($avh4$elm_color$Color$rgb255, 172, 38, 148),
+				A3($avh4$elm_color$Color$rgb255, 173, 39, 147),
+				A3($avh4$elm_color$Color$rgb255, 174, 40, 146),
+				A3($avh4$elm_color$Color$rgb255, 176, 41, 145),
+				A3($avh4$elm_color$Color$rgb255, 177, 42, 144),
+				A3($avh4$elm_color$Color$rgb255, 178, 43, 143),
+				A3($avh4$elm_color$Color$rgb255, 179, 44, 142),
+				A3($avh4$elm_color$Color$rgb255, 180, 46, 141),
+				A3($avh4$elm_color$Color$rgb255, 181, 47, 140),
+				A3($avh4$elm_color$Color$rgb255, 182, 48, 139),
+				A3($avh4$elm_color$Color$rgb255, 183, 49, 138),
+				A3($avh4$elm_color$Color$rgb255, 184, 50, 137),
+				A3($avh4$elm_color$Color$rgb255, 186, 51, 136),
+				A3($avh4$elm_color$Color$rgb255, 187, 52, 136),
+				A3($avh4$elm_color$Color$rgb255, 188, 53, 135),
+				A3($avh4$elm_color$Color$rgb255, 189, 55, 134),
+				A3($avh4$elm_color$Color$rgb255, 190, 56, 133),
+				A3($avh4$elm_color$Color$rgb255, 191, 57, 132),
+				A3($avh4$elm_color$Color$rgb255, 192, 58, 131),
+				A3($avh4$elm_color$Color$rgb255, 193, 59, 130),
+				A3($avh4$elm_color$Color$rgb255, 194, 60, 129),
+				A3($avh4$elm_color$Color$rgb255, 195, 61, 128),
+				A3($avh4$elm_color$Color$rgb255, 196, 62, 127),
+				A3($avh4$elm_color$Color$rgb255, 197, 64, 126),
+				A3($avh4$elm_color$Color$rgb255, 198, 65, 125),
+				A3($avh4$elm_color$Color$rgb255, 199, 66, 124),
+				A3($avh4$elm_color$Color$rgb255, 200, 67, 123),
+				A3($avh4$elm_color$Color$rgb255, 201, 68, 122),
+				A3($avh4$elm_color$Color$rgb255, 202, 69, 122),
+				A3($avh4$elm_color$Color$rgb255, 203, 70, 121),
+				A3($avh4$elm_color$Color$rgb255, 204, 71, 120),
+				A3($avh4$elm_color$Color$rgb255, 204, 73, 119),
+				A3($avh4$elm_color$Color$rgb255, 205, 74, 118),
+				A3($avh4$elm_color$Color$rgb255, 206, 75, 117),
+				A3($avh4$elm_color$Color$rgb255, 207, 76, 116),
+				A3($avh4$elm_color$Color$rgb255, 208, 77, 115),
+				A3($avh4$elm_color$Color$rgb255, 209, 78, 114),
+				A3($avh4$elm_color$Color$rgb255, 210, 79, 113),
+				A3($avh4$elm_color$Color$rgb255, 211, 81, 113),
+				A3($avh4$elm_color$Color$rgb255, 212, 82, 112),
+				A3($avh4$elm_color$Color$rgb255, 213, 83, 111),
+				A3($avh4$elm_color$Color$rgb255, 213, 84, 110),
+				A3($avh4$elm_color$Color$rgb255, 214, 85, 109),
+				A3($avh4$elm_color$Color$rgb255, 215, 86, 108),
+				A3($avh4$elm_color$Color$rgb255, 216, 87, 107),
+				A3($avh4$elm_color$Color$rgb255, 217, 88, 106),
+				A3($avh4$elm_color$Color$rgb255, 218, 90, 106),
+				A3($avh4$elm_color$Color$rgb255, 218, 91, 105),
+				A3($avh4$elm_color$Color$rgb255, 219, 92, 104),
+				A3($avh4$elm_color$Color$rgb255, 220, 93, 103),
+				A3($avh4$elm_color$Color$rgb255, 221, 94, 102),
+				A3($avh4$elm_color$Color$rgb255, 222, 95, 101),
+				A3($avh4$elm_color$Color$rgb255, 222, 97, 100),
+				A3($avh4$elm_color$Color$rgb255, 223, 98, 99),
+				A3($avh4$elm_color$Color$rgb255, 224, 99, 99),
+				A3($avh4$elm_color$Color$rgb255, 225, 100, 98),
+				A3($avh4$elm_color$Color$rgb255, 226, 101, 97),
+				A3($avh4$elm_color$Color$rgb255, 226, 102, 96),
+				A3($avh4$elm_color$Color$rgb255, 227, 104, 95),
+				A3($avh4$elm_color$Color$rgb255, 228, 105, 94),
+				A3($avh4$elm_color$Color$rgb255, 229, 106, 93),
+				A3($avh4$elm_color$Color$rgb255, 229, 107, 93),
+				A3($avh4$elm_color$Color$rgb255, 230, 108, 92),
+				A3($avh4$elm_color$Color$rgb255, 231, 110, 91),
+				A3($avh4$elm_color$Color$rgb255, 231, 111, 90),
+				A3($avh4$elm_color$Color$rgb255, 232, 112, 89),
+				A3($avh4$elm_color$Color$rgb255, 233, 113, 88),
+				A3($avh4$elm_color$Color$rgb255, 233, 114, 87),
+				A3($avh4$elm_color$Color$rgb255, 234, 116, 87),
+				A3($avh4$elm_color$Color$rgb255, 235, 117, 86),
+				A3($avh4$elm_color$Color$rgb255, 235, 118, 85),
+				A3($avh4$elm_color$Color$rgb255, 236, 119, 84),
+				A3($avh4$elm_color$Color$rgb255, 237, 121, 83),
+				A3($avh4$elm_color$Color$rgb255, 237, 122, 82),
+				A3($avh4$elm_color$Color$rgb255, 238, 123, 81),
+				A3($avh4$elm_color$Color$rgb255, 239, 124, 81),
+				A3($avh4$elm_color$Color$rgb255, 239, 126, 80),
+				A3($avh4$elm_color$Color$rgb255, 240, 127, 79),
+				A3($avh4$elm_color$Color$rgb255, 240, 128, 78),
+				A3($avh4$elm_color$Color$rgb255, 241, 129, 77),
+				A3($avh4$elm_color$Color$rgb255, 241, 131, 76),
+				A3($avh4$elm_color$Color$rgb255, 242, 132, 75),
+				A3($avh4$elm_color$Color$rgb255, 243, 133, 75),
+				A3($avh4$elm_color$Color$rgb255, 243, 135, 74),
+				A3($avh4$elm_color$Color$rgb255, 244, 136, 73),
+				A3($avh4$elm_color$Color$rgb255, 244, 137, 72),
+				A3($avh4$elm_color$Color$rgb255, 245, 139, 71),
+				A3($avh4$elm_color$Color$rgb255, 245, 140, 70),
+				A3($avh4$elm_color$Color$rgb255, 246, 141, 69),
+				A3($avh4$elm_color$Color$rgb255, 246, 143, 68),
+				A3($avh4$elm_color$Color$rgb255, 247, 144, 68),
+				A3($avh4$elm_color$Color$rgb255, 247, 145, 67),
+				A3($avh4$elm_color$Color$rgb255, 247, 147, 66),
+				A3($avh4$elm_color$Color$rgb255, 248, 148, 65),
+				A3($avh4$elm_color$Color$rgb255, 248, 149, 64),
+				A3($avh4$elm_color$Color$rgb255, 249, 151, 63),
+				A3($avh4$elm_color$Color$rgb255, 249, 152, 62),
+				A3($avh4$elm_color$Color$rgb255, 249, 154, 62),
+				A3($avh4$elm_color$Color$rgb255, 250, 155, 61),
+				A3($avh4$elm_color$Color$rgb255, 250, 156, 60),
+				A3($avh4$elm_color$Color$rgb255, 250, 158, 59),
+				A3($avh4$elm_color$Color$rgb255, 251, 159, 58),
+				A3($avh4$elm_color$Color$rgb255, 251, 161, 57),
+				A3($avh4$elm_color$Color$rgb255, 251, 162, 56),
+				A3($avh4$elm_color$Color$rgb255, 252, 163, 56),
+				A3($avh4$elm_color$Color$rgb255, 252, 165, 55),
+				A3($avh4$elm_color$Color$rgb255, 252, 166, 54),
+				A3($avh4$elm_color$Color$rgb255, 252, 168, 53),
+				A3($avh4$elm_color$Color$rgb255, 252, 169, 52),
+				A3($avh4$elm_color$Color$rgb255, 253, 171, 51),
+				A3($avh4$elm_color$Color$rgb255, 253, 172, 51),
+				A3($avh4$elm_color$Color$rgb255, 253, 174, 50),
+				A3($avh4$elm_color$Color$rgb255, 253, 175, 49),
+				A3($avh4$elm_color$Color$rgb255, 253, 177, 48),
+				A3($avh4$elm_color$Color$rgb255, 253, 178, 47),
+				A3($avh4$elm_color$Color$rgb255, 253, 180, 47),
+				A3($avh4$elm_color$Color$rgb255, 253, 181, 46),
+				A3($avh4$elm_color$Color$rgb255, 254, 183, 45),
+				A3($avh4$elm_color$Color$rgb255, 254, 184, 44),
+				A3($avh4$elm_color$Color$rgb255, 254, 186, 44),
+				A3($avh4$elm_color$Color$rgb255, 254, 187, 43),
+				A3($avh4$elm_color$Color$rgb255, 254, 189, 42),
+				A3($avh4$elm_color$Color$rgb255, 254, 190, 42),
+				A3($avh4$elm_color$Color$rgb255, 254, 192, 41),
+				A3($avh4$elm_color$Color$rgb255, 253, 194, 41),
+				A3($avh4$elm_color$Color$rgb255, 253, 195, 40),
+				A3($avh4$elm_color$Color$rgb255, 253, 197, 39),
+				A3($avh4$elm_color$Color$rgb255, 253, 198, 39),
+				A3($avh4$elm_color$Color$rgb255, 253, 200, 39),
+				A3($avh4$elm_color$Color$rgb255, 253, 202, 38),
+				A3($avh4$elm_color$Color$rgb255, 253, 203, 38),
+				A3($avh4$elm_color$Color$rgb255, 252, 205, 37),
+				A3($avh4$elm_color$Color$rgb255, 252, 206, 37),
+				A3($avh4$elm_color$Color$rgb255, 252, 208, 37),
+				A3($avh4$elm_color$Color$rgb255, 252, 210, 37),
+				A3($avh4$elm_color$Color$rgb255, 251, 211, 36),
+				A3($avh4$elm_color$Color$rgb255, 251, 213, 36),
+				A3($avh4$elm_color$Color$rgb255, 251, 215, 36),
+				A3($avh4$elm_color$Color$rgb255, 250, 216, 36),
+				A3($avh4$elm_color$Color$rgb255, 250, 218, 36),
+				A3($avh4$elm_color$Color$rgb255, 249, 220, 36),
+				A3($avh4$elm_color$Color$rgb255, 249, 221, 37),
+				A3($avh4$elm_color$Color$rgb255, 248, 223, 37),
+				A3($avh4$elm_color$Color$rgb255, 248, 225, 37),
+				A3($avh4$elm_color$Color$rgb255, 247, 226, 37),
+				A3($avh4$elm_color$Color$rgb255, 247, 228, 37),
+				A3($avh4$elm_color$Color$rgb255, 246, 230, 38),
+				A3($avh4$elm_color$Color$rgb255, 246, 232, 38),
+				A3($avh4$elm_color$Color$rgb255, 245, 233, 38),
+				A3($avh4$elm_color$Color$rgb255, 245, 235, 39),
+				A3($avh4$elm_color$Color$rgb255, 244, 237, 39),
+				A3($avh4$elm_color$Color$rgb255, 243, 238, 39),
+				A3($avh4$elm_color$Color$rgb255, 243, 240, 39),
+				A3($avh4$elm_color$Color$rgb255, 242, 242, 39),
+				A3($avh4$elm_color$Color$rgb255, 241, 244, 38),
+				A3($avh4$elm_color$Color$rgb255, 241, 245, 37),
+				A3($avh4$elm_color$Color$rgb255, 240, 247, 36),
+				A3($avh4$elm_color$Color$rgb255, 240, 249, 33)
+			])));
+var $gampleman$elm_visualization$Scale$Color$viridisInterpolator = $gampleman$elm_visualization$Scale$Color$mkInterpolator(
+	$elm$core$Array$fromList(
+		_List_fromArray(
+			[
+				A3($avh4$elm_color$Color$rgb255, 68, 1, 84),
+				A3($avh4$elm_color$Color$rgb255, 68, 2, 86),
+				A3($avh4$elm_color$Color$rgb255, 69, 4, 87),
+				A3($avh4$elm_color$Color$rgb255, 69, 5, 89),
+				A3($avh4$elm_color$Color$rgb255, 70, 7, 90),
+				A3($avh4$elm_color$Color$rgb255, 70, 8, 92),
+				A3($avh4$elm_color$Color$rgb255, 70, 10, 93),
+				A3($avh4$elm_color$Color$rgb255, 70, 11, 94),
+				A3($avh4$elm_color$Color$rgb255, 71, 13, 96),
+				A3($avh4$elm_color$Color$rgb255, 71, 14, 97),
+				A3($avh4$elm_color$Color$rgb255, 71, 16, 99),
+				A3($avh4$elm_color$Color$rgb255, 71, 17, 100),
+				A3($avh4$elm_color$Color$rgb255, 71, 19, 101),
+				A3($avh4$elm_color$Color$rgb255, 72, 20, 103),
+				A3($avh4$elm_color$Color$rgb255, 72, 22, 104),
+				A3($avh4$elm_color$Color$rgb255, 72, 23, 105),
+				A3($avh4$elm_color$Color$rgb255, 72, 24, 106),
+				A3($avh4$elm_color$Color$rgb255, 72, 26, 108),
+				A3($avh4$elm_color$Color$rgb255, 72, 27, 109),
+				A3($avh4$elm_color$Color$rgb255, 72, 28, 110),
+				A3($avh4$elm_color$Color$rgb255, 72, 29, 111),
+				A3($avh4$elm_color$Color$rgb255, 72, 31, 112),
+				A3($avh4$elm_color$Color$rgb255, 72, 32, 113),
+				A3($avh4$elm_color$Color$rgb255, 72, 33, 115),
+				A3($avh4$elm_color$Color$rgb255, 72, 35, 116),
+				A3($avh4$elm_color$Color$rgb255, 72, 36, 117),
+				A3($avh4$elm_color$Color$rgb255, 72, 37, 118),
+				A3($avh4$elm_color$Color$rgb255, 72, 38, 119),
+				A3($avh4$elm_color$Color$rgb255, 72, 40, 120),
+				A3($avh4$elm_color$Color$rgb255, 72, 41, 121),
+				A3($avh4$elm_color$Color$rgb255, 71, 42, 122),
+				A3($avh4$elm_color$Color$rgb255, 71, 44, 122),
+				A3($avh4$elm_color$Color$rgb255, 71, 45, 123),
+				A3($avh4$elm_color$Color$rgb255, 71, 46, 124),
+				A3($avh4$elm_color$Color$rgb255, 71, 47, 125),
+				A3($avh4$elm_color$Color$rgb255, 70, 48, 126),
+				A3($avh4$elm_color$Color$rgb255, 70, 50, 126),
+				A3($avh4$elm_color$Color$rgb255, 70, 51, 127),
+				A3($avh4$elm_color$Color$rgb255, 70, 52, 128),
+				A3($avh4$elm_color$Color$rgb255, 69, 53, 129),
+				A3($avh4$elm_color$Color$rgb255, 69, 55, 129),
+				A3($avh4$elm_color$Color$rgb255, 69, 56, 130),
+				A3($avh4$elm_color$Color$rgb255, 68, 57, 131),
+				A3($avh4$elm_color$Color$rgb255, 68, 58, 131),
+				A3($avh4$elm_color$Color$rgb255, 68, 59, 132),
+				A3($avh4$elm_color$Color$rgb255, 67, 61, 132),
+				A3($avh4$elm_color$Color$rgb255, 67, 62, 133),
+				A3($avh4$elm_color$Color$rgb255, 66, 63, 133),
+				A3($avh4$elm_color$Color$rgb255, 66, 64, 134),
+				A3($avh4$elm_color$Color$rgb255, 66, 65, 134),
+				A3($avh4$elm_color$Color$rgb255, 65, 66, 135),
+				A3($avh4$elm_color$Color$rgb255, 65, 68, 135),
+				A3($avh4$elm_color$Color$rgb255, 64, 69, 136),
+				A3($avh4$elm_color$Color$rgb255, 64, 70, 136),
+				A3($avh4$elm_color$Color$rgb255, 63, 71, 136),
+				A3($avh4$elm_color$Color$rgb255, 63, 72, 137),
+				A3($avh4$elm_color$Color$rgb255, 62, 73, 137),
+				A3($avh4$elm_color$Color$rgb255, 62, 74, 137),
+				A3($avh4$elm_color$Color$rgb255, 62, 76, 138),
+				A3($avh4$elm_color$Color$rgb255, 61, 77, 138),
+				A3($avh4$elm_color$Color$rgb255, 61, 78, 138),
+				A3($avh4$elm_color$Color$rgb255, 60, 79, 138),
+				A3($avh4$elm_color$Color$rgb255, 60, 80, 139),
+				A3($avh4$elm_color$Color$rgb255, 59, 81, 139),
+				A3($avh4$elm_color$Color$rgb255, 59, 82, 139),
+				A3($avh4$elm_color$Color$rgb255, 58, 83, 139),
+				A3($avh4$elm_color$Color$rgb255, 58, 84, 140),
+				A3($avh4$elm_color$Color$rgb255, 57, 85, 140),
+				A3($avh4$elm_color$Color$rgb255, 57, 86, 140),
+				A3($avh4$elm_color$Color$rgb255, 56, 88, 140),
+				A3($avh4$elm_color$Color$rgb255, 56, 89, 140),
+				A3($avh4$elm_color$Color$rgb255, 55, 90, 140),
+				A3($avh4$elm_color$Color$rgb255, 55, 91, 141),
+				A3($avh4$elm_color$Color$rgb255, 54, 92, 141),
+				A3($avh4$elm_color$Color$rgb255, 54, 93, 141),
+				A3($avh4$elm_color$Color$rgb255, 53, 94, 141),
+				A3($avh4$elm_color$Color$rgb255, 53, 95, 141),
+				A3($avh4$elm_color$Color$rgb255, 52, 96, 141),
+				A3($avh4$elm_color$Color$rgb255, 52, 97, 141),
+				A3($avh4$elm_color$Color$rgb255, 51, 98, 141),
+				A3($avh4$elm_color$Color$rgb255, 51, 99, 141),
+				A3($avh4$elm_color$Color$rgb255, 50, 100, 142),
+				A3($avh4$elm_color$Color$rgb255, 50, 101, 142),
+				A3($avh4$elm_color$Color$rgb255, 49, 102, 142),
+				A3($avh4$elm_color$Color$rgb255, 49, 103, 142),
+				A3($avh4$elm_color$Color$rgb255, 49, 104, 142),
+				A3($avh4$elm_color$Color$rgb255, 48, 105, 142),
+				A3($avh4$elm_color$Color$rgb255, 48, 106, 142),
+				A3($avh4$elm_color$Color$rgb255, 47, 107, 142),
+				A3($avh4$elm_color$Color$rgb255, 47, 108, 142),
+				A3($avh4$elm_color$Color$rgb255, 46, 109, 142),
+				A3($avh4$elm_color$Color$rgb255, 46, 110, 142),
+				A3($avh4$elm_color$Color$rgb255, 46, 111, 142),
+				A3($avh4$elm_color$Color$rgb255, 45, 112, 142),
+				A3($avh4$elm_color$Color$rgb255, 45, 113, 142),
+				A3($avh4$elm_color$Color$rgb255, 44, 113, 142),
+				A3($avh4$elm_color$Color$rgb255, 44, 114, 142),
+				A3($avh4$elm_color$Color$rgb255, 44, 115, 142),
+				A3($avh4$elm_color$Color$rgb255, 43, 116, 142),
+				A3($avh4$elm_color$Color$rgb255, 43, 117, 142),
+				A3($avh4$elm_color$Color$rgb255, 42, 118, 142),
+				A3($avh4$elm_color$Color$rgb255, 42, 119, 142),
+				A3($avh4$elm_color$Color$rgb255, 42, 120, 142),
+				A3($avh4$elm_color$Color$rgb255, 41, 121, 142),
+				A3($avh4$elm_color$Color$rgb255, 41, 122, 142),
+				A3($avh4$elm_color$Color$rgb255, 41, 123, 142),
+				A3($avh4$elm_color$Color$rgb255, 40, 124, 142),
+				A3($avh4$elm_color$Color$rgb255, 40, 125, 142),
+				A3($avh4$elm_color$Color$rgb255, 39, 126, 142),
+				A3($avh4$elm_color$Color$rgb255, 39, 127, 142),
+				A3($avh4$elm_color$Color$rgb255, 39, 128, 142),
+				A3($avh4$elm_color$Color$rgb255, 38, 129, 142),
+				A3($avh4$elm_color$Color$rgb255, 38, 130, 142),
+				A3($avh4$elm_color$Color$rgb255, 38, 130, 142),
+				A3($avh4$elm_color$Color$rgb255, 37, 131, 142),
+				A3($avh4$elm_color$Color$rgb255, 37, 132, 142),
+				A3($avh4$elm_color$Color$rgb255, 37, 133, 142),
+				A3($avh4$elm_color$Color$rgb255, 36, 134, 142),
+				A3($avh4$elm_color$Color$rgb255, 36, 135, 142),
+				A3($avh4$elm_color$Color$rgb255, 35, 136, 142),
+				A3($avh4$elm_color$Color$rgb255, 35, 137, 142),
+				A3($avh4$elm_color$Color$rgb255, 35, 138, 141),
+				A3($avh4$elm_color$Color$rgb255, 34, 139, 141),
+				A3($avh4$elm_color$Color$rgb255, 34, 140, 141),
+				A3($avh4$elm_color$Color$rgb255, 34, 141, 141),
+				A3($avh4$elm_color$Color$rgb255, 33, 142, 141),
+				A3($avh4$elm_color$Color$rgb255, 33, 143, 141),
+				A3($avh4$elm_color$Color$rgb255, 33, 144, 141),
+				A3($avh4$elm_color$Color$rgb255, 33, 145, 140),
+				A3($avh4$elm_color$Color$rgb255, 32, 146, 140),
+				A3($avh4$elm_color$Color$rgb255, 32, 146, 140),
+				A3($avh4$elm_color$Color$rgb255, 32, 147, 140),
+				A3($avh4$elm_color$Color$rgb255, 31, 148, 140),
+				A3($avh4$elm_color$Color$rgb255, 31, 149, 139),
+				A3($avh4$elm_color$Color$rgb255, 31, 150, 139),
+				A3($avh4$elm_color$Color$rgb255, 31, 151, 139),
+				A3($avh4$elm_color$Color$rgb255, 31, 152, 139),
+				A3($avh4$elm_color$Color$rgb255, 31, 153, 138),
+				A3($avh4$elm_color$Color$rgb255, 31, 154, 138),
+				A3($avh4$elm_color$Color$rgb255, 30, 155, 138),
+				A3($avh4$elm_color$Color$rgb255, 30, 156, 137),
+				A3($avh4$elm_color$Color$rgb255, 30, 157, 137),
+				A3($avh4$elm_color$Color$rgb255, 31, 158, 137),
+				A3($avh4$elm_color$Color$rgb255, 31, 159, 136),
+				A3($avh4$elm_color$Color$rgb255, 31, 160, 136),
+				A3($avh4$elm_color$Color$rgb255, 31, 161, 136),
+				A3($avh4$elm_color$Color$rgb255, 31, 161, 135),
+				A3($avh4$elm_color$Color$rgb255, 31, 162, 135),
+				A3($avh4$elm_color$Color$rgb255, 32, 163, 134),
+				A3($avh4$elm_color$Color$rgb255, 32, 164, 134),
+				A3($avh4$elm_color$Color$rgb255, 33, 165, 133),
+				A3($avh4$elm_color$Color$rgb255, 33, 166, 133),
+				A3($avh4$elm_color$Color$rgb255, 34, 167, 133),
+				A3($avh4$elm_color$Color$rgb255, 34, 168, 132),
+				A3($avh4$elm_color$Color$rgb255, 35, 169, 131),
+				A3($avh4$elm_color$Color$rgb255, 36, 170, 131),
+				A3($avh4$elm_color$Color$rgb255, 37, 171, 130),
+				A3($avh4$elm_color$Color$rgb255, 37, 172, 130),
+				A3($avh4$elm_color$Color$rgb255, 38, 173, 129),
+				A3($avh4$elm_color$Color$rgb255, 39, 173, 129),
+				A3($avh4$elm_color$Color$rgb255, 40, 174, 128),
+				A3($avh4$elm_color$Color$rgb255, 41, 175, 127),
+				A3($avh4$elm_color$Color$rgb255, 42, 176, 127),
+				A3($avh4$elm_color$Color$rgb255, 44, 177, 126),
+				A3($avh4$elm_color$Color$rgb255, 45, 178, 125),
+				A3($avh4$elm_color$Color$rgb255, 46, 179, 124),
+				A3($avh4$elm_color$Color$rgb255, 47, 180, 124),
+				A3($avh4$elm_color$Color$rgb255, 49, 181, 123),
+				A3($avh4$elm_color$Color$rgb255, 50, 182, 122),
+				A3($avh4$elm_color$Color$rgb255, 52, 182, 121),
+				A3($avh4$elm_color$Color$rgb255, 53, 183, 121),
+				A3($avh4$elm_color$Color$rgb255, 55, 184, 120),
+				A3($avh4$elm_color$Color$rgb255, 56, 185, 119),
+				A3($avh4$elm_color$Color$rgb255, 58, 186, 118),
+				A3($avh4$elm_color$Color$rgb255, 59, 187, 117),
+				A3($avh4$elm_color$Color$rgb255, 61, 188, 116),
+				A3($avh4$elm_color$Color$rgb255, 63, 188, 115),
+				A3($avh4$elm_color$Color$rgb255, 64, 189, 114),
+				A3($avh4$elm_color$Color$rgb255, 66, 190, 113),
+				A3($avh4$elm_color$Color$rgb255, 68, 191, 112),
+				A3($avh4$elm_color$Color$rgb255, 70, 192, 111),
+				A3($avh4$elm_color$Color$rgb255, 72, 193, 110),
+				A3($avh4$elm_color$Color$rgb255, 74, 193, 109),
+				A3($avh4$elm_color$Color$rgb255, 76, 194, 108),
+				A3($avh4$elm_color$Color$rgb255, 78, 195, 107),
+				A3($avh4$elm_color$Color$rgb255, 80, 196, 106),
+				A3($avh4$elm_color$Color$rgb255, 82, 197, 105),
+				A3($avh4$elm_color$Color$rgb255, 84, 197, 104),
+				A3($avh4$elm_color$Color$rgb255, 86, 198, 103),
+				A3($avh4$elm_color$Color$rgb255, 88, 199, 101),
+				A3($avh4$elm_color$Color$rgb255, 90, 200, 100),
+				A3($avh4$elm_color$Color$rgb255, 92, 200, 99),
+				A3($avh4$elm_color$Color$rgb255, 94, 201, 98),
+				A3($avh4$elm_color$Color$rgb255, 96, 202, 96),
+				A3($avh4$elm_color$Color$rgb255, 99, 203, 95),
+				A3($avh4$elm_color$Color$rgb255, 101, 203, 94),
+				A3($avh4$elm_color$Color$rgb255, 103, 204, 92),
+				A3($avh4$elm_color$Color$rgb255, 105, 205, 91),
+				A3($avh4$elm_color$Color$rgb255, 108, 205, 90),
+				A3($avh4$elm_color$Color$rgb255, 110, 206, 88),
+				A3($avh4$elm_color$Color$rgb255, 112, 207, 87),
+				A3($avh4$elm_color$Color$rgb255, 115, 208, 86),
+				A3($avh4$elm_color$Color$rgb255, 117, 208, 84),
+				A3($avh4$elm_color$Color$rgb255, 119, 209, 83),
+				A3($avh4$elm_color$Color$rgb255, 122, 209, 81),
+				A3($avh4$elm_color$Color$rgb255, 124, 210, 80),
+				A3($avh4$elm_color$Color$rgb255, 127, 211, 78),
+				A3($avh4$elm_color$Color$rgb255, 129, 211, 77),
+				A3($avh4$elm_color$Color$rgb255, 132, 212, 75),
+				A3($avh4$elm_color$Color$rgb255, 134, 213, 73),
+				A3($avh4$elm_color$Color$rgb255, 137, 213, 72),
+				A3($avh4$elm_color$Color$rgb255, 139, 214, 70),
+				A3($avh4$elm_color$Color$rgb255, 142, 214, 69),
+				A3($avh4$elm_color$Color$rgb255, 144, 215, 67),
+				A3($avh4$elm_color$Color$rgb255, 147, 215, 65),
+				A3($avh4$elm_color$Color$rgb255, 149, 216, 64),
+				A3($avh4$elm_color$Color$rgb255, 152, 216, 62),
+				A3($avh4$elm_color$Color$rgb255, 155, 217, 60),
+				A3($avh4$elm_color$Color$rgb255, 157, 217, 59),
+				A3($avh4$elm_color$Color$rgb255, 160, 218, 57),
+				A3($avh4$elm_color$Color$rgb255, 162, 218, 55),
+				A3($avh4$elm_color$Color$rgb255, 165, 219, 54),
+				A3($avh4$elm_color$Color$rgb255, 168, 219, 52),
+				A3($avh4$elm_color$Color$rgb255, 170, 220, 50),
+				A3($avh4$elm_color$Color$rgb255, 173, 220, 48),
+				A3($avh4$elm_color$Color$rgb255, 176, 221, 47),
+				A3($avh4$elm_color$Color$rgb255, 178, 221, 45),
+				A3($avh4$elm_color$Color$rgb255, 181, 222, 43),
+				A3($avh4$elm_color$Color$rgb255, 184, 222, 41),
+				A3($avh4$elm_color$Color$rgb255, 186, 222, 40),
+				A3($avh4$elm_color$Color$rgb255, 189, 223, 38),
+				A3($avh4$elm_color$Color$rgb255, 192, 223, 37),
+				A3($avh4$elm_color$Color$rgb255, 194, 223, 35),
+				A3($avh4$elm_color$Color$rgb255, 197, 224, 33),
+				A3($avh4$elm_color$Color$rgb255, 200, 224, 32),
+				A3($avh4$elm_color$Color$rgb255, 202, 225, 31),
+				A3($avh4$elm_color$Color$rgb255, 205, 225, 29),
+				A3($avh4$elm_color$Color$rgb255, 208, 225, 28),
+				A3($avh4$elm_color$Color$rgb255, 210, 226, 27),
+				A3($avh4$elm_color$Color$rgb255, 213, 226, 26),
+				A3($avh4$elm_color$Color$rgb255, 216, 226, 25),
+				A3($avh4$elm_color$Color$rgb255, 218, 227, 25),
+				A3($avh4$elm_color$Color$rgb255, 221, 227, 24),
+				A3($avh4$elm_color$Color$rgb255, 223, 227, 24),
+				A3($avh4$elm_color$Color$rgb255, 226, 228, 24),
+				A3($avh4$elm_color$Color$rgb255, 229, 228, 25),
+				A3($avh4$elm_color$Color$rgb255, 231, 228, 25),
+				A3($avh4$elm_color$Color$rgb255, 234, 229, 26),
+				A3($avh4$elm_color$Color$rgb255, 236, 229, 27),
+				A3($avh4$elm_color$Color$rgb255, 239, 229, 28),
+				A3($avh4$elm_color$Color$rgb255, 241, 229, 29),
+				A3($avh4$elm_color$Color$rgb255, 244, 230, 30),
+				A3($avh4$elm_color$Color$rgb255, 246, 230, 32),
+				A3($avh4$elm_color$Color$rgb255, 248, 230, 33),
+				A3($avh4$elm_color$Color$rgb255, 251, 231, 35),
+				A3($avh4$elm_color$Color$rgb255, 253, 231, 37)
+			])));
 var $author$project$Energy$metricInterpolator = function (m) {
 	switch (m.$) {
 		case 'SolarShare':
-			return $gampleman$elm_visualization$Scale$Color$yellowOrangeRedInterpolator;
+			return $gampleman$elm_visualization$Scale$Color$plasmaInterpolator;
 		case 'RenewableShare':
-			return $gampleman$elm_visualization$Scale$Color$yellowGreenInterpolator;
+			return $gampleman$elm_visualization$Scale$Color$viridisInterpolator;
 		default:
 			return $gampleman$elm_visualization$Scale$Color$infernoInterpolator;
 	}
@@ -8704,6 +9041,24 @@ var $author$project$Energy$sumByBand = function (rows) {
 			},
 			$author$project$Energy$bands));
 };
+var $author$project$Energy$sumBySub = F2(
+	function (rows, subs) {
+		return A2(
+			$elm$core$List$filter,
+			function (_v0) {
+				var v = _v0.b;
+				return v > 0;
+			},
+			A2(
+				$elm$core$List$map,
+				function (s) {
+					return _Utils_Tuple2(
+						s,
+						$elm$core$List$sum(
+							A2($elm$core$List$map, s.value, rows)));
+				},
+				subs));
+	});
 var $elm_community$typed_svg$TypedSvg$Types$AnchorEnd = {$: 'AnchorEnd'};
 var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
 var $elm_community$typed_svg$TypedSvg$Types$Paint = function (a) {
@@ -9664,6 +10019,10 @@ var $folkertdev$one_true_path_experiment$SubPath$connect = function () {
 		});
 	return $folkertdev$one_true_path_experiment$SubPath$map2(helper);
 }();
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
 var $gampleman$elm_visualization$Shape$Generators$area = F2(
 	function (curve, data) {
 		var makeShape = F2(
@@ -10093,6 +10452,16 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$DecimalPlaces = function (a) {
 };
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$decimalPlaces = $folkertdev$svg_path_lowlevel$Path$LowLevel$DecimalPlaces;
 var $folkertdev$one_true_path_experiment$SubPath$defaultConfig = {decimalPlaces: $elm$core$Maybe$Nothing, mergeAdjacent: false};
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
 var $folkertdev$one_true_path_experiment$SubPath$optionFolder = F2(
 	function (option, config) {
 		if (option.$ === 'DecimalPlaces') {
@@ -10176,6 +10545,7 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$defaultConfig = {floatFormatter:
 var $elm$core$Basics$abs = function (n) {
 	return (n < 0) ? (-n) : n;
 };
+var $elm$core$Basics$pow = _Basics_pow;
 var $folkertdev$svg_path_lowlevel$Path$LowLevel$roundTo = F2(
 	function (n, value) {
 		if (!n) {
@@ -10239,6 +10609,10 @@ var $folkertdev$svg_path_lowlevel$Path$LowLevel$isEmpty = function (command) {
 		default:
 			return false;
 	}
+};
+var $elm$core$String$cons = _String_cons;
+var $elm$core$String$fromChar = function (_char) {
+	return A2($elm$core$String$cons, _char, '');
 };
 var $elm$core$Char$toLower = _Char_toLower;
 var $elm$core$Char$toUpper = _Char_toUpper;
@@ -10652,6 +11026,13 @@ var $gampleman$elm_visualization$Scale$Continuous$convertTransform = F4(
 					transform(d1)),
 				range,
 				interpolate));
+	});
+var $gampleman$elm_visualization$Interpolation$float = F2(
+	function (a, to) {
+		var b = to - a;
+		return function (t) {
+			return a + (b * t);
+		};
 	});
 var $gampleman$elm_visualization$Scale$Continuous$invertTransform = F4(
 	function (transform, untransform, _v0, range) {
@@ -11326,6 +11707,10 @@ var $justinmimbs$date$Date$add = F3(
 				return $justinmimbs$date$Date$RD(rd + n);
 		}
 	});
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
+	});
 var $justinmimbs$date$Date$fromCalendarDate = F3(
 	function (y, m, d) {
 		return $justinmimbs$date$Date$RD(
@@ -11939,6 +12324,15 @@ var $ryan_haskell$date_format$DateFormat$amPm = F3(
 var $ryan_haskell$date_format$DateFormat$dayOfMonth = $elm$time$Time$toDay;
 var $ryan_haskell$date_format$DateFormat$days = _List_fromArray(
 	[$elm$time$Time$Sun, $elm$time$Time$Mon, $elm$time$Time$Tue, $elm$time$Time$Wed, $elm$time$Time$Thu, $elm$time$Time$Fri, $elm$time$Time$Sat]);
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
 var $elm$time$Time$toWeekday = F2(
 	function (zone, time) {
 		var _v0 = A2(
@@ -12513,11 +12907,11 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 				$elm_community$typed_svg$TypedSvg$Attributes$strokeDasharray('5 3')
 			]));
 	var focusRect = function () {
-		var _v1 = cfg.focusedDay;
-		if (_v1.$ === 'Nothing') {
+		var _v2 = cfg.focusedDay;
+		if (_v2.$ === 'Nothing') {
 			return _List_Nil;
 		} else {
-			var d = _v1.a;
+			var d = _v2.a;
 			var clampX = function (v) {
 				return A2(
 					$elm$core$Basics$max,
@@ -12558,6 +12952,42 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 				]);
 		}
 	}();
+	var diffArea = function (toImport) {
+		var pts = A2(
+			$elm$core$List$map,
+			function (r) {
+				var load = r.load;
+				var gen = $author$project$Energy$totalGeneration(r);
+				var _v1 = toImport ? _Utils_Tuple2(
+					A2($elm$core$Basics$min, load, gen),
+					load) : _Utils_Tuple2(
+					load,
+					A2($elm$core$Basics$max, load, gen));
+				var lo = _v1.a;
+				var hi = _v1.b;
+				return $elm$core$Maybe$Just(
+					_Utils_Tuple2(
+						_Utils_Tuple2(
+							xOf(r),
+							A2($gampleman$elm_visualization$Scale$convert, yScale, lo)),
+						_Utils_Tuple2(
+							xOf(r),
+							A2($gampleman$elm_visualization$Scale$convert, yScale, hi))));
+			},
+			cfg.rows);
+		return A2(
+			$folkertdev$one_true_path_experiment$Path$element,
+			A2($gampleman$elm_visualization$Shape$area, $gampleman$elm_visualization$Shape$linearCurve, pts),
+			_List_fromArray(
+				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						[
+							toImport ? 'deficit' : 'surplus'
+						])),
+					$elm_community$typed_svg$TypedSvg$Attributes$stroke($elm_community$typed_svg$TypedSvg$Types$PaintNone)
+				]));
+	};
 	var areaFor = F2(
 		function (band, pairs) {
 			var dimmed = (!$elm$core$List$isEmpty(cfg.active)) && (!A2($elm$core$List$member, band.name, cfg.active));
@@ -12623,9 +13053,15 @@ var $author$project$Chart$StackedArea$view = function (cfg) {
 				_Utils_ap(
 					areas,
 					_Utils_ap(
-						focusRect,
 						_List_fromArray(
-							[loadLine])))),
+							[
+								diffArea(false),
+								diffArea(true)
+							]),
+						_Utils_ap(
+							focusRect,
+							_List_fromArray(
+								[loadLine]))))),
 				A2(
 				$elm_community$typed_svg$TypedSvg$g,
 				_List_fromArray(
@@ -12688,23 +13124,10 @@ var $gampleman$elm_rosetree$Tree$children = function (_v0) {
 	var c = _v0.b;
 	return c;
 };
-var $author$project$Energy$groupColor = function (g) {
-	if (g.$ === 'Renewable') {
-		return A3($avh4$elm_color$Color$rgb255, 35, 80, 45);
-	} else {
-		return A3($avh4$elm_color$Color$rgb255, 60, 60, 60);
-	}
-};
-var $author$project$Energy$groupName = function (g) {
-	if (g.$ === 'Renewable') {
-		return 'Erneuerbar';
-	} else {
-		return 'Konventionell';
-	}
-};
-var $author$project$Chart$Treemap$groupPct = F2(
-	function (total, v) {
-		return (total <= 0) ? 0 : ((v / total) * 100);
+var $author$project$Chart$Treemap$drillTip = F2(
+	function (name, tip) {
+		return $elm$core$List$isEmpty(
+			$author$project$Energy$bandSubs(name)) ? tip : (tip + '  ·  klicken zum Aufschlüsseln');
 	});
 var $gampleman$elm_rosetree$Tree$label = function (_v0) {
 	var v = _v0.a;
@@ -13479,6 +13902,258 @@ var $gampleman$elm_visualization$Hierarchy$treemap = F2(
 				attrs));
 	});
 var $avh4$elm_color$Color$white = A4($avh4$elm_color$Color$RgbaSpace, 255 / 255, 255 / 255, 255 / 255, 1.0);
+var $author$project$Chart$Treemap$drillView = F3(
+	function (cfg, band, subs) {
+		var total = $elm$core$List$sum(
+			A2($elm$core$List$map, $elm$core$Tuple$second, subs));
+		var round1 = function (x) {
+			return $elm$core$String$fromFloat(
+				$elm$core$Basics$round(x * 10) / 10);
+		};
+		var subLeaf = function (item) {
+			var node = item.node;
+			var pct = (total <= 0) ? 0 : ((node.value / total) * 100);
+			var labelFill = $elm_community$typed_svg$TypedSvg$Attributes$fill(
+				$elm_community$typed_svg$TypedSvg$Types$Paint(
+					$author$project$Chart$Treemap$textOn(node.color)));
+			var labels = function () {
+				if ((item.width > 54) && (item.height > 28)) {
+					return _List_fromArray(
+						[
+							A2(
+							$elm_community$typed_svg$TypedSvg$text_,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(17),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12.5),
+									labelFill
+								]),
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+								])),
+							A2(
+							$elm_community$typed_svg$TypedSvg$text_,
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(32),
+									$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+									labelFill
+								]),
+							_List_fromArray(
+								[
+									$elm_community$typed_svg$TypedSvg$Core$text(
+									round1(pct) + ' %')
+								]))
+						]);
+				} else {
+					if ((item.height > 40) && (item.width > 13)) {
+						var cy = item.height / 2;
+						var cx = item.width / 2;
+						return _List_fromArray(
+							[
+								A2(
+								$elm_community$typed_svg$TypedSvg$text_,
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(cx),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(cy),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(11),
+										$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle),
+										labelFill,
+										$elm_community$typed_svg$TypedSvg$Attributes$transform(
+										_List_fromArray(
+											[
+												A3($elm_community$typed_svg$TypedSvg$Types$Rotate, -90, cx, cy)
+											]))
+									]),
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+									]))
+							]);
+					} else {
+						if ((item.width > 30) && (item.height > 14)) {
+							return _List_fromArray(
+								[
+									A2(
+									$elm_community$typed_svg$TypedSvg$text_,
+									_List_fromArray(
+										[
+											$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(7),
+											$elm_community$typed_svg$TypedSvg$Attributes$InPx$y((item.height / 2) + 4),
+											$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(10.5),
+											labelFill
+										]),
+									_List_fromArray(
+										[
+											$elm_community$typed_svg$TypedSvg$Core$text(node.name)
+										]))
+								]);
+						} else {
+							return _List_Nil;
+						}
+					}
+				}
+			}();
+			return A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$class(
+						_List_fromArray(
+							['leaf'])),
+						$elm_community$typed_svg$TypedSvg$Attributes$transform(
+						_List_fromArray(
+							[
+								A2($elm_community$typed_svg$TypedSvg$Types$Translate, item.x, item.y)
+							]))
+					]),
+				A2(
+					$elm$core$List$cons,
+					A2(
+						$elm_community$typed_svg$TypedSvg$rect,
+						_List_fromArray(
+							[
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(item.width),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(item.height),
+								$elm_community$typed_svg$TypedSvg$Attributes$fill(
+								$elm_community$typed_svg$TypedSvg$Types$Paint(node.color)),
+								$elm_community$typed_svg$TypedSvg$Attributes$class(
+								_List_fromArray(
+									['tile'])),
+								$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(1.5),
+								$elm_community$typed_svg$TypedSvg$Events$onClick(
+								cfg.onDrill($elm$core$Maybe$Nothing))
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm_community$typed_svg$TypedSvg$title,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Core$text(
+										node.name + (' — ' + (round1(pct) + ' %')))
+									]))
+							])),
+					labels));
+		};
+		var leaves = A2(
+			$elm$core$List$map,
+			function (_v1) {
+				var s = _v1.a;
+				var v = _v1.b;
+				return $gampleman$elm_rosetree$Tree$singleton(
+					A3($author$project$Chart$Treemap$TNode, s.name, s.color, v));
+			},
+			subs);
+		var root = A2(
+			$gampleman$elm_rosetree$Tree$tree,
+			A3(
+				$author$project$Chart$Treemap$TNode,
+				band,
+				A3($avh4$elm_color$Color$rgb255, 90, 90, 90),
+				total),
+			leaves);
+		var headerH = 30;
+		var layouted = A3(
+			$gampleman$elm_visualization$Hierarchy$treemap,
+			_List_fromArray(
+				[
+					$gampleman$elm_visualization$Hierarchy$tile($gampleman$elm_visualization$Hierarchy$squarify),
+					$gampleman$elm_visualization$Hierarchy$paddingInner(
+					$elm$core$Basics$always(4)),
+					$gampleman$elm_visualization$Hierarchy$paddingOuter(
+					$elm$core$Basics$always(2)),
+					$gampleman$elm_visualization$Hierarchy$paddingTop(
+					function (n) {
+						return _Utils_eq(n.name, band) ? headerH : 0;
+					}),
+					A2($gampleman$elm_visualization$Hierarchy$size, cfg.width, cfg.height)
+				]),
+			function ($) {
+				return $.value;
+			},
+			A2(
+				$gampleman$elm_rosetree$Tree$sortWith,
+				F3(
+					function (_v0, a, b) {
+						return A2(
+							$elm$core$Basics$compare,
+							$gampleman$elm_rosetree$Tree$label(b).value,
+							$gampleman$elm_rosetree$Tree$label(a).value);
+					}),
+				root));
+		var backBar = _List_fromArray(
+			[
+				A2(
+				$elm_community$typed_svg$TypedSvg$rect,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(0),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(0),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(cfg.width),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(headerH),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint(
+							A3($avh4$elm_color$Color$rgb255, 51, 65, 85))),
+						$elm_community$typed_svg$TypedSvg$Events$onClick(
+						cfg.onDrill($elm$core$Maybe$Nothing))
+					]),
+				_List_Nil),
+				A2(
+				$elm_community$typed_svg$TypedSvg$text_,
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(11),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(20),
+						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12.5),
+						$elm_community$typed_svg$TypedSvg$Attributes$fill(
+						$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$white)),
+						$elm_community$typed_svg$TypedSvg$Events$onClick(
+						cfg.onDrill($elm$core$Maybe$Nothing))
+					]),
+				_List_fromArray(
+					[
+						$elm_community$typed_svg$TypedSvg$Core$text('← ' + (band + ' · zurück zur Übersicht'))
+					]))
+			]);
+		return A2(
+			$elm_community$typed_svg$TypedSvg$svg,
+			_List_fromArray(
+				[
+					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, cfg.width, cfg.height),
+					$elm_community$typed_svg$TypedSvg$Attributes$width(
+					$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+				]),
+			_Utils_ap(
+				A2(
+					$elm$core$List$map,
+					subLeaf,
+					$gampleman$elm_rosetree$Tree$leaves(layouted)),
+				backBar));
+	});
+var $author$project$Energy$groupColor = function (g) {
+	if (g.$ === 'Renewable') {
+		return A3($avh4$elm_color$Color$rgb255, 35, 80, 45);
+	} else {
+		return A3($avh4$elm_color$Color$rgb255, 60, 60, 60);
+	}
+};
+var $author$project$Energy$groupName = function (g) {
+	if (g.$ === 'Renewable') {
+		return 'Erneuerbar';
+	} else {
+		return 'Konventionell';
+	}
+};
+var $author$project$Chart$Treemap$groupPct = F2(
+	function (total, v) {
+		return (total <= 0) ? 0 : ((v / total) * 100);
+	});
 var $author$project$Chart$Treemap$view = function (cfg) {
 	var round1 = function (x) {
 		return $elm$core$String$fromFloat(
@@ -13487,26 +14162,26 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 	var leavesOf = function (grp) {
 		return A2(
 			$elm$core$List$map,
-			function (_v3) {
-				var b = _v3.a;
-				var v = _v3.b;
+			function (_v4) {
+				var b = _v4.a;
+				var v = _v4.b;
 				return $gampleman$elm_rosetree$Tree$singleton(
 					A3($author$project$Chart$Treemap$TNode, b.name, b.color, v));
 			},
 			A2(
 				$elm$core$List$filter,
-				function (_v2) {
-					var b = _v2.a;
+				function (_v3) {
+					var b = _v3.a;
 					return _Utils_eq(b.group, grp);
 				},
 				cfg.sums));
 	};
 	var groupNode = function (grp) {
-		var _v1 = leavesOf(grp);
-		if (!_v1.b) {
+		var _v2 = leavesOf(grp);
+		if (!_v2.b) {
 			return $elm$core$Maybe$Nothing;
 		} else {
-			var kids = _v1;
+			var kids = _v2;
 			return $elm$core$Maybe$Just(
 				A2(
 					$gampleman$elm_rosetree$Tree$tree,
@@ -13694,7 +14369,9 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 							$elm_community$typed_svg$TypedSvg$Events$onMouseOut(
 							cfg.onHover($elm$core$Maybe$Nothing)),
 							$elm_community$typed_svg$TypedSvg$Events$onClick(
-							cfg.onPin(node.name))
+							$elm$core$List$isEmpty(
+								$author$project$Energy$bandSubs(node.name)) ? cfg.onPin(node.name) : cfg.onDrill(
+								$elm$core$Maybe$Just(node.name)))
 						]),
 					_List_fromArray(
 						[
@@ -13703,7 +14380,8 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 							_List_Nil,
 							_List_fromArray(
 								[
-									$elm_community$typed_svg$TypedSvg$Core$text(tip)
+									$elm_community$typed_svg$TypedSvg$Core$text(
+									A2($author$project$Chart$Treemap$drillTip, node.name, tip))
 								]))
 						])),
 				labelNodes));
@@ -13737,7 +14415,7 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 		A2(
 			$gampleman$elm_rosetree$Tree$sortWith,
 			F3(
-				function (_v0, a, b) {
+				function (_v1, a, b) {
 					return A2(
 						$elm$core$Basics$compare,
 						$gampleman$elm_rosetree$Tree$label(b).value,
@@ -13751,45 +14429,52 @@ var $author$project$Chart$Treemap$view = function (cfg) {
 			$elm$core$List$map,
 			$gampleman$elm_rosetree$Tree$label,
 			$gampleman$elm_rosetree$Tree$children(layouted)));
-	return $elm$core$List$isEmpty(cfg.sums) ? A2(
-		$elm_community$typed_svg$TypedSvg$svg,
-		_List_fromArray(
-			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, cfg.width, cfg.height),
-				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
-			]),
-		_List_fromArray(
-			[
+	var _v0 = _Utils_Tuple2(cfg.focus, cfg.subSums);
+	if ((_v0.a.$ === 'Just') && _v0.b.b) {
+		var band = _v0.a.a;
+		var subs = _v0.b;
+		return A3($author$project$Chart$Treemap$drillView, cfg, band, subs);
+	} else {
+		return $elm$core$List$isEmpty(cfg.sums) ? A2(
+			$elm_community$typed_svg$TypedSvg$svg,
+			_List_fromArray(
+				[
+					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, cfg.width, cfg.height),
+					$elm_community$typed_svg$TypedSvg$Attributes$width(
+					$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(8),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(20),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12)
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text('keine Daten')
+						]))
+				])) : A2(
+			$elm_community$typed_svg$TypedSvg$svg,
+			_List_fromArray(
+				[
+					A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, cfg.width, cfg.height),
+					$elm_community$typed_svg$TypedSvg$Attributes$width(
+					$elm_community$typed_svg$TypedSvg$Types$Percent(100))
+				]),
+			_Utils_ap(
+				groupHeaders,
 				A2(
-				$elm_community$typed_svg$TypedSvg$text_,
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(8),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(20),
-						$elm_community$typed_svg$TypedSvg$Attributes$InPx$fontSize(12)
-					]),
-				_List_fromArray(
-					[
-						$elm_community$typed_svg$TypedSvg$Core$text('keine Daten')
-					]))
-			])) : A2(
-		$elm_community$typed_svg$TypedSvg$svg,
-		_List_fromArray(
-			[
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, cfg.width, cfg.height),
-				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$Percent(100))
-			]),
-		_Utils_ap(
-			groupHeaders,
-			A2(
-				$elm$core$List$map,
-				leafSvg,
-				$gampleman$elm_rosetree$Tree$leaves(layouted))));
+					$elm$core$List$map,
+					leafSvg,
+					$gampleman$elm_rosetree$Tree$leaves(layouted))));
+	}
 };
-var $author$project$Main$chartsView = F6(
-	function (hovered, pinned, metric, focusedDay, windowDays, rows) {
+var $author$project$Main$chartsView = F7(
+	function (hovered, pinned, metric, focusedDay, windowDays, treemapFocus, rows) {
 		var hl = A2($author$project$Main$activeOf, pinned, hovered);
 		var focusNote = function () {
 			if (focusedDay.$ === 'Just') {
@@ -13843,6 +14528,17 @@ var $author$project$Main$chartsView = F6(
 				return sortedRows;
 			}
 		}();
+		var treemapSubSums = function () {
+			if (treemapFocus.$ === 'Just') {
+				var band = treemapFocus.a;
+				return A2(
+					$author$project$Energy$sumBySub,
+					treemapRows,
+					$author$project$Energy$bandSubs(band));
+			} else {
+				return _List_Nil;
+			}
+		}();
 		return A2(
 			$elm$html$Html$div,
 			_List_fromArray(
@@ -13854,8 +14550,8 @@ var $author$project$Main$chartsView = F6(
 					A5(
 					$author$project$Main$chartCard,
 					'1',
-					'Erzeugungsmix & Last im Zeitverlauf',
-					'Gestapelte Erzeugung nach Quelle; die gestrichelte Linie ist die Last. Erreicht die Stapelhöhe die Linie, ist der Bedarf gedeckt.',
+					'Erzeugungsmix & Saldo im Zeitverlauf',
+					'Gestapelte Erzeugung nach Quelle; gestrichelt = Last. Rote Fläche = Defizit (durch Import/Speicher zu decken), grüne Fläche = Überschuss (Export/Einspeicherung).',
 					focusNote,
 					$author$project$Chart$StackedArea$view(
 						{active: hl, focusedDay: focusedDay, height: 450, onHover: $author$project$Main$HoverSource, onPin: $author$project$Main$PinSource, rows: sortedRows, width: 1120})),
@@ -13888,14 +14584,17 @@ var $author$project$Main$chartsView = F6(
 							$author$project$Main$chartCard,
 							'3',
 							'Erzeugungsstruktur',
-							'Fläche ∝ Energieanteil im Zeitraum, gruppiert in Erneuerbar und Konventionell.',
+							'Fläche ∝ Energieanteil; Ebenen Erneuerbar/Konventionell → Quelle. Klick auf ein Band (z. B. Wind, Kohle) schlüsselt es in seine Rohquellen auf.',
 							$elm$core$Maybe$Nothing,
 							$author$project$Chart$Treemap$view(
 								{
 									active: hl,
+									focus: treemapFocus,
 									height: 480,
+									onDrill: $author$project$Main$DrillBand,
 									onHover: $author$project$Main$HoverSource,
 									onPin: $author$project$Main$PinSource,
+									subSums: treemapSubSums,
 									sums: $author$project$Energy$sumByBand(treemapRows),
 									width: 660
 								}))
@@ -13955,8 +14654,8 @@ var $author$project$Main$emptyView = function (model) {
 					]))
 			]));
 };
-var $elm$virtual_dom$VirtualDom$lazy6 = _VirtualDom_lazy6;
-var $elm$html$Html$Lazy$lazy6 = $elm$virtual_dom$VirtualDom$lazy6;
+var $elm$virtual_dom$VirtualDom$lazy7 = _VirtualDom_lazy7;
+var $elm$html$Html$Lazy$lazy7 = $elm$virtual_dom$VirtualDom$lazy7;
 var $elm$html$Html$Events$on = F2(
 	function (event, decoder) {
 		return A2(
@@ -14824,14 +15523,15 @@ var $author$project$Main$view = function (model) {
 					]),
 				_List_fromArray(
 					[
-						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A7(
-						$elm$html$Html$Lazy$lazy6,
+						$elm$core$List$isEmpty(visibleRows) ? $author$project$Main$emptyView(model) : A8(
+						$elm$html$Html$Lazy$lazy7,
 						$author$project$Main$chartsView,
 						model.hovered,
 						model.pinned,
 						A2($elm$core$Maybe$withDefault, model.metric, model.previewMetric),
 						model.focusedDay,
 						model.windowDays,
+						model.treemapFocus,
 						rows)
 					])),
 				$author$project$Main$tooltipView(model)
